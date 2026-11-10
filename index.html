@@ -862,6 +862,80 @@ ol.vqs li { line-height: 1.4; }
 ol.vqs .ts { display: inline-block; background: #E62117; color: #fff; border-radius: 8px; padding: 1px 8px; font-weight: 800; font-size: 13px; text-decoration: none; font-variant-numeric: tabular-nums; margin-right: 4px; }
 ol.vqs details { margin-top: 3px; font-size: 14px; color: var(--muted); } ol.vqs summary { cursor: pointer; font-weight: 700; }
 
+/* ================= simpler lessons (v3) ================= */
+.lhero .wrap { padding-bottom: 26px; }
+.lhero h1 { margin-top: 14px; }
+/* new words: match English ↔ Portuguese */
+.wgame h3, .wrecall h3, .vqh { margin-top: 0; }
+.wround { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.wround.wait, .wround.gone { display: none; }
+.wcol { display: flex; flex-direction: column; gap: 10px; }
+.wbtn { min-height: 56px; border: 2px solid var(--line); background: var(--surface); border-radius: 16px; padding: 10px 14px; font: 700 17px/1.25 var(--f-body); color: var(--ink); text-align: left; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: transform .15s var(--ease), border-color .15s, background .15s; }
+.wbtn .ic { width: 18px; height: 18px; color: var(--brand); flex: none; opacity: .75; }
+.wbtn.pt { font-weight: 600; color: var(--ink-2); }
+.wbtn:hover { border-color: var(--line-2); }
+.wbtn.sel { border-color: var(--brand); background: var(--brand-soft); transform: scale(1.02); box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand) 18%, transparent); }
+.wbtn.good { border-color: var(--good); background: var(--good-soft); color: var(--good); animation: pop2 .5s var(--spring); cursor: default; }
+.wbtn.good .ic { color: var(--good); }
+.wbtn.shake { border-color: var(--bad); background: var(--bad-soft); }
+.wround.hint .wbtn.en:not(.good) { animation: shake .4s; border-color: var(--brand); }
+.wdots { display: flex; justify-content: center; gap: 6px; margin: 14px 0 0; }
+.wdots i { width: 8px; height: 8px; border-radius: 50%; background: var(--line-2); }
+.wdots i.on { background: var(--brand); width: 22px; border-radius: 4px; }
+.wgame.finished .wround.gone:last-of-type, .wgame.finished .wround { display: grid; }
+.wgame.finished .wround { margin-bottom: 10px; }
+.wgame.finished .wdots { display: none; }
+.wrecall .rq { font-size: 19px; }
+/* listen & write: ears that empty with each play */
+.plays { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pips { display: inline-flex; gap: 5px; margin-left: 4px; }
+.pips i { width: 30px; height: 30px; border-radius: 50%; background: var(--surface-3); border: 2px dashed var(--line-2); display: grid; place-items: center; transition: all .25s var(--ease); color: var(--line-2); }
+.pips i .ic { width: 16px; height: 16px; }
+.pips i.on { background: var(--spark-soft); border: 2px solid var(--spark); color: var(--spark-ink); }
+.plmsg { font-size: 14px; color: var(--muted); font-weight: 600; flex-basis: 100%; }
+.plays.over .plmsg { color: var(--bad); }
+.plays.over .pips i { border-color: color-mix(in srgb, var(--bad) 45%, transparent); }
+.plrate { display: block; margin-top: 6px; font-weight: 700; font-size: 14.5px; }
+.plrate svg { width: 17px; height: 17px; vertical-align: -3px; margin-right: 1px; }
+/* video */
+.vcard .vbox { margin-bottom: 8px; }
+.vnote { color: var(--muted); font-size: 14px; margin: 0 0 16px; }
+.kind .ts { text-decoration: none; font-weight: 800; color: var(--yt); background: color-mix(in srgb, var(--yt) 10%, transparent); padding: 2px 8px; border-radius: 8px; }
+/* after the lesson */
+.exitc { margin-top: 14px; }
+.setbtn .ic { width: 22px; height: 22px; }
+.setbox { max-height: min(86vh, 720px); }
+.wgame:not(.finished) + .wrecall { display: none; }
+.plmsg.noaudio { color: var(--warn); background: var(--warn-soft); border-radius: 10px; padding: 8px 10px; }
+.plmsg.noaudio .ic { width: 16px; height: 16px; vertical-align: -3px; }
+/* resume, mistakes */
+.lhero .resume { margin-top: 14px; }
+.mcard { display: flex; align-items: center; gap: 12px; margin: 16px 0 6px; padding: 14px 16px; border-radius: 20px; background: var(--warn-soft); border: 1.5px solid color-mix(in srgb, var(--warn) 35%, transparent); color: var(--ink); text-decoration: none; box-shadow: var(--shadow-sm); }
+.mcard > .ic:first-child { width: 38px; height: 38px; padding: 8px; border-radius: 12px; background: var(--surface); color: var(--warn); flex: none; }
+.mcard span { flex: 1; } .mcard b { display: block; font-family: var(--f-display); font-size: 18px; } .mcard small { color: var(--muted); font-weight: 600; }
+.mfrom { margin: 18px 0 -4px; font-size: 12.5px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.mfrom:first-child { margin-top: 0; }
+/* one-thumb buttons on phones */
+@media (max-width: 640px) {
+  .ex .inl { flex-direction: column; align-items: stretch; }
+  .ex .inl .inp { flex: none; width: 100%; }
+  .ex .inl .btn, .ex .tools .btn, .ex .row .btn[data-chk] { width: 100%; justify-content: center; min-height: 48px; font-size: 16px; }
+  .ex .tools { flex-direction: column; align-items: stretch; }
+  .ex .tools .btn.ghost { min-height: 44px; }
+  .opt { min-height: 48px; font-size: 16px; }
+  .tf > div { flex-direction: column; align-items: stretch; gap: 8px; }
+  .tf .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .tf .pair .opt { width: 100%; }
+  .plays .btn { flex: 1; justify-content: center; min-height: 46px; }
+}
+/* lessons = modules (1, 2, 3…), exercises = A, B, C… */
+.ucard .num { position: relative; font-weight: 800; }
+.ucard .num small { font-size: .62em; opacity: .8; margin-right: 1px; }
+.ucard .num .ndone { position: absolute; right: -6px; bottom: -6px; width: 20px; height: 20px; border-radius: 50%; background: var(--good); color: #fff; display: grid; place-items: center; border: 2px solid var(--surface); }
+.ucard .num .ndone .ic { width: 12px; height: 12px; }
+.ucard .gtopic { font-size: 13.5px; font-weight: 700; color: var(--brand); margin-top: 2px; }
+.module .mlab { display: block; font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+
 /* generated by tools/backgrounds.py */
 .bgart-classic { background: radial-gradient(1200px 600px at 100% -10%, var(--glow-a), transparent 60%), radial-gradient(900px 500px at -10% 30%, var(--glow-b), transparent 60%), var(--bg); }
 .bgart-sunset { background: radial-gradient(60% 45% at 82% 6%, rgba(255,238,170,.9), transparent 62%), radial-gradient(70% 50% at 0% 100%, rgba(120,70,220,.55), transparent 70%), linear-gradient(165deg, #FFC98E 0%, #FF8D7E 40%, #DE6BB0 72%, #7B5BD6 100%); }
@@ -11606,6 +11680,627 @@ V("c1-emphatic", { id: "2C4c7VR8X7I", t: "Emma Watson's speech at the UN (2016)"
       [194, "Who are the 10 Impact Champions?", "Universities that have committed — and will inspire others to do better."]],
   post: "Emphasis: emphatic do (We do need…), fronting (This we cannot accept), clefts (What universities must do is…), not only… but also… — deliver a 1-minute speech on a cause you care about." });
 
+/* Multiple-choice questions for the lesson videos (students answer alone, so every video question has options).
+   M(key, [[question index in VX[key].q, "right answer", "wrong", "wrong", optional new question "EN || PT"], …])
+   The right answer is always first here; the lesson shuffles the options. */
+const VMC = {};
+function M(key, list) { VMC[key] = list.map(([i, a, b, c, q]) => [i, [a, b, c], q || null]); }
+
+/* ===================== A0 ===================== */
+M("A0-1", [[0, "Hi, I'm Tim.", "Hello, I'm fine.", "Hi, nice to see you."],
+  [2, "It's nice to meet you.", "It's nice to see you again.", "How old are you?", "What do they say when they meet? || O que eles dizem ao se conhecer?"],
+  [5, "Bye! / Goodbye!", "Hello! / Hi!", "Thanks! / Thank you!", "How do they say goodbye? || Como eles se despedem?"]]);
+M("A0-2", [[0, "No — A sounds like “ei” and E like “i”.", "Yes — they sound the same.", "No — A sounds like “i” and E like “ei”."],
+  [2, "I = “ai”, E = “i”.", "I = “i”, E = “ai”.", "Both sound like “i”."],
+  [4, "British: zed. American: zee.", "British: zee. American: zed.", "Both say “zeta”."]]);
+M("A0-3", [[0, "How's that spelled?", "What's your name?", "Where are you from?"],
+  [2, "Joe", "Jo", "Joey"],
+  [5, "33", "23", "43"]]);
+M("A0-4", [[1, "know", "like", "meet"],
+  [2, "Anya Patel", "The interviewer", "The new website"],
+  [4, "businessperson", "teacher", "designer"]]);
+M("A0-5", [[0, "Oxford", "London", "Cambridge"],
+  [2, "Beijing — in China.", "Brighton — in the UK.", "Mumbai — in India."],
+  [5, "On his own (alone).", "With his family.", "With two friends."]]);
+M("A0-6", [[0, "Mongolia", "Mexico", "Morocco"],
+  [2, "An actor", "A teacher", "A doctor"],
+  [3, "Both — a student and a teacher.", "Only a student.", "Neither — she's a chef."]]);
+M("a0-feel", [[0, "Excited — he has concert tickets.", "Tired — he went jogging.", "Scared — there's a ghost."],
+  [1, "Tired — she went jogging.", "Sleepy — she couldn't sleep.", "Happy — it's her birthday."],
+  [5, "Someone eats her sandwich.", "She misses the bus.", "Her phone is broken."]]);
+M("a0-days", [[0, "fifth", "fiveth", "fifty"],
+  [2, "The fifth of May.", "The fifteenth of May.", "The fifth of March."],
+  [3, "Christmas", "New Year", "Her birthday"]]);
+M("A0-7", [[0, "Because of her kids' things.", "Because she travels a lot.", "Because she likes big bags."],
+  [1, "Snacks, phones, books, T-shirts.", "Keys, money, glasses, make-up.", "Water, toys, a camera, a laptop."],
+  [4, "For mom — a small pleasure.", "For her kids.", "For a friend's birthday."]]);
+M("a0-adj", [[1, "cheap", "small", "light"],
+  [2, "light", "heavy", "big"],
+  [3, "old — “an” before a vowel sound.", "old — “an” before every adjective.", "new — “an” for things."]]);
+M("a0-animals", [[0, "No, he doesn't.", "Yes, a cat.", "Yes, a dog."],
+  [1, "Black — Rafi.", "White — Rafi.", "Brown — Rocky."],
+  [3, "A goldfish called Gilbert.", "A cat called Gilbert.", "A hamster called Bob."]]);
+M("a0-food", [[0, "Tim: pasta. Sian: fish.", "Tim: fish. Sian: pasta.", "Tim: pizza. Sian: chocolate."],
+  [1, "Buli: pizza. Georgie: chocolate and fruit.", "Buli: rice. Georgie: pasta.", "Buli: fish. Georgie: pizza."],
+  [5, "She likes fish.", "She like fish.", "She likes pasta."]]);
+M("A0-10", [[1, "Economics", "Physics", "Chinese"],
+  [2, "Physics — the calculations are difficult.", "Economics — it's boring.", "English — too many words."],
+  [3, "Her father, her mother and her dog.", "Her brothers and sisters.", "Her grandparents."]]);
+M("a0-class", [[0, "Open your books, please.", "Close the door, please.", "Sit down, please."],
+  [1, "Page 84, exercise A.", "Page 48, exercise B.", "Page 84, exercise C."],
+  [3, "Sorry, can you repeat that, please?", "I'm sorry, I'm late.", "What's this in English?"]]);
+M("a0-price", [[0, "$39", "$93", "$29"],
+  [4, "$249", "$250", "$149"],
+  [5, "$25.99 — cheap.", "$125 — expensive.", "$59 — expensive."]]);
+M("A0-8", [[1, "It's very cold — he wants a warm coat.", "It's very hot — he wants a T-shirt.", "It's raining — he wants an umbrella."],
+  [4, "small, black", "big, red", "warm, yellow"],
+  [5, "Fifty pounds — it's expensive.", "Fifteen pounds — it's cheap.", "Fifty pounds — it's cheap."]]);
+M("A0-9", [[1, "sister", "brother", "daughter"],
+  [2, "No — she's an only child.", "Yes — two brothers.", "Yes — one sister."],
+  [5, "All boys — the oldest is 17.", "All girls — the oldest is 17.", "Two boys and a girl — the oldest is 7."]]);
+
+/* ===================== A1 ===================== */
+M("A1-1", [[0, "A Chanel backpack", "A big leather handbag", "A small sports bag"],
+  [1, "Her husband's picture.", "Her mother's picture.", "Her dog's picture."],
+  [5, "A deck of cards", "A football", "A board game"]]);
+M("a1-like", [[1, "Very talkative — she talks a lot.", "Very quiet — she never talks.", "Very lazy — she sleeps a lot."],
+  [2, "Very funny — he makes everyone laugh.", "Very grumpy — he's always angry.", "Very shy — he doesn't talk."],
+  [5, "quiet ; lazy", "shy ; busy", "funny ; tired"]]);
+M("A1-4", [[1, "24 square metres", "42 square metres", "14 square metres"],
+  [2, "A sliding screen", "A big wall", "A bookshelf"],
+  [5, "Through a hidden door.", "Through the kitchen.", "Through the bedroom window."]]);
+M("a1-live", [[0, "Born in Cambridge — lives in Glasgow.", "Born in Glasgow — lives in Cambridge.", "Born in Istanbul — lives in London."],
+  [3, "Istanbul (Turkey)", "Athens (Greece)", "Glasgow (Scotland)"],
+  [4, "Baklava", "The museums", "The beaches"]]);
+M("A1-7", [[0, "In Oxford — she's lost.", "In London — she's late.", "In Oxford — she's tired."],
+  [1, "The train station", "The hospital", "The supermarket"],
+  [3, "Next to the pub.", "Opposite the school.", "Behind the park."]]);
+M("A1-8", [[0, "She goes jogging.", "She takes the bus.", "She swims in the sea."],
+  [3, "He drives — he listens to a podcast.", "He takes the train — he reads a book.", "He walks — he listens to music."],
+  [4, "He plays video games.", "He watches TV.", "He reads the news."]]);
+M("A1-9", [[0, "Mariah — she works the night shift.", "Maria — she works the day shift.", "Mariah — she works in the morning."],
+  [4, "Nine traumas come in.", "She has dinner.", "She goes home."],
+  [6, "2:40 in the morning", "10:36 at night", "6:54 in the evening"]]);
+M("a1-transport", [[1, "She walks — the tube has too many people.", "She cycles — it's faster.", "She takes the bus — it's cheap."],
+  [2, "across", "under", "into"],
+  [5, "At least an hour — traffic jams.", "Ten minutes — no problem.", "Thirty minutes — the bus is late."]]);
+M("A1-10", [[1, "half past two", "half past three", "two and a half"],
+  [2, "quarter to three", "quarter past two", "quarter to two"],
+  [4, "Sian: seven. Tim: half past seven.", "Sian: half past seven. Tim: seven.", "Both at eight o'clock."]]);
+M("A1-11", [[0, "Always at seven — usually fruit and yogurt.", "Usually at eight — always toast.", "Never early — usually cereal."],
+  [3, "Tea", "Coffee", "Juice"],
+  [6, "watches — he/she/it adds -es.", "watches — because it's the past.", "watch — no change after “occasionally”."]]);
+M("a1-now", [[0, "He's exercising.", "He's cooking.", "He's sleeping."],
+  [1, "She's eating breakfast.", "She's going to work.", "She's reading a book."],
+  [4, "Tim is watching TV. Buli is playing video games.", "Tim is cooking. Buli is reading.", "Tim is sleeping. Buli is studying."]]);
+M("A1-12", [[0, "Free time — when you're not working.", "Time at work.", "Time for sleeping."],
+  [2, "No — she likes running and does yoga.", "Yes — she plays tennis.", "Yes — she plays football."],
+  [5, "No, but he feels great after it.", "Yes, he loves it.", "No, and he never does it."]]);
+M("A1-13", [[0, "Fish", "Pizza", "Curry"],
+  [1, "Seafood", "Chocolate", "Pasta"],
+  [6, "I hate them.", "I love them.", "I can't cook them."]]);
+M("a1-meals", [[0, "Breakfast", "Lunch", "Dinner"],
+  [3, "The Philippines", "Japan", "Brazil"],
+  [5, "Black pudding and sausages.", "Rice and eggs.", "Donuts and milk."]]);
+M("a1-kitchen", [[2, "Two cloves, finely sliced.", "Four cloves, chopped big.", "One clove, whole."],
+  [3, "The stalks", "The leaves", "The seeds"],
+  [4, "With clean hands — crush them.", "With a blender.", "With a big knife."]]);
+M("A1-16", [[0, "Historical fashion, accessories and jewels.", "Sports clothes.", "Cheap T-shirts."],
+  [5, "Two dresses", "Three skirts", "One dress"],
+  [6, "She can't find what she wants in shops.", "Clothes in shops are expensive.", "Her mother taught her."]]);
+M("a1-weather", [[0, "In Mumbai — hot and sunny.", "In London — raining.", "In Japan — snowing."],
+  [2, "In Japan, skiing — it's snowing.", "In Beijing, shopping — it's windy.", "In Mumbai, swimming — it's hot."],
+  [4, "Eating lunch — cloudy and cold.", "Taking photos — hot and sunny.", "Skiing — snowing."]]);
+M("a1-holidays", [[0, "June", "February", "December"],
+  [2, "In Brazil's Northeast", "In Rio de Janeiro", "In the South of Brazil"],
+  [5, "Forró and quadrilha", "Samba and funk", "Rock and pop"]]);
+M("A1-15", [[1, "He can cook, but he can't rock-climb.", "He can rock-climb, but he can't cook.", "He can sing, but he can't drive."],
+  [2, "She can snowboard, but she can't drive.", "She can drive, but she can't snowboard.", "She can juggle, but she can't sing."],
+  [5, "can't — “can” is weak in sentences.", "can — “can't” is weak.", "Both are stressed the same."]]);
+M("A1-14", [[0, "Grocery store", "Supermarket", "Market"],
+  [3, "One every day", "Three every day", "One every week"],
+  [5, "Bread is uncountable; buns and cakes are countable.", "Everything is countable.", "Bread is countable; cakes are uncountable."]]);
+M("a1-pet", [[0, "Zucchini", "Charlie", "Peanut"],
+  [1, "Almost five", "Almost two", "Ten"],
+  [4, "North Carolina", "California", "New York"]]);
+M("A1-5", [[0, "It's a bit empty — she needs furniture.", "It's too small.", "It's very dirty."],
+  [1, "A sofa, a bookshelf, a TV and a rug.", "A bed, a lamp and a wardrobe.", "A table, four chairs and some drawers."],
+  [3, "Four chairs, a table and some drawers.", "Two chairs and a sofa.", "Six chairs and a TV."]]);
+M("A1-6", [[1, "Three", "One", "Five"],
+  [2, "No, there isn't.", "Yes, there is.", "Yes, two."],
+  [4, "The London Eye, Buckingham Palace and the BBC.", "Big Ben and a beach.", "A cathedral and a theme park."]]);
+M("a1-tech", [[0, "All the time.", "Never.", "Once a week."],
+  [2, "He tries not to — he says he's too old.", "Yes, every day.", "Yes, with his kids."],
+  [3, "To stay in touch with her friends.", "To find a job.", "To watch the news."]]);
+M("a1-languages", [[0, "English fluently and some Chinese.", "Only English.", "English and German."],
+  [1, "German — his grandma speaks it.", "French — for travel.", "Spanish — for work."],
+  [6, "At least two", "Only one", "At least five"]]);
+M("a1-wh", [[0, "To visit her parents — by train.", "To the beach — by car.", "To Spain — by plane."],
+  [1, "He takes his kids to sport.", "He plays football.", "He stays in bed."],
+  [5, "The peace and quiet — and her dog.", "Her friends.", "The shops."]]);
+M("a1-places", [[0, "The countryside", "Big cities", "The beach"],
+  [2, "They're great, but they're all similar.", "They're boring and dirty.", "They're the best in the world."],
+  [4, "Cute and picturesque", "Big and modern", "Noisy and busy"]]);
+M("A1-2", [[0, "About four years — she's very forgetful.", "Ten years — she's very tired.", "One month — she's nervous."],
+  [3, "Long hair and a beard.", "Short hair and no beard.", "No hair and a moustache."],
+  [5, "Jon Snow from Game of Thrones", "Ryan Gosling", "Harry Potter"]]);
+M("A1-3", [[1, "On top of a TV stand.", "On the wall.", "On the sofa."],
+  [5, "Three", "One", "Two"],
+  [7, "On the floor — to keep his feet warm.", "Under the bed — he never wears them.", "In the bathroom — they're wet."]]);
+M("a1-letsgo", [[0, "Let's focus — phones off.", "Let's go — phones on.", "Let's eat — phones on the table."],
+  [2, "20 per cent", "15 per cent", "50 per cent"],
+  [4, "Shall", "Why", "Let's"]]);
+M("a1-help", [[0, "A couch (sofa)", "A bed", "A TV"],
+  [3, "The delivery is almost as much as the couch.", "The couch is too small.", "The couch is the wrong colour."],
+  [4, "Carry it himself.", "Pay for the delivery.", "Buy a different couch."]]);
+M("a1-body", [[1, "Like something rotting in her stomach.", "Like a fire in her head.", "Like she is very hungry."],
+  [4, "At a hot dog cart.", "At home.", "In a fancy restaurant."],
+  [5, "A couple of antibiotics can clear it up.", "She doesn't need any medicine.", "She needs an operation."]]);
+M("a1-phone", [[1, "Does anybody know a good tailor?", "Does anybody want pizza?", "Does anybody have a phone?"],
+  [2, "Frankie — his family's tailor.", "Ross — his best friend.", "Julie — his girlfriend."],
+  [4, "Nobody wants to hang up first.", "They sing a song.", "They count to ten."]]);
+M("a1-blog", [[0, "At the National Railway Museum.", "At a hotel.", "At the hospital."],
+  [1, "It was a birthday present from their son.", "Their house was too cold.", "They were on a business trip."],
+  [6, "She tried on wedding dresses.", "She went to the museum.", "She delivered parcels."]]);
+
+/* ===================== A2 ===================== */
+M("A2-1", [[1, "It was okay — he was just working.", "It was great — he went to a party.", "It was terrible — he was sick."],
+  [2, "Busy — rehearsals for a play.", "Quiet — she slept a lot.", "Busy — she was moving house."],
+  [5, "In London — he saw Big Ben.", "In Paris — he saw the Eiffel Tower.", "At home — he watched films."]]);
+M("A2-3", [[0, "He went hiking — he often does.", "He went swimming — for the first time.", "He went shopping — he never does."],
+  [3, "A strawberry ice cream.", "A chocolate cake.", "A vanilla ice cream."],
+  [4, "A chocolate cake — her family ate it all.", "A pizza — she burned it.", "A cake — she gave it to Tim."]]);
+M("a2-feelings", [[0, "Picking beans on a farm.", "Working in a restaurant.", "Teaching English."],
+  [3, "Customer service — answering angry callers.", "Washing dishes in a hotel.", "Selling ice cream."],
+  [5, "stressed ; exhausted ; annoyed", "stressful ; exhausting ; annoying", "stress ; exhaust ; annoy"]]);
+M("A2-4", [[2, "English and textiles", "Maths and history", "Science and music"],
+  [3, "A hat — not a good one.", "A dress — she wears it every day.", "A bag — she gave it to her mum."],
+  [4, "History — and he hated maths.", "Maths — and he hated history.", "Sport — and he hated English."]]);
+M("a2-holiday", [[0, "Somewhere you'd really like to go on holiday.", "A place you visit every year.", "A holiday you had in a dream."],
+  [3, "Japan", "Spain", "Brazil"],
+  [7, "A holiday at or near your home.", "A long holiday in a hotel.", "A holiday on a boat."]]);
+M("A2-6", [[0, "Rural people are less depressed.", "Rural people are more stressed.", "Rural people are richer."],
+  [3, "A café in the country — 30 years.", "A park in the city — 3 years.", "A hotel by the beach — 10 years."],
+  [6, "Liking where you live.", "Living in a big city.", "Living in the country."]]);
+M("a2-money", [[0, "It all goes to bills.", "She doesn't want to save.", "She spends it on clothes."],
+  [3, "$3,125 a month", "$25 a month", "$1,000 a year"],
+  [5, "30 to 40 percent", "5 to 10 percent", "Nothing"]]);
+M("A2-7", [[0, "Nice people, good food and lovely weather.", "It's cheap and quiet.", "Her family lives there."],
+  [3, "Thailand — sailing on a catamaran.", "Fiji — on the beach.", "Israel — visiting museums."],
+  [5, "It rained the whole time.", "The house was dirty.", "It was too hot."]]);
+M("A2-11", [[0, "Settled and calm — some showers.", "Very stormy and windy.", "Hot and sunny every day."],
+  [2, "Frosty, with mist and fog.", "Hot and dry.", "Snowy and windy."],
+  [6, "No — around 10 °C.", "Yes — about 25 °C.", "No — below zero everywhere."]]);
+M("A2-12", [[0, "Georgie: pasta. Neil: a chicken sandwich.", "Georgie: a salad. Neil: fish curry.", "Georgie: pizza. Neil: soup."],
+  [1, "Not often — about once a month.", "Every day.", "Every weekend."],
+  [4, "Spicy food — fish curry.", "Pizza — with cheese.", "Steak — with chips."]]);
+M("a2-dishes", [[0, "Her housemate made her a spicy meal.", "She found a new restaurant.", "She cooked for her friends."],
+  [2, "It has a lot of flavour and lifts your mood.", "It's cheap.", "It's healthy."],
+  [3, "Jerk chicken — cooled with mayonnaise.", "Curry — cooled with water.", "Tacos — cooled with milk."]]);
+M("A2-13", [[0, "Someone you share a house with, not family.", "Someone who owns your house.", "Your neighbour."],
+  [3, "They didn't clean and left dirty dishes.", "They were too quiet.", "They didn't pay the rent."],
+  [6, "The person who owns the house — you pay rent.", "The person who cleans the house.", "A friend who visits you."]]);
+M("A2-14", [[0, "She keeps sending emails not about work.", "She never answers emails.", "She is always late."],
+  [2, "Try doing nothing.", "Call her boss.", "Send her a gift."],
+  [5, "Yes — she only sends work emails now.", "No — she sends more emails.", "No — she stopped working with them."]]);
+M("A2-16", [[0, "He didn't sleep well last night.", "He went to a party.", "He worked all night."],
+  [2, "When they're nightmares.", "When they're happy.", "Never."],
+  [6, "Past continuous — past simple.", "Past simple — present simple.", "Present continuous — past simple."]]);
+M("a2-movies", [[0, "In front of 221B Baker Street.", "In a cinema.", "Near Big Ben."],
+  [1, "Forrest Gump — it's inspiring.", "Titanic — it's sad.", "Inception — it's confusing."],
+  [4, "Life Is Beautiful", "Harry Potter", "The Hangover"]]);
+M("A2-5", [[1, "In 1940, in Três Corações.", "In 1950, in São Paulo.", "In 1940, in Santos."],
+  [2, "Stuffed socks", "A coconut", "A tennis ball"],
+  [6, "A 48-hour ceasefire to watch him play.", "He scored 10 goals.", "He met the president."]]);
+M("a2-airport", [[0, "It isn't a straight line.", "It's very short.", "Nobody is in it."],
+  [3, "A boarding pass — and you drop off big luggage.", "A passport — and you drop off your ticket.", "A key — and you drop off your coat."],
+  [4, "You may pay extra.", "You can't fly.", "Nothing happens."]]);
+M("a2-study", [[0, "School went online.", "Schools closed for summer.", "Students got new laptops."],
+  [4, "You can see your teacher.", "It's quieter at home.", "Classes are shorter."],
+  [5, "In person — more clubs and sports.", "Online — it's cheaper.", "Both the same."]]);
+M("a2-events", [[2, "Three surgeries on the same knee.", "She won the Olympics.", "She stopped training."],
+  [4, "In a favela near São Paulo — by a single mother.", "In Rio — by her grandparents.", "In the USA — by a coach."],
+  [5, "She walked so Rebeca could use the bus pass.", "She worked at the gym.", "She bought her a car."]]);
+M("a2-city", [[2, "Bins", "Buses", "Parks"],
+  [3, "It's dark all the time.", "It's too snowy.", "There are too many tourists."],
+  [6, "Prices — it's very expensive.", "The weather.", "The food."]]);
+M("a2-party", [[0, "Rachel's dad — and there's a party.", "Rachel's boss — he's angry.", "Ross — he's late."],
+  [3, "The Chinese menu guy", "Rachel", "Rachel's mum"],
+  [4, "Rachel's mum — “you look so young”.", "Rachel's sister — “you look so tired”.", "Monica's mum — “you look so happy”."]]);
+M("A2-8", [[0, "A former basketball player who couldn't find clothes.", "A fashion student.", "A shoe shop owner."],
+  [1, "In the men's section — shoes rarely fit.", "In expensive shops — too costly.", "Online — the delivery was slow."],
+  [3, "An online shop for tall teens and women.", "A basketball team.", "A shoe factory."]]);
+M("A2-15", [[2, "To keep contact with someone.", "To hug someone.", "To meet someone new."],
+  [3, "Talk to them in a pub or at a match.", "Play video games.", "Go shopping."],
+  [6, "Mate, pal", "Bro, boss", "Buddy, chief"]]);
+M("a2-accident", [[0, "I've got a bit of a problem.", "I've got great news.", "I'm leaving the company."],
+  [4, "Used the company credit card instead of his own.", "Lost his laptop.", "Sent an email to the wrong client."],
+  [6, "A weekend break in a nice hotel.", "A new phone.", "Plane tickets."]]);
+M("a2-town", [[0, "The lifestyle for her family.", "The cheap prices.", "The quiet streets."],
+  [4, "People are so friendly.", "It's very clean.", "The food is cheap."],
+  [5, "They don't get much sunshine in England.", "They love shopping.", "Their family lives there."]]);
+M("a2-journey", [[0, "Speak easily, without many pauses.", "Speak very fast.", "Speak with no mistakes."],
+  [2, "“Actually” and “basically”", "“Yes” and “no”", "“Please” and “thank you”"],
+  [5, "Washing up", "Cooking dinner", "Walking the dog"]]);
+M("a2-jobs", [[0, "She likes little kids.", "She likes long holidays.", "Her mum is a teacher."],
+  [2, "Digs for dinosaur bones and studies them.", "Takes care of teeth.", "Flies planes."],
+  [6, "He doesn't know how to cook.", "He doesn't like food.", "He's too young."]]);
+M("a2-planet", [[0, "60,000 years ago", "6,000 years ago", "600 years ago"],
+  [2, "To feed, to breed or to find a new home.", "To play, to sleep or to hide.", "To escape the cold only."],
+  [6, "It's the largest herd in Africa.", "It's the fastest.", "It's the smallest."]]);
+M("a2-techprob", [[1, "A walkie-talkie", "A calculator", "A camera"],
+  [6, "You flip it open and close it.", "You throw it.", "It has no buttons."],
+  [7, "Press two twice — it takes forever.", "Press b once — it's easy.", "Say it out loud."]]);
+M("a2-healthy", [[0, "Whole, unprocessed foods.", "Fried and sugary foods.", "Only meat."],
+  [3, "At least 60 minutes most days.", "10 minutes a week.", "Three hours every day."],
+  [5, "8 to 10 hours", "5 to 6 hours", "12 to 14 hours"]]);
+M("a2-music", [[0, "The 10,000 hours theory", "The 10-minute theory", "The big bang theory"],
+  [1, "He saw Damien Rice in concert.", "His dad was a singer.", "He won a talent show."],
+  [3, "A dirty tap — first dirty water, then clean.", "A long run.", "Cooking pasta."]]);
+M("a2-could", [[1, "She's in her 101st year.", "She's 91.", "She's 110."],
+  [3, "No radio, TV or phones.", "No schools or books.", "No food or water."],
+  [6, "Trousers", "Dresses", "Hats"]]);
+M("A2-10", [[0, "Shopping — looking for a thrift shop.", "Eating — looking for a café.", "Working — looking for an office."],
+  [2, "They're waiting for a ferry.", "It's raining.", "They're lost."],
+  [6, "At 9:00, to Santander.", "At 7:00, to Paris.", "At noon, to Dublin."]]);
+M("A2-9", [[0, "She's going on holiday tomorrow.", "It's her birthday.", "She bought new clothes."],
+  [1, "Lots of her friends are getting married.", "She's a wedding planner.", "Her sister is getting married twice."],
+  [6, "Lots of fish", "Only burgers", "Vegetables"]]);
+M("a2-hotel", [[0, "A single room for three nights.", "A double room for one night.", "A suite for a week."],
+  [3, "It's next to a family — it might be noisy.", "It's too expensive.", "It has no window."],
+  [4, "A business suite — at no extra charge.", "A cheaper room — with breakfast.", "A room with two beds — for $50 more."]]);
+M("a2-what", [[0, "Swimmingly — very well.", "Terribly — it's raining.", "Slowly — he's tired."],
+  [3, "She watched the women's football team.", "She went swimming in the sea.", "She went to a concert."],
+  [5, "He drove 17 hours from France.", "He worked all weekend.", "He moved house."]]);
+M("A2-2", [[0, "National Teacher Appreciation Day", "The first day of school", "Christmas Day"],
+  [2, "Bugs", "Dinosaurs", "Planets"],
+  [7, "No!", "Yes, every day!", "Only comics."]]);
+
+/* ===================== B1 ===================== */
+M("B1-2", [[1, "A great year — busy, trips, and she turned 30.", "A bad year — she was ill.", "A quiet year — she stayed home."],
+  [4, "A family holiday in Sicily.", "A new job at the BBC.", "Running a marathon."],
+  [8, "He hurt his ankle and can't run.", "He doesn't like the gym.", "He's too busy at work."]]);
+M("B1-3", [[0, "A job is now; a career is all your work long term.", "They mean exactly the same.", "A career is part-time; a job is full-time."],
+  [2, "More than 20 years", "About 3 years", "Since 2018"],
+  [6, "With a point in time when something started.", "With a length of time.", "Only with the past simple."]]);
+M("b1-trip", [[0, "Meeting new people and exploring cultures.", "Relaxing on the beach.", "Shopping in big cities."],
+  [5, "They took the wrong bus and got soaked.", "They lost their passports.", "The Tower was closed."],
+  [7, "The transport — everything runs on time.", "The weather.", "The food."]]);
+M("B1-1", [[1, "Visiting countries vs. making your home there.", "Living in a city vs. the country.", "Working vs. studying abroad."],
+  [5, "She missed the fields and trees.", "She missed her school.", "She didn't like the food."],
+  [8, "Wherever the people you love are.", "The house where you were born.", "Your country's capital."]]);
+M("B1-7", [[0, "Probably save it.", "Buy a yacht.", "Give it all away."],
+  [5, "Go home and have a good sleep.", "Buy a football team.", "Quit his job and move to Paris."],
+  [7, "Buy another ticket.", "Buy a coffee.", "Save it."]]);
+M("b1-dilemma", [[0, "A milkshake — he says he forgot his glasses.", "A burger — he says he has no money.", "Coffee — he says he's in a hurry."],
+  [2, "32 million", "3 million", "320,000"],
+  [7, "He quit school early to work.", "He was always sick.", "His school was too far."]]);
+M("b1-relationships", [[2, "Her friend booked a room in her B&B.", "They met at school.", "They worked in the same office."],
+  [4, "They're both from Wales.", "They both love cooking.", "They both have dogs."],
+  [6, "Gaming", "Football", "Music lessons"]]);
+M("b1-smalltalk", [[0, "“So, what's new?” — “Nothing much.”", "“How are you?” — “Very busy.”", "“Nice weather!” — “Yes, lovely.”"],
+  [1, "His dog Bertie had his 14th birthday.", "He bought a new car.", "He went to Spain."],
+  [5, "Santander — she misses the sea.", "Madrid — she misses her family.", "Seville — she misses the sun."]]);
+M("B1-13", [[0, "He can't afford London on an army pension.", "He hates London.", "He has a new job abroad."],
+  [4, "“Afghanistan or Iraq?”", "“What's your name?”", "“Do you play the violin?”"],
+  [9, "221B Baker Street", "10 Downing Street", "221 Oxford Street"]]);
+M("b1-crime", [[0, "Eight minutes — he'll tell the suspect's story.", "One hour — he'll search the office.", "Two days — he'll call a lawyer."],
+  [1, "A periodontist addicted to diazepam.", "A police officer.", "Robert's brother."],
+  [6, "The Pine Barrens — his uncle's cabin.", "The airport.", "His office."]]);
+M("b1-cv", [[1, "The minute you walk into the building.", "When you shake hands.", "When they ask the first question."],
+  [6, "Speak badly about old workplaces.", "Ask questions at the end.", "Say the interviewer's name."],
+  [9, "Send a thank-you email.", "Call them every day.", "Post about it online."]]);
+M("b1-remote", [[0, "Being physically close to colleagues.", "Faster internet.", "A bigger salary."],
+  [3, "Young workers", "The bosses", "Parents"],
+  [6, "No — “the genie is out of the bottle”.", "Yes — next year.", "Only for engineers."]]);
+M("b1-stress", [[0, "Health psychologist", "Medical doctor", "Football coach"],
+  [2, "30,000 adults for eight years.", "300 adults for one year.", "3 million adults for 20 years."],
+  [4, "People with stress who didn't see it as harmful.", "People with no stress at all.", "People who believed stress is harmful."]]);
+M("B1-5", [[1, "Millennials — born after 1985", "Teachers", "His own kids"],
+  [3, "Her mom — for about 20 minutes.", "Her dad — for an hour.", "Her brother — for five minutes."],
+  [5, "The Rubik's Cube", "The Walkman", "The TV remote"]]);
+M("b1-future", [[0, "The year 2000", "The year 2020", "The year 1990"],
+  [2, "In domes in the Sahara or under the sea.", "On the Moon.", "In flying cities."],
+  [9, "The issues remain the same.", "Everything changed.", "The kids were all right."]]);
+M("b1-screens", [[0, "Social media", "Fast food", "Video games"],
+  [3, "In Prospect Park every Sunday.", "At school every Monday.", "Online every night."],
+  [4, "Against the abuse of technology, not the use.", "Someone who hates all technology.", "A fan of old phones."]]);
+M("b1-complain", [[0, "North Korea — the government is paying.", "Paris — his company is paying.", "Hawaii — he's paying."],
+  [5, "It's at 5:15 a.m. — cancel 24 hours before.", "It's too expensive.", "It's in another hotel."],
+  [8, "Check-in starts in four hours.", "There's no hot water.", "They gave his room away."]]);
+M("b1-renting", [[1, "Paying over one-third of your wages.", "Paying any rent at all.", "Paying over half your wages."],
+  [4, "Salford", "Manchester", "Brighton"],
+  [9, "A guardianship — £400 each with bills.", "Living with parents — free.", "A bigger flat — £800 each."]]);
+M("b1-festivals", [[0, "In 1959 — after race riots.", "In 1990 — for tourism.", "In 1959 — for the Queen."],
+  [1, "It was cold and they wore carnival costumes.", "They were singing loudly.", "They were famous."],
+  [6, "Indoors, in St Pancras Town Hall.", "In Hyde Park.", "On the streets of Notting Hill."]]);
+M("B1-10", [[1, "Over 200 million", "About 2 million", "20 thousand"],
+  [3, "1962 — a poor people's shoe.", "1992 — a luxury shoe.", "1962 — a sports shoe."],
+  [4, "The brand became stylish.", "The company closed.", "They stopped making colours."]]);
+M("b1-food", [[2, "Taking gum out of your mouth was impolite.", "Gum was too expensive.", "Gum was illegal."],
+  [4, "1918", "1888", "2008"],
+  [6, "Tulips — strawberry only.", "Roses — grape only.", "Stars — lemon only."]]);
+M("b1-inventions", [[3, "The cotton gin — by Eli Whitney.", "The steam engine — by James Watt.", "The telephone — by Bell."],
+  [8, "More slaves were needed.", "Cotton became cheaper and slavery ended.", "Farmers lost their jobs."],
+  [9, "No — his machine was copied.", "Yes — very rich.", "Yes — he bought many farms."]]);
+M("b1-social", [[0, "11 — three or four hours a day.", "16 — one hour a day.", "8 — all day."],
+  [5, "Dopamine — it can feel like a drug.", "Adrenaline — it makes you angry.", "Melatonin — it makes you sleepy."],
+  [9, "Less than an hour a day.", "Five hours a day.", "Not at all."]]);
+M("B1-14", [[2, "An alarm starts making a noise.", "You leave the house.", "The lights turn off."],
+  [3, "Wake up = stop sleeping; sleep in = sleep longer.", "They mean the same.", "Sleep in = go to bed early."],
+  [9, "“Don't freak out!”", "“Hurry up!”", "“Calm down!”"]]);
+M("b1-shopping", [[1, "Comfort over fashion.", "Price over quality.", "Brands over comfort."],
+  [5, "Hardly ever — when clothes are full of holes.", "Every week.", "Every two weeks."],
+  [7, "Rent the Runway — $140 a month.", "Second-hand shops — $10 a month.", "Her sister's clothes — free."]]);
+M("B1-11", [[1, "Check his messages.", "Call Julie.", "Go to sleep."],
+  [4, "She said she was over him.", "She said she missed China.", "She said she was moving away."],
+  [5, "“When were you under me?”", "“Who is this?”", "“Call me back!”"]]);
+M("B1-12", [[0, "“Who are you?” — Andy Sachs, a Northwestern graduate.", "“Where are you from?” — Chicago.", "“Do you like fashion?” — Yes, a lot."],
+  [3, "To be a journalist.", "To be a model.", "To study fashion."],
+  [5, "That she had no style.", "That she was perfect for the job.", "That she was late."]]);
+M("B1-6", [[0, "The total greenhouse gases from your activities.", "The size of your shoes.", "The trees you plant."],
+  [3, "Fewer car trips and flights.", "More recycling.", "Shorter showers only."],
+  [6, "Cows make methane and forests are cut.", "Meat is expensive.", "Cooking uses electricity."]]);
+M("b1-unless", [[0, "A butler at a New York hotel.", "A flight attendant.", "A fashion designer."],
+  [4, "Never — always fold them.", "Always roll them.", "Only roll T-shirts."],
+  [8, "To reach them easily at security.", "To keep them warm.", "So they don't break."]]);
+M("B1-4", [[0, "Yes — with some caveats.", "No — not at all.", "Yes — perfectly, like a native."],
+  [1, "Over 3,000 days — first German.", "500 days — first French.", "2,000 days — only Spanish."],
+  [4, "To test if you can learn that way.", "Because it's free.", "His teacher told him to."]]);
+M("B1-8", [[0, "Be a tattoo artist — since he was a kid.", "Be a policeman — since university.", "Be a postman — since last year."],
+  [2, "About 10 years — part-time and stable.", "2 years — for the money.", "30 years — his dad was one."],
+  [7, "Knowing she's made a difference.", "The salary.", "The long holidays."]]);
+M("B1-15", [[1, "Talking to a real person and touching things.", "It's cheaper.", "It's faster."],
+  [6, "He looks in town, then buys online.", "He never buys anything.", "He only buys second-hand."],
+  [7, "Less packaging and fewer delivery vans.", "Shops use solar power.", "People walk more."]]);
+M("B1-9", [[0, "No — “I use my husband.”", "Yes — every day.", "Yes — only for email."],
+  [2, "Wreck-It Ralph", "Password123", "Grandma2024"],
+  [5, "Somebody who copies somebody — a mime!", "A kind of cookie.", "A dance."]]);
+M("B1-16", [[0, "All schools should be phone-free all day.", "Phones are allowed at lunch.", "Every student needs a phone."],
+  [5, "Australia — since last year.", "Canada — since 2010.", "Brazil — next year."],
+  [8, "It takes away freedom and their right to speech.", "It's too expensive.", "Teachers don't like it."]]);
+M("b1-forandagainst", [[0, "“The dog ate my homework.”", "“I forgot my bag.”", "“My computer broke.”"],
+  [3, "To drop homework altogether.", "To give more homework.", "To make school longer."],
+  [9, "Each school", "The parents", "The students"]]);
+M("b1-news", [[1, "To gossip less.", "To exercise more.", "To stop shopping."],
+  [6, "He's tired of keeping everyone's secrets.", "He doesn't like Rachel.", "He's too busy."],
+  [8, "She knows about Monica and Chandler too.", "She's moving away.", "She's dating Ross."]]);
+M("b1-indirect", [[2, "It's upside down.", "It's wet.", "It's for another city."],
+  [3, "Head five blocks north, right at Joey's Pizza.", "Go left at the bank.", "Take the subway two stops."],
+  [7, "They were pickpockets.", "They were actors.", "They were his friends."]]);
+M("b1-story", [[4, "He already had a girlfriend.", "He lived far away.", "He didn't like her."],
+  [7, "No — they chickened out.", "Yes — in the rain.", "Yes — in Las Vegas."],
+  [9, "Quentin on a date with another girl.", "Her parents.", "Her old teacher."]]);
+M("b1-generation", [[0, "16 — the Nebraska tennis champion.", "18 — a soldier.", "12 — a boy scout."],
+  [3, "The yard wasn't finished yet.", "There were boxes everywhere.", "The house had no roof."],
+  [7, "It was safe to play all over the neighbourhood.", "Everything was cheap.", "There was no school."]]);
+M("b1-mycity", [[1, "To be the first carbon-neutral capital by 2025.", "To have no cars by 2025.", "To be the biggest city in Europe."],
+  [4, "62%", "26%", "92%"],
+  [6, "Polluted before — now you can swim in it.", "Clean before — now polluted.", "Always closed to the public."]]);
+
+/* ===================== B2 ===================== */
+M("B2-2", [[1, "Not spending more time with his brother.", "Not studying more.", "Quitting football."],
+  [4, "She turned the tickets down.", "She lost the tickets.", "The show was cancelled."],
+  [8, "Not giving him more ice cream.", "Not calling him more.", "Not visiting him in hospital."]]);
+M("B2-3", [[0, "Don't go out so far in the ocean.", "Eat your vegetables.", "Always listen to your mum."],
+  [3, "Don't feel you have to go — there are other paths.", "Go to the best one you can.", "Study medicine."],
+  [10, "Who did I help? What did I learn?", "What did I eat? Where did I go?", "How much did I earn? Who called me?"]]);
+M("b2-headlines", [[0, "Late-night ice cream and pizza.", "Cars in the city centre.", "Loud music in bars."],
+  [2, "In position and ready to act.", "Calm and relaxed.", "Poisoned."],
+  [6, "It's like a ban, but not really.", "It's a total ban.", "It's a joke."]]);
+M("b2-meetings", [[0, "The Reith event next month.", "A new TV show.", "The office move."],
+  [6, "Write one word you think of for “BBC”.", "Draw a new logo.", "Give a two-minute speech."],
+  [9, "No — more like detergent.", "Yes — exactly.", "No — more like coffee."]]);
+M("B2-11", [[1, "Health and wealth", "Population and size", "Age and education"],
+  [2, "All countries were sick and poor.", "Europe was rich and healthy.", "Asia was the richest."],
+  [9, "A converging world — everyone can get there.", "A more divided world.", "Nothing will change."]]);
+M("b2-tourism", [[1, "So many flats are rented to tourists.", "She loves company.", "Her house was flooded."],
+  [4, "More than 1.5 million", "About 15,000", "Around 150 million"],
+  [6, "“What time does Venice close?”", "“Where is the beach?”", "“Is the water clean?”"]]);
+M("B2-7", [[1, "400 miles east of the Azores.", "Near New York.", "In the Mediterranean."],
+  [4, "10 people — the captain, his family and crew.", "Only the captain.", "Nobody — they were asleep."],
+  [8, "A transcript of the ship's lost log.", "The missing lifeboat.", "A letter from the captain."]]);
+M("B2-13", [[1, "5 km — Neil isn't very fit.", "42 km — it's a marathon.", "1 km — it's raining."],
+  [3, "Easy to do.", "Very relaxing.", "Boring."],
+  [7, "Put it aside for now.", "Build a car park.", "Start right away."]]);
+M("b2-education", [[1, "Half as much", "Twice as much", "The same"],
+  [5, "Lunches, books and excursions.", "Only books.", "Nothing — parents pay."],
+  [9, "A Master's degree — about 10% get in.", "A short course — everyone gets in.", "No degree — just experience."]]);
+M("b2-myth", [[0, "To prove a point.", "For a birthday.", "Because he was hungry."],
+  [5, "The thermometer's scale was too low.", "The cake was burned.", "His mum ate the cake."],
+  [8, "The tin conducts heat to your hand faster.", "The tin is much hotter.", "The cake has water in it."]]);
+M("b2-present", [[2, "Gossip and judging.", "Shouting and whispering.", "Lying and laughing."],
+  [7, "HAIL — to greet enthusiastically.", "HELP — to support someone.", "HEAL — to make better."],
+  [10, "The chest — depth means authority.", "The nose — it sounds friendly.", "The throat — it's louder."]]);
+M("b2-debate", [[1, "Revolutionising healthcare.", "Ending all wars.", "Making everyone rich."],
+  [3, "The concentration of power in a few hands.", "Robots taking over.", "Too many computers."],
+  [8, "The printing press", "The steam engine", "The atomic bomb"]]);
+M("b2-interview", [[1, "To see how you respond to challenges.", "To check your grades.", "To test your memory."],
+  [3, "Strong communication and emotional intelligence.", "Who was right.", "How much you know about the company."],
+  [4, "Shared his view in private with examples.", "Raised it in a team meeting.", "Did nothing."]]);
+M("B2-1", [[0, "A joke so bad it was dangerous.", "A joke that won a prize.", "A joke about her teacher."],
+  [5, "He laughed so hard he fell and turned purple.", "He got angry and left.", "He didn't understand it."],
+  [9, "Just stop telling the joke!", "Laugh more often.", "Tell it only at work."]]);
+M("b2-persuade", [[0, "Apple, Martin Luther King and the Wright brothers.", "Google, Gandhi and Ford.", "Nike, Mandela and NASA."],
+  [4, "The golden circle — Why, How, What.", "The big triangle — Who, When, Where.", "The silver line — Plan, Do, Check."],
+  [9, "People don't buy what you do; they buy why you do it.", "The customer is always right.", "Price is everything."]]);
+M("b2-health", [[0, "They're contagious — passed person to person.", "They're very small.", "They're always harmful."],
+  [2, "No magic number — it depends.", "Exactly 8 glasses.", "Three litres for everyone."],
+  [8, "No — your body does it by itself.", "Yes — every week.", "Yes — with special juices."]]);
+M("b2-cultures", [[2, "World War II rations.", "The Royal Family.", "Football matches."],
+  [3, "Apologise", "Complain", "Shout"],
+  [6, "Men wear a poppy to remember the wars.", "Everyone goes on holiday.", "Shops close for a week."]]);
+M("b2-music", [[1, "30 million — the Royal Albert Hall.", "3 million — a small club.", "300 million — Wembley Stadium."],
+  [6, "Being compared by numbers.", "Singing in English.", "Travelling."],
+  [9, "If you're not born rich you have no chance.", "Her parents didn't let her.", "She was too busy with school."]]);
+M("b2-climate", [[0, "Social media", "Television", "Newspapers"],
+  [2, "A lone protest — then about 4 million people.", "A big concert — then a film.", "A TV show — then a book."],
+  [7, "Malaysia's youngest minister — voting age to 18.", "A singer from India.", "A scientist from Brazil."]]);
+M("b2-gerinf", [[0, "The US Memory Championship", "A chess tournament", "A spelling bee"],
+  [4, "He has an average memory.", "He was born a genius.", "He takes special pills."],
+  [5, "Ancient techniques from Greece.", "Computer games.", "Sleeping more."]]);
+M("b2-legends", [[0, "On the 81st floor.", "On the street.", "On a taxi."],
+  [5, "It bounced off.", "It made a hole.", "It melted."],
+  [7, "It stung a little — no bruise.", "It broke his hand.", "He didn't feel anything at all."]]);
+M("b2-justice", [[2, "A switchblade with a unique carved handle.", "A kitchen knife.", "A gun."],
+  [6, "It fell through a hole in his pocket.", "He gave it to a friend.", "He threw it in the river."],
+  [8, "An identical knife.", "A movie ticket.", "A photo."]]);
+M("b2-ai", [[1, "A popular AI model with pink hair.", "A real model from Spain.", "A video game character."],
+  [5, "Mostly male", "Mostly teenage girls", "Mostly older women"],
+  [6, "An unrealistic beauty standard.", "They're too expensive.", "They post too often."]]);
+M("b2-money", [[0, "Like the tortoise — slow and steady.", "Like the hare — fast and risky.", "Spend now, save later."],
+  [3, "Six to 12 months of expenses.", "One week of expenses.", "Five years of salary."],
+  [5, "Lifestyle drift", "Money magic", "The tortoise effect"]]);
+M("B2-14", [[1, "Thousands of board games — but no friends.", "A big house — but no money.", "A dog — but no garden."],
+  [3, "A towering monster who wanted to play Catan.", "A neighbour asking for sugar.", "A postman with a parcel."],
+  [6, "Faint, put up with, chuck out.", "Sleep, accept, invite.", "Fall, like, kick."]]);
+M("B2-6", [[0, "Her bus crashed into a tram.", "She met Diego Rivera.", "She sold her first painting."],
+  [2, "An easel was attached to her bed.", "She studied in Paris.", "Her father taught her."],
+  [10, "In 1954, aged 47 — her work grew more popular.", "In 1990 — she was forgotten.", "In 1954 — she stopped painting before."]]);
+M("B2-5", [[1, "Electrolysis — for rust and baked-on food.", "Sandpaper — for scratches.", "Fire — to melt the rust."],
+  [4, "Soda crystals — to make an electrolyte.", "Salt — for taste.", "Soap — to clean it."],
+  [10, "Metal fatigue — it can snap.", "It gets too hot.", "It changes colour."]]);
+M("b2-strong", [[0, "Gochujang — a Korean chilli paste.", "Cinnamon and sugar.", "Lemon and ginger."],
+  [6, "The Hollywood handshake.", "A gold medal.", "A second chance."],
+  [7, "She hasn't been surprised by a flavour in ages.", "She thinks it's too spicy.", "She doesn't like garlic."]]);
+M("B2-10", [[1, "It's hard to look after yourself.", "It's expensive.", "You get bored."],
+  [7, "10,000 people a year", "500 people a year", "1 million people a year"],
+  [8, "£6 for every £1 spent", "£1 for every £6 spent", "Nothing"]]);
+M("B2-12", [[1, "61 businesses", "6 businesses", "610 businesses"],
+  [2, "100% of pay for 80% of the hours.", "80% of pay for 100% of the hours.", "Half pay, half hours."],
+  [7, "39% less stressed, 65% fewer sick days.", "More stress and lower revenue.", "No change at all."]]);
+M("b2-habits", [[1, "Because they don't like him.", "Because she was shy.", "Because it was a secret test."],
+  [3, "He got promoted.", "He was rude to them.", "He forgot their names."],
+  [8, "He's a great boss — but they're not his friends.", "He'll get a raise — but no holiday.", "They like him — but he's leaving."]]);
+M("b2-chances", [[1, "In an outdoor kennel with no bed.", "In a family home.", "In a vet hospital."],
+  [3, "A traumatic brain injury.", "She won a marathon.", "She adopted Aspen."],
+  [8, "They turned her away — too complex.", "They gave her two dogs.", "They charged too much."]]);
+M("b2-travel", [[1, "The first island powered only by wind and sun.", "A big party island.", "A cruise ship port."],
+  [5, "A seaplane", "A helicopter", "A horse"],
+  [8, "Oil power is expensive and the line can break.", "It's too short.", "It's too new."]]);
+M("B2-4", [[3, "Like you book an Uber.", "At the airport only.", "By phone call to a pilot."],
+  [4, "49 minutes vs. 7 minutes", "20 minutes vs. 15 minutes", "2 hours vs. 1 hour"],
+  [10, "Bought $1 billion of air taxis.", "Banned air taxis.", "Built its own air taxi."]]);
+M("B2-8", [[0, "Crashing a plane on purpose for views.", "Flying without a licence.", "Stealing a plane."],
+  [3, "Doing it on purpose, as a performance.", "Working in a theatre.", "Climbing stairs."],
+  [8, "Punished by law.", "Written in a sentence.", "Forgiven."]]);
+M("B2-9", [[0, "£35,000 for 35%", "£35,000 for 50%", "£350,000 for 5%"],
+  [1, "Luxury custom metal bank cards.", "Greeting cards.", "Phone cases."],
+  [7, "Buying and selling on eBay.", "A loan from his parents.", "Winning a competition."]]);
+M("b2-writing", [[2, "About £200 a month — answering children's letters.", "Nothing — he uses email.", "£5 a month — only bills."],
+  [5, "66 — 40 years writing.", "40 — 20 years writing.", "80 — 60 years writing."],
+  [9, "As a bedtime story for his children.", "As a school project.", "As a film script."]]);
+M("b2-podcast", [[0, "They hook the audience.", "They're the easiest part.", "The guest is most relaxed."],
+  [3, "“Would you rather…?”", "Twenty questions", "Rock, paper, scissors"],
+  [9, "Make the guest comfortable and part of the process.", "Always read a long bio.", "Talk more than the guest."]]);
+
+/* ===================== C1 ===================== */
+M("c1-futurepast", [[0, "Six months — then 18 more as a drop-in.", "Four years — he graduated.", "One week — he hated it."],
+  [7, "Slept on floors, returned Coke bottles.", "Worked at a bank.", "Lived with his parents."],
+  [8, "Calligraphy — typography.", "Programming — computers.", "Painting — colours."]]);
+M("c1-legacy", [[1, "“Would I want to do what I'm about to do today?”", "“Am I rich enough?”", "“What will people think?”"],
+  [6, "It was a rare, curable cancer.", "He was going to die.", "They were tired."],
+  [10, "“Stay hungry. Stay foolish.”", "“Think different.”", "“Just do it.”"]]);
+M("c1-rhetoric", [[3, "That basic education is enough.", "That girls go to school.", "That books are free."],
+  [6, "“It is time the world thinks bigger.”", "“They are right.”", "“Let's wait and see.”"],
+  [9, "“We must work, not wait.”", "“Yes, we can.”", "“Education first.”"]]);
+M("C1-6", [[0, "A state dinner with the Queen.", "A film premiere in Paris.", "A football match."],
+  [5, "“Your Majesty” first, then “ma'am”.", "“Ma'am” first, then “Your Majesty”.", "Just her first name."],
+  [8, "When he realised he had the voice of a mouse.", "If he liked the food.", "Where he bought his suit."]]);
+M("C1-12", [[0, "He's not in any WhatsApp group.", "He's in 50 WhatsApp groups.", "He invented WhatsApp."],
+  [6, "He'd die of malnutrition.", "He'd call reception.", "He'd leave the hotel."],
+  [8, "True", "A lie", "Half true"]]);
+M("C1-8", [[0, "Summer 1884, in the South Atlantic.", "Winter 1984, in the Pacific.", "Spring 1884, near England."],
+  [3, "He drank seawater and became ill.", "He fell into the sea.", "He refused to eat."],
+  [7, "They were arrested for murder.", "They became heroes.", "They wrote a book."]]);
+M("c1-banter", [[1, "Mark Lawrenson", "Beyoncé", "The Queen"],
+  [3, "He renovated Lawrenson's house.", "He bought it online.", "He won it in a raffle."],
+  [8, "True", "A lie", "Nobody knows"]]);
+M("c1-decisions", [[2, "Each option is better in some ways — neither overall.", "One option is clearly better.", "You don't have enough information."],
+  [4, "Philosophy and law", "Medicine and art", "Teaching and banking"],
+  [10, "There is no best option.", "We are ignorant.", "We are lazy."]]);
+M("C1-2", [[1, "People would think she was boring.", "She wasn't a real researcher.", "The flyer was too small."],
+  [3, "Data with a soul", "Lies with a smile", "Facts with pictures"],
+  [9, "Shame — the fear of disconnection.", "Love — the need to belong.", "Fear — of failure."]]);
+M("c1-data", [[0, "Information overload", "Too little data", "Slow internet"],
+  [4, "Purple: fighting; red: giving; green: profiteering.", "Red: danger; green: safe; purple: royal.", "They mean nothing."],
+  [10, "A timeline of media panic.", "A map of mountains.", "A list of animals."]]);
+M("c1-talk", [[1, "You seem clichéd or manipulative.", "You seem very professional.", "You win a prize."],
+  [3, "Transfer an idea into listeners' minds.", "Make people laugh.", "Sell a product."],
+  [6, "Information that helps you understand the world.", "A secret you tell.", "A story about your childhood."]]);
+M("c1-interview", [[2, "That he's faux-naive.", "That he's rude.", "That he's boring."],
+  [6, "Glasses, big nose, skinny, tall — gangly.", "Short, strong and serious.", "Bald with a big beard."],
+  [8, "Openness and trust with the people in the film.", "Expensive cameras.", "A very big team."]]);
+M("c1-critical", [[0, "“The rational animal.”", "“The social animal.”", "“The laughing animal.”"],
+  [4, "Witty comebacks or shouting louder.", "Long speeches.", "Using numbers."],
+  [10, "Reason should be in the driver's seat.", "Feelings are more important.", "Appetite always wins."]]);
+M("C1-10", [[0, "Three to nine times more.", "Half as much.", "The same."],
+  [5, "He denied it — “I am not a crook.”", "He labelled the problem.", "He apologised."],
+  [9, "Seven to ten days", "Two years", "Two hours"]]);
+M("c1-leading", [[2, "He ran through crossfire to rescue the wounded.", "He planned the attack.", "He flew the helicopter."],
+  [3, "A medic's helmet camera.", "A news crew.", "A drone."],
+  [7, "“Because they would have done it for me.”", "“Because it was my job.”", "“Because I wanted a medal.”"]]);
+M("c1-wordform", [[1, "Everybody who speaks English.", "Lexicographers.", "University professors."],
+  [7, "Borrowing — kumquat, caramel, ninja.", "Making words shorter.", "Using old words."],
+  [10, "Changing part of speech — “friend” as a verb.", "Changing the spelling.", "Adding -ism."]]);
+M("c1-ai", [[0, "Human stupidity", "Love", "Money"],
+  [3, "It can make decisions and create ideas by itself.", "It is very cheap.", "It only works online."],
+  [11, "We could already be in a third world war.", "AI will end all jobs next year.", "Robots will become kings."]]);
+M("c1-global", [[1, "Borders don't matter much anymore.", "The world is becoming more closed.", "Only trade matters."],
+  [5, "2%", "50%", "20%"],
+  [6, "About 3%", "About 30%", "About 13%"]]);
+M("c1-essay", [[1, "About 4,500 in 13 years.", "About 450 in 3 years.", "About 45,000 in 30 years."],
+  [5, "“To try” (from French).", "“To write” (from Latin).", "“To argue” (from Greek)."],
+  [7, "Lack of focus — not answering the question.", "Bad handwriting.", "Too many quotes."]]);
+M("c1-puns", [[1, "The pilot asks “What does that light mean?”", "The food is cold.", "The flight is late."],
+  [3, "“Warner Brothers” sounds like “Warn her, brothers”.", "Marie is his sister.", "It's a film title."],
+  [10, "Hare-dressing — a rabbit trying on clothes.", "A barber for rabbits.", "Men who cut hair."]]);
+M("c1-sounds", [[0, "Why “the end” sounds like “the y-end”.", "Why “the” has two sounds.", "Why films end."],
+  [3, "We link them with another sound.", "We stop between them.", "We drop one of them."],
+  [5, "A /w/ sound", "A /j/ sound", "No sound"]]);
+M("C1-5", [[1, "Yellow-billed kites and pied crows.", "Sharks and dolphins.", "Lions and hyenas."],
+  [6, "Drag her into its lair.", "Carry her to the sea.", "Eat all the eggs."],
+  [9, "Calmer water — but still not safe.", "Totally safe.", "She goes back to the beach."]]);
+M("c1-literature", [[0, "In the British Library — partly in his handwriting.", "In a museum in Paris.", "In a private home."],
+  [1, "Calm a May Day riot against immigrants.", "Start a revolution.", "Win an election."],
+  [8, "They would be strangers themselves.", "They would be kings.", "They would be welcome everywhere."]]);
+M("c1-film", [[1, "Inventive editing that shows his mind.", "Famous actors.", "Real London locations."],
+  [3, "3 minutes 42 seconds", "42 minutes", "30 seconds"],
+  [5, "Names are never just one word.", "He's too tired.", "She is lying."]]);
+M("c1-mediation", [[1, "A conference interpreter with 25 years' experience.", "A diplomat.", "A tuna fisherman."],
+  [6, "Simultaneous and consecutive — consecutive.", "Written and spoken — written.", "Fast and slow — fast."],
+  [8, "No — they translate ideas.", "Yes — always.", "Only for numbers."]]);
+M("C1-4", [[0, "That people can see into the future.", "That coffee is healthy.", "That dreams are real."],
+  [5, "Ronald Fisher, in 1925.", "Einstein, in 1905.", "Nobody — it's natural."],
+  [11, "Only 36% were significant again.", "All of them were confirmed.", "90% were confirmed."]]);
+M("C1-9", [[1, "They eat verbs and suck life from writing.", "They are scary words.", "They only appear at night."],
+  [2, "Academics, lawyers, bureaucrats and business writers.", "Poets and children.", "Comedians."],
+  [10, "Antidisestablishmentarianism", "Globalization", "Nominalization"]]);
+M("c1-condinv", [[1, "Sitting by the bedsides of dying people.", "Working as a doctor.", "Writing novels."],
+  [4, "Living a life true to myself.", "Working harder.", "Earning more money."],
+  [9, "Support each other to live without regrets.", "Work harder every day.", "Forget the past."]]);
+M("C1-3", [[0, "North-eastern Scotland", "South-west Wales", "Northern France"],
+  [4, "It was found by a young Welshman.", "It was found by accident.", "It was found by a child."],
+  [8, "About 6 tons", "About 60 tons", "About 600 kilos"]]);
+M("C1-7", [[2, "It's physical — not based on language.", "It's very cheap.", "It's on every channel."],
+  [6, "That he looks just like Mr Bean.", "That he's a great actor.", "That the shop was closed."],
+  [7, "“Bet you wish you were.”", "“Can I have your autograph?”", "“I knew it!”"]]);
+M("c1-formal", [[3, "False — your rights are with the store.", "True — always go to the manufacturer.", "True — only online."],
+  [6, "14 days to say so, then 14 to send it back.", "No returns online.", "One year to return anything."],
+  [8, "Only true if the item isn't faulty.", "Always true.", "Never true."]]);
+M("c1-collocations", [[0, "He went to law school.", "He quit his job.", "He failed maths."],
+  [4, "Attach a candle to a wall — Karl Duncker.", "Light a candle in the wind — Sam Glucksberg.", "Count candles — Einstein."],
+  [9, "About 3.5 minutes slower.", "Twice as fast.", "Exactly the same."]]);
+M("C1-1", [[1, "An absolute guarantee against invasion.", "A victory in France.", "Peace with Germany."],
+  [7, "“We shall not flag or fail.”", "“We shall surrender.”", "“We shall wait.”"],
+  [9, "“We shall never surrender.”", "“We shall win tomorrow.”", "“We shall go home.”"]]);
+M("C1-11", [[1, "He doesn't see why it's asked.", "He says yes immediately.", "He leaves the room."],
+  [4, "Why not ask the twins for $1,000?", "Why did he steal the code?", "Where was he that night?"],
+  [6, "“Your best friend is suing you for $600 million.”", "“That's very kind.”", "“He agrees with you.”"]]);
+M("c1-emphatic", [[1, "To make gender equality a priority.", "To build new universities.", "To study abroad."],
+  [2, "Four years earlier — from Brown.", "Last year — from Oxford.", "Ten years earlier — from Harvard."],
+  [9, "A place of refuge that acts against violence.", "A place only for studying.", "A place for rich students."]]);
+
 /* Start it — full course: 240 lessons (≈ 3 school years at 2 classes a week).
    Each module ends with a review lesson.
    Unit entry: ["OLD-KEY"]  → a lesson from the first 84 (title etc. come from curriculum.js)
@@ -12213,10 +12908,11 @@ const glh = s => { const [en, pt] = gsplit(s); return en + glo(pt); };
 const plain = s => gsplit(s)[0];
 const tokenize = s => String(s).split(" ").flatMap(w => { const m = w.match(/^(.+?)([?.!,])$/); return m ? [m[1], m[2]] : [w]; });
 const onorm = s => String(s).toLowerCase().replace(/[’‘]/g, "'").replace(/\s+([?.!,])/g, "$1").replace(/\s+/g, " ").trim();
+const sshuffle = (a, seed) => { let h = 2166136261; for (const c of String(seed)) h = Math.imul(h ^ c.charCodeAt(0), 16777619); a = a.slice(); for (let i = a.length - 1; i > 0; i--) { h = Math.imul(h ^ (h >>> 15), 2246822507) >>> 0; const j = h % (i + 1); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const reduced = () => !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
 let CUR = null; /* current lesson display id */
-const isA = () => CUR ? /^A/.test(CUR) : true;
+const isA = () => CUR ? /^A/.test((NODE[CUR] && NODE[CUR].lv) || CUR) : true;
 const bi = (en, pt) => isA() && pt ? `${en}${glo(pt)}` : en;
 
 const CONTR = [[/\bi'm\b/g, "i am"], [/\bwon't\b/g, "will not"], [/\bcan't\b/g, "can not"], [/\bcannot\b/g, "can not"], [/n't\b/g, " not"], [/'re\b/g, " are"], [/'ve\b/g, " have"], [/'ll\b/g, " will"], [/'d\b/g, " would"], [/'s\b/g, " is"]];
@@ -12243,6 +12939,14 @@ const synth = ("speechSynthesis" in window) ? window.speechSynthesis : null;
 let VOICE = null;
 function pickVoice() { if (!synth) return; try { const vs = synth.getVoices(); VOICE = vs.find(v => /en[-_]US/i.test(v.lang) && /google|samantha|natural|aria|jenny/i.test(v.name)) || vs.find(v => /en[-_]US/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null; } catch (e) { VOICE = null; } }
 if (synth) { pickVoice(); try { synth.onvoiceschanged = pickVoice; } catch (e) { } }
+/* no speech in this browser (some in-app browsers) or no English voice installed: tell the student how to get the audio */
+function audioOk() { if (!synth) return false; try { const vs = synth.getVoices(); return !vs.length || vs.some(v => /^en/i.test(v.lang)); } catch (e) { return true; } }
+function noAudio(i) {
+  const box = $("#pl-" + i), m = box && box.querySelector(".plmsg");
+  const html = `${ic("alert")} ${bi("This browser can't play the audio. Open the lessons in Chrome (Android) or Safari (iPhone) and turn the volume up.", "Este navegador não toca o áudio. Abra as aulas no Chrome (Android) ou no Safari (iPhone) e aumente o volume.")}`;
+  if (m) { m.innerHTML = html; m.classList.add("noaudio"); } else toast("Open the lessons in Chrome or Safari to hear the audio.");
+  SFX.bad();
+}
 function speak(text, slow, btn) {
   if (!synth) return;
   try {
@@ -12256,6 +12960,7 @@ const sayBtn = (t, label) => synth ? `<button class="say" data-say="${esc(plain(
 
 /* ---------- icons ---------- */
 const ICONS = {
+  gear: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
   volume: '<path d="M4 9h4l5-4v14l-5-4H4zM16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/>', mute: '<path d="M4 9h4l5-4v14l-5-4H4zM17 9l5 6M22 9l-5 6"/>',
   left: '<path d="M15 6l-6 6 6 6"/>', right: '<path d="M9 6l6 6-6 6"/>',
   check: '<path d="M5 12l5 5 9-10"/>', x: '<path d="M6 6l12 12M18 6 6 18"/>',
@@ -12533,7 +13238,7 @@ function sheetHTML() {
   const g = guide(), tm = themeMode(), st = wallet(), f = curFx();
   const unowned = [].concat(...Object.keys(COSM).map(k => COSM[k].map(x => [k, x]))).filter(([k, x]) => !isOpen(k, x[0])).sort((a, b) => a[1][2] - b[1][2]);
   const canBuy = unowned.filter(([k, x]) => x[2] <= st), nextUp = unowned.find(([k, x]) => x[2] > st);
-  const tabs = [["guide", "Avatars", "users"], ["fx", "Effects", "spark"], ["season", "Special", "star"], ["bg", "Background", "layers"], ["set", "Settings", "sun"]];
+  const tabs = [["guide", "Avatars", "users"], ["fx", "Effects", "spark"], ["season", "Special", "star"], ["bg", "Background", "layers"]];
   let body = "";
   if (SHEET_TAB === "guide") body = `<div class="avgrid">${GUIDE_LIST.map(x => `<button class="avopt ${x.id === g.id ? "on" : ""}" data-pickav="${x.id}" style="--g1:${x.color};--g2:${x.c2}" aria-pressed="${x.id === g.id}"><span class="pic" style="--hs:${x.hs || 1}"><img src="${x.src}" alt="" loading="lazy"></span><span class="nm">${esc(x.id === "teacher" ? (TEACHER_NAME || "Teacher") : x.name)}</span>${ic("check", "ic tick")}</button>`).join("")}</div>`;
   if (SHEET_TAB === "fx") body = `<h4>Aura <small>${bi("A glow around your avatar", "Um brilho em volta do seu avatar")}</small></h4><div class="fxgrid">${AURAS.map(a => fxTile("aura", a)).join("")}</div>
@@ -12547,11 +13252,12 @@ function sheetHTML() {
     <h4>Motion</h4><div class="motion">
       <button class="sw-snd ${S.tiltAv ? "on" : ""}" data-tiltav aria-pressed="${!!S.tiltAv}">${ic("repeat")} Avatar tilts with phone: ${S.tiltAv ? "on" : "off"}</button>
       ${NEEDS_TILT_OK && !GYRO ? `<button class="btn sm" data-tilt>${ic("check")} Allow motion sensor</button>` : ""}
-      <div class="tiltmeter" aria-hidden="true"><span>◀</span><div class="track"><i id="tiltdot" style="left:${50 + TILT[0] * 46}%"></i></div><span>▶</span></div>
-      <small id="tiltstate">${tiltStatus()}</small>
-      <small>Metal effects also catch the light as you tilt.</small></div>
+</div>
     <h4>Level & tour</h4><div class="row"><button class="btn ghost sm" data-retest>🎯 Refazer o teste de nível</button><button class="btn ghost sm" data-retour>👆 Ver o tour de novo</button></div>
     <h4>Secret codes <small>${bi("Your teacher may give you codes for bonus stars", "O professor pode te dar códigos de estrelas extras")}</small></h4>${S.god ? `<div class="godon">${ic("spark")}<span><b>God mode is on</b><small>Every aura, metal, lightning and background is unlocked.</small></span><button class="btn ghost sm" data-godoff>Turn off</button></div>` : ""}${(S.bonus || 0) ? `<p class="bonusline">${STAR(true)} Bonus stars from codes: <b>${S.bonus}</b></p>` : ""}${`<form class="code" data-codeform><input id="scode" class="inp" placeholder="Type a code…" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Secret code"><button class="btn sm" type="submit">${ic("check")} Enter</button></form><div class="codemsg" id="codemsg" role="status"></div>`}`;
+  if (SHEET_TAB === "set") return `<div class="sbox setbox" role="dialog" aria-modal="true" aria-label="Settings">
+    <div class="shd"><h3>${ic("gear")} Settings</h3><button class="iconbtn" data-sclose aria-label="Close">${ic("x")}</button></div>
+    <div class="sbody">${body}</div><button class="btn gold sdone" data-sclose>${ic("check")} Done</button></div>`;
   return `<div class="sbox" role="dialog" aria-modal="true" aria-label="Customize">
     <div class="shd"><h3>${ic("palette")} Make it yours</h3><button class="iconbtn" data-sclose aria-label="Close">${ic("x")}</button></div>
     <div class="spv"><div class="pvstage bgart-${document.documentElement.dataset.bg || "classic"}"><span class="tiltw">${avImg({ cls: "pv" })}</span></div>
@@ -12562,7 +13268,7 @@ function sheetHTML() {
     ${BUY ? buyBox() : ""}
   </div>`;
 }
-function openSheet(tab) { const sh = $("#sheet"); if (!sh) return; if (tab) SHEET_TAB = tab; sh.innerHTML = sheetHTML(); sh.classList.add("show"); sh.setAttribute("aria-hidden", "false"); S.newUnl = false; save(); $$(".custbtn").forEach(b => b.classList.remove("new")); SFX.tap(); }
+function openSheet(tab) { const sh = $("#sheet"); if (!sh) return; SHEET_TAB = tab || (SHEET_TAB === "set" ? "guide" : SHEET_TAB); sh.innerHTML = sheetHTML(); sh.classList.add("show"); sh.setAttribute("aria-hidden", "false"); S.newUnl = false; save(); $$(".custbtn").forEach(b => b.classList.remove("new")); SFX.tap(); }
 function closeSheet() { BUY = null; const sh = $("#sheet"); if (!sh) return; const was = sh.classList.contains("show"); sh.classList.remove("show"); sh.setAttribute("aria-hidden", "true"); if (was && PENDING_CHEER) { const m = PENDING_CHEER; PENDING_CHEER = null; setTimeout(() => cheer(m[0], m[1]), 350); } }
 function refreshSheet() { const sh = $("#sheet"); if (sh && sh.classList.contains("show")) { const b = sh.querySelector(".sbody"); const y = b ? b.scrollTop : 0; const y2 = sh.querySelector(".sbox").scrollTop; sh.innerHTML = sheetHTML(); const nb = sh.querySelector(".sbody"); if (nb) nb.scrollTop = y; sh.querySelector(".sbox").scrollTop = y2; } }
 let BUY = null;
@@ -12817,6 +13523,7 @@ function topBar() {
     <a href="#" data-home="1" aria-label="Start it — all lessons" style="text-decoration:none;color:inherit">${WORDMARK(true)}</a><span class="sp"></span>
     <span class="starcount" title="Your stars to spend on effects">${STAR(true)} ${wallet()}</span>
     <span id="namebox">${nameChip()}</span>
+    <button class="iconbtn setbtn" data-settings aria-label="Settings" title="Settings">${ic("gear")}</button>
     <button class="iconbtn custbtn ${S.newUnl ? "new" : ""}" data-custom aria-label="Customize: guide, background, theme and sound" title="Customize">${AV ? `<span class="mini" style="--g1:${guide().color};--g2:${guide().c2};--hs:${guide().hs || 1}"><img class="avimg" src="${avSrc()}" alt=""></span>` : ""}${ic("palette")}</button>
   </div></header>`;
 }
@@ -12828,25 +13535,18 @@ function viewHub(lv) {
   CUR = null;
   const L0 = LVINFO[lv] ? lv : "A0";
   const last = S.last && NODE[S.last] ? NODE[S.last] : null;
-  const tabs = COURSE.map(l => { const d = levelDone(l.id), t = LVINFO[l.id].count; return `<button class="lvtab L-${l.id}" role="tab" aria-selected="${l.id === L0}" data-lv="${l.id}"><span class="lvt"><span class="em">${LVPT[l.id].emoji}</span><span class="id">${l.id}</span></span><span class="nm">${esc(LVPT[l.id].name)}</span><span class="fr">${esc(LVPT[l.id].forr)}</span><span class="pg">${d}/${t} <span>${STAR(true)} ${totalStars(l.id)}</span></span><span class="bar"><i style="width:${Math.round(d / t * 100)}%"></i></span></button>`; }).join("");
+  const tabs = COURSE.map(l => { const d = levelDone(l.id), t = LVINFO[l.id].count; return `<button class="lvtab L-${l.id}" role="tab" aria-selected="${l.id === L0}" data-lv="${l.id}"><span class="lvt"><span class="em">${LVPT[l.id].emoji}</span><span class="id">${l.id}</span></span><span class="nm">${esc(LVPT[l.id].name)}</span><span class="pg">${d}/${t} <span>${STAR(true)} ${totalStars(l.id)}</span></span><span class="bar"><i style="width:${Math.round(d / t * 100)}%"></i></span></button>`; }).join("");
   return `${topBar()}<main class="wrap">
   <section class="hhero rv scnhost" data-scene="${seasonNow()}"><canvas class="scn back" aria-hidden="true"></canvas><div class="inner">
     <div class="copy">${WORDMARK(false)}
       <h1>Your English, <b>one lesson at a time.</b></h1>
-      <div class="stats"><span>${ORDER.length} lessons</span><span>6 níveis · do zero ao fluente</span><span>50-minute classes</span></div>
-      <div class="row cta">${last ? `<a class="btn gold" href="#${last.id}">${ic("play")} Continue: ${esc(last.id)} ${esc(last.title)}</a>` : `<a class="btn gold" href="#${lvIds(L0)[0]}">${ic("play")} Start with lesson ${lvIds(L0)[0]}</a>`}<a class="btn ghost" href="#${L0}" data-lv="${L0}" style="background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)">${ic("layers")} Choose a level</a></div>
+      <div class="row cta">${last ? `<a class="btn gold" href="#${last.id}" data-resume="1">${ic("play")} Continue: ${esc(last.id)} ${esc(last.title)}</a>` : `<a class="btn gold" href="#${lvIds(L0)[0]}">${ic("play")} Start with lesson ${lvIds(L0)[0]}</a>`}<a class="btn ghost" href="#${L0}" data-lv="${L0}" style="background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)">${ic("layers")} Choose a level</a></div>
     </div>
     ${AV ? `<div class="avatarbox"><div class="bubble" id="bubble">${bubbleText()}</div><span class="tiltw">${avImg({ alt: guideName() })}</span></div>` : ""}
   </div><canvas class="scn front" aria-hidden="true"></canvas></section>
+  ${typeof mistakesCard === "function" ? mistakesCard() : ""}
   <div class="tiles" role="tablist" aria-label="Levels">${tabs}</div>
   <div id="lvbody">${levelBody(L0)}</div>
-  <h2 class="section-title rv">${ic("info")} How a lesson works</h2>
-  <div class="howto rv">
-    <div><b>${ic("ear")} Watch & listen</b><p>A real video with tasks before, while and after you watch.</p></div>
-    <div><b>${ic("book")} Read</b><p>A short text you can also listen to, with questions.</p></div>
-    <div><b>${ic("pencil")} Write your own</b><p>Type your own answers. The checker gives tips, not one "right" answer.</p></div>
-    <div><b>${ic("mic")} Speak</b><p>Talk in class, then send a WhatsApp audio to your teacher.</p></div>
-  </div>
   <footer class="foot">${WORDMARK(true)}<span>Your progress, stars and drafts stay on this device.</span></footer>
   </main>`;
 }
@@ -12854,50 +13554,51 @@ function levelBody(lv, q) {
   const qq = (q || "").trim().toLowerCase(); const info = LVINFO[lv];
   if (qq) {
     const ids = ORDER.filter(id => { const n = NODE[id]; return (`${id} ${n.title} ${n.grammar} ${n.vocab}`).toLowerCase().includes(qq); });
-    return `${lvHead(lv, q, `${ids.length} lessons found`)}<div class="module L-B2"><ol class="path">${ids.map(unitCard).join("") || `<li class="empty">No lessons match “${esc(q)}”.</li>`}</ol></div>`;
+    return `${lvHead(lv, q, `${ids.length} lessons found`)}<div class="module L-B2"><ol class="path">${ids.map(id => unitCard(id, "lv")).join("") || `<li class="empty">No lessons match “${esc(q)}”.</li>`}</ol></div>`;
   }
   const firstTodo = lvIds(lv).find(id => !S.done[NODE[id].key]);
-  return `${lvHead(lv, "", `${info.tag} · ${info.count} lessons · ${info.modules.length} modules`)}
+  return `${lvHead(lv, "", `${levelDone(lv)} / ${info.count} ${isA() ? "aulas feitas" : "lessons done"}`)}
   ${info.modules.map((m, i) => { const d = m.ids.filter(id => S.done[NODE[id].key]).length; const open = false;
-    return `<details class="module L-${lv}" ${open ? "open" : ""}><summary><span class="mnum grad">${i + 1}</span><span class="mt"><b>${esc(m.t)}</b><small>Module ${i + 1} · ${d}/${m.ids.length} done</small></span><span class="mbar"><i style="width:${Math.round(d / m.ids.length * 100)}%"></i></span>${ic("right", "ic chev")}</summary><ol class="path">${m.ids.map(unitCard).join("")}</ol></details>`; }).join("")}`;
+    return `<details class="module L-${lv}" ${open ? "open" : ""}><summary><span class="mnum grad">${i + 1}</span><span class="mt"><small class="mlab">${bi(`Lesson ${i + 1}`, `Lição ${i + 1}`)}</small><b>${esc(m.t)}</b><small>${d}/${m.ids.length}</small></span><span class="mbar"><i style="width:${Math.round(d / m.ids.length * 100)}%"></i></span>${ic("right", "ic chev")}</summary><ol class="path">${m.ids.map(id => unitCard(id)).join("")}</ol></details>`; }).join("")}`;
 }
 function lvHead(lv, q, sub) {
-  return `<div class="lvhead L-${lv}"><div><h2><span class="em">${LVPT[lv].emoji}</span>${esc(LVPT[lv].name)} <span class="tag grad">${lv}</span></h2><p class="you"><b>Você vai aprender a:</b> ${esc(LVPT[lv].you)}.</p><p>${esc(sub)}</p></div>
-    <label class="search">${ic("search")}<input id="q" type="search" placeholder="Find a topic: food, past, city…" value="${esc(q || "")}" aria-label="Search all lessons"></label></div>`;
+  return `<div class="lvhead L-${lv}"><div><h2><span class="em">${LVPT[lv].emoji}</span>${esc(LVPT[lv].name)} <span class="tag grad">${lv}</span></h2><p>${esc(sub)}</p></div>
+    <label class="search">${ic("search")}<input id="q" type="search" placeholder="Search a topic: past, food, can, will…" value="${esc(q || "")}" aria-label="Search all lessons"></label></div>`;
 }
-function unitCard(id) {
-  const n = NODE[id]; const done = S.done[n.key]; const st = nodeStars(n);
+/* each module is a "Lesson" (1, 2, 3…) and its items are exercises A, B, C… — easy to say when giving homework */
+function exCode(id) {
+  const n = NODE[id]; const I = n && LVINFO[n.lv]; if (!I) return { mod: 0, letter: "" };
+  for (let m = 0; m < I.modules.length; m++) { const j = I.modules[m].ids.indexOf(id); if (j >= 0) return { mod: m + 1, letter: String.fromCharCode(65 + j) }; }
+  return { mod: 0, letter: "" };
+}
+function unitCard(id, search) {
+  const n = NODE[id]; const done = S.done[n.key]; const st = nodeStars(n); const c = exCode(id);
   const vid = VIDEOS[n.key];
   return `<li><a class="ucard L-${n.lv} ${done ? "done" : ""} ${n.review ? "rev" : ""}" href="#${id}">
-    <span class="num ${n.review ? "" : "grad"}">${done ? ic("check") : n.review ? ic("trophy") : n.n}</span>
-    <span><span class="eyebrow">${id}${n.review ? " · review" : ""}</span><h3>${esc(n.title)}</h3><div class="gr">${esc(n.review ? n.mission : `${n.grammar} · ${n.vocab}`)}</div>
-      <span class="meta">${n.review ? "" : n.builds.slice(0, 2).map(k => `<span class="chip">${ic("link")} after ${KEY2ID[k]}</span>`).join("")}${vid ? `<span class="chip vid">${ic("video")} video</span>` : ""}</span></span>
+    <span class="num ${n.review ? "" : "grad"}">${search ? `<small>${c.mod}</small>` : ""}${c.letter}${done ? `<i class="ndone">${ic("check")}</i>` : ""}</span>
+    <span><h3>${esc(n.title)}</h3>${search ? `<div class="gr">${search === true ? "" : `${esc(LVPT[n.lv] ? n.lv : "")} · `}${bi(`Lesson ${c.mod}, exercise ${c.letter}`, `Lição ${c.mod}, exercício ${c.letter}`)}</div><div class="gtopic">${n.review ? "Review" : esc(n.grammar)} · ${esc(n.vocab)}</div>` : ""}</span>
     <span class="right"><span class="ustars" aria-label="${st} of 3 stars">${[0, 1, 2].map(i => STAR(i < st)).join("")}</span><span class="go">${ic("right")}</span></span></a></li>`;
 }
 
 /* ================= LESSON ================= */
 let ITEMS = [], OPEN = {}, SC = null;
-const SECS = [["warm", "Warm-up", 5, "chat"], ["words", "Key words", 7, "cards"], ["watch", "Watch & listen", 10, "video"], ["grammar", "Grammar", 8, "target"], ["practice", "Practice", 8, "pencil"], ["read", "Read", 6, "book"], ["speak", "Speak & write", 6, "mic"], ["after", "After class", 0, "wa"], ["exit", "Exit ticket", 0, "flag"]];
-const RSECS = { warm: "Can you…?", words: "Words to remember", watch: "Watch & listen again", grammar: "Grammar recap", practice: "Mixed practice", read: "Read", speak: "Speak & write", after: "Your project", exit: "Exit ticket" };
-
+const SECS = [["words", "New words", "cards"], ["watch", "Watch", "video"], ["listen", "Listen & write", "ear"], ["how", "How it works", "target"], ["practice", "Practice", "pencil"], ["read", "Read", "book"], ["translate", "Translate", "translate"], ["after", "After the lesson", "wa"]];
+const RSECS = { words: "Words to remember", practice: "Mixed practice", listen: "Listen & write", read: "Read", translate: "Translate", after: "Your project" };
 function secHead(i, key, review) {
   const s = SECS.find(x => x[0] === key);
-  return `<div class="shead"><span class="n grad">${i}</span><h2>${review ? RSECS[key] : s[1]}</h2>${s[2] ? `<span class="mins">${ic("clock")} ${s[2]} min</span>` : `<span class="mins">${key === "after" ? "Homework" : "2 min"}</span>`}</div>`;
+  return `<div class="shead"><span class="n grad">${i}</span><h2>${review && RSECS[key] ? RSECS[key] : s[1]}</h2></div>`;
 }
 function lessonHero(n) {
-  const builds = n.builds.map(k => KEY2ID[k]); const leads = n.review ? [] : (LEADS[n.id] || []);
   return `<section class="lhero"><div class="wrap">
-    <a class="back" href="#${n.lv}">${ic("left")} ${n.lv} · ${esc(n.modT)}</a>
-    <div class="eyebrow"><span class="lvpill grad">${n.lv}</span>&nbsp; ${esc(LVPT[n.lv].name)} · Lesson ${n.n} of ${n.of} · ${n.review ? "Review" : "50 minutes"}</div>
-    <h1>${n.review ? ic("trophy", "ic") + " " : ""}${esc(n.title)}</h1><div class="sub">${esc(n.review ? n.modT : n.grammar)}</div>
-    <div class="goals">${n.review ? `<div><b>Module</b>${esc(n.modT)}</div><div><b>Lessons</b>${n.range.length} lessons to review</div><div><b>Project</b>${esc(n.mission)}</div><div><b>Skills</b>Listen · Read · Write · Speak</div>` : `<div><b>Grammar</b>${esc(n.grammar)}</div><div><b>Words</b>${esc(n.vocab)}</div><div><b>You can</b>${esc(n.mission)}</div><div><b>Skills</b>Listen · Read · Write · Speak</div>`}</div>
-    <div class="links">${builds.map(b => `<a href="#${b}">${ic("left")} ${n.review ? "" : "Builds on "}${b} ${esc(titleOf(b))}</a>`).join("")}${leads.map(b => `<a href="#${b}">${ic("right")} Leads to ${b} ${esc(titleOf(b))}</a>`).join("")}</div>
+    <a class="back" href="#${n.lv}">${ic("left")} Lessons</a>
+    <h1>${n.review ? ic("trophy", "ic") + " " : ""}${esc(n.title)}</h1>
+    <div class="sub">${n.review ? bi("Review time: words, practice and your project.", "Hora de revisar: palavras, prática e seu projeto.") : esc(n.mission)}</div>
   </div></section>`;
 }
-function lessonNav(n, hasRead) {
-  return `<nav class="snav" aria-label="Lesson sections"><div class="wrap"><div class="scr">${SECS.filter(([k]) => k !== "read" || hasRead).map(([k, t, m], i) => `<a href="#${n.id}" data-go="s-${k}" data-sec="${k}">${i + 1}. ${n.review ? RSECS[k] : t}${m ? ` <small>${m}'</small>` : ""}</a>`).join("")}</div>
-    <span class="score" id="score" title="Correct answers">${STAR(true)} <span id="scoreN">0/0</span></span>
-    <span class="timer"><span class="t" id="tmr">50:00</span><button data-timer="toggle" aria-label="Start or pause the class timer">${ic("play")}<span>Class</span></button><button class="rst" data-timer="reset" aria-label="Reset timer">${ic("reset")}</button></span></div><div class="meter"><i id="meter"></i></div></nav>`;
+function lessonNav(n, keys) {
+  const list = keys.map(k => SECS.find(x => x[0] === k));
+  return `<nav class="snav" aria-label="Lesson sections"><div class="wrap"><div class="scr">${list.map(([k, t], i) => `<a href="#${n.id}" data-go="s-${k}" data-sec="${k}">${i + 1}. ${n.review && RSECS[k] ? RSECS[k] : t}</a>`).join("")}</div>
+    <span class="score" id="score" title="Correct answers">${STAR(true)} <span id="scoreN">0/0</span></span></div><div class="meter"><i id="meter"></i></div></nav>`;
 }
 function videoCard(vid, v, key) {
   if (!vid) return "";
@@ -12912,12 +13613,14 @@ function videoCard(vid, v, key) {
 const mmss = t => `${Math.floor(t / 60)}:${String(Math.round(t) % 60).padStart(2, "0")}`;
 const ytAt = (id, t) => `https://www.youtube.com/watch?v=${id}${t ? `&t=${Math.round(t)}s` : ""}`;
 function vxCard(o, key) {
-  const st = o.s || 0, en = o.e || 0, dur = o.d || (en ? en - st : 0), clip = st || en ? `${mmss(st)}–${en ? mmss(en) : "end"}` : "";
+  const st = o.s || 0, en = o.e || 0, dur = o.d || (en ? en - st : 0);
   const vbox = HOSTED ? `<div class="vbox"><img src="https://i.ytimg.com/vi/${o.id}/hqdefault.jpg" alt=""><button class="ov" data-embed-go="${o.id}" data-embed-s="${st}" data-embed-e="${en}" style="background:none;border:0;color:#fff"><span class="play"><svg viewBox="0 0 24 24">${ICONS.play}</svg></span><span class="vt">${esc(o.t)}</span></button></div>`
     : `<a class="vbox" href="${ytAt(o.id, st)}" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/${o.id}/hqdefault.jpg" alt=""><span class="ov"><span class="play"><svg viewBox="0 0 24 24">${ICONS.play}</svg></span><span class="vt">${esc(o.t)}</span></span></a>`;
-  return `<div class="card rv"><div class="video"><div>${vbox}<div class="row" style="margin-top:12px"><a class="btn yt" href="${ytAt(o.id, st)}" target="_blank" rel="noopener">${ic("play")} Watch on YouTube</a><span class="note" style="margin:0">${ic("clock")} ${dur ? mmss(dur) : ""}${clip ? ` · ${bi("watch", "assista")} ${clip}` : ""} · ${esc(o.ch || "")}</span></div></div>
-      <div class="steps3"><div><b>${bi("Before you watch", "Antes")}</b>${gl(o.pre)}</div><div><b>${bi("While you watch", "Durante")}</b><ol class="vqs">${o.q.map(q => `<li><a class="ts" href="${ytAt(o.id, q[0])}" target="_blank" rel="noopener">▶ ${mmss(q[0])}</a> <span>${gl(q[1])}</span>${q[2] ? `<details><summary>${bi("Answer", "Resposta")}</summary>${esc(q[2])}</details>` : ""}</li>`).join("")}</ol></div><div><b>${bi("After you watch", "Depois")}</b>${gl(o.post)}</div></div></div>
-      ${/\?\s*$/.test(plain(o.post)) ? `<div class="openq" style="margin-top:16px;border-top:1px solid var(--line);padding-top:16px">${openField(`${key}-vid`, gl(o.post), "", 15, plain(o.post))}</div>` : ""}</div>`;
+  const mc = typeof VMC !== "undefined" && VMC[key];
+  const qs = mc ? mc.map(([qi, opts, qt]) => { const q = o.q[qi]; return q ? { t: "mc", q: qt || q[1], o: opts, a: 0, ts: q[0], vid: o.id } : null; }).filter(Boolean) : [];
+  return `<div class="card rv vcard">${vbox}<p class="vnote">${ic("info")} ${bi("Turn on English subtitles (CC) if you need them.", "Ative as legendas em inglês (CC) se precisar.")}${dur ? ` · ${mmss(dur)}` : ""}</p>
+    ${qs.length ? `<h3 class="vqh">${ic("check")} ${bi("Watch and choose", "Assista e escolha")}</h3>${qs.map((e, j) => exItem(e, j + 1)).join("")}`
+      : `<ol class="vqs">${o.q.slice(0, 3).map(q => `<li><a class="ts" href="${ytAt(o.id, q[0])}" target="_blank" rel="noopener">▶ ${mmss(q[0])}</a> <span>${gl(q[1])}</span>${q[2] ? `<details><summary>${bi("Answer", "Resposta")}</summary>${esc(q[2])}</details>` : ""}</li>`).join("")}</ol>`}</div>`;
 }
 function readingBlock(r, key) {
   const [rt, rx, tf, rq, rg] = r;
@@ -12925,32 +13628,24 @@ function readingBlock(r, key) {
     <article class="article rv"><h3>${esc(rt)}</h3>${rx.split(/\n+/).map(p => `<p>${esc(p)}</p>`).join("")}
       <div class="row">${synth ? `<button class="btn ghost sm" data-read="1">${ic("volume")} ${bi("Listen to the text", "Ouvir o texto")}</button><button class="btn ghost sm" data-stop="1">${ic("pause")} Stop</button>` : ""}</div>
       ${rg && rg.length ? `<div class="glossary">${rg.map(([w, g]) => `<span><b>${esc(w)}</b> = ${esc(g)}</span>`).join("")}</div>` : ""}</article>
-    <div class="card rv"><h3>${ic("check")} ${bi("True or false?", "Verdadeiro ou falso?")}</h3><div class="tf">${tf.map(([s, a], i) => { SC.total++; return `<div data-tf="${a ? 1 : 0}" data-tfid="${i}"><span>${gl(s)}</span><span class="pair"><button class="opt" data-tfa="1">True</button><button class="opt" data-tfa="0">False</button></span></div>`; }).join("")}</div>
-    ${rq ? `<div class="openq" style="margin-top:14px">${openField(`${key}-rq`, gl(rq), "", 8, "")}</div>` : ""}</div></div>`;
+    <div class="card rv"><h3>${ic("check")} ${bi("True or false?", "Verdadeiro ou falso?")}</h3><div class="tf">${tf.slice(0, 4).map(([s, a], i) => { SC.total++; return `<div data-tf="${a ? 1 : 0}" data-tfid="${i}"><span>${gl(s)}</span><span class="pair"><button class="opt" data-tfa="1">True</button><button class="opt" data-tfa="0">False</button></span></div>`; }).join("")}</div></div></div>`;
 }
-function talkBlock(talk) {
-  return talk.length ? `<div class="card tint rv"><h3>${ic("users")} ${bi("Speak with a partner or your teacher", "Fale com um colega ou com o professor")}</h3><div class="talk">${talk.map((t, i) => `<div><span class="eyebrow">${ic("mic")} ${["Ask & answer", "Tell", "Role-play", "Challenge"][i] || "Talk"}</span>${gl(t)}</div>`).join("")}</div></div>` : "";
-}
-function afterBlock(n, h, audio, mis) {
+function talkBlock() { return ""; }
+function afterBlock(n, audio, mis) {
   return `<div class="hw">
-      <div class="hwc wa rv"><span class="badge">${ic("mic")} Speaking · WhatsApp audio</span><h3>${ic("wa")} ${bi("Record an audio for your teacher", "Grave um áudio para o professor")}</h3><p style="font-size:17.5px;font-weight:600">${gl(audio)}</p>
-        <ul style="color:var(--muted);font-size:15px"><li>${bi("Plan 3 points first. Don't read a full text — talk.", "Planeje 3 pontos. Não leia um texto pronto — fale.")}</li><li>${bi("1–2 minutes is perfect. Mistakes are OK!", "1 a 2 minutos é perfeito. Errar faz parte!")}</li></ul>
+      <div class="hwc wa rv"><h3>${ic("wa")} ${bi("Record an audio for your teacher", "Grave um áudio para o professor")}</h3><p style="font-size:17.5px;font-weight:600">${gl(audio)}</p>
+        <p class="tiny">${bi("1–2 minutes. Talk, don't read. Mistakes are OK!", "1 a 2 minutos. Fale, não leia. Errar faz parte!")}</p>
         <div class="row"><a class="btn wa" href="#" data-wa="audio">${ic("wa")} ${bi("Open WhatsApp", "Abrir WhatsApp")}</a></div></div>
-      <div class="hwc rv"><span class="badge">${ic("pencil")} Writing · ${h[2]}+ words</span><h3>${ic("pencil")} ${bi(n.review ? "Your project" : "Write it at home", n.review ? "Seu projeto" : "Escreva em casa")}</h3>
-        <div class="openq" style="border:0;padding:0">${openField(`${n.key}-hw`, `<span style="font-size:17.5px">${gl(h[0])}</span>`, h[1], h[2], h[0], true)}</div></div>
-    </div>
-    ${mis ? `<div class="card tint rv" style="margin-top:14px"><h3>${ic("flag")} ${bi("Real-life mission", "Missão na vida real")}: ${gl(mis.title)}</h3><p>${gl(mis.text)}</p>${mis.steps ? `<ol>${mis.steps.map(s => `<li>${gl(s)}</li>`).join("")}</ol>` : ""}</div>` : ""}`;
+      ${mis ? `<div class="hwc rv"><h3>${ic("flag")} ${bi("Real-life mission", "Missão na vida real")}: ${gl(mis.title)}</h3><p>${gl(mis.text)}</p>${mis.steps ? `<ol>${mis.steps.map(s => `<li>${gl(s)}</li>`).join("")}</ol>` : ""}</div>` : ""}
+    </div>`;
 }
-function exitBlock(n, i) {
+function exitBlock(n) {
   const k = n.key, d = x => esc(S.drafts[`${k}-${x}`] || "");
-  return `<section class="sec" id="s-exit"><div class="wrap">${secHead(i, "exit", n.review)}<div class="card rv"><div class="exit">
+  return `<div class="card rv exitc"><h3>${ic("flag")} ${bi("Exit ticket", "Ficha de saída")}</h3><div class="exit">
       <div><span class="big">3</span><b>${bi("new words I learned", "palavras novas que aprendi")}</b><input class="inp" data-k="${k}-x1" placeholder="1" value="${d("x1")}"><input class="inp" data-k="${k}-x2" placeholder="2" value="${d("x2")}"><input class="inp" data-k="${k}-x3" placeholder="3" value="${d("x3")}"></div>
-      <div><span class="big">2</span><b>${bi("sentences with today's grammar", "frases com a gramática de hoje")}</b><textarea class="inp" data-k="${k}-x4" placeholder="${esc(n.review ? n.modT : n.grammar)}">${d("x4")}</textarea></div>
+      <div><span class="big">2</span><b>${bi("sentences about me, using today's lesson", "frases sobre mim, usando a aula de hoje")}</b><textarea class="inp" data-k="${k}-x4" placeholder="…">${d("x4")}</textarea></div>
       <div><span class="big">1</span><b>${bi("question I still have", "dúvida que ainda tenho")}</b><textarea class="inp" data-k="${k}-x5" placeholder="?">${d("x5")}</textarea></div>
-    </div><div class="row" style="margin-top:12px"><a class="btn wa" href="#" data-wa="exit">${ic("wa")} ${bi("Send to my teacher", "Enviar para o professor")}</a><button class="btn ghost" data-copy="exit">${ic("copy")} Copy</button></div></div>
-    ${teacherNotes(n)}
-    ${endBar(n)}
-  </div></section>`;
+    </div><div class="row" style="margin-top:12px"><a class="btn wa" href="#" data-wa="exit">${ic("wa")} ${bi("Send to my teacher", "Enviar para o professor")}</a><button class="btn ghost" data-copy="exit">${ic("copy")} Copy</button></div></div>`;
 }
 function endBar(n) {
   const nx = nextId(n.id); const done = S.done[n.key];
@@ -12958,93 +13653,115 @@ function endBar(n) {
     <div class="row"><button class="btn ${done ? "ghost" : "gold"}" data-done="${n.key}" ${done ? 'style="background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)"' : ""}>${ic("check")} ${done ? "Done — undo" : "I finished this lesson"}</button>
     ${nx ? `<a class="nx" href="#${nx}"><small>Next lesson ${ic("right")}</small><b>${nx} ${esc(titleOf(nx))}</b></a>` : `<a class="nx" href="#"><small>All done!</small><b>All lessons</b></a>`}</div></div>`;
 }
-function teacherNotes(n) {
-  const rows = n.review ? [["1. Can you…?", "5", "Students tick what they can do; ask them to prove two items orally."], ["2. Words", "7", "Flip cards in pairs, then a 1-minute story using 5 words."], ["3. Watch again", "10", "Students pick one video from the module and do the dictation."], ["4. Recap", "8", "Elicit one example for each grammar point. Review the traps."], ["5. Practice", "8", "Mixed items from the whole module."], ["6. Read", "6", "Read and answer; link to the module topics."], ["7. Speak & write", "6", "Speaking cards and translations; start planning the project."], ["After class", "—", "Project writing + audio arrive on your WhatsApp."]]
-    : [["1. Warm-up", "5", "Review the lesson it builds on, then the talk questions. Push for one extra detail."], ["2. Key words", "7", "Flip cards in pairs: PT → EN, then a 3-word sentence."], ["3. Watch & listen", "10", "Do the before-task, play once for gist, again for the while-tasks. Then the dictation."], ["4. Grammar", "8", "Go through the boxes. Elicit examples from students' lives."], ["5. Practice", "8", "Students answer alone, then compare. Discuss the trap."], ["6. Read", "6", "Read (or play the audio), then True/False and the open question."], ["7. Speak & write", "6", "Pick 2 translations and one speaking card. Open answers can go to homework."], ["After class", "—", "Audio + writing arrive on your WhatsApp."]];
-  return `<details class="teacher card"><summary>Teacher notes · 50-minute plan</summary>
-    <div class="tablewrap"><table class="t"><thead><tr><th>Stage</th><th>Min</th><th>What to do</th></tr></thead><tbody>${rows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</tbody></table></div>
-    ${VIDEOS[n.key] ? `<p class="note">${ic("alert")} The video was picked by its title and channel. Preview it before class and adjust the while-watching tasks if needed.</p>` : ""}
-  </details>`;
-}
+function teacherNotes() { return ""; }
 function viewLesson(id) {
-  const n = NODE[id]; CUR = id; ITEMS = []; OPEN = {}; SC = { total: 0, solved: new Set(), streak: 0, celebrated: false };
+  const n = NODE[id]; CUR = id; ITEMS = []; OPEN = {}; PLAYS = {}; WSEL = null; SC = { total: 0, solved: new Set(), streak: 0, celebrated: false };
   if (n.review) return viewReview(n);
   const c = CONTENT[n.key] || { lesson: [], vocab: [], ex: [] }; const x = X[n.key] || {};
-  const vid = VIDEOS[n.key];
-  const builds = n.builds.map(k => KEY2ID[k]);
-
-  const warm = x.w || [`What do you remember about “${builds[0] ? titleOf(builds[0]) : "your last class"}”?`, `Look at the title: “${n.title}”. What do you think we'll learn today?`];
-  const rem = builds.length ? `<div class="remember rv">${ic("link")}<span>${bi("Remember", "Lembre")}: ${builds.map(b => `<a href="#${b}">${b} ${esc(titleOf(b))}</a> <span style="color:var(--muted)">(${esc(NODE[b].grammar)})</span>`).join(" · ")}. ${bi("Say two sentences with it before you start.", "Diga duas frases usando isso antes de começar.")}</span></div>` : "";
-  const s1 = `<section class="sec" id="s-warm"><div class="wrap">${secHead(1, "warm")}${rem}
-    <div class="card tint rv"><h3>${ic("chat")} ${bi("Talk about it", "Converse")}</h3><ul class="qlist">${warm.map((q, i) => `<li><span class="bul grad">${i + 1}</span><span>${gl(q)}</span>${sayBtn(q)}</li>`).join("")}</ul>
-    <p class="note">${ic("users")} ${bi("Answer with your teacher or a partner. Short answers are OK — then add one more detail.", "Responda com o professor ou um colega. Respostas curtas valem — depois acrescente um detalhe.")}</p></div></div></section>`;
-  const s2 = `<section class="sec" id="s-words"><div class="wrap">${secHead(2, "words")}
-    <div class="card rv"><h3>${ic("cards")} ${bi("Tap a card to flip it and hear it", "Toque no cartão para virar e ouvir")}</h3>${flips(c.vocab)}
-    <p class="note">${ic("info")} ${bi("Cover the English and say each word from the Portuguese. Then make one sentence with three of them.", "Cubra o inglês e diga cada palavra a partir do português. Depois faça uma frase com três delas.")}</p></div></div></section>`;
-  const lis = c.ex.filter(e => e.t === "listen");
-  const v = x.v || [`Look at the title. What do you think the video shows?`, [`Write down 3 words you hear from today's list.`, `Note one thing that surprises you.`], `Tell a partner one thing you understood.`];
-  const s3 = `<section class="sec" id="s-watch"><div class="wrap">${secHead(3, "watch")}${videoCard(vid, v, n.key)}
-    ${lis.length ? `<div class="card rv"><h3>${ic("ear")} ${bi("Listen and write", "Ouça e escreva")}</h3>${lis.map((e, j) => exItem(e, j + 1)).join("")}</div>` : ""}</div></section>`;
-  const s4 = `<section class="sec" id="s-grammar"><div class="wrap">${secHead(4, "grammar")}<div class="card rv">${lessonBlocks(c.lesson)}</div></div></section>`;
-  const prac = c.ex.filter(e => ["mc", "fill", "order", "fix"].includes(e.t));
-  const s5 = `<section class="sec" id="s-practice"><div class="wrap">${secHead(5, "practice")}<div class="card rv">${prac.map((e, j) => exItem(e, j + 1)).join("")}</div></div></section>`;
-  const s6 = x.r ? `<section class="sec" id="s-read"><div class="wrap">${secHead(6, "read")}${readingBlock(x.r, n.key)}</div></section>` : "";
-  const trs = c.ex.filter(e => e.t === "tr");
-  const opens = x.o || [];
-  const sn = x.r ? 7 : 6;
-  const s7 = `<section class="sec" id="s-speak"><div class="wrap">${secHead(sn, "speak")}${talkBlock(x.t || [])}
-    ${trs.length ? `<div class="card rv"><h3>${ic("translate")} ${bi("Translate into English — your way", "Traduza para o inglês — do seu jeito")}</h3><p class="note" style="margin-top:0">${ic("info")} ${bi("More than one answer is right. The checker compares with model answers and tells you what's close.", "Mais de uma resposta está certa. O corretor compara com respostas-modelo e mostra o que está perto.")}</p>${trs.map((e, j) => exItem(e, j + 1)).join("")}</div>` : ""}
-    ${opens.length ? `<div class="card rv"><h3>${ic("pencil")} ${bi("Your turn: write your own answers", "Sua vez: escreva suas respostas")}</h3>${opens.map((o, i) => `<div class="openq">${openField(`${n.key}-o${i}`, gl(o[0]), o[1], o[2], o[0])}</div>`).join("")}</div>` : ""}
-  </div></section>`;
-  const h = x.h || [`Write about today's topic: ${n.mission}.`, "", 40];
-  const s8 = `<section class="sec" id="s-after"><div class="wrap">${secHead(sn + 1, "after")}${afterBlock(n, h, x.a || `Record a 1-minute audio: ${n.mission}.`, c.mission)}</div></section>`;
-  return wrapLesson(n, lessonHero(n) + lessonNav(n, !!x.r), s1 + s2 + s3 + s4 + s5 + s6 + s7 + s8 + exitBlock(n, sn + 2));
+  const ex = c.ex || [];
+  const parts = [];
+  const add = (key, html) => { if (html) parts.push([key, html]); };
+  add("words", wordGame(c.vocab || []));
+  const o = typeof VX !== "undefined" && VX[n.key];
+  add("watch", o ? vxCard(o, n.key) : "");
+  const lis = ex.filter(e => e.t === "listen").slice(0, 2);
+  add("listen", lis.length ? `<div class="card rv">${lis.map((e, j) => exItem(e, j + 1)).join("")}</div>` : "");
+  add("how", (c.lesson || []).length ? `<div class="card rv">${lessonBlocks(c.lesson)}</div>` : "");
+  const prac = pickPractice(ex, 6);
+  add("practice", prac.length ? `<div class="card rv">${prac.map((e, j) => exItem(e, j + 1)).join("")}</div>` : "");
+  add("read", x.r ? readingBlock(x.r, n.key) : "");
+  const trs = ex.filter(e => e.t === "tr").slice(0, 2);
+  add("translate", trs.length ? `<div class="card rv"><p class="note" style="margin-top:0">${ic("info")} ${bi("More than one answer can be right.", "Mais de uma resposta pode estar certa.")}</p>${trs.map((e, j) => exItem(e, j + 1)).join("")}</div>` : "");
+  add("after", afterBlock(n, x.a || `Record a 1-minute audio: ${n.mission}.`, c.mission) + exitBlock(n) + endBar(n));
+  return lessonPage(n, parts);
+}
+function lessonPage(n, parts) {
+  const body = parts.map(([k, html], i) => `<section class="sec" id="s-${k}"><div class="wrap">${secHead(i + 1, k, n.review)}${html}</div></section>`).join("");
+  return wrapLesson(n, lessonHero(n) + lessonNav(n, parts.map(p => p[0])), body);
+}
+function pickPractice(ex, max) {
+  const kinds = ["mc", "fill", "order", "fix"], pool = ex.filter(e => kinds.includes(e.t)), out = [];
+  [["mc", 2], ["fill", 1], ["order", 1], ["fix", 1]].forEach(([t, k]) => pool.filter(e => e.t === t).slice(0, k).forEach(e => out.push(e)));
+  pool.forEach(e => { if (out.length < max && !out.includes(e)) out.push(e); });
+  return pool.filter(e => out.includes(e)).slice(0, max);
 }
 function wrapLesson(n, head, body) {
   return `${topBar()}<div class="L-${n.lv}">${head}<main class="L-${n.lv}">${body}</main></div>`;
 }
-function flips(vocab) {
-  return `<div class="flips">${(vocab || []).map(([en, pt]) => `<button class="flip" data-flip="${esc(en)}" aria-label="${esc(en)}: ${esc(pt)}"><span class="in"><span class="f"><span>${esc(en)}<small>tap</small></span></span><span class="b">${esc(pt)}</span></span></button>`).join("")}</div>`;
+/* new words: match English ↔ Portuguese in rounds of 4, then type 3 of them from memory */
+let WSEL = null, PLAYS = {};
+function wordAnswers(en) { return String(en).split(/\s*\/\s*/).map(w => w.replace(/\(.*?\)/g, "").replace(/\s+/g, " ").trim()).filter(Boolean); }
+function wordGame(vocab) {
+  const list = (vocab || []).filter(v => v && v[0] && v[1]).slice(0, 8);
+  if (list.length < 3) return "";
+  const rounds = []; for (let r = 0; r < list.length; r += 4) rounds.push(list.slice(r, r + 4));
+  if (rounds.length > 1 && rounds[rounds.length - 1].length < 3) { const last = rounds.pop(); rounds[rounds.length - 1] = rounds[rounds.length - 1].concat(last); }
+  const html = rounds.map((rw, r) => {
+    const idx = rw.map(([en, pt]) => { const i = ITEMS.length; ITEMS.push({ t: "pair", q: "Match: " + plain(en), en: plain(en), pt: plain(pt), a: [plain(pt)] }); SC.total++; return i; });
+    return `<div class="wround ${r ? "wait" : ""}" data-round="${r}">
+      <div class="wcol">${idx.map(i => `<button class="wbtn en" data-wen="${i}">${ic("volume")}<span>${esc(ITEMS[i].en)}</span></button>`).join("")}</div>
+      <div class="wcol">${shuffle(idx).map(i => `<button class="wbtn pt" data-wpt="${i}">${esc(ITEMS[i].pt)}</button>`).join("")}</div>
+      ${idx.map(i => `<div class="fb" id="fb-${i}" hidden></div>`).join("")}</div>`;
+  }).join("");
+  const rec = sshuffle(list.map((v, j) => j), list.map(v => v[0]).join()).slice(0, 3).sort((a, b) => a - b).map(j => ({ t: "recall", q: plain(list[j][1]), a: wordAnswers(plain(list[j][0])) }));
+  return `<div class="card rv wgame"><h3>${ic("cards")} ${bi("Tap an English word, then its meaning", "Toque numa palavra em inglês e depois no significado")}</h3>
+    <div class="wrounds">${html}</div><p class="wdots">${rounds.map((r, i) => `<i data-dot="${i}" class="${i ? "" : "on"}"></i>`).join("")}</p></div>
+    <div class="card rv wrecall"><h3>${ic("pencil")} ${bi("Now from memory: write it in English", "Agora de memória: escreva em inglês")}</h3>${rec.map((e, j) => exItem(e, j + 1)).join("")}</div>`;
 }
-
+function wordTap(el) {
+  const d = el.dataset;
+  if (d.wen !== undefined) {
+    if (el.classList.contains("good")) { speak(ITEMS[+d.wen].en); return; }
+    $$(".wbtn.en.sel").forEach(b => b.classList.remove("sel")); el.classList.add("sel"); WSEL = +d.wen; speak(ITEMS[WSEL].en); SFX.tap(); return;
+  }
+  if (d.wpt !== undefined) {
+    if (el.classList.contains("good")) return;
+    if (WSEL == null) { const r = el.closest(".wround"); r.classList.remove("hint"); void r.offsetWidth; r.classList.add("hint"); toast(isA() ? "Tap an English word first. (Primeiro uma palavra em inglês.)" : "Tap an English word first."); return; }
+    const en = $(`[data-wen="${WSEL}"]`); const i = WSEL;
+    checkItem(i, el.textContent);
+    if (ITEMS[i].pt === el.textContent) {
+      [en, el].forEach(b => { b.classList.remove("sel"); b.classList.add("good"); }); WSEL = null;
+      const round = el.closest(".wround");
+      if (!$$(".wbtn.pt:not(.good)", round).length) setTimeout(() => {
+        const next = round.nextElementSibling;
+        if (next) { round.classList.add("gone"); next.classList.remove("wait"); $$(".wdots i").forEach(x => x.classList.toggle("on", x.dataset.dot === next.dataset.round)); }
+        else { round.closest(".wgame").classList.add("finished"); cheer("All matched!", "Tudo certo!"); }
+      }, 650);
+    } else { [en, el].forEach(b => { b.classList.remove("shake"); void b.offsetWidth; b.classList.add("shake"); }); }
+  }
+}
+/* listen & write: every play empties an ear; fewer plays = more stars */
+function playPips(i) {
+  const n = PLAYS[i] || 0, box = $("#pl-" + i); if (!box) return;
+  box.querySelector(".pips").innerHTML = [0, 1, 2].map(k => `<i class="${k < 3 - n ? "on" : ""}">${ic("ear")}</i>`).join("");
+  box.classList.toggle("over", n > 3);
+  box.querySelector(".plmsg").innerHTML = n === 0 ? bi("Try to get it with just 1 play!", "Tente acertar ouvindo só 1 vez!") : n <= 3 ? bi(`${n} play${n > 1 ? "s" : ""} used`, `${n} ${n > 1 ? "vezes" : "vez"}`) : bi(`${n} plays — try to listen more carefully`, `${n} vezes — ouça com mais atenção`);
+}
+function playRating(i) {
+  const n = Math.max(1, PLAYS[i] || 1), st = n === 1 ? 3 : n === 2 ? 2 : n === 3 ? 1 : 0;
+  return `<span class="plrate">${[0, 1, 2].map(k => STAR(k < st)).join("")} ${st === 3 ? bi("Sharp ears! Just 1 play.", "Ouvido afiado! Só 1 vez.") : st ? bi(`${n} plays`, `${n} vezes`) : bi(`${n} plays — next time try with fewer`, `${n} vezes — na próxima, tente com menos`)}</span>`;
+}
 /* ---------- review lessons ---------- */
 function viewReview(n) {
   const x = X[n.key] || {}; const rk = n.range.map(byKey).filter(Boolean);
   const cs = rk.map(r => CONTENT[r.key] || { lesson: [], vocab: [], ex: [] });
-  const cando = rk.map((r, i) => { const k = `${n.key}-cd${i}`; return `<li><label><input type="checkbox" data-cd="${k}" ${S.drafts[k] ? "checked" : ""}><span>${esc(r.mission)}</span><a href="#${r.id}">${r.id}</a></label></li>`; }).join("");
-  const warmQs = (x.w || rk.map(r => (X[r.key] && X[r.key].w && X[r.key].w[0]) || "").filter(Boolean)).slice(0, 4);
-  const s1 = `<section class="sec" id="s-warm"><div class="wrap">${secHead(1, "warm", true)}
-    <div class="card tint rv"><h3>${ic("check")} ${bi("Tick what you can do now", "Marque o que você já consegue fazer")}</h3><ul class="cando">${cando}</ul>
-    <p class="note">${ic("users")} ${bi("Prove two of them to your teacher or a partner — out loud!", "Prove dois deles para o professor ou um colega — falando!")}</p></div>
-    ${warmQs.length ? `<div class="card rv"><h3>${ic("chat")} ${bi("Quick questions", "Perguntas rápidas")}</h3><ul class="qlist">${warmQs.map((q, i) => `<li><span class="bul grad">${i + 1}</span><span>${gl(q)}</span>${sayBtn(q)}</li>`).join("")}</ul></div>` : ""}</div></section>`;
-  const voc = []; cs.forEach(c => (c.vocab || []).slice(0, 3).forEach(v => voc.push(v)));
-  const s2 = `<section class="sec" id="s-words"><div class="wrap">${secHead(2, "words", true)}<div class="card rv"><h3>${ic("cards")} ${bi("Flip, say, use", "Vire, fale, use")}</h3>${flips(voc.slice(0, 18))}<p class="note">${ic("info")} ${bi("Tell a 1-minute story with five of these words.", "Conte uma história de 1 minuto com cinco dessas palavras.")}</p></div></div></section>`;
-  const vids = rk.filter(r => VIDEOS[r.key]);
-  const lis = []; cs.forEach(c => { const l = (c.ex || []).find(e => e.t === "listen"); if (l) lis.push(l); });
-  const s3 = `<section class="sec" id="s-watch"><div class="wrap">${secHead(3, "watch", true)}
-    ${vids.length ? `<div class="card rv"><h3>${ic("video")} ${bi("Pick one video from this module and watch it again", "Escolha um vídeo do módulo e assista de novo")}</h3><div class="rewatch">${vids.map(r => `<a href="https://www.youtube.com/watch?v=${VIDEOS[r.key][0]}" target="_blank" rel="noopener"><span class="p"><svg viewBox="0 0 24 24">${ICONS.play}</svg></span><span>${r.id} · ${esc(VIDEOS[r.key][1])}</span></a>`).join("")}</div>
-      <p class="note">${ic("info")} ${bi("This time, try it without subtitles first. What new things do you understand?", "Desta vez, tente sem legendas primeiro. O que você entende de novo?")}</p>
-      <div class="openq" style="margin-top:8px">${openField(`${n.key}-vid`, bi("What did you understand this time?", "O que você entendeu desta vez?"), "", 25, "")}</div></div>` : ""}
-    ${lis.length ? `<div class="card rv"><h3>${ic("ear")} ${bi("Listen and write", "Ouça e escreva")}</h3>${lis.map((e, j) => exItem(e, j + 1)).join("")}</div>` : ""}</div></section>`;
-  const recap = rk.map((r, i) => { const c = cs[i]; const ex = []; (c.lesson || []).forEach(b => { if (b.forms) ["aff", "neg", "int"].forEach(f => { if (b.forms[f] && b.forms[f][0] && ex.length < 3) ex.push(b.forms[f][0]); }); }); if (!ex.length) (c.lesson || []).forEach(b => (b.say || []).forEach(s => { if (ex.length < 2) ex.push(s); })); const trap = (c.lesson || []).find(b => b.trap);
-    return `<div><b class="t">${esc(r.title)}</b><small>${r.id} · ${esc(r.grammar)}</small><ul>${ex.map(s => `<li>${gl(s)}</li>`).join("")}</ul>${trap ? `<div class="trap" style="margin-top:8px;padding:8px 12px"><span class="wrong" style="font-size:14.5px">${esc(plain(trap.trap.wrong))}</span><span class="right" style="font-size:14.5px">${ic("check")} ${gl(trap.trap.right)}</span></div>` : ""}</div>`; }).join("");
-  const s4 = `<section class="sec" id="s-grammar"><div class="wrap">${secHead(4, "grammar", true)}<div class="card rv"><div class="recap">${recap}</div></div></div></section>`;
+  const parts = []; const add = (key, html) => { if (html) parts.push([key, html]); };
+  const voc = []; cs.forEach(c => (c.vocab || []).slice(0, 2).forEach(v => voc.push(v)));
+  add("words", wordGame(sshuffle(voc, n.key).slice(0, 8)));
   const mix = []; cs.forEach(c => { const ex = c.ex || []; const a = ex.find(e => e.t === "mc"); const b = ex.find(e => e.t === "order" || e.t === "fix") || ex.find(e => e.t === "fill"); if (a) mix.push(a); if (b) mix.push(b); });
-  const s5 = `<section class="sec" id="s-practice"><div class="wrap">${secHead(5, "practice", true)}<div class="card rv">${mix.map((e, j) => exItem(e, j + 1)).join("")}</div></div></section>`;
-  const s6 = x.r ? `<section class="sec" id="s-read"><div class="wrap">${secHead(6, "read", true)}${readingBlock(x.r, n.key)}</div></section>` : "";
-  const sn = x.r ? 7 : 6;
+  add("practice", mix.length ? `<div class="card rv">${mix.slice(0, 8).map((e, j) => exItem(e, j + 1)).join("")}</div>` : "");
+  const lis = []; cs.forEach(c => { const l = (c.ex || []).find(e => e.t === "listen"); if (l) lis.push(l); });
+  add("listen", lis.length ? `<div class="card rv">${lis.slice(0, 2).map((e, j) => exItem(e, j + 1)).join("")}</div>` : "");
+  add("read", x.r ? readingBlock(x.r, n.key) : "");
   const trs = []; cs.forEach(c => { const t = (c.ex || []).find(e => e.t === "tr"); if (t) trs.push(t); });
-  const talk = x.t || rk.map(r => (X[r.key] && X[r.key].t && X[r.key].t[1]) || "").filter(Boolean).slice(0, 4);
-  const s7 = `<section class="sec" id="s-speak"><div class="wrap">${secHead(sn, "speak", true)}${talkBlock(talk)}
-    ${trs.length ? `<div class="card rv"><h3>${ic("translate")} ${bi("Translate — your way", "Traduza — do seu jeito")}</h3>${trs.slice(0, 6).map((e, j) => exItem(e, j + 1)).join("")}</div>` : ""}</div></section>`;
-  const lvMin = { A0: 40, A1: 70, A2: 100, B1: 150, B2: 200, C1: 250 }[n.lv];
-  const tg = (x.h && x.h[1]) || "";
-  const s8 = `<section class="sec" id="s-after"><div class="wrap">${secHead(sn + 1, "after", true)}${afterBlock(n, [n.mission, tg, (x.h && x.h[2]) || lvMin], x.a || `Record your project as an audio presentation (1–3 minutes): ${n.mission}`, null)}</div></section>`;
-  return wrapLesson(n, lessonHero(n, []) + lessonNav(n, !!x.r), s1 + s2 + s3 + s4 + s5 + s6 + s7 + s8 + exitBlock(n, sn + 2));
+  add("translate", trs.length ? `<div class="card rv">${trs.slice(0, 3).map((e, j) => exItem(e, j + 1)).join("")}</div>` : "");
+  add("after", afterBlock(n, x.a || `Record your project as an audio (1–3 minutes): ${n.mission}`, null) + exitBlock(n) + endBar(n));
+  return lessonPage(n, parts);
 }
-
+/* "How it works": keep explanations, tables, forms and traps; skip plain word lists (the words game already covers them) */
+const wordList = b => b.say && !b.p && !b.forms && !b.table && !b.trap && b.say.every(s => plain(s).split(/\s+/).length <= 4);
 function lessonBlocks(blocks) {
-  return (blocks || []).map(b => {
+  return (blocks || []).filter(b => !wordList(b)).map(b => {
     const p = [];
     if (b.trap) p.push(`<div class="trap"><span class="eyebrow">${ic("alert")} Brazilian trap</span><span class="wrong">${esc(plain(b.trap.wrong))}</span><span class="right">${ic("check")} ${gl(b.trap.right)}</span>${b.trap.note ? `<span style="font-size:15px">${gl(b.trap.note)}</span>` : ""}</div>`);
     if (b.h) p.push(`<h4>${gl(b.h)}</h4>`);
@@ -13052,16 +13769,16 @@ function lessonBlocks(blocks) {
     if (b.pt) p.push(`<p class="gl">(${esc(b.pt)})</p>`);
     if (b.table) p.push(`<div class="tablewrap"><table class="t"><thead><tr>${b.table[0].map(h => `<th>${gl(h)}</th>`).join("")}</tr></thead><tbody>${b.table.slice(1).map(r => `<tr>${r.map(c => `<td>${gl(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`);
     if (b.forms) p.push(`<div class="forms">${["aff", "neg", "int"].map(f => `<div><h5><span class="sym ${f}">${FORM[f][0]}</span>${FORM[f][1]}</h5><ul>${(b.forms[f] || []).map(s => `<li>${gl(s)}</li>`).join("")}</ul></div>`).join("")}</div>`);
-    if (b.say) p.push(`<div class="sayl">${b.say.map(s => `<div><span><b>${esc(plain(s))}</b>${glo(gsplit(s)[1])}</span>${sayBtn(s)}</div>`).join("")}</div>`);
+    if (b.say) p.push(`<div class="sayl">${b.say.slice(0, 4).map(s => `<div><span><b>${esc(plain(s))}</b>${glo(gsplit(s)[1])}</span>${sayBtn(s)}</div>`).join("")}</div>`);
     return `<div class="blk">${p.join("")}</div>`;
   }).join("");
 }
 
 /* ---------- exercise items ---------- */
-const KIND = { mc: ["Choose", "Escolha"], fill: ["Complete", "Complete"], order: ["Put in order", "Monte a frase"], fix: ["Fix the mistake", "Corrija o erro"], tr: ["Translate", "Traduza"], listen: ["Listen & write", "Ouça e escreva"] };
+const KIND = { recall: ["In English", "Em inglês"], pair: ["Match", "Ligue"], mc: ["Choose", "Escolha"], fill: ["Complete", "Complete"], order: ["Put in order", "Monte a frase"], fix: ["Fix the mistake", "Corrija o erro"], tr: ["Translate", "Traduza"], listen: ["Listen & write", "Ouça e escreva"] };
 function exItem(e, num) {
   const i = ITEMS.length; ITEMS.push(e); SC.total++; const k = `${NODE[CUR].key}-e${i}`;
-  const head = (q) => `<div class="qh"><span class="qn">${num}</span><div style="flex:1"><span class="kind">${bi(KIND[e.t][0], KIND[e.t][1])}</span><div class="qt">${q}</div></div></div>`;
+  const head = (q) => `<div class="qh"><span class="qn">${num}</span><div style="flex:1"><span class="kind">${e.ts != null ? `<a class="ts" href="${ytAt(e.vid, e.ts)}" target="_blank" rel="noopener">▶ ${mmss(e.ts)}</a>` : bi(KIND[e.t][0], KIND[e.t][1])}</span><div class="qt">${q}</div></div></div>`;
   let body = "";
   if (e.t === "mc") body = head(gl(e.q)) + `<div class="opts">${shuffle(e.o.map((o, j) => [o, j])).map(([o, j]) => `<button class="opt" data-mc="${i}" data-j="${j}">${esc(o)}</button>`).join("")}</div>`;
   else if (e.t === "fill") {
@@ -13073,7 +13790,8 @@ function exItem(e, num) {
     body = head(bi("Tap the words to build the sentence.", "Toque nas palavras para montar a frase.")) + `<div class="tiles2" id="built-${i}"></div><div class="bank" id="bank-${i}">${toks.map(t => `<button class="tile" data-tile="${i}" data-t="${esc(t)}">${esc(t)}</button>`).join("")}</div><div class="row" style="margin-top:8px"><button class="btn sm" data-chk="${i}">Check</button><button class="btn ghost sm" data-clear="${i}">${ic("reset")} Reset</button></div>`;
   } else if (e.t === "fix") body = head(`<span style="text-decoration:line-through;text-decoration-color:var(--bad)">${esc(plain(e.q))}</span>`) + `<div class="inl"><input class="inp" data-in="${i}" value="${esc(plain(e.q))}" autocomplete="off" aria-label="Fixed sentence"><button class="btn sm" data-chk="${i}">Check</button></div>`;
   else if (e.t === "tr") body = head(`“${esc(e.q)}”`) + `<textarea class="inp" data-in="${i}" data-k="${k}" rows="2" placeholder="${isA() ? "Write in English… (Escreva em inglês)" : "Write in English…"}">${esc(S.drafts[k] || "")}</textarea><div class="tools"><button class="btn sm" data-chk="${i}">Check</button><button class="btn ghost sm" data-show="${i}">${bi("Show models", "Ver modelos")}</button></div>`;
-  else if (e.t === "listen") body = head(`${synth ? `<span class="row"><button class="btn ghost sm" data-say="${esc(e.q)}">${ic("volume")} Play</button><button class="btn ghost sm" data-say-slow="${esc(e.q)}">${ic("volume")} Slow</button></span>` : bi("Your teacher reads the sentence.", "O professor lê a frase.")}`) + `<div class="inl"><input class="inp" data-in="${i}" placeholder="Write what you hear" autocomplete="off"><button class="btn sm" data-chk="${i}">Check</button></div>`;
+  else if (e.t === "recall") body = head(`<b class="rq">${esc(e.q)}</b>`) + `<div class="inl"><input class="inp" data-in="${i}" placeholder="${isA() ? "In English… (em inglês)" : "In English…"}" autocomplete="off" autocapitalize="off"><button class="btn sm" data-chk="${i}">Check</button></div>`;
+  else if (e.t === "listen") body = head(`<div class="plays" id="pl-${i}"><button class="btn ghost sm" data-play="${i}">${ic("volume")} Play</button><button class="btn ghost sm" data-play="${i}" data-slow="1">${ic("volume")} Slow</button><span class="pips" aria-hidden="true">${[0, 1, 2].map(() => `<i class="on">${ic("ear")}</i>`).join("")}</span><span class="plmsg">${bi("Try to get it with just 1 play!", "Tente acertar ouvindo só 1 vez!")}</span></div>`) + `<div class="inl"><input class="inp" data-in="${i}" placeholder="Write what you hear" autocomplete="off"><button class="btn sm" data-chk="${i}">Check</button></div>`;
   return `<div class="ex" id="ex-${i}">${body}<div class="fb" id="fb-${i}"></div></div>`;
 }
 function fbShow(i, cls, html) { const f = $("#fb-" + i); if (!f) return; f.className = "fb show " + cls; f.innerHTML = html; }
@@ -13112,6 +13830,7 @@ function checkItem(i, val) {
   const e = ITEMS[i]; const box = $("#ex-" + i);
   const ok = (html) => { fbShow(i, "good", html); if (box) box.classList.add("solved"); solved("e" + i, box && (box.querySelector(".opt.good") || box.querySelector(".qn"))); };
   const pr = () => { const p = PRAISE[Math.floor(Math.random() * PRAISE.length)]; return bi(p[0], p[1]); };
+  if (e.t === "pair") { if (val === e.pt) { fbShow(i, "good", ""); solved("e" + i, $(`[data-wen="${i}"]`)); } else { missed(); fbShow(i, "bad", ""); } return; }
   if (e.t === "mc") { const good = +val === e.a; $$(`[data-mc="${i}"]`).forEach(b => { b.classList.remove("good", "bad"); if (+b.dataset.j === e.a && good) b.classList.add("good"); if (+b.dataset.j === +val && !good) b.classList.add("bad"); }); if (good) ok(`<b class="h">${pr()}</b>${why(e)}`); else { missed(); fbShow(i, "bad", `<b class="h">${bi("Not this one — try again.", "Essa não — tente de novo.")}</b>`); } return; }
   if (e.t === "fill" && e.chips) { const good = e.a.map(onorm).includes(onorm(val)); $$(`[data-fc="${i}"]`).forEach(b => { b.classList.remove("good", "bad"); if (b.dataset.v === val) b.classList.add(good ? "good" : "bad"); }); if (good) { const bl = $(`#fb-${i}-blank`); if (bl) bl.textContent = val; ok(`<b class="h">${pr()}</b>${why(e)}`); } else { missed(); fbShow(i, "bad", `<b class="h">${bi("Try another one.", "Tente outra.")}</b>`); } return; }
   if (e.t === "order") {
@@ -13122,14 +13841,15 @@ function checkItem(i, val) {
   }
   const inp = $(`[data-in="${i}"]`); const input = inp.value;
   if (!input.trim()) { fbShow(i, "mid", `<b class="h">${bi("Write your answer first.", "Escreva sua resposta primeiro.")}</b>`); return; }
-  if (e.t === "fill" || e.t === "listen") {
+  if (e.t === "fill" || e.t === "listen" || e.t === "recall") {
     const r = checkText(input, e.a);
-    if (r.ok) { inp.classList.add("okglow"); ok(`<b class="h">${r.near ? bi("Almost perfect — check the spelling:", "Quase — confira a grafia:") : pr()}</b>${r.near ? `<span class="model">${esc(r.near)}</span>` : ""}${why(e)}`); }
-    else { missed(); fbShow(i, "bad", `<b class="h">${bi("Not quite.", "Ainda não.")}</b>${e.t === "listen" ? `<button class="btn ghost sm" data-reveal="${i}" style="margin-top:6px">${bi("Show the sentence", "Mostrar a frase")}</button>` : bi("Read the sentence again and try once more.", "Leia de novo e tente outra vez.")}`); }
+    if (r.ok) { inp.classList.add("okglow"); ok(`<b class="h">${r.near ? bi("Almost perfect — check the spelling:", "Quase — confira a grafia:") : pr()}</b>${r.near ? `<span class="model">${esc(r.near)}</span>` : ""}${e.t === "listen" && synth ? playRating(i) : ""}${e.t === "recall" && e.a.length > 1 ? `<span class="tiny">${esc(e.a.join(" / "))}</span>` : ""}${why(e)}`); }
+    else { missed(); fbShow(i, "bad", `<b class="h">${bi("Not quite.", "Ainda não.")}</b>${e.t === "listen" ? `<button class="btn ghost sm" data-reveal="${i}" style="margin-top:6px">${bi("Show the sentence", "Mostrar a frase")}</button>` : e.t === "recall" ? `<button class="btn ghost sm" data-reveal="${i}" style="margin-top:6px">${bi("Show the word", "Mostrar a palavra")}</button>` : bi("Read the sentence again and try once more.", "Leia de novo e tente outra vez.")}`); }
     return;
   }
   if (e.t === "fix" || e.t === "tr") {
-    if (e.t === "fix" && norm(input) === norm(plain(e.q))) { fbShow(i, "bad", `<b class="h">${bi("Change something — this is the wrong version.", "Mude algo — essa é a versão errada.")}</b>`); return; }
+    if (e.t === "fix" && (norm(e.a[0]) === norm(plain(e.q)) ? input.trim() === plain(e.q).trim() : norm(input) === norm(plain(e.q)))) { fbShow(i, "bad", `<b class="h">${bi("Change something — this is the wrong version.", "Mude algo — essa é a versão errada.")}</b>`); return; }
+    if (e.t === "fix" && norm(e.a[0]) === norm(plain(e.q)) && !e.a.some(a => a.replace(/\s+/g, " ").trim() === input.replace(/\s+/g, " ").trim())) { missed(); fbShow(i, "bad", `<b class="h">${bi("Look closely at the capital letters.", "Olhe bem as letras maiúsculas.")}</b>`); return; }
     const r = flexCheck(input, e.a); const an = analyze(input, {});
     const errs = an.errs.slice(0, 2).map(x => `<li>${ic("alert")} <b>${esc(x.m)}</b> — ${bi(esc(x.en), x.pt)}</li>`).join("");
     const models = `<span class="tiny">${bi("Model answers", "Respostas-modelo")}: ${e.a.slice(0, 3).map(esc).join(" · ")}</span>`;
@@ -13210,9 +13930,10 @@ function render() {
   const h = decodeURIComponent(location.hash.replace(/^#/, ""));
   if (synth) try { synth.cancel(); } catch (e) { }
   const app = document.getElementById("app");
-  if (NODE[h]) { app.innerHTML = viewLesson(h) + overlays(); document.title = `${h} ${NODE[h].title} · Start it`; S.last = h; S.lv = NODE[h].lv; save(); spy(); updTimer(); updScore(false); }
+  if (h === "mistakes" && typeof viewMistakes === "function") { app.innerHTML = viewMistakes() + overlays(); document.title = "My mistakes · Start it"; }
+  else if (NODE[h] && !NODE[h].virtual) { app.innerHTML = viewLesson(h) + overlays(); document.title = `${NODE[h].title} · Start it`; S.last = h; S.lv = NODE[h].lv; save(); spy(); if (typeof afterLesson === "function") afterLesson(h); updScore(false); }
   else { const lv = LVINFO[h] ? h : (S.lv || "A0"); S.lv = lv; save(); app.innerHTML = viewHub(lv) + overlays(); document.title = "Start it · Lessons"; }
-  syncAvatars(); window.scrollTo(0, 0); reveal();
+  syncAvatars(); if (!(typeof RESUME !== "undefined" && RESUME.go)) window.scrollTo(0, 0); reveal(); if (typeof resumeScroll === "function") resumeScroll();
 }
 function overlays() { return `<div class="toast" id="toast" role="status"></div><div class="cheer" id="cheer" aria-live="polite"><span class="msg"></span>${AV ? avImg({ nobolt: true }) : ""}</div><div class="sheet" id="sheet" aria-hidden="true"></div><div class="celebrate" id="celebrate"></div>`; }
 function route() {
@@ -13281,13 +14002,16 @@ document.addEventListener("click", ev => {
   if (d.timer) { if (d.timer === "toggle") toggleTimer(); else { TIMER.run = false; clearInterval(TIMER.h); TIMER.left = 3000; updTimer(); } return; }
   if (d.flip !== undefined) { el.classList.toggle("on"); SFX.flip(); if (el.classList.contains("on")) speak(d.flip); return; }
   if (d.embedGo) { const box = el.closest(".vbox"); box.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${d.embedGo}?autoplay=1&cc_load_policy=1&cc_lang_pref=en&rel=0${+d.embedS ? `&start=${d.embedS}` : ""}${+d.embedE ? `&end=${d.embedE}` : ""}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="Video"></iframe>`; return; }
+  if (d.wen !== undefined || d.wpt !== undefined) { wordTap(el); return; }
+  if (d.play !== undefined) { const i = +d.play; if (!audioOk()) { noAudio(i); return; } PLAYS[i] = (PLAYS[i] || 0) + 1; speak(ITEMS[i].q, !!d.slow); playPips(i); SFX.tap(); return; }
+  if (d.settings !== undefined) { openSheet("set"); return; }
   if (d.mc !== undefined) { checkItem(+d.mc, d.j); return; }
   if (d.fc !== undefined) { checkItem(+d.fc, d.v); return; }
   if (d.tile !== undefined) { const i = d.tile; const inBuilt = el.parentElement.id === `built-${i}`; $(inBuilt ? `#bank-${i}` : `#built-${i}`).appendChild(el); SFX.tap(); return; }
   if (d.clear !== undefined) { const i = d.clear; $$(`#built-${i} .tile`).forEach(t => $(`#bank-${i}`).appendChild(t)); $("#fb-" + i).className = "fb"; return; }
   if (d.chk !== undefined) { checkItem(+d.chk); return; }
   if (d.show !== undefined) { const e = ITEMS[+d.show]; fbShow(+d.show, "mid", `<b class="h">${bi("Model answers", "Respostas-modelo")}</b><ul>${e.a.map(a => `<li>${esc(a)}</li>`).join("")}</ul>${why(e)}`); return; }
-  if (d.reveal !== undefined) { const e = ITEMS[+d.reveal]; fbShow(+d.reveal, "mid", `<b class="h">${bi("The sentence was", "A frase era")}:</b><span class="model">${esc(e.q)}</span>`); return; }
+  if (d.reveal !== undefined) { const e = ITEMS[+d.reveal]; fbShow(+d.reveal, "mid", e.t === "recall" ? `<b class="h">${bi("The word is", "A palavra é")}:</b><span class="model">${esc(e.a.join(" / "))}</span>` : `<b class="h">${bi("The sentence was", "A frase era")}:</b><span class="model">${esc(e.q)}</span>`); return; }
   if (d.mine !== undefined) { const i = +d.mine; fbShow(i, "good", `<b class="h">${bi("Great — keep your version!", "Ótimo — mantenha sua versão!")}</b>${bi("If you're not sure, send it to your teacher.", "Se tiver dúvida, mande para o professor.")}`); const box = $("#ex-" + i); if (box) box.classList.add("solved"); solved("e" + i, box && box.querySelector(".qn")); return; }
   if (d.tfa !== undefined) { const row = el.closest("[data-tf]"); const good = row.dataset.tf === d.tfa; $$(".opt", row).forEach(b => b.classList.remove("good", "bad")); el.classList.add(good ? "good" : "bad"); if (good) { row.classList.add("solved"); solved("tf" + row.dataset.tfid, el); } else missed(); return; }
   if (d.read) { const art = el.closest(".article"); speak($$("h3, p", art).map(p => p.textContent).join(". ")); return; }
@@ -13542,11 +14266,12 @@ function hubTour() {
     { t: `Oi${S.name ? ", " + esc(S.name.split(" ")[0]) : ""}! Vou te mostrar como tudo funciona. 😊`, en: "A quick tour — 30 seconds." },
     { sel: '.lvtab[aria-selected="true"]', t: "Este é o seu nível. Toque nos outros para ver o que cada um ensina.", en: "This is your level." },
     { sel: "details.module", before: () => { const d = $("details.module"); if (d) d.open = true; }, t: "Cada nível tem módulos. Abra um módulo para ver as aulas.", en: "Levels are split into modules." },
-    { sel: `#lvbody .ucard`, t: "Cada cartão é uma aula de 50 minutos: vídeo, gramática, exercícios, leitura e conversa. Toque para começar.", en: "Each card is one lesson." },
+    { sel: `#lvbody .ucard`, t: "Cada cartão é uma aula de uns 20 minutos. Toque para começar.", en: "Each card is one lesson." },
     { sel: ".hhero .cta .btn.gold", t: "Este botão sempre continua de onde você parou.", en: "Continue where you stopped." },
     { sel: ".starcount", t: "Suas estrelas ⭐ Ganhe até 3 por aula acertando os exercícios — e use para comprar efeitos para o seu avatar.", en: "Stars are your currency." },
     { sel: "#namebox", t: "Seu nome. Ele assina as mensagens que você manda para o professor no WhatsApp.", en: "Your name signs your messages." },
     { sel: ".custbtn", t: "Aqui você escolhe seu avatar, o fundo e os efeitos.", en: "Customize everything here." },
+    { sel: ".setbtn", t: "Configurações: tema claro ou escuro, som e códigos secretos.", en: "Settings." },
     { t: "Pronto! Agora é só abrir sua primeira aula. Bons estudos! 🚀", en: "Good luck!" }
     ]);
   TUT.onEnd = () => { S.tourHub = true; save(); };
@@ -13556,8 +14281,8 @@ function lessonTour() {
     { t: "Sua primeira aula! Vou mostrar as partes principais. 📚", en: "Your first lesson." },
     { sel: ".snav .scr", t: "As partes da aula. Toque em uma para pular direto para ela.", en: "Lesson sections." },
     { sel: "#score", t: "Seus acertos. Quanto mais você acerta, mais estrelas ganha (até 3 por aula).", en: "Correct answers → stars." },
-    { sel: ".flips .flip", t: "Cartões de vocabulário: toque para virar, ver a tradução e ouvir a pronúncia.", en: "Tap to flip and listen." },
-    { sel: "#s-after .hwc.wa", t: "Depois da aula: grave um áudio e escreva seu texto — eles vão direto para o WhatsApp do professor.", en: "Homework goes to WhatsApp." },
+    { sel: ".wgame .wround", t: "Palavras novas: toque numa palavra em inglês (você ouve a pronúncia) e depois no significado.", en: "Match the new words." },
+    { sel: "#s-after .hwc.wa", t: "Depois da aula: grave um áudio para o professor no WhatsApp e faça a missão.", en: "Homework goes to WhatsApp." },
     { sel: ".endbar [data-done]", t: "No final, toque aqui para marcar a aula como feita.", en: "Mark the lesson as done." }
   ]);
   TUT.onEnd = () => { S.tourLesson = true; save(); window.scrollTo({ top: 0, behavior: "smooth" }); };
@@ -13580,6 +14305,140 @@ window.addEventListener("hashchange", () => { setTimeout(() => { const h = locat
 try { if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol) && !/claude|anthropic/i.test(location.hostname)) navigator.serviceWorker.register("sw.js").catch(() => { }); } catch (e) { }
 render();
 setTimeout(() => { const h = location.hash.replace("#", ""); if (S.onboard && !S.tourHub && !TUT && (!h || LVINFO[h])) hubTour(); }, 900);
+
+/* Start it — progress inside a lesson, resume, auto-complete and "Review my mistakes".
+   Everything stays on the phone (S.prog, S.miss). */
+/* the hub can draw its first screen before this file runs, so storage is set up on first use */
+function pinit() { if (!S.prog) S.prog = {}; if (!S.miss) S.miss = []; }
+var RESUME = { go: false };
+var progOf = key => { pinit(); return S.prog[key] || (S.prog[key] = { s: [], v: {}, last: "", at: 0 }); };
+var curNode = () => NODE[CUR];
+var realLesson = () => { const n = curNode(); return n && !n.virtual; };
+
+/* ---------- remember answers ---------- */
+function answerValue(e, i, val) {
+  if (e.t === "mc" || e.t === "pair" || (e.t === "fill" && e.chips)) return val;
+  if (e.t === "order") return $$(`#built-${i} .tile`).map(b => b.dataset.t).join(" ");
+  const inp = $(`[data-in="${i}"]`); return inp ? inp.value : "";
+}
+function rememberMistake(e, i) {
+  pinit();
+  const n = curNode(); if (!n) return;
+  if (n.virtual) return; /* mistakes made on the review page stay on the list anyway */
+  const k = `${n.key}:${i}`; if (S.miss.some(m => m.k === k)) return;
+  const copy = {}; ["t", "q", "o", "a", "chips", "extra", "why", "pt", "en", "ts", "vid"].forEach(f => { if (e[f] !== undefined) copy[f] = e[f]; });
+  if (copy.t === "pair") { copy.t = "recall"; copy.q = e.pt; copy.a = wordAnswers(e.en); }
+  S.miss.unshift({ k, id: n.id, title: n.title, lv: n.lv, e: copy, at: Date.now() });
+  S.miss = S.miss.slice(0, 40);
+}
+if (typeof checkItem === "function") {
+  const _ck = checkItem;
+  checkItem = function (i, val) {
+    const e = ITEMS[i]; const before = SC && SC.solved.has("e" + i); const given = e ? answerValue(e, i, val) : "";
+    const out = _ck.apply(this, arguments);
+    try {
+      if (!e || !SC) return out;
+      const n = curNode(); const good = SC.solved.has("e" + i);
+      const fb = $("#fb-" + i), bad = fb && /\b(bad|mid)\b/.test(fb.className) && !good;
+      if (n && n.virtual) { pinit(); if (good && !before && e._mk) { S.miss = S.miss.filter(m => m.k !== e._mk); save(); updMistakesHead(); } return out; }
+      if (!realLesson()) return out;
+      const p = progOf(n.key); p.last = "ex-" + i; p.at = Date.now();
+      if (good && !before) { if (!p.s.includes("e" + i)) p.s.push("e" + i); p.v[i] = given; }
+      if (bad && e.t !== "tr") rememberMistake(e, i);
+      save();
+    } catch (err) { }
+    return out;
+  };
+}
+/* true / false answers */
+document.addEventListener("click", ev => {
+  const el = ev.target.closest && ev.target.closest("[data-tfa]"); if (!el || !realLesson()) return;
+  setTimeout(() => { const row = el.closest("[data-tf]"); if (!row) return; const p = progOf(curNode().key); p.last = "s-read"; p.at = Date.now();
+    if (row.classList.contains("solved")) { const k = "tf" + row.dataset.tfid; if (!p.s.includes(k)) p.s.push(k); }
+    save(); }, 0);
+}, true);
+document.addEventListener("click", ev => { const el = ev.target.closest && ev.target.closest("[data-resume]"); if (el) RESUME.go = true; }, true);
+
+/* ---------- put saved answers back when a lesson opens ---------- */
+function afterLesson(id) {
+  if (!progOf) return; pinit(); const n = NODE[id]; if (!n) return; const p = S.prog[n.key];
+  if (!p || !p.s.length) return;
+  p.s.forEach(k => {
+    if (k.startsWith("tf")) { const row = $(`[data-tfid="${k.slice(2)}"]`); if (!row) return; row.classList.add("solved"); const b = row.querySelector(`[data-tfa="${row.dataset.tf}"]`); if (b) b.classList.add("good"); SC.solved.add(k); return; }
+    const i = +k.slice(1), e = ITEMS[i]; if (!e) return; const v = p.v[i]; const box = $("#ex-" + i);
+    SC.solved.add(k);
+    if (e.t === "pair") { [$(`[data-wen="${i}"]`), $(`[data-wpt="${i}"]`)].forEach(b => b && b.classList.add("good")); return; }
+    if (box) box.classList.add("solved");
+    if (e.t === "mc") { const b = $(`[data-mc="${i}"][data-j="${e.a}"]`); if (b) b.classList.add("good"); }
+    else if (e.t === "fill" && e.chips) { const b = $$(`[data-fc="${i}"]`).find(x => x.dataset.v === v); if (b) b.classList.add("good"); const bl = $(`#fb-${i}-blank`); if (bl) bl.textContent = v; }
+    else if (e.t === "order") { const built = $("#built-" + i), bank = $("#bank-" + i); String(v || e.a[0]).split(" ").forEach(t => { const tile = $$(".tile", bank).find(x => x.dataset.t === t); if (tile) built.appendChild(tile); }); }
+    else { const inp = $(`[data-in="${i}"]`); if (inp) { inp.value = v || ""; inp.classList.add("okglow"); } }
+    fbShow(i, "good", `<b class="h">${ic("check")} ${bi("Done before", "Feito antes")}</b>`);
+  });
+  /* word rounds that are already matched */
+  const rounds = $$(".wround"); let open = null;
+  rounds.forEach(r => { const done = !$$(".wbtn.pt:not(.good)", r).length; r.classList.toggle("gone", done); r.classList.add("wait"); if (!done && !open) open = r; });
+  if (open) { open.classList.remove("wait", "gone"); $$(".wdots i").forEach(x => x.classList.toggle("on", x.dataset.dot === open.dataset.round)); }
+  else if (rounds.length) { rounds.forEach(r => r.classList.remove("wait", "gone")); const g = $(".wgame"); if (g) g.classList.add("finished"); }
+  /* "continue where you stopped" */
+  if (p.last && !S.done[n.key] && p.s.length < SC.total) {
+    const hero = $(".lhero .wrap"); if (hero) hero.insertAdjacentHTML("beforeend", `<button class="btn gold sm resume" data-go="${p.last.startsWith("s-") ? p.last : p.last}">${ic("right")} ${bi("Continue where you stopped", "Continuar de onde parou")}</button>`);
+  }
+}
+function resumeScroll() {
+  if (!RESUME || !RESUME.go) return; RESUME.go = false;
+  pinit(); const n = curNode(); const p = n && S.prog[n.key]; const el = p && p.last && document.getElementById(p.last);
+  if (el) setTimeout(() => el.scrollIntoView({ block: "center" }), 50); else window.scrollTo(0, 0);
+}
+
+/* ---------- lesson complete by itself at 80% ---------- */
+if (typeof updScore === "function") {
+  const _us = updScore;
+  updScore = function (bump) {
+    const out = _us.apply(this, arguments);
+    try {
+      const n = curNode(); if (!n || n.virtual || !SC) return out;
+      const t = SC.total, k = SC.solved.size;
+      if (t >= 6 && k / t >= 0.8 && !S.done[n.key]) {
+        S.done[n.key] = Date.now(); if ((S.best[n.key] || 0) < 80) S.best[n.key] = Math.round(k / t * 100); save();
+        const eb = $(".endbar"); if (eb) eb.outerHTML = endBar(n);
+        if (!SC.celebrated) setTimeout(() => celebrate("Lesson complete!", isA() ? "80% or more — lesson done! Mandou bem!" : "80% or more — lesson done. Great work!", starsFor(S.best[n.key] || 80), nextId(CUR) ? "#" + nextId(CUR) : ""), 900);
+        starBadge(); checkUnlocks();
+      }
+    } catch (e) { }
+    return out;
+  };
+}
+
+/* ---------- review my mistakes ---------- */
+function mistakesCard() {
+  pinit(); const n = S.miss.length; if (!n) return "";
+  return `<a class="mcard rv" href="#mistakes">${ic("repeat")}<span><b>${bi("Review my mistakes", "Revisar meus erros")}</b><small>${n} ${n > 1 ? bi("questions to try again", "questões para tentar de novo") : bi("question to try again", "questão para tentar de novo")}</small></span>${ic("right")}</a>`;
+}
+NODE.mistakes = { id: "mistakes", key: "mistakes", virtual: true, title: "My mistakes", lv: S.lv || "A1", builds: [], mission: "" };
+if (location.hash === "#mistakes") setTimeout(render, 0);
+function viewMistakes() {
+  pinit();
+  const n = NODE.mistakes; n.lv = (S.miss[0] && S.miss[0].lv) || S.lv || "A1";
+  CUR = "mistakes"; ITEMS = []; OPEN = {}; PLAYS = {}; WSEL = null; SC = { total: 0, solved: new Set(), streak: 0, celebrated: true };
+  const list = S.miss.slice(0, 10);
+  const body = list.length ? `<div class="card rv">${list.map((m, j) => { const e = Object.assign({ _mk: m.k }, m.e); return `<p class="mfrom">${esc(m.id)} · ${esc(m.title)}</p>` + exItem(e, j + 1); }).join("")}</div>
+    <p class="note">${ic("info")} ${bi("Each question you get right leaves the list. New mistakes from your lessons come in here.", "Cada questão que você acertar sai da lista. Novos erros das aulas aparecem aqui.")}</p>`
+    : `<div class="card rv"><h3>${ic("check")} ${bi("No mistakes to review. Great job!", "Nenhum erro para revisar. Muito bem!")}</h3></div>`;
+  return `${topBar()}<div class="L-${n.lv}"><section class="lhero"><div class="wrap"><a class="back" href="#${S.lv || "A0"}">${ic("left")} Lessons</a><h1>${ic("repeat", "ic")} ${bi("My mistakes", "Meus erros")}</h1><div class="sub" id="mhead">${mistakesHead()}</div></div></section>
+    <main class="L-${n.lv}"><section class="sec"><div class="wrap">${body}</div></section></main></div>`;
+}
+var mistakesHead = () => (pinit(), bi(`${S.miss.length} left`, `faltam ${S.miss.length}`));
+function updMistakesHead() { const h = $("#mhead"); if (h) h.innerHTML = mistakesHead(); }
+
+/* ---------- homework links from the teacher: #hw~A1-3~20261110 opens A1-3 and tags it as homework ---------- */
+function hwLink() {
+  const m = decodeURIComponent(location.hash).match(/^#hw~([^~]+)~(\w+)$/); if (!m || !NODE[m[1]]) return false;
+  S.hw = S.hw || {}; S.hw[NODE[m[1]].key] = m[2]; save();
+  location.replace("#" + m[1]); return true;
+}
+window.addEventListener("hashchange", hwLink);
+hwLink();
 
 /* Start it — results for the teacher.
    Every lesson a student opens becomes one row in the teacher's Google Sheet (see tools/teacher-results.gs):
@@ -13618,7 +14477,7 @@ function rRow(final) {
     pct: r.total() ? Math.round(r.solved() / r.total() * 100) : 0, done: !!(r.key && S.done[r.key]),
     mistakes: items.filter(x => x.wrong.length).map(x => `${x.q} → ${x.wrong.slice(0, 3).map(w => `“${w}”`).join(", ")}${x.ok ? " (then right)" : ""}`).join("\n").slice(0, 3000),
     writing: Object.values(r.writing).map(w => `[${"★".repeat(w.stars)}${"☆".repeat(3 - w.stars)} · ${w.words} words] ${w.prompt}\n${w.text}`).join("\n\n").slice(0, 4000),
-    extra: r.extra || "", final: !!final
+    extra: [r.extra || "", r.key && S.hw && S.hw[r.key] ? "HW:" + S.hw[r.key] : "", (() => { const pl = items.filter(x => x.plays != null); return pl.length ? "Listening plays: " + pl.map(x => x.plays).join(", ") : ""; })()].filter(Boolean).join(" · "), final: !!final
   };
 }
 function rSend(final) {
@@ -13647,7 +14506,7 @@ function rAnswerText(e, i, val) {
   const inp = $(`[data-in="${i}"]`); return inp ? inp.value : String(val || "");
 }
 function rQuestion(e) {
-  const q = e.t === "order" ? "Order: " + e.a[0] : e.t === "listen" ? "Listen: " + e.q : plain(e.q);
+  const q = e.t === "order" ? "Order: " + e.a[0] : e.t === "listen" ? "Listen: " + e.q : e.t === "recall" ? "In English: " + e.q : (e.ts != null ? "Video: " : "") + plain(e.q);
   return String(q).replace(/\s+/g, " ").slice(0, 160);
 }
 
@@ -13669,7 +14528,7 @@ if (typeof checkItem === "function") {
       const good = SC && SC.solved.has("e" + i), bad = /\b(bad|mid)\b/.test(cls) && !good;
       if (!good && !bad) return out; /* "write something first" and similar */
       const it = RS.items[i] || (RS.items[i] = { q: rQuestion(e), first: false, ok: false, wrong: [], tries: 0 });
-      it.tries++;
+      it.tries++; if (e.t === "listen" && typeof PLAYS !== "undefined") it.plays = PLAYS[i] || 0;
       if (good) { it.ok = true; if (it.tries === 1) it.first = true; }
       else if (given && it.wrong.length < 5) it.wrong.push(String(given).replace(/\s+/g, " ").slice(0, 120));
       rSoon();
