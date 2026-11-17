@@ -1850,7 +1850,7 @@ CONTENT["A1-13"] = {
   ],
   vocab: [["rice and beans", "arroz e feijão"], ["chicken", "frango"], ["beef", "carne (de boi)"], ["fish", "peixe"], ["vegetables", "legumes / verduras"], ["fruit", "fruta"], ["juice", "suco"], ["snack", "lanche"], ["lunch", "almoço"], ["spicy", "apimentado"], ["sweet", "doce"], ["eat out", "comer fora"], ["dessert", "sobremesa"]],
   ex: [
-    MC("I love ___ .", ["cook", "cooking", "to cooking"], 1),
+    MC("I love ___.", ["cook", "cooking", "to cooking"], 1),
     MC("Gosto muito de chocolate. →", ["I like very much chocolate.", "I like chocolate very much.", "I very like chocolate."], 1),
     MC("\"lanche\" =", ["lunch", "snack", "launch"], 1),
     MC("Does she like fish? — No, she ___.", ["don't", "doesn't", "isn't"], 1),
@@ -2184,7 +2184,7 @@ CONTENT["A2-8"] = {
   ],
   vocab: [["too", "demais"], ["very", "muito"], ["enough", "suficiente"], ["try on", "experimentar (roupa)"], ["fitting room", "provador"], ["size", "tamanho"], ["small / medium / large", "P / M / G"], ["tight", "apertado"], ["loose", "folgado"], ["on sale", "em promoção"], ["receipt", "nota fiscal / recibo"], ["costume", "fantasia"]],
   ex: [
-    MC("R$900 for a T-shirt? It's ___ expensive!", ["very", "too", "enough"], 1),
+    MC("R$900 for a T-shirt? It's ___ expensive!", ["to", "too", "enough"], 1),
     MC("The room isn't ___.", ["big enough", "enough big", "too big enough"], 0),
     MC("Posso experimentar? →", ["Can I try it?", "Can I try it on?", "Can I experiment it?"], 1),
     MC("\"fantasia\" =", ["fantasy", "costume", "clothes"], 1),
@@ -2216,7 +2216,7 @@ CONTENT["A2-9"] = {
   ex: [
     MC("I ___ visit my aunt next week.", ["going to", "am going to", "go to"], 1),
     MC("Tirar uma foto →", ["make a photo", "take a photo", "do a photo"], 1),
-    MC("Are you going to rent a car? — No, I'm ___.", ["not", "don't", "not going"], 0),
+    MC("Are you going to rent a car? — No, I'm ___.", ["not", "don't", "no"], 0),
     MC("Dark clouds! It ___ rain.", ["is going to", "goes to", "going"], 0),
     FILL("We ___ going to stay in a hostel. || A gente vai ficar num hostel.", ["are", "'re"], null, ["are", "is", "am"]),
     FILL("Where are you going to ___? || Onde você vai ficar?", ["stay"], null, ["stay", "staying", "stays"]),
@@ -2244,9 +2244,9 @@ CONTENT["A2-10"] = {
   ],
   vocab: [["tonight", "hoje à noite"], ["tomorrow", "amanhã"], ["next week", "semana que vem"], ["appointment", "consulta / horário marcado"], ["meeting", "reunião"], ["free", "livre"], ["busy", "ocupado"], ["How about…?", "Que tal…?"], ["Sounds good!", "Fechado! / Boa!"], ["cancel", "cancelar"], ["reschedule", "remarcar"], ["date", "encontro / data"]],
   ex: [
-    MC("I ___ the dentist at 3 tomorrow.", ["see", "am seeing", "saw"], 1),
+    MC("I ___ the dentist at 3 tomorrow.", ["seeing", "am seeing", "saw"], 1),
     MC("Que tal domingo? →", ["How about Sunday?", "What about of Sunday?", "How is Sunday?"], 0),
-    MC("Are you free tonight? — No, I ___ late.", ["work", "am working", "worked"], 1),
+    MC("Are you free tonight? — No, I ___ late.", ["working", "am working", "worked"], 1),
     FILL("What ___ you doing this weekend? || O que você vai fazer neste fim de semana?", ["are"], null, ["are", "do", "will"]),
     FILL("We aren't ___ to the party. (go) || A gente não vai à festa.", ["going"]),
     ORD(["Are you doing anything tonight?"]),
@@ -2489,7 +2489,7 @@ CONTENT["B1-2"] = {
   ],
   vocab: [["achievement", "conquista"], ["degree", "diploma / graduação"], ["promotion", "promoção (no trabalho)"], ["save money", "economizar"], ["win / won", "ganhar / ganhou"], ["lose / lost", "perder / perdeu"], ["this year", "este ano"], ["so far", "até agora"], ["recently", "recentemente"], ["career", "carreira"]],
   ex: [
-    MC("I ___ my phone. I can't find it anywhere!", ["lost", "have lost", "was losing"], 1),
+    MC("I ___ my phone. I can't find it anywhere!", ["have lose", "have lost", "was losing"], 1),
     MC("She ___ her degree in 2021.", ["has finished", "finished", "has finish"], 1),
     MC("How many countries ___ so far?", ["did you visit", "have you visited", "you visited"], 1),
     FILL("We ___ a lot this week. (work — the week isn't over)", ["have worked", "'ve worked"]),
@@ -2724,7 +2724,7 @@ CONTENT["B1-10"] = {
   ],
   vocab: [["grow / grown", "cultivar"], ["harvest", "colher / colheita"], ["produce", "produzir"], ["export", "exportar"], ["factory", "fábrica"], ["fabric", "tecido"], ["build / built", "construir"], ["invent", "inventar"], ["design", "projetar"], ["include", "incluir"]],
   ex: [
-    MC("Açaí ___ in the Amazon.", ["grows", "is grown", "is grow"], 1),
+    MC("Açaí ___ in the Amazon.", ["grown", "is grown", "is grow"], 1),
     MC("The Christ the Redeemer statue ___ in 1931.", ["finished", "was finished", "is finished"], 1),
     MC("\"tecido\" =", ["fabric", "factory", "tissue paper"], 0),
     FILL("This shirt was ___ in Brazil. (make)", ["made"]),
@@ -3149,7 +3149,7 @@ CONTENT["B2-9"] = {
   ],
   vocab: [["make a decision", "tomar uma decisão"], ["do a favor", "fazer um favor"], ["take a risk", "correr um risco"], ["pay attention", "prestar atenção"], ["keep in touch", "manter contato"], ["depend on", "depender de"], ["be married to", "ser casado com"], ["meeting", "reunião"], ["attached", "em anexo"], ["follow up", "dar retorno / acompanhar"]],
   ex: [
-    MC("I need to ___ a decision.", ["do", "make", "take"], 1),
+    MC("I need to ___ a decision.", ["do", "make", "have"], 1),
     MC("Can you ___ me a favor?", ["make", "do", "give"], 1),
     MC("It depends ___ the weather.", ["of", "on", "from"], 1),
     MC("She's married ___ a Canadian.", ["with", "to", "of"], 1),
@@ -3180,7 +3180,7 @@ CONTENT["B2-10"] = {
   vocab: [["society", "sociedade"], ["inequality", "desigualdade"], ["unemployment", "desemprego"], ["housing", "moradia"], ["public health", "saúde pública"], ["prejudice", "preconceito"], ["loss", "prejuízo / perda"], ["crime", "crime / criminalidade"], ["poverty", "pobreza"], ["community", "comunidade"]],
   ex: [
     MC("___ is the key to the future.", ["The education", "Education", "An education"], 1),
-    MC("___ in my building are very friendly.", ["People", "The people"], 1),
+    MC("___ next door are very friendly.", ["People", "The people"], 1),
     MC("\"prejuízo\" (money) =", ["prejudice", "loss", "damage only"], 1),
     MC("Which is correct?", ["The unemployment is a big problem.", "Unemployment is a big problem."], 1, "General idea → no article."),
     MC("We need to fight ___.", ["the inequality", "inequality", "an inequality"], 1),
@@ -5288,7 +5288,7 @@ CONTENT["a2-party"] = {
   vocab: [["party", "festa"], ["invite", "convidar / convite"], ["guest", "convidado"], ["host", "anfitrião"], ["decorate", "decorar"], ["balloons", "balões"], ["snacks", "petiscos"], ["playlist", "playlist"], ["surprise party", "festa surpresa"], ["RSVP", "confirmar presença"], ["bring", "trazer / levar"], ["celebrate", "comemorar"]],
   ex: [
     MC("Eu levo o bolo! (oferta) →", ["I'll bring the cake!", "I bring the cake!", "I'm going bring the cake!"], 0),
-    MC("We ___ a surprise party for Lia on Friday.", ["are having", "have", "will having"], 0),
+    MC("We ___ a surprise party for Lia on Friday.", ["are having", "having", "will having"], 0),
     MC("Would you like to come? — ___!", ["I'd love to", "I love", "Yes, I would like"], 0),
     FILL("Shall I ___ some snacks? || Levo uns petiscos?", ["bring"], null, ["bring", "to bring", "bringing"]),
     FILL("I'm ___ I can't come. I have to work. || Infelizmente", ["afraid"], null, ["afraid", "sorry", "sad"]),
@@ -6229,7 +6229,7 @@ CONTENT["b1-story"] = {
   vocab: [["suddenly", "de repente"], ["at that moment", "naquele momento"], ["eventually", "finalmente / por fim"], ["realize", "perceber"], ["scream", "gritar"], ["whisper", "sussurrar"], ["notice", "notar"], ["turn out", "acabar sendo"], ["plot twist", "reviravolta"], ["setting", "cenário"], ["character", "personagem"], ["ending", "final"]],
   ex: [
     MC("Quando cheguei, o filme já tinha começado. →", ["When I arrived, the movie had already started.", "When I arrived, the movie already started.", "When I arrived, the movie has already started."], 0),
-    MC("It ___ when we left the restaurant.", ["was raining", "rained", "had rained"], 0),
+    MC("It ___ when we left the restaurant.", ["was raining", "rain", "had rained"], 0),
     MC("___, the lights went out.", ["Suddenly", "Eventually", "Since"], 0),
     FILL("I realized I had ___ my keys at the office. (deixado)", ["left"], null, ["left", "leaved", "leave"]),
     FILL("It turned ___ that the stranger was my cousin!", ["out"], null, ["out", "up", "off"]),
@@ -6593,7 +6593,7 @@ CONTENT["b2-education"] = {
   vocab: [["curriculum", "currículo escolar"], ["public / private school", "escola pública / particular"], ["tuition", "mensalidade"], ["entrance exam", "vestibular"], ["degree", "diploma"], ["dropout rate", "taxa de evasão"], ["literacy", "alfabetização"], ["teacher training", "formação de professores"], ["funding", "financiamento"], ["vocational", "técnico / profissionalizante"], ["homeschooling", "ensino domiciliar"], ["whereas", "enquanto (contraste)"]],
   ex: [
     MC("A educação é um direito. →", ["Education is a right.", "The education is a right.", "An education is right."], 0),
-    MC("She goes to ___ university in Curitiba.", ["- (no article)", "the", "an"], 0),
+    MC("She's ___ engineer at a big company.", ["an", "a", "- (no article)"], 0),
     MC("___ elderly need better access to technology.", ["The", "-", "An"], 0),
     FILL("In Brazil, students take an entrance exam, ___ in Finland most don't.", ["whereas", "while"], null, ["whereas", "despite", "however"]),
     FILL("The dropout ___ is higher in some regions.", ["rate"]),
@@ -7569,7 +7569,7 @@ CONTENT["c1-condinv"] = {
   ex: [
     MC("Se eu soubesse, teria vindo. (formal) →", ["Had I known, I would have come.", "If had I known, I would have come.", "Knew I, I would have come."], 0),
     MC("___ you need any assistance, please let us know.", ["Should", "Would", "Had"], 0),
-    MC("___ it not for your help, we would have failed.", ["Had", "Were", "Should"], 0),
+    MC("___ it not been for your help, we would have failed.", ["Had", "Were", "Should"], 0),
     FILL("___ I to lose my job, I would move abroad.", ["Were"], null, ["Were", "Was", "If"]),
     FILL("Had she ___ called, I'd have missed the flight.", ["not"], null, ["not", "no", "never not"]),
     ORD(["Should you have any questions, please contact us."]),
