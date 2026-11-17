@@ -28017,9 +28017,9 @@ function sgView(s) {
 }
 function sgAct(a, el) {
   const st = sgMenu.st || (sgMenu.st = { mode: "choice", lvl: 0, id: null });
+  if (a === "edit") return songEdit(el.dataset.id); // before the "ed…" editor actions: "edit" starts with "ed" too
   if (a.startsWith("ed")) return sgEdAct(a, el);
   if (a === "pick") { st.id = el.dataset.id; return sgRefresh(); }
-  if (a === "edit") return songEdit(el.dataset.id);
   if (a === "new") { const id = "my-" + Date.now().toString(36); return songEdit(id); }
   if (a === "mode") { st.mode = el.dataset.v; return sgRefresh(); }
   if (a === "lvl") { st.lvl = +el.dataset.v; return sgRefresh(); }
