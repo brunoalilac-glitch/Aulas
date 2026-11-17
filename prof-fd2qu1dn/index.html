@@ -2467,6 +2467,12 @@ abbr.gl { text-decoration: underline dotted rgba(233,185,73,.9); text-underline-
 .sglines { max-height: 62vh; overflow: auto; display: flex; flex-direction: column; gap: 3px; padding-right: 4px; }
 .sgl { display: flex; gap: 10px; padding: 6px 10px; border-radius: 10px; font-size: 16px; color: var(--tx2); cursor: pointer; } .sgl span { width: 56px; flex: none; color: var(--mu); font-variant-numeric: tabular-nums; font-size: 14px; padding-top: 2px; }
 .sgl.set { color: var(--tx); } .sgl.cur { background: var(--ac2); outline: 2px solid var(--ac); color: var(--tx); font-weight: 800; }
+.sglines { position: relative; scroll-behavior: smooth; }
+.sgl em { font-style: normal; flex: 1; } .sgl i { font-style: normal; opacity: 0; color: var(--ac); font-weight: 800; }
+.sgl:hover { background: var(--sf); } .sgl:hover i { opacity: .8; }
+.sgl.play { background: rgba(91, 224, 160, .16); color: var(--tx); box-shadow: inset 4px 0 0 var(--ok); }
+.sgl.end { color: var(--mu); cursor: default; } .sgl.end:hover { background: none; }
+.sghelp b.ok { color: var(--ok); }
 
 </style></head><body>
 <div id="app"></div>
@@ -27792,10 +27798,10 @@ const ytBlocked = () => `<div class="sgblock"><b>▶ YouTube only plays in the o
 /* ---------- editor: link + lyrics + sync with SPACE ---------- */
 const SGE = { id: null, step: 1, p: null, idx: 0, tm: null };
 function songEdit(id) {
-  const s = songOf(id); SGE.id = id; SGE.step = 1; SGE.d = { title: s.title, artist: s.artist, yt: s.yt ? "https://youtu.be/" + s.yt : "", text: (s.lines || []).map(l => l[2]).join("\n"), lines: (s.lines || []).map(l => l.slice()) };
+  const s = songOf(id); SGE.id = id; SGE.step = 1; SGE.built = false; SGE.d = { title: s.title, artist: s.artist, yt: s.yt ? "https://youtu.be/" + s.yt : "", text: (s.lines || []).map(l => l[2]).join("\n"), lines: (s.lines || []).map(l => l.slice()) };
   sgEdDraw();
 }
-function sgEdClose() { clearInterval(SGE.tm); try { SGE.p && SGE.p.destroy(); } catch (e) { } SGE.p = null; const o = document.getElementById("sged"); if (o) o.remove(); SGE.id = null; if (typeof sgRefresh === "function") sgRefresh(); }
+function sgEdClose() { clearInterval(SGE.tm); try { SGE.p && SGE.p.destroy(); } catch (e) { } SGE.p = null; SGE.built = false; const o = document.getElementById("sged"); if (o) o.remove(); SGE.id = null; if (typeof sgRefresh === "function") sgRefresh(); }
 function sgEdDraw() {
   let o = document.getElementById("sged"); if (!o) { document.body.insertAdjacentHTML("beforeend", `<div class="sged" id="sged"></div>`); o = document.getElementById("sged"); }
   const d = SGE.d, q = encodeURIComponent(`${d.title} ${d.artist} official lyric video`);
@@ -27808,49 +27814,78 @@ function sgEdDraw() {
       <div class="lvrow"><span class="lvsp"></span>${d.lines.length && d.lines.every(l => l[0] != null) ? `<button class="lvb" data-sg="edsave">Save without syncing again</button>` : ""}<button class="lvb p" data-sg="edsync">Next: sync the lines ▸</button></div></div>`;
     return;
   }
-  const ls = d.lines;
-  o.innerHTML = `<div class="sgedc wide"><div class="sgedh"><h2>⏱ Sync: ${esc(d.title || "song")}</h2><span class="lvsp"></span><button class="lvb" data-sg="edback">‹ Back</button><button class="lvb" data-sg="edclose">Close</button></div>
+  if (SGE.built) return sgEdLines(); // the video stays where it is: only the list changes
+  SGE.built = true;
+  o.innerHTML = `<div class="sgedc wide"><div class="sgedh"><h2>⏱ Sync: ${esc(d.title || "song")}</h2><span class="lvsp"></span><button class="lvb" data-sg="edback">‹ Lyrics</button><button class="lvb" data-sg="edclose">Close</button></div>
     <div class="sgsync"><div class="sgsv"><div class="sgvid"><div id="sgedv"></div></div>
-      <div class="sghelp"><b>How:</b> press ▶, then press <kbd>Space</kbd> exactly when each line <b>starts</b> to be sung. <kbd>←</kbd> goes back one line. After the last line, press <kbd>Space</kbd> once more when it ends.</div>
-      <div class="lvrow"><button class="lvb" data-sg="edplay">▶ / ⏸</button><button class="lvb" data-sg="edrw">⟲ −5 s</button><button class="lvb" data-sg="edundo">← Back one line</button><button class="lvb" data-sg="edrestart">Start again</button><span class="lvsp"></span><button class="lvb p" data-sg="edsave" ${ls.every(l => l[0] != null && l[1] != null) ? "" : "disabled"}>Save ✓</button></div>
-      <div class="sgoff">Nudge all lines: <button class="lvb sm" data-sg="ednudge" data-v="-0.2">−0.2 s</button><button class="lvb sm" data-sg="ednudge" data-v="0.2">+0.2 s</button><span id="sgtime"></span></div></div>
-      <div class="sglines" id="sglines">${ls.map((l, i) => `<div class="sgl ${i === SGE.idx ? "cur" : ""} ${l[0] != null ? "set" : ""}" data-sg="edjump" data-i="${i}"><span>${l[0] != null ? sgFmt(l[0]) : "—"}</span>${esc(l[2])}</div>`).join("")}</div></div></div>`;
-  const cur = o.querySelector(".sgl.cur"); if (cur) cur.scrollIntoView({ block: "center" });
-  if (!SGE.p && ytOK()) ytMake(document.getElementById("sgedv"), ytIdOf(d.yt), null).then(p => { SGE.p = p; clearInterval(SGE.tm); SGE.tm = setInterval(() => { const el = document.getElementById("sgtime"); if (el && SGE.p && SGE.p.getCurrentTime) el.textContent = "  ⏱ " + sgFmt(SGE.p.getCurrentTime()); }, 200); }).catch(() => toast("Couldn't load YouTube"));
-  else if (!ytOK()) document.getElementById("sgedv").outerHTML = ytBlocked();
+      <div class="sghelp">Press <b>▶</b>, then tap <kbd>Space</kbd> when each line <b>starts</b>. After the last line, tap <kbd>Space</kbd> once more when it ends.<br>
+        <b>Wrong tap?</b> Press <kbd>←</kbd> (or click any line on the right): the song goes back a little and plays — just tap <kbd>Space</kbd> again. The line being sung lights up <b class="ok">green</b>, so you can check.</div>
+      <div class="lvrow"><button class="lvb" data-sg="edplay">▶ / ⏸</button><button class="lvb" data-sg="edundo">← Back one line</button><button class="lvb" data-sg="edrw">⟲ −5 s</button><span class="lvsp"></span><button class="lvb" data-sg="edrestart">Erase all</button><button class="lvb p" id="sgsave" data-sg="edsave">Save ✓</button></div>
+      <div class="sgoff">All lines a bit early or late? <button class="lvb sm" data-sg="ednudge" data-v="-0.2">−0.2 s</button><button class="lvb sm" data-sg="ednudge" data-v="0.2">+0.2 s</button><span id="sgtime"></span></div></div>
+      <div class="sglines" id="sglines"></div></div></div>`;
+  sgEdLines();
+  if (ytOK()) ytMake(document.getElementById("sgedv"), ytIdOf(d.yt), null).then(p => { SGE.p = p; clearInterval(SGE.tm); SGE.tm = setInterval(sgEdClock, 200); }).catch(() => toast("Couldn't load YouTube"));
+  else document.getElementById("sgedv").outerHTML = ytBlocked();
+}
+function sgEdLines() { // the list of lines: times, the line to tap next, Save on / off
+  const ls = SGE.d.lines, box = document.getElementById("sglines"); if (!box) return;
+  const last = ls[ls.length - 1];
+  box.innerHTML = ls.map((l, i) => `<div class="sgl ${i === SGE.idx ? "cur" : ""} ${l[0] != null ? "set" : ""}" id="sgl${i}" data-sg="edjump" data-i="${i}" title="Click: go back here and tap again"><span>${l[0] != null ? sgFmt(l[0]) : "—"}</span><em>${esc(l[2])}</em><i>↻</i></div>`).join("")
+    + `<div class="sgl end ${SGE.idx >= ls.length ? "cur" : ""}"><span>${last && last[1] != null ? sgFmt(last[1]) : "—"}</span><em>(tap when the last line ends)</em></div>`;
+  const sv = document.getElementById("sgsave"); if (sv) sv.disabled = !ls.every(l => l[0] != null && l[1] != null);
+  const cur = box.querySelector(".sgl.cur"); if (cur) box.scrollTop = Math.max(0, cur.offsetTop - box.clientHeight / 2 + cur.offsetHeight / 2);
+}
+function sgEdClock() { // time + the line being sung now, in green
+  const p = SGE.p; if (!p || !p.getCurrentTime) return; const t = p.getCurrentTime(), el = document.getElementById("sgtime"); if (el) el.textContent = "  ⏱ " + sgFmt(t);
+  const ls = SGE.d ? SGE.d.lines : [], k = ls.findIndex(l => l[0] != null && l[1] != null && t >= l[0] && t < l[1]);
+  if (k !== SGE.play) { const a = document.getElementById("sgl" + SGE.play); if (a) a.classList.remove("play"); const b = document.getElementById("sgl" + k); if (b) b.classList.add("play"); SGE.play = k; }
+}
+function sgEdEnds() { // each line ends just before the next one starts
+  const ls = SGE.d.lines;
+  for (let j = 0; j < ls.length - 1; j++) ls[j][1] = ls[j][0] != null && ls[j + 1][0] != null ? Math.max(ls[j][0] + .3, ls[j + 1][0] - .05) : null;
+  const L = ls[ls.length - 1]; if (L && L[0] == null) L[1] = null; else if (L && L[1] != null && L[1] < L[0] + .3) L[1] = L[0] + .3;
+}
+function sgEdGo(i) { // make line i the next one to tap: play from a little before it
+  const ls = SGE.d.lines; SGE.idx = Math.max(0, Math.min(i, ls.length)); const prev = ls[SGE.idx - 1], here = ls[SGE.idx];
+  const to = prev && prev[0] != null ? prev[0] - .3 : here && here[0] != null ? here[0] - 3 : null;
+  if (SGE.p && to != null) { SGE.p.seekTo(Math.max(0, to), true); SGE.p.playVideo(); }
+  sgEdLines();
 }
 function sgEdKey(e) {
   if (!SGE.id || SGE.step !== 2 || e.target.matches("input,textarea")) return false;
-  const d = SGE.d, ls = d.lines, t = SGE.p && SGE.p.getCurrentTime ? SGE.p.getCurrentTime() : null;
+  const ls = SGE.d.lines, t = SGE.p && SGE.p.getCurrentTime ? SGE.p.getCurrentTime() : null;
   if (e.key === " ") {
-    e.preventDefault(); if (t == null) return true;
+    e.preventDefault(); if (e.repeat || t == null) return true;
     const at = Math.max(0, t - .15); // people tap a little late
-    if (SGE.idx < ls.length) { ls[SGE.idx][0] = at; if (SGE.idx > 0) ls[SGE.idx - 1][1] = Math.max(ls[SGE.idx - 1][0] + .3, at - .05); SGE.idx++; }
-    else if (ls.length) { ls[ls.length - 1][1] = Math.max(ls[ls.length - 1][0] + .3, at); toast("All lines synced — press Save ✓"); }
-    sgEdDraw(); return true;
+    if (SGE.idx < ls.length) {
+      const prev = ls[SGE.idx - 1]; if (prev && prev[0] != null && at <= prev[0] + .2) { toast("Too early: the line before starts later. Press ← to go back."); return true; }
+      ls[SGE.idx][0] = at; for (let j = SGE.idx + 1; j < ls.length && ls[j][0] != null && ls[j][0] <= at + .3; j++) ls[j][0] = null; // later times that are now impossible
+      SGE.idx++;
+    } else if (ls.length) { const L = ls[ls.length - 1]; L[1] = Math.max((L[0] || 0) + .3, at); toast("All lines synced — check, then press Save ✓"); }
+    sgEdEnds(); sgEdLines(); return true;
   }
-  if (e.key === "ArrowLeft" || e.key === "Backspace") { e.preventDefault(); if (SGE.idx > 0) { SGE.idx--; ls[SGE.idx][0] = null; ls[SGE.idx][1] = null; if (SGE.idx > 0) ls[SGE.idx - 1][1] = null; if (SGE.p && ls[SGE.idx - 1]) SGE.p.seekTo(Math.max(0, ls[SGE.idx - 1][0] - 1), true); } sgEdDraw(); return true; }
+  if (e.key === "ArrowLeft" || e.key === "Backspace") { e.preventDefault(); if (SGE.idx > 0) sgEdGo(SGE.idx - 1); return true; }
   if (e.key === "Escape") { sgEdClose(); return true; }
   return false;
 }
 function sgEdAct(a, el) {
-  const d = SGE.d;
+  const d = SGE.d; if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); // so SPACE never presses a button again
   if (a === "edclose") return sgEdClose();
   if (a === "edsync" || (a === "edsave" && SGE.step === 1)) {
     d.title = $("#sgt").value.trim(); d.artist = $("#sga").value.trim(); d.yt = $("#sgy").value.trim(); const txt = $("#sgl").value;
     if (!ytIdOf(d.yt)) { toast("Paste the YouTube link first"); return; }
     const lines = sgParse(txt); if (lines.length < 2) { toast("Paste the lyrics (one line per line)"); return; }
-    if (txt !== d.text) { d.text = txt; d.lines = lines.map((l, i) => { const old = d.lines[i]; return old && old[2] === l ? old : [null, null, l]; }); }
+    if (txt !== d.text) { d.text = txt; d.lines = lines.map((l, i) => { const old = d.lines[i]; return old && old[2] === l ? old : [null, null, l]; }); sgEdEnds(); }
     if (a === "edsave") return sgEdSave();
-    SGE.step = 2; SGE.idx = d.lines.findIndex(l => l[0] == null); if (SGE.idx < 0) SGE.idx = d.lines.length; return sgEdDraw();
+    SGE.step = 2; SGE.built = false; SGE.idx = d.lines.findIndex(l => l[0] == null); if (SGE.idx < 0) SGE.idx = d.lines.length; return sgEdDraw();
   }
-  if (a === "edback") { clearInterval(SGE.tm); try { SGE.p && SGE.p.destroy(); } catch (e) { } SGE.p = null; SGE.step = 1; return sgEdDraw(); }
+  if (a === "edback") { clearInterval(SGE.tm); try { SGE.p && SGE.p.destroy(); } catch (e) { } SGE.p = null; SGE.step = 1; SGE.built = false; return sgEdDraw(); }
   if (a === "edplay" && SGE.p) { const st = SGE.p.getPlayerState(); if (st === 1) SGE.p.pauseVideo(); else SGE.p.playVideo(); return; }
-  if (a === "edrw" && SGE.p) { SGE.p.seekTo(Math.max(0, SGE.p.getCurrentTime() - 5), true); return; }
-  if (a === "edundo") return sgEdKey({ key: "ArrowLeft", target: document.body, preventDefault() { } });
-  if (a === "edrestart") { d.lines.forEach(l => { l[0] = l[1] = null; }); SGE.idx = 0; if (SGE.p) { SGE.p.seekTo(0, true); SGE.p.pauseVideo(); } return sgEdDraw(); }
-  if (a === "ednudge") { const v = +el.dataset.v; d.lines.forEach(l => { if (l[0] != null) l[0] = Math.max(0, l[0] + v); if (l[1] != null) l[1] = Math.max(0, l[1] + v); }); return sgEdDraw(); }
-  if (a === "edjump") { const i = +el.dataset.i, l = d.lines[i]; if (SGE.p && l && l[0] != null) { SGE.p.seekTo(Math.max(0, l[0] - .5), true); SGE.p.playVideo(); } return; }
+  if (a === "edrw" && SGE.p) { SGE.p.seekTo(Math.max(0, SGE.p.getCurrentTime() - 5), true); SGE.p.playVideo(); return; }
+  if (a === "edundo") { if (SGE.idx > 0) sgEdGo(SGE.idx - 1); return; }
+  if (a === "edrestart") { if (!confirm("Erase all the times and start again from the beginning?")) return; d.lines.forEach(l => { l[0] = l[1] = null; }); SGE.idx = 0; if (SGE.p) { SGE.p.seekTo(0, true); SGE.p.pauseVideo(); } return sgEdLines(); }
+  if (a === "ednudge") { const v = +el.dataset.v; d.lines.forEach(l => { if (l[0] != null) l[0] = Math.max(0, l[0] + v); if (l[1] != null) l[1] = Math.max(0, l[1] + v); }); return sgEdLines(); }
+  if (a === "edjump") return sgEdGo(+el.dataset.i);
   if (a === "edsave") return sgEdSave();
 }
 function sgEdSave() {
