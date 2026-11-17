@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Start it · Live</title><meta name="theme-color" content="#0F131B"><meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Figtree:wght@500;600;700;800&display=swap">
+<style>:root { --bg: #0F131B; --sf: #1B2232; --sf2: #232C40; --ln: #2E3950; --tx: #F3F5F9; --tx2: #C9D0DD; --mu: #93A0B8; --ac: #7AA2FF; --ok: #5BE0A0; --no: #FF8A8A; --hl: #FFD36E; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--tx); font-family: Figtree, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+body { min-height: 100dvh; }
+#app { max-width: 560px; margin: 0 auto; padding: max(10px, env(safe-area-inset-top)) 16px max(18px, env(safe-area-inset-bottom)); min-height: 100dvh; display: flex; flex-direction: column; }
+button { font: inherit; color: inherit; cursor: pointer; border: 0; }
+h1 { font-family: "Bricolage Grotesque", Figtree, sans-serif; font-size: 30px; line-height: 1.1; margin: 6px 0 4px; letter-spacing: -.01em; }
+p { margin: 4px 0; color: var(--tx2); font-size: 17px; line-height: 1.35; }
+.brand { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 26px; margin-bottom: 18px; }
+.brand .st { color: var(--tx); } .brand .it { color: #FF6B4A; } .brand small { font-family: Figtree; font-size: 14px; color: var(--mu); font-weight: 700; margin-left: 6px; letter-spacing: .04em; text-transform: uppercase; }
+.card { margin: auto 0; padding: 8px 0 20px; }
+.pt { color: var(--mu); font-style: italic; }
+input { width: 100%; font: inherit; font-size: 26px; font-weight: 800; padding: 16px 18px; border-radius: 16px; border: 2px solid var(--ln); background: var(--sf); color: var(--tx); margin: 14px 0 10px; outline: none; }
+input:focus { border-color: var(--ac); }
+#code { text-align: center; letter-spacing: .4em; font-size: 40px; }
+.lbl { margin: 10px 0 8px; font-weight: 800; font-size: 14px; color: var(--mu); text-transform: uppercase; letter-spacing: .05em; }
+.emos { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; }
+.emos button { aspect-ratio: 1; border-radius: 12px; background: var(--sf); font-size: 26px; display: grid; place-items: center; border: 2px solid transparent; }
+.emos button.on { border-color: var(--ac); background: var(--sf2); transform: scale(1.06); }
+.go { width: 100%; margin-top: 18px; padding: 18px; border-radius: 16px; background: var(--ac); color: #0F131B; font-weight: 800; font-size: 21px; }
+.go:active { transform: scale(.98); }
+.ghost { margin-top: 18px; background: transparent; color: var(--mu); font-weight: 700; font-size: 15px; text-decoration: underline; }
+.bar { display: flex; align-items: center; gap: 8px; font-size: 15px; color: var(--tx2); padding: 4px 0 10px; }
+.bar .me b { color: var(--tx); } .bar .sp { flex: 1; } .bar .cd { color: var(--mu); font-weight: 700; } .bar .off { color: var(--hl); font-weight: 700; font-size: 13px; }
+.msg { margin: auto 0; text-align: center; padding: 16px 0; }
+.msg.sm { margin: 10px 0; padding: 6px 0; }
+.big { font-size: 64px; line-height: 1.1; }
+.big.av { font-size: 96px; animation: pop .5s ease; }
+@keyframes pop { 0% { transform: scale(.4); } 70% { transform: scale(1.12); } 100% { transform: scale(1); } }
+.pill { display: inline-block; margin: 10px 4px 0; padding: 8px 14px; border-radius: 999px; background: var(--sf); color: var(--tx2); font-weight: 700; font-size: 15px; }
+.qh { display: flex; justify-content: space-between; font-weight: 800; color: var(--mu); font-size: 14px; text-transform: uppercase; letter-spacing: .05em; }
+.qt { font-weight: 800; line-height: 1.25; margin: 12px 0 14px; background: var(--sf); border-radius: 18px; padding: 16px 18px; }
+.gap { display: inline-block; width: 3.2em; border-bottom: 3px solid var(--hl); margin: 0 4px; height: .9em; vertical-align: baseline; }
+.tbar { height: 8px; background: var(--sf); border-radius: 99px; overflow: hidden; margin-top: 10px; }
+.tbar i { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, var(--ok), var(--hl)); border-radius: 99px; }
+.opts { display: grid; gap: 10px; flex: 1; grid-auto-rows: minmax(74px, 1fr); }
+.opt { background: var(--c); color: #fff; border-radius: 18px; display: flex; align-items: center; gap: 12px; padding: 12px 16px; text-align: left; font-weight: 800; font-size: 21px; line-height: 1.2; box-shadow: 0 5px 0 rgba(0,0,0,.28); }
+.opt:active { transform: translateY(3px); box-shadow: 0 2px 0 rgba(0,0,0,.28); }
+.opt .sh { font-size: 24px; opacity: .85; flex: none; width: 28px; text-align: center; }
+.opt .ot { flex: 1; text-shadow: 0 1px 2px rgba(0,0,0,.25); }
+.chosen { background: var(--c); color: #fff; border-radius: 18px; padding: 16px 18px; font-weight: 800; font-size: 22px; display: flex; gap: 12px; align-items: center; margin: 8px 0; }
+.chosen.ok { outline: 4px solid var(--ok); outline-offset: 3px; }
+.res { margin: auto 0; text-align: center; padding: 10px 0; }
+.res .pts { font-family: "Bricolage Grotesque", sans-serif; font-size: 54px; font-weight: 800; margin: 4px 0; }
+.res.ok h1, .res.ok .pts { color: var(--ok); } .res.no h1 { color: var(--no); } .res.no .pts { color: var(--no); }
+.res.gkf { margin: 20px 0; }
+.top { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.top > div { display: flex; gap: 10px; align-items: center; background: var(--sf); border-radius: 14px; padding: 10px 14px; font-size: 17px; }
+.top > div.me { background: var(--sf2); outline: 2px solid var(--ac); }
+.top .rk { width: 24px; color: var(--mu); font-weight: 800; } .top b { flex: 1; } .top .sc { font-weight: 800; color: var(--hl); }
+.thanks { text-align: center; margin-top: 16px; color: var(--mu); }
+.spin { width: 44px; height: 44px; border-radius: 50%; border: 5px solid var(--sf2); border-top-color: var(--ac); margin: 8px auto; animation: rot 1s linear infinite; }
+@keyframes rot { to { transform: rotate(360deg); } }
+/* own pace */
+.gkh { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.gkh .mo { font-family: "Bricolage Grotesque", sans-serif; font-size: 30px; font-weight: 800; color: var(--hl); }
+.gkh .pill { margin: 0; padding: 5px 10px; } .gkh .sp { flex: 1; } .gkh .tm { font-weight: 800; color: var(--tx2); }
+.shopb { background: var(--sf2); border-radius: 12px; padding: 10px 12px; font-weight: 800; font-size: 15px; }
+.shopb.on { background: var(--ac); color: #0F131B; }
+.shop { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+.up { display: flex; align-items: center; gap: 12px; background: var(--sf); border-radius: 16px; padding: 12px 14px; }
+.up .ui { font-size: 30px; } .up .ut { flex: 1; min-width: 0; } .up .ut b { display: block; font-size: 17px; } .up .ut small { display: block; color: var(--mu); font-size: 13px; line-height: 1.3; margin: 2px 0 6px; }
+.lvls { display: flex; flex-wrap: wrap; gap: 4px; } .lvls i { font-style: normal; font-size: 11px; font-weight: 800; padding: 2px 6px; border-radius: 6px; background: var(--sf2); color: var(--mu); } .lvls i.on { background: var(--ok); color: #0F131B; }
+.buy { background: var(--hl); color: #0F131B; font-weight: 800; border-radius: 12px; padding: 12px 12px; font-size: 16px; min-width: 76px; }
+.buy:disabled { background: var(--sf2); color: var(--mu); }
+.maxd { font-weight: 800; color: var(--ok); }
+@media (min-width: 420px) { .opts.n4 { grid-template-columns: 1fr 1fr; } .opts.n4 .opt { flex-direction: column; justify-content: center; text-align: center; } }
+</style></head>
+<body><div id="app"></div>
+<noscript>Turn on JavaScript to play.</noscript>
+<script>/* Start it — live connection between the teacher hub and the students' phones (shared by teacher.html and live/index.html).
+   A tiny MQTT 3.1.1 client over WebSocket (QoS 0) talking to free public brokers — no account, no server of our own.
+   Topics: <ROOT>/<code>/s  = the game state (teacher → phones, retained, so late joiners see it)
+           <ROOT>/<code>/i  = phone messages (join, answers) → teacher
+   Everything is tiny JSON. The room code is 4 digits; the phone link also carries the broker number. */
+const LIVE_ROOT = "startit-idiomas/v1";
+const LIVE_BROKERS = (() => { try { const o = JSON.parse(localStorage.getItem("startit-live-brokers") || "null"); if (Array.isArray(o) && o.length) return o; } catch (e) { } return ["wss://broker.hivemq.com:8884/mqtt", "wss://broker.emqx.io:8084/mqtt", "wss://test.mosquitto.org:8081/mqtt"]; })();
+class MiniMQTT {
+  constructor(url, id) { this.url = url; this.id = id; this.subs = {}; this.buf = new Uint8Array(0); this.ok = false; this.pid = 1; this.onclose = null; }
+  static str(s) { const b = new TextEncoder().encode(s); return [b.length >> 8, b.length & 255, ...b]; }
+  static len(n) { const o = []; do { let d = n % 128; n = Math.floor(n / 128); if (n > 0) d |= 128; o.push(d); } while (n > 0); return o; }
+  connect(timeout = 6000) {
+    return new Promise((res, rej) => {
+      let done = false; const fail = e => { if (!done) { done = true; try { this.ws.close(); } catch (x) { } rej(e); } };
+      const to = setTimeout(() => fail(new Error("timeout")), timeout);
+      try { this.ws = new WebSocket(this.url, "mqtt"); } catch (e) { clearTimeout(to); return rej(e); }
+      this.ws.binaryType = "arraybuffer";
+      this.ws.onopen = () => { const vh = [...MiniMQTT.str("MQTT"), 4, 2, 0, 45], pl = MiniMQTT.str(this.id); this.ws.send(new Uint8Array([0x10, ...MiniMQTT.len(vh.length + pl.length), ...vh, ...pl])); };
+      this.ws.onerror = () => fail(new Error("socket"));
+      this.ws.onclose = () => { const was = this.ok; this.ok = false; clearInterval(this.ping); if (!done) fail(new Error("closed")); else if (was && this.onclose) this.onclose(); };
+      this.ws.onmessage = ev => {
+        const d = new Uint8Array(ev.data), b = new Uint8Array(this.buf.length + d.length); b.set(this.buf); b.set(d, this.buf.length); this.buf = b;
+        for (;;) {
+          if (this.buf.length < 2) break; let mul = 1, n = 0, i = 1, c;
+          do { if (i >= this.buf.length) return; c = this.buf[i++]; n += (c & 127) * mul; mul *= 128; } while (c & 128);
+          if (this.buf.length < i + n) break;
+          const type = this.buf[0] >> 4, body = this.buf.slice(i, i + n), flags = this.buf[0] & 15; this.buf = this.buf.slice(i + n);
+          if (type === 2) { clearTimeout(to); if (body[1] === 0) { this.ok = true; done = true; this.ping = setInterval(() => { try { this.ws.send(new Uint8Array([0xC0, 0])); } catch (e) { } }, 30000); res(this); } else fail(new Error("refused " + body[1])); }
+          else if (type === 3) { const tl = (body[0] << 8) | body[1], topic = new TextDecoder().decode(body.slice(2, 2 + tl)); let p = 2 + tl; if ((flags >> 1) & 3) p += 2; const msg = new TextDecoder().decode(body.slice(p)); Object.keys(this.subs).forEach(f => { if (MiniMQTT.match(f, topic)) this.subs[f](msg, topic); }); }
+        }
+      };
+    });
+  }
+  static match(f, t) { if (f === t) return true; if (f.endsWith("/#")) return t.startsWith(f.slice(0, -1)); const a = f.split("/"), b = t.split("/"); return a.length === b.length && a.every((x, i) => x === "+" || x === b[i]); }
+  sub(filter, cb) { this.subs[filter] = cb; const id = this.pid++ & 65535, p = [id >> 8, id & 255, ...MiniMQTT.str(filter), 0]; this.ws.send(new Uint8Array([0x82, ...MiniMQTT.len(p.length), ...p])); }
+  pub(topic, msg, retain = false) { if (!this.ok) return false; const t = MiniMQTT.str(topic), m = new TextEncoder().encode(msg); try { this.ws.send(new Uint8Array([0x30 | (retain ? 1 : 0), ...MiniMQTT.len(t.length + m.length), ...t, ...m])); return true; } catch (e) { return false; } }
+  close() { try { this.ws.send(new Uint8Array([0xE0, 0])); this.ws.close(); } catch (e) { } this.ok = false; }
+}
+/* connect to the first broker that answers (start = preferred index) */
+async function liveConnect(start = 0, onclose) {
+  const order = LIVE_BROKERS.map((u, i) => (i + start) % LIVE_BROKERS.length);
+  for (const bi of order) {
+    try { const c = new MiniMQTT(LIVE_BROKERS[bi], "sit" + Math.random().toString(36).slice(2, 10)); await c.connect(); c.bi = bi; c.onclose = onclose; return c; } catch (e) { }
+  }
+  throw new Error("no broker");
+}
+const liveTopic = (code, k) => `${LIVE_ROOT}/${code}/${k}`;
+/* answer checking shared by phone and teacher: lenient compare for typed answers */
+const liveNorm = s => String(s || "").toLowerCase().replace(/[’']/g, "'").replace(/[^a-z0-9' ]+/g, " ").replace(/\s+/g, " ").trim();
+
+/* Start it — the students' phone page for the live games (live/index.html).
+   Link: …/live/#4821b0  (4821 = game code, b0 = which live server the teacher's QR points to). Works without an account. */
+const AV = ["🦊", "🐼", "🐯", "🦁", "🐸", "🐙", "🦄", "🐧", "🐨", "🐵", "🦉", "🐢", "🐳", "🦖", "🐝", "🐱"];
+const COL = [["#E5484D", "▲"], ["#2F6BDB", "◆"], ["#D99100", "●"], ["#2E9E5B", "■"]];
+/* own-pace shop: [key, icon, name, what it does, values, prices] */
+const GKU = [
+  ["mpq", "💵", "Money per question", "Earn more for each right answer · Ganhe mais por acerto", [1, 5, 20, 50, 100, 250, 500, 1000], [0, 10, 60, 250, 900, 3000, 9000, 25000], v => "$" + v],
+  ["sb", "🔥", "Streak bonus", "Extra money for answers in a row · Bônus por acertos seguidos", [0, 2, 8, 25, 70, 180, 450], [0, 15, 100, 400, 1500, 5000, 15000], v => "+$" + v],
+  ["mul", "✖️", "Multiplier", "Multiplies what you earn · Multiplica o que você ganha", [1, 1.5, 2, 3, 5, 8], [0, 50, 300, 1500, 7000, 22000], v => "×" + v],
+  ["ins", "🛡️", "Insurance", "Lose less when you're wrong · Perde menos quando erra", [0, 25, 50, 75], [0, 30, 400, 3000], v => v + "%"]
+];
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const fmt = n => Math.round(n).toLocaleString("en-US");
+const ord = n => n + (n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][n % 10] || "th");
+const ls = { get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : v; } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) { } } };
+const P = { id: ls.get("sit-live-id", ""), n: ls.get("sit-live-name", ""), e: ls.get("sit-live-emo", ""), code: "", bi: 0, c: null, s: null, scr: "code", conn: false, retry: 0, shown: 0, deadline: 0, cur: "", lastJoin: 0, gk: null, kicked: false };
+if (!/^[a-z0-9]{6,20}$/.test(P.id)) { P.id = "p" + Math.random().toString(36).slice(2, 11).padEnd(9, "0"); ls.set("sit-live-id", P.id); }
+if (!AV.includes(P.e)) P.e = AV[Math.floor(Math.random() * AV.length)];
+
+/* ---------- connection ---------- */
+function readHash() { const m = location.hash.match(/^#?(\d{4})(?:b(\d))?/); if (m) { P.code = m[1]; P.bi = Math.min(+(m[2] || 0), LIVE_BROKERS.length - 1); } }
+async function connect() {
+  clearTimeout(P.rt); if (P.kicked) return;
+  try { P.c = await liveConnect(P.bi, onDrop); } catch (e) { P.conn = false; draw(); P.rt = setTimeout(connect, Math.min(15000, 2000 * (++P.retry))); return; }
+  P.bi = P.c.bi; P.conn = true; P.retry = 0;
+  P.c.sub(liveTopic(P.code, "s"), onState);
+  sendJoin(); draw();
+}
+function onDrop() { P.conn = false; draw(); clearTimeout(P.rt); P.rt = setTimeout(connect, 1500); }
+function send(o) { if (!P.c || !P.conn) return false; o.id = P.id; o.m = Math.random().toString(36).slice(2, 10); return P.c.pub(liveTopic(P.code, "i"), JSON.stringify(o)); }
+function sendJoin() { P.lastJoin = Date.now(); send({ t: "join", n: P.n, e: P.e }); }
+setInterval(() => { if (P.conn && P.scr === "game") send({ t: "hb", n: P.n, e: P.e }); }, 15000);
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && P.scr === "game") { if (!P.conn) connect(); else sendJoin(); lock(); } });
+function lock() { try { if (navigator.wakeLock) navigator.wakeLock.request("screen").catch(() => { }); } catch (e) { } }
+const buzz = p => { try { navigator.vibrate && navigator.vibrate(p); } catch (e) { } };
+
+function onState(msg) {
+  let s = null; try { s = msg ? JSON.parse(msg) : null; } catch (e) { return; }
+  if (s && s.ts && Math.abs(Date.now() - s.ts) > 8 * 3600e3) s = null; // an old game left on the server
+  if (s && s.kick && s.kick.includes(P.id)) { P.kicked = true; P.s = s; try { P.c.close(); } catch (e) { } draw(); return; }
+  if (s && s.k === "lobby" && s.pl && !s.pl[P.id] && Date.now() - P.lastJoin > 3000) sendJoin(); // the teacher doesn't have us (reload)
+  if (s && (s.k === "q" || s.k === "get")) { const key = s.g + ":" + s.qn; if (P.cur !== key) { P.cur = key; P.shown = Date.now(); } if (s.k === "q") { if (!P.qShown || P.qShown[0] !== key) P.qShown = [key, Date.now()]; P.deadline = Date.now() + (s.left || 0); } }
+  if (s && s.k === "gk") gkLoad(s);
+  P.s = s; draw();
+}
+
+/* ---------- screens ---------- */
+const app = () => $("#app");
+function draw() {
+  const el = app(); if (!el) return;
+  el.className = "scr-" + P.scr;
+  if (P.scr === "code") return el.innerHTML = codeView();
+  if (P.scr === "name") return el.innerHTML = nameView();
+  const s = P.s;
+  let body;
+  if (P.kicked) body = msgView("👋", "You left the game", "Você saiu do jogo.");
+  else if (!s) body = msgView("⏳", P.conn ? "Waiting for the teacher…" : "Connecting…", P.conn ? "Esperando o professor…" : "Conectando…");
+  else body = ({ lobby: lobbyView, get: getView, q: qView, rev: revView, board: boardView, end: endView, gk: gkView, closed: () => msgView("🏁", "The game is closed", "O jogo foi encerrado. Obrigado!") }[s.k] || (() => msgView("⏳", "Waiting…", "Esperando…")))(s);
+  el.innerHTML = `<div class="bar"><span class="me">${P.e} <b>${esc(P.n)}</b></span><span class="sp"></span>${P.conn ? "" : `<span class="off">Reconnecting… · Reconectando…</span>`}<span class="cd">#${esc(P.code)}</span></div>${body}`;
+  if (s && s.k === "q") tickBar();
+}
+function msgView(e, t, pt) { return `<div class="msg"><div class="big">${e}</div><h1>${esc(t)}</h1><p>${esc(pt)}</p></div>`; }
+function codeView() {
+  return `<div class="card"><div class="brand"><span class="st">Start</span><span class="it">it</span> <small>live</small></div><h1>Game code</h1><p class="pt">Digite o código que está na tela do professor.</p>
+    <input id="code" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="0000" value="${esc(P.code)}" autocomplete="off"><button class="go" data-a="code">Next ▸</button></div>`;
+}
+function nameView() {
+  return `<div class="card"><div class="brand"><span class="st">Start</span><span class="it">it</span> <small>live · #${esc(P.code)}</small></div><h1>Your name</h1><p class="pt">Seu nome ou apelido (só o primeiro nome).</p>
+    <input id="nm" maxlength="16" placeholder="e.g. Ana" value="${esc(P.n)}" autocomplete="off" autocapitalize="words">
+    <div class="lbl">Choose your animal · Escolha seu bicho</div><div class="emos">${AV.map(e => `<button class="${e === P.e ? "on" : ""}" data-a="emo" data-e="${e}">${e}</button>`).join("")}</div>
+    <button class="go" data-a="join">Join the game ▸</button></div>`;
+}
+function lobbyView(s) {
+  const n = s.pl ? Object.keys(s.pl).length : 0;
+  return `<div class="msg"><div class="big av">${P.e}</div><h1>You're in!</h1><p>Você entrou! Look at the teacher's screen.</p>${s.title ? `<div class="pill">📘 ${esc(s.title)}</div>` : ""}<div class="pill">👥 ${n} player${n === 1 ? "" : "s"}</div><button class="ghost" data-a="rename">Change name · Mudar nome</button></div>`;
+}
+function qhead(s, extra = "") { return `<div class="qh"><span>Question ${s.qn + 1} / ${s.tot}</span>${extra}</div>`; }
+function qtext(q) { const L = q.length; return `<div class="qt" style="font-size:${L > 100 ? 19 : L > 60 ? 22 : 26}px">${esc(q).replace(/_{3,}/g, '<span class="gap"></span>')}</div>`; }
+function getView(s) { return `${qhead(s)}${qtext(s.q)}<div class="msg sm"><div class="spin"></div><p>Get ready… · Prepare-se…</p></div>`; }
+function qView(s) {
+  const key = s.g + ":" + s.qn, mine = ans()[key];
+  if (mine != null) return `${qhead(s)}${qtext(s.q)}<div class="chosen" style="--c:${COL[mine][0]}"><span>${COL[mine][1]}</span>${esc(s.o[mine])}</div><div class="msg sm"><div class="big">👍</div><h1>Answer sent!</h1><p>Resposta enviada. Wait for the others…</p></div>`;
+  if (Date.now() > P.deadline) return `${qhead(s)}${qtext(s.q)}<div class="msg sm"><div class="big">⏰</div><h1>Time's up!</h1><p>Acabou o tempo.</p></div>`;
+  return `${qhead(s)}<div class="tbar"><i id="tb"></i></div>${qtext(s.q)}<div class="opts n${s.o.length}">${s.o.map((o, i) => `<button class="opt" style="--c:${COL[i][0]}" data-a="ans" data-i="${i}"><span class="sh">${COL[i][1]}</span><span class="ot">${esc(o)}</span></button>`).join("")}</div>`;
+}
+function tickBar() { const tb = $("#tb"); if (!tb || !P.s || !P.s.dur) return; const left = Math.max(0, P.deadline - Date.now()); tb.style.transition = "none"; tb.style.width = (left / (P.s.dur * 1000) * 100) + "%"; requestAnimationFrame(() => { tb.style.transition = `width ${left}ms linear`; tb.style.width = "0%"; }); clearTimeout(P.tbT); P.tbT = setTimeout(() => { if (P.s && P.s.k === "q") draw(); }, left + 80); }
+function ans() { try { return JSON.parse(sessionStorage.getItem("sit-ans-" + P.code) || "{}"); } catch (e) { return {}; } }
+function setAns(k, v) { const a = ans(); a[k] = v; try { sessionStorage.setItem("sit-ans-" + P.code, JSON.stringify(a)); } catch (e) { } }
+function revView(s) {
+  const r = s.res && s.res[P.id], right = `<div class="chosen ok" style="--c:${COL[s.a][0]}"><span>${COL[s.a][1]}</span>${esc(s.o[s.a])}</div>`;
+  if (!r) return `${qhead(s)}<div class="msg sm"><h1>The answer:</h1></div>${right}`;
+  const [pts, tot, rank, ok, sk] = r;
+  if (ok === 1) { buzzOnce("ok" + s.g + s.qn, 40); return `<div class="res ok"><div class="big">✅</div><h1>Correct!</h1><div class="pts">+${fmt(pts)}</div>${sk >= 2 ? `<div class="pill">🔥 ${sk} in a row! · ${sk} seguidas!</div>` : ""}<p>${ord(rank)} place · ${fmt(tot)} points</p></div>`; }
+  buzzOnce("no" + s.g + s.qn, [30, 50, 30]);
+  return `<div class="res no"><div class="big">${ok === 0 ? "❌" : "⏰"}</div><h1>${ok === 0 ? "Not this time" : "No answer"}</h1><p>${ok === 0 ? "Não foi dessa vez." : "Você não respondeu."} The answer is:</p>${right}<p>${ord(rank)} place · ${fmt(tot)} points</p></div>`;
+}
+const buzzed = new Set(); function buzzOnce(k, p) { if (!buzzed.has(k)) { buzzed.add(k); buzz(p); } }
+function topList(top, money) { return `<div class="top">${(top || []).map(t => `<div class="${t[0] === P.n && t[1] === P.e ? "me" : ""}"><span class="rk">${t[3]}</span><span>${t[1]}</span><b>${esc(t[0])}</b><span class="sc">${money ? "$" : ""}${fmt(t[2])}</span></div>`).join("")}</div>`; }
+function boardView(s) {
+  const r = s.res && s.res[P.id];
+  return `${qhead(s)}<div class="msg sm">${r ? `<div class="big">${r[1] <= 3 ? ["🥇", "🥈", "🥉"][r[1] - 1] : "🏅"}</div><h1>You're ${ord(r[1])}</h1><p>${fmt(r[0])} points</p>` : `<h1>Scoreboard</h1>`}</div>${topList(s.top)}`;
+}
+function endView(s) {
+  const r = s.res && s.res[P.id], money = !!s.gk;
+  if (r) buzzOnce("end" + s.g, r[1] === 1 ? [60, 60, 60, 60, 200] : 60);
+  return `<div class="msg sm">${r ? `<div class="big">${r[1] <= 3 ? ["🥇", "🥈", "🥉"][r[1] - 1] : "🎉"}</div><h1>${r[1] === 1 ? "You won! · Você venceu!" : `You finished ${ord(r[1])}`}</h1><p>${money ? "$" : ""}${fmt(r[0])}${money ? "" : " points"} · ${s.np || ""} players</p>` : `<div class="big">🏁</div><h1>Game over</h1>`}</div>${topList(s.top, money)}<p class="thanks">Great job! · Mandou bem!</p>`;
+}
+
+/* ---------- 💰 own pace ---------- */
+function gkLoad(s) {
+  const key = "sit-gk-" + P.code + "-" + s.g;
+  if (!P.gk || P.gk.g !== s.g) { let o = null; try { o = JSON.parse(ls.get(key, "null")); } catch (e) { } P.gk = Object.assign({ g: s.g, mo: 0, c: 0, w: 0, s: 0, up: { mpq: 0, sb: 0, mul: 0, ins: 0 }, cur: null, last: -1, shop: false }, o || {}); P.gk.fb = null; P.gk.key = key; }
+  P.gk.bank = s.bank; P.gk.end = Date.now() + (s.left || 0);
+  if (P.gk.cur == null || !P.gk.bank[P.gk.cur]) gkNext();
+  clearTimeout(P.gkT); P.gkT = setTimeout(draw, (s.left || 0) + 100);
+}
+function gkSave() { const g = P.gk, o = { g: g.g, mo: g.mo, c: g.c, w: g.w, s: g.s, up: g.up, cur: g.cur, last: g.last }; ls.set(g.key, JSON.stringify(o)); }
+function gkNext() { const g = P.gk, n = g.bank.length; let i = Math.floor(Math.random() * n); if (n > 1 && i === g.last) i = (i + 1) % n; g.cur = i; g.last = i; g.fb = null; g.shown = Date.now(); }
+const gkVal = k => { const u = GKU.find(x => x[0] === k); return u[4][P.gk.up[k]]; };
+function gkReport() { const g = P.gk; send({ t: "gk", g: g.g, mo: g.mo, c: g.c, w: g.w, s: g.s }); }
+function gkAnswer(i) {
+  const g = P.gk; if (g.fb || Date.now() > g.end) return; const Q = g.bank[g.cur], ok = i === Q[2];
+  let d;
+  if (ok) { d = Math.round((gkVal("mpq") + gkVal("sb") * g.s) * gkVal("mul")); g.mo += d; g.c++; g.s++; buzz(25); }
+  else { d = -Math.min(g.mo, Math.round(gkVal("mpq") * (1 - gkVal("ins") / 100))); g.mo += d; g.w++; g.s = 0; buzz([30, 40, 30]); }
+  g.fb = { ok, d, a: Q[2], pick: i }; gkSave(); gkReport(); draw();
+  clearTimeout(P.fbT); P.fbT = setTimeout(() => { gkNext(); gkSave(); draw(); }, ok ? 700 : 1700);
+}
+function gkBuy(k) {
+  const g = P.gk, u = GKU.find(x => x[0] === k), lv = g.up[k]; if (lv + 1 >= u[4].length) return; const cost = u[5][lv + 1]; if (g.mo < cost) return;
+  g.mo -= cost; g.up[k] = lv + 1; gkSave(); gkReport(); buzz(20); draw();
+}
+function gkView(s) {
+  const g = P.gk; if (!g) return msgView("⏳", "Loading…", "Carregando…");
+  const left = Math.max(0, g.end - Date.now()), sec = Math.ceil(left / 1000);
+  const head = `<div class="gkh"><span class="mo">💰 $${fmt(g.mo)}</span>${g.s >= 2 ? `<span class="pill">🔥 ${g.s}</span>` : ""}<span class="sp"></span><span class="tm">⏱ ${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}</span><button class="shopb ${g.shop ? "on" : ""}" data-a="shop">${g.shop ? "✕ Close" : "🛒 Shop"}</button></div>`;
+  clearTimeout(P.clkT); if (left > 0) P.clkT = setTimeout(() => { if (P.s && P.s.k === "gk") draw(); }, 1000);
+  if (!left) return head + msgView("⏰", "Time's up!", "Acabou o tempo! Look at the screen.");
+  if (g.shop) return head + `<div class="shop">${GKU.map(u => { const lv = g.up[u[0]], max = lv + 1 >= u[4].length, cost = max ? 0 : u[5][lv + 1]; return `<div class="up"><div class="ui">${u[1]}</div><div class="ut"><b>${u[2]}</b><small>${esc(u[3])}</small><span class="lvls">${u[4].map((v, j) => `<i class="${j <= lv ? "on" : ""}">${u[6](v)}</i>`).join("")}</span></div>${max ? `<span class="maxd">MAX</span>` : `<button class="buy" data-a="buy" data-k="${u[0]}" ${g.mo < cost ? "disabled" : ""}>$${fmt(cost)}</button>`}</div>`; }).join("")}</div>`;
+  const Q = g.bank[g.cur]; if (!Q) return head;
+  if (g.fb) {
+    const f = g.fb;
+    return head + `<div class="res ${f.ok ? "ok" : "no"} gkf"><div class="big">${f.ok ? "✅" : "❌"}</div><div class="pts">${f.d >= 0 ? "+" : "−"}$${fmt(Math.abs(f.d))}</div>${f.ok ? "" : `<p>The answer is:</p><div class="chosen ok" style="--c:${COL[f.a][0]}"><span>${COL[f.a][1]}</span>${esc(Q[1][f.a])}</div>`}</div>`;
+  }
+  return head + qtext(Q[0]) + `<div class="opts n${Q[1].length}">${Q[1].map((o, i) => `<button class="opt" style="--c:${COL[i][0]}" data-a="gans" data-i="${i}"><span class="sh">${COL[i][1]}</span><span class="ot">${esc(o)}</span></button>`).join("")}</div>`;
+}
+
+/* ---------- taps ---------- */
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-a]"); if (!b) return; const a = b.dataset.a;
+  if (a === "code") { const v = ($("#code").value || "").replace(/\D/g, ""); if (v.length !== 4) { $("#code").focus(); return; } P.code = v; history.replaceState(null, "", "#" + v + "b" + P.bi); P.scr = "name"; draw(); setTimeout(() => $("#nm") && $("#nm").focus(), 50); }
+  if (a === "emo") { P.e = b.dataset.e; document.querySelectorAll(".emos button").forEach(x => x.classList.toggle("on", x === b)); ls.set("sit-live-emo", P.e); }
+  if (a === "join") { const n = ($("#nm").value || "").replace(/[<>"]/g, "").replace(/\s+/g, " ").trim().slice(0, 16); if (!n) { $("#nm").focus(); return; } P.n = n; ls.set("sit-live-name", n); P.scr = "game"; lock(); if (P.conn) sendJoin(); else connect(); draw(); }
+  if (a === "rename") { P.scr = "name"; draw(); }
+  if (a === "ans") { const s = P.s; if (!s || s.k !== "q" || Date.now() > P.deadline) return; const key = s.g + ":" + s.qn; if (ans()[key] != null) return; const i = +b.dataset.i; setAns(key, i); send({ t: "ans", g: s.g, q: s.qn, a: i, ms: Date.now() - (P.qShown && P.qShown[0] === key ? P.qShown[1] : Date.now()) }); buzz(15); draw(); }
+  if (a === "gans") gkAnswer(+b.dataset.i);
+  if (a === "shop") { P.gk.shop = !P.gk.shop; draw(); }
+  if (a === "buy") gkBuy(b.dataset.k);
+});
+document.addEventListener("keydown", e => { if (e.key === "Enter") { const go = document.querySelector(".go"); if (go) go.click(); } });
+window.addEventListener("hashchange", () => { const old = P.code; readHash(); if (P.code !== old) location.reload(); });
+readHash(); P.scr = P.code ? "name" : "code"; draw();
+</script></body></html>
