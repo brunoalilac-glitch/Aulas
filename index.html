@@ -8112,6 +8112,1176 @@ Object.assign(VIDEOS, {
   "a2-journey": ["w5mJPQdWsYA", "How English Changed My Life"],
 });
 
+/* ✨ Extra lessons — A0 and A1 (themed + music). Same topics as the teacher's extra lessons (src/c2-x.js), different exercises. */
+
+/* ---------------- A0 ---------------- */
+CONTENT["x-a0-animals"] = {
+  lesson: [
+    { h: "Animal bodies || O corpo dos animais", say: ["A bird has feathers. || Um pássaro tem penas.", "A cat has whiskers. || Um gato tem bigodes.", "A fish has fins. || Um peixe tem nadadeiras.", "An elephant has a trunk. || Um elefante tem uma tromba."] },
+    { h: "It has · They have", table: [["one animal", "two or more"], ["It **has** a long tail.", "They **have** long tails."], ["It **doesn't have** legs.", "They **don't have** legs."], ["**Does** it **have** wings?", "**Do** they **have** wings?"]] },
+    { trap: { wrong: "The dog have a long tail.", right: "The dog has a long tail. || O cachorro tem um rabo comprido.", note: "he / she / it → has. || Para um animal: has." } }
+  ],
+  vocab: [["feathers", "penas"], ["a beak", "um bico"], ["fur", "pelo"], ["whiskers", "bigodes (de gato)"], ["a tail", "um rabo"], ["wings", "asas"], ["fins", "nadadeiras"], ["a trunk", "uma tromba"], ["paws", "patas"], ["a shell", "uma casca / um casco"]],
+  ex: [
+    MC("A bird ___ feathers.", ["has", "have", "is"], 0),
+    MC("Snakes ___ legs.", ["don't have", "doesn't have", "not have"], 0),
+    MC("O que o elefante tem? →", ["It has a trunk.", "It have a trunk.", "It is a trunk."], 0),
+    FILL("A fish has ___. It can swim. || nadadeiras", ["fins"], null, ["fins", "wings", "whiskers"]),
+    FILL("___ a turtle have a shell? — Yes, it does.", ["Does"], null, ["Does", "Do", "Is"]),
+    ORD(["The cat has long whiskers."]),
+    ORD(["Do penguins have wings?"]),
+    FIX("The parrot have green feathers.", ["The parrot has green feathers."]),
+    TR("O cachorro tem um rabo comprido.", ["The dog has a long tail.", "The dog has got a long tail."]),
+    TR("Cobras não têm pernas.", ["Snakes don't have legs.", "Snakes do not have legs.", "Snakes haven't got legs."]),
+    LIS("A bird has a beak and two wings."),
+    LIS("Fish don't have legs.")
+  ],
+  mission: { title: "Animal riddle", text: "Write a riddle about an animal for your family. || Escreva uma charada sobre um animal.", steps: ["Write 3 sentences: It has… It doesn't have… || 3 frases", "Don't say the name! || Não diga o nome!", "Your family guesses. || Sua família adivinha."] }
+};
+L("x-a0-animals", {
+  r: ["Amazing animals", "Penguins are birds, but they can't fly. They have wings, but they use them to swim!\nAn octopus has eight arms and three hearts. It doesn't have bones.\nA cat has whiskers. They help it in the dark.\nAnd the giraffe? It has a very long neck and a very long tongue — about 50 centimeters!",
+    [["Penguins can fly. || Pinguins voam.", false], ["An octopus has three hearts. || O polvo tem três corações.", true], ["Cats have whiskers. || Gatos têm bigodes.", true], ["A giraffe has a short tongue. || A girafa tem a língua curta.", false]],
+    "Which animal is the most amazing for you? Why? || Qual animal é o mais incrível para você?", [["octopus", "polvo"], ["bones", "ossos"], ["neck", "pescoço"], ["tongue", "língua"]]],
+  a: "Describe your favourite animal in 4 sentences: It has… It doesn't have… || Descreva seu animal favorito."
+});
+
+CONTENT["x-a0-bag"] = {
+  lesson: [
+    { h: "Near me · Far from me || Perto · Longe", table: [["", "near (perto)", "far (longe)"], ["one", "**this** key", "**that** key"], ["two or more", "**these** keys", "**those** keys"]] },
+    { h: "What's this? What are these?", say: ["What's this? — It's a charger. || O que é isto? — É um carregador.", "What are these? — They're my keys. || O que são estes? — São minhas chaves.", "Is that your wallet? — Yes, it is. || Aquela é sua carteira? — Sim.", "Are those your glasses? — No, they aren't. || Aqueles são seus óculos? — Não."] },
+    { trap: { wrong: "This are my keys.", right: "These are my keys. || Estas são minhas chaves.", note: "Plural → these / those + are. || Plural: these / those." } }
+  ],
+  vocab: [["keys", "chaves"], ["a wallet", "uma carteira"], ["a charger", "um carregador"], ["headphones", "fones de ouvido"], ["a water bottle", "uma garrafa de água"], ["sunglasses", "óculos de sol"], ["an umbrella", "um guarda-chuva"], ["a notebook", "um caderno"], ["tissues", "lenços de papel"], ["a lipstick", "um batom"]],
+  ex: [
+    MC("___ are my headphones. (near)", ["These", "This", "That"], 0),
+    MC("Is ___ your umbrella over there?", ["that", "these", "those"], 0),
+    MC("What's this? —", ["It's a charger.", "They're a charger.", "It a charger."], 0),
+    FILL("What are ___? — They're my sunglasses. (near)", ["these"], null, ["these", "this", "that"]),
+    FILL("Are those your keys? — Yes, they ___.", ["are"], null, ["are", "is", "do"]),
+    ORD(["Is this your wallet?"]),
+    ORD(["Those are my new sneakers."]),
+    FIX("This are my tissues.", ["These are my tissues."]),
+    TR("O que é isto? É um carregador.", ["What's this? It's a charger.", "What is this? It is a charger."]),
+    TR("Aqueles são seus óculos de sol?", ["Are those your sunglasses?"]),
+    LIS("These are my keys and this is my wallet."),
+    LIS("Is that your umbrella?")
+  ],
+  mission: { title: "What's in my bag?", text: "Open your bag and take a photo. || Abra sua bolsa e tire uma foto.", steps: ["Say 6 things: This is… These are… || Diga 6 coisas", "Record a 30-second video or audio. || Grave 30 segundos", "Send it to your teacher. || Envie para o professor"] }
+};
+L("x-a0-bag", {
+  r: ["What's in Leo's backpack?", "Hi! I'm Leo. This is my backpack. It's blue and it's very heavy!\nThese are my books and this is my notebook. That's my water bottle — it's always with me.\nI have a charger, headphones and some snacks. And this? It's an old ticket from a concert. I love it!",
+    [["Leo's backpack is blue. || A mochila é azul.", true], ["The backpack is light. || A mochila é leve.", false], ["Leo has headphones. || Leo tem fones.", true], ["The old ticket is from a movie. || O ingresso é de um filme.", false]],
+    "What's always in your bag? || O que sempre está na sua bolsa?", [["backpack", "mochila"], ["heavy", "pesado"], ["snacks", "lanchinhos"], ["ticket", "ingresso"]]],
+  a: "Show your bag: say 5 things with this / these / that / those. || Mostre sua bolsa: 5 coisas."
+});
+
+CONTENT["x-a0-market"] = {
+  lesson: [
+    { h: "Containers || Embalagens", say: ["a bottle of water || uma garrafa de água", "a can of soda || uma lata de refrigerante", "a bag of rice || um pacote de arroz", "a dozen eggs || uma dúzia de ovos"] },
+    { h: "How much? || Quanto custa?", table: [["one thing", "two or more"], ["How much **is** it?", "How much **are** they?"], ["It's 5 reais.", "They're 10 reais."], ["How much is this jar of jam?", "How much are these apples?"]] },
+    { trap: { wrong: "Two bottle of milk.", right: "Two bottles of milk. || Duas garrafas de leite.", note: "The container gets the -s. || O plural vai na embalagem." } }
+  ],
+  vocab: [["a bottle of", "uma garrafa de"], ["a can of", "uma lata de"], ["a bag of", "um pacote / saco de"], ["a box of", "uma caixa de"], ["a jar of", "um pote de"], ["a carton of", "uma caixa de (leite, suco)"], ["a dozen", "uma dúzia"], ["a loaf of bread", "um pão (inteiro)"], ["a cart", "um carrinho"], ["the checkout", "o caixa"]],
+  ex: [
+    MC("How much ___ these bananas?", ["are", "is", "am"], 0),
+    MC("I need two ___ of water.", ["bottles", "bottle", "bottlees"], 0),
+    MC("Uma lata de refrigerante →", ["a can of soda", "a bottle of soda", "a soda of can"], 0),
+    FILL("A ___ eggs, please. || dúzia", ["dozen"], null, ["dozen", "box", "jar"]),
+    FILL("How much is this ___ of jam? || pote", ["jar"], null, ["jar", "carton", "loaf"]),
+    ORD(["How much are these apples?"]),
+    ORD(["I need a bag of rice."]),
+    FIX("Three box of cereal, please.", ["Three boxes of cereal, please."]),
+    TR("Quanto custa este pote de geleia?", ["How much is this jar of jam?"]),
+    TR("Duas caixas de leite, por favor.", ["Two cartons of milk, please."]),
+    LIS("How much is a bottle of water?"),
+    LIS("I need three cans of soda.")
+  ],
+  mission: { title: "Shopping list in English", text: "Write your next shopping list in English. || Escreva sua próxima lista de compras em inglês.", steps: ["8 items with containers: a bag of… || 8 itens", "Take it to the supermarket! || Leve ao mercado!", "Find the price of 3 things: It's… || Ache 3 preços"] }
+};
+L("x-a0-market", {
+  r: ["Saturday at the supermarket", "Every Saturday, Bia goes to the supermarket with her dad. They have a list.\nThey need a bag of rice, a dozen eggs, two cartons of milk and a loaf of bread. Bia wants a box of chocolates, but her dad says no!\nAt the checkout, Bia asks: “How much is it?” The cashier says: “It's 85 reais.”",
+    [["Bia goes to the supermarket on Sunday. || Ela vai no domingo.", false], ["They need two cartons of milk. || Duas caixas de leite.", true], ["Her dad buys the chocolates. || O pai compra os chocolates.", false], ["It's 85 reais. || Custa 85 reais.", true]],
+    "What's always on your shopping list? || O que sempre está na sua lista?", [["list", "lista"], ["loaf", "pão inteiro"], ["checkout", "caixa"], ["cashier", "atendente do caixa"]]],
+  a: "Say your shopping list: 6 items with a bottle of, a bag of… || Diga sua lista de compras."
+});
+
+CONTENT["m-a0-count"] = {
+  song: { t: "Count on Me", a: "Bruno Mars", listen: "Listen for the numbers! How many can you hear? || Preste atenção nos números!" },
+  lesson: [
+    { h: "Friends || Amigos", say: ["You're my best friend. || Você é meu melhor amigo.", "We're friends. || Nós somos amigos.", "I'm here for you. || Estou aqui por você.", "You can count on me. || Você pode contar comigo."] },
+    { h: "I'm, you're, we're…", table: [["long", "short"], ["I am", "I'm"], ["you are", "you're"], ["he is / she is", "he's / she's"], ["we are / they are", "we're / they're"]] },
+    { trap: { wrong: "We is friends.", right: "We're friends. || Nós somos amigos.", note: "we / you / they → are. || we, you, they: are." } }
+  ],
+  vocab: [["a friend", "um amigo / uma amiga"], ["a best friend", "um melhor amigo"], ["to help", "ajudar"], ["to call", "ligar"], ["to need", "precisar"], ["to count on", "contar com"], ["the sea", "o mar"], ["to cry", "chorar"]],
+  ex: [
+    MC("They ___ my friends.", ["are", "is", "am"], 0),
+    MC("___ is my best friend.", ["She", "Her", "We"], 0),
+    MC("Eu estou aqui por você. →", ["I'm here for you.", "I'm here to you.", "I are here for you."], 0),
+    FILL("___ friends. We play soccer together. || Nós somos", ["We're", "We are"], null, ["We're", "We's", "Us are"]),
+    FILL("You can count ___ me. || contar comigo", ["on"], null, ["on", "in", "at"]),
+    ORD(["You're my best friend."]),
+    ORD(["We are always there for you."]),
+    FIX("They is good friends.", ["They are good friends.", "They're good friends."]),
+    TR("Nós somos melhores amigos.", ["We're best friends.", "We are best friends."]),
+    TR("Você pode contar comigo.", ["You can count on me."]),
+    LIS("She's my best friend."),
+    LIS("We're good friends.")
+  ],
+  mission: { title: "A message to a friend", text: "Send a message in English to a friend today. || Mande uma mensagem em inglês para um amigo.", steps: ["Write 3 sentences: You're… We're… I'm… || 3 frases", "Add an emoji 💛 || Um emoji", "Tell your teacher the answer! || Conte a resposta"] }
+};
+L("m-a0-count", {
+  r: ["My best friend", "My best friend is Duda. She's 16 and she's very funny.\nWe're in the same class. We're always together! When I'm sad, she calls me. When she's tired, I help her.\nWe're very different: I'm quiet and she's very talkative. But we're best friends!",
+    [["Duda is 16. || A Duda tem 16 anos.", true], ["They are in different classes. || Estão em turmas diferentes.", false], ["Duda calls when her friend is sad. || Ela liga quando a amiga está triste.", true], ["They are very similar. || Elas são muito parecidas.", false]],
+    "Who is your best friend? Why? || Quem é seu melhor amigo?", [["funny", "engraçado"], ["together", "juntos"], ["quiet", "quieto"], ["talkative", "falante"]]],
+  a: "Talk about your best friend: 4 sentences with he's / she's / we're. || Fale do seu melhor amigo."
+});
+
+CONTENT["m-a0-happy"] = {
+  song: { t: "Happy", a: "Pharrell Williams", listen: "Clap every time you hear “happy”! || Bata palmas quando ouvir “happy”!" },
+  lesson: [
+    { h: "How do you feel? || Como você está?", say: ["I'm happy! || Estou feliz!", "She's tired. || Ela está cansada.", "We're excited! || Estamos animados!", "They're bored. || Eles estão entediados."] },
+    { h: "be + feelings", forms: { aff: ["I'm happy today. || Estou feliz hoje."], neg: ["He isn't angry. || Ele não está bravo."], int: ["Are you tired? — Yes, I am. || Você está cansado?"] } },
+    { trap: { wrong: "I have tired.", right: "I'm tired. || Estou cansado.", note: "Feelings use be, not have. || Sentimentos: be." } }
+  ],
+  vocab: [["happy", "feliz"], ["sad", "triste"], ["tired", "cansado"], ["angry", "bravo / irritado"], ["excited", "animado / empolgado"], ["bored", "entediado"], ["to clap", "bater palmas"], ["to dance", "dançar"]],
+  ex: [
+    MC("I ___ very happy today!", ["am", "is", "are"], 0),
+    MC("___ you tired?", ["Are", "Is", "Do"], 0),
+    MC("Ela não está triste. →", ["She isn't sad.", "She don't sad.", "She not is sad."], 0),
+    FILL("My team won! I'm so ___! || feliz", ["happy"], null, ["happy", "sad", "bored"]),
+    FILL("Is he angry? — No, he ___.", ["isn't", "is not"], null, ["isn't", "aren't", "don't"]),
+    ORD(["Are you excited about the party?"]),
+    ORD(["We aren't bored."]),
+    FIX("I have tired today.", ["I'm tired today.", "I am tired today."]),
+    TR("Eu estou muito cansado.", ["I'm very tired.", "I am very tired."]),
+    TR("Vocês estão animados?", ["Are you excited?"]),
+    LIS("I'm happy because it's Friday."),
+    LIS("Are you bored?")
+  ],
+  mission: { title: "Feelings diary", text: "For 3 days, write how you feel and why. || Por 3 dias, escreva como se sente.", steps: ["I'm… because… || Estou… porque…", "One sentence each day || Uma frase por dia", "Show your teacher || Mostre ao professor"] }
+};
+L("m-a0-happy", {
+  r: ["A happy song", "“Happy” is a very famous song. It's from 2013 and it's from the movie Despicable Me 2.\nPeople all over the world made videos with the song. They are dancing in the streets, in schools and in hospitals!\nWhen I'm sad, I listen to it. Then I'm happy again!",
+    [["The song is from 2013. || É de 2013.", true], ["The song is from a Disney movie. || É de um filme da Disney.", false], ["People made videos with the song. || Fizeram vídeos.", true], ["The writer is sad after the song. || O autor fica triste.", false]],
+    "What song makes you happy? || Que música te deixa feliz?", [["famous", "famoso"], ["all over the world", "no mundo todo"], ["streets", "ruas"], ["again", "de novo"]]],
+  a: "How do you feel today? Why? Say 4 sentences. || Como você está hoje? Por quê?"
+});
+
+CONTENT["m-a0-beautiful"] = {
+  song: { t: "What Makes You Beautiful", a: "One Direction", listen: "Listen: is it you're or your? || Preste atenção: you're ou your?" },
+  lesson: [
+    { h: "you're or your?", table: [["you're = you are", "your = seu / sua"], ["**You're** beautiful.", "**Your** eyes are green."], ["**You're** my friend.", "I love **your** smile."]] },
+    { h: "Compliments || Elogios", say: ["You're very confident. || Você é muito confiante.", "Your smile is beautiful. || Seu sorriso é lindo.", "I like your hair. || Gosto do seu cabelo.", "You're different — and that's great! || Você é diferente — e isso é ótimo!"] },
+    { trap: { wrong: "Your very shy.", right: "You're very shy. || Você é muito tímido.", note: "Can you say “you are”? Then write you're. || Dá pra dizer “you are”? Então é you're." } }
+  ],
+  vocab: [["beautiful", "lindo / bonito"], ["shy", "tímido"], ["confident", "confiante"], ["insecure", "inseguro"], ["a smile", "um sorriso"], ["eyes", "olhos"], ["hair", "cabelo"], ["different", "diferente"]],
+  ex: [
+    MC("___ eyes are blue.", ["Your", "You're", "You"], 0),
+    MC("___ my best friend.", ["You're", "Your", "You is"], 0),
+    MC("Gosto do seu sorriso. →", ["I like your smile.", "I like you're smile.", "I like you smile."], 0),
+    FILL("___ very confident! || Você é", ["You're", "You are"], null, ["You're", "Your", "You"]),
+    FILL("I love ___ hair! || seu", ["your"], null, ["your", "you're", "you"]),
+    ORD(["Your smile is beautiful."]),
+    ORD(["You're not shy."]),
+    FIX("Your amazing!", ["You're amazing!", "You are amazing!"]),
+    TR("Você é muito tímida.", ["You're very shy.", "You are very shy."]),
+    TR("Seus olhos são verdes.", ["Your eyes are green."]),
+    LIS("You're very confident."),
+    LIS("Your hair is beautiful.")
+  ],
+  mission: { title: "Compliment day", text: "Give 3 compliments in English today — for real! || Faça 3 elogios em inglês hoje!", steps: ["2 with you're, 1 with your || 2 com you're, 1 com your", "Write them down || Anote", "Tell your teacher how people reacted || Conte como reagiram"] }
+};
+L("m-a0-beautiful", {
+  r: ["Shy or confident?", "My name is Gabi. I'm 15 and I'm very shy. At school, I don't talk a lot.\nMy friend Lara is very confident. She talks to everybody!\nOne day, Lara said: “Your drawings are amazing! You're an artist!” Now I'm not so shy. I show my drawings to everybody.",
+    [["Gabi is very shy. || A Gabi é muito tímida.", true], ["Lara is shy too. || A Lara também é tímida.", false], ["Gabi draws very well. || A Gabi desenha muito bem.", true], ["Gabi never shows her drawings. || Ela nunca mostra os desenhos.", false]],
+    "Are you shy or confident? || Você é tímido ou confiante?", [["drawings", "desenhos"], ["everybody", "todo mundo"], ["artist", "artista"], ["not so", "não tão"]]],
+  a: "Say 3 compliments to people you love: 2 with you're, 1 with your. || 3 elogios."
+});
+
+/* ---------------- A1 ---------------- */
+CONTENT["x-a1-powers"] = {
+  lesson: [
+    { h: "Superpowers || Superpoderes", say: ["I can fly. || Eu consigo voar.", "She can read minds. || Ela lê mentes.", "He can't become invisible. || Ele não consegue ficar invisível.", "Can you run very fast? — Yes, I can. || Você corre muito rápido?"] },
+    { h: "can · can't", forms: { aff: ["I can swim very well. || Eu nado muito bem."], neg: ["I can't cook at all. || Não sei cozinhar nada."], int: ["Can he drive? — No, he can't. || Ele sabe dirigir?"] } },
+    { trap: { wrong: "I can to swim.", right: "I can swim. || Eu sei nadar.", note: "can + verb, without to. || can + verbo, sem to." } }
+  ],
+  vocab: [["to fly", "voar"], ["to read minds", "ler mentes"], ["invisible", "invisível"], ["strong", "forte"], ["fast", "rápido"], ["well", "bem"], ["at all", "nada / de jeito nenhum"], ["a superhero", "um super-herói"], ["to save", "salvar"], ["to climb", "escalar"]],
+  ex: [
+    MC("Superman ___ fly.", ["can", "cans", "can to"], 0),
+    MC("___ you speak Spanish?", ["Can", "Do can", "Are"], 0),
+    MC("Eu não sei cozinhar nada. →", ["I can't cook at all.", "I can cook at all.", "I don't can cook."], 0),
+    FILL("She can sing very ___. || bem", ["well"], null, ["well", "good", "fast"]),
+    FILL("Can he swim? — No, he ___.", ["can't", "cannot"], null, ["can't", "doesn't", "isn't"]),
+    ORD(["Can you climb walls?"]),
+    ORD(["My brother can run very fast."]),
+    FIX("He cans read minds.", ["He can read minds."]),
+    TR("Eu consigo correr muito rápido.", ["I can run very fast."]),
+    TR("Você sabe dirigir?", ["Can you drive?"]),
+    LIS("I can't swim at all."),
+    LIS("Can she fly? No, she can't.")
+  ],
+  mission: { title: "My superhero", text: "Create a superhero and draw it! || Crie um super-herói e desenhe!", steps: ["Name and costume || Nome e roupa", "3 things he/she can do, 1 thing he/she can't do || 3 can, 1 can't", "Present it in the next class || Apresente na próxima aula"] }
+};
+L("x-a1-powers", {
+  r: ["Real-life superpowers", "Some people have real “superpowers”!\nA few people in the world can remember every day of their life. Ask them about 12 March 2015 — they can tell you what they ate!\nWim Hof, from the Netherlands, can stay in ice for almost two hours. And some free divers can hold their breath for more than ten minutes.\nBut nobody can fly… yet!",
+    [["Some people can remember every day of their life. || Algumas pessoas lembram de todos os dias.", true], ["Wim Hof is from Brazil. || Wim Hof é do Brasil.", false], ["Some divers can hold their breath for 10 minutes. || Alguns mergulhadores prendem a respiração 10 minutos.", true], ["Some people can fly. || Algumas pessoas voam.", false]],
+    "What real superpower do you want? || Que superpoder real você queria?", [["remember", "lembrar"], ["ice", "gelo"], ["hold their breath", "prender a respiração"], ["yet", "ainda"]]],
+  a: "Say 3 things you can do well and 2 things you can't do at all. || 3 coisas que você faz bem e 2 que não faz."
+});
+
+CONTENT["x-a1-sports"] = {
+  lesson: [
+    { h: "play · do · go", table: [["play + ball games", "do + activities", "go + -ing"], ["play soccer", "do yoga", "go swimming"], ["play tennis", "do judo", "go running"], ["play volleyball", "do gymnastics", "go cycling"]] },
+    { h: "Talking about sports || Falando de esportes", say: ["I play volleyball on Saturdays. || Jogo vôlei aos sábados.", "She does yoga every morning. || Ela faz ioga toda manhã.", "Let's go running in the park! || Vamos correr no parque!", "Do you play basketball? || Você joga basquete?"] },
+    { trap: { wrong: "I practice soccer on Sundays.", right: "I play soccer on Sundays. || Jogo futebol aos domingos.", note: "Brazilians say “praticar”; in English we play / do / go. || Use play, do ou go." } }
+  ],
+  vocab: [["a ball", "uma bola"], ["a racket", "uma raquete"], ["a helmet", "um capacete"], ["goggles", "óculos de natação"], ["a net", "uma rede"], ["a court", "uma quadra"], ["a field", "um campo"], ["a team", "um time"], ["to win", "ganhar"], ["to lose", "perder"]],
+  ex: [
+    MC("I ___ yoga twice a week.", ["do", "play", "go"], 0),
+    MC("We ___ swimming on Sundays.", ["go", "play", "do"], 0),
+    MC("Ela joga tênis. →", ["She plays tennis.", "She does tennis.", "She goes tennis."], 0),
+    FILL("You need a ___ for tennis. || raquete", ["racket"], null, ["racket", "helmet", "goggles"]),
+    FILL("Do you ___ basketball?", ["play"], null, ["play", "do", "go"]),
+    ORD(["He goes cycling every weekend."]),
+    ORD(["Do you play volleyball?"]),
+    FIX("I practice soccer with my friends.", ["I play soccer with my friends."]),
+    TR("Eu faço judô às terças.", ["I do judo on Tuesdays."]),
+    TR("Vamos nadar amanhã?", ["Let's go swimming tomorrow?", "Shall we go swimming tomorrow?", "Do you want to go swimming tomorrow?"]),
+    LIS("She does yoga every morning."),
+    LIS("We play soccer on Saturdays.")
+  ],
+  mission: { title: "Sports survey", text: "Ask 3 people about their sports. || Pergunte a 3 pessoas sobre esportes.", steps: ["Ask: What sports do you play / do? || Pergunte", "Write their answers in English || Anote em inglês", "Tell your teacher || Conte ao professor"] }
+};
+L("x-a1-sports", {
+  r: ["Sports in Brazil", "Soccer is the most popular sport in Brazil, of course! Many people play it on the beach, in the street or in a field.\nBut Brazilians love other sports too. A lot of people play volleyball, and many go running or cycling in the parks.\nSome sports are growing fast: lots of people do jiu-jitsu, and skateboarding is very popular with teenagers.",
+    [["Soccer is popular in Brazil. || Futebol é popular.", true], ["Nobody plays volleyball in Brazil. || Ninguém joga vôlei.", false], ["People go running in the parks. || As pessoas correm nos parques.", true], ["Skateboarding is only for adults. || Skate é só para adultos.", false]],
+    "What sports do you do? || Que esportes você pratica?", [["popular", "popular"], ["street", "rua"], ["growing", "crescendo"], ["teenagers", "adolescentes"]]],
+  a: "Talk about the sports you do or watch: use play, do and go. || Fale dos esportes que você pratica ou assiste."
+});
+
+CONTENT["x-a1-help"] = {
+  lesson: [
+    { h: "Emergency! || Emergência!", say: ["Call an ambulance! || Chame uma ambulância!", "Stay calm. || Fique calmo.", "Don't move! || Não se mexa!", "Help! There's a fire! || Socorro! Tem um incêndio!"] },
+    { h: "Imperatives || Imperativo", table: [["do it ✔", "don't do it ✘"], ["**Call** 192.", "**Don't** panic."], ["**Stay** here.", "**Don't** touch it."], ["**Breathe** slowly.", "**Don't** use the elevator."]] },
+    { trap: { wrong: "No move!", right: "Don't move! || Não se mexa!", note: "Negative imperative: don't + verb. || Imperativo negativo: don't." } }
+  ],
+  vocab: [["an ambulance", "uma ambulância"], ["a fire", "um incêndio"], ["the police", "a polícia"], ["a firefighter", "um bombeiro"], ["hurt", "machucado"], ["bleeding", "sangrando"], ["to breathe", "respirar"], ["to panic", "entrar em pânico"], ["stairs", "escada"], ["an emergency exit", "uma saída de emergência"]],
+  ex: [
+    MC("___ the elevator in a fire!", ["Don't use", "No use", "Not use"], 0),
+    MC("Your friend is hurt. —", ["Call an ambulance!", "Calls an ambulance!", "You calling an ambulance!"], 0),
+    MC("Fique calmo. →", ["Stay calm.", "Stays calm.", "You stay calm?"], 0),
+    FILL("___ panic. Breathe slowly. || Não", ["Don't", "Do not"], null, ["Don't", "No", "Not"]),
+    FILL("There's a fire! Use the ___. || escada", ["stairs"], null, ["stairs", "elevator", "window"]),
+    ORD(["Don't move! Wait for the ambulance."]),
+    ORD(["Call the police!"]),
+    FIX("No touch the cables!", ["Don't touch the cables!", "Do not touch the cables!"]),
+    TR("Ligue para os bombeiros!", ["Call the firefighters!", "Call the fire department!"]),
+    TR("Não entre em pânico.", ["Don't panic.", "Do not panic."]),
+    LIS("Stay calm and breathe slowly."),
+    LIS("Don't use the elevator.")
+  ],
+  mission: { title: "Emergency card", text: "Make an emergency card in English for your bag. || Faça um cartão de emergência em inglês.", steps: ["Your name, blood type, a phone number || Nome, tipo sanguíneo, telefone", "3 instructions: Call… Don't… || 3 instruções", "Show it to your teacher || Mostre ao professor"] }
+};
+L("x-a1-help", {
+  r: ["Emergency numbers", "In Brazil, call 192 for an ambulance (SAMU), 193 for the firefighters and 190 for the police.\nIn the USA and Canada, there's only one number: 911. In Europe, it's 112.\nWhen you call, stay calm. Say your name, where you are and what happened. Don't hang up until they tell you!",
+    [["In Brazil, 192 is for the ambulance. || 192 é ambulância.", true], ["In the USA, the number is 112. || Nos EUA é 112.", false], ["Say where you are. || Diga onde você está.", true], ["Hang up quickly. || Desligue rápido.", false]],
+    "Do you know the emergency numbers in your city? || Você sabe os números de emergência?", [["firefighters", "bombeiros"], ["what happened", "o que aconteceu"], ["hang up", "desligar (o telefone)"], ["until", "até que"]]],
+  a: "Give 5 instructions for a fire at school: Go… Don't… || Dê 5 instruções para um incêndio."
+});
+
+CONTENT["x-a1-pets"] = {
+  lesson: [
+    { h: "Pets || Bichinhos", say: ["I have a dog. || Eu tenho um cachorro.", "My cat has green eyes. || Meu gato tem olhos verdes.", "She doesn't have a pet. || Ela não tem bichinho.", "Does your dog have a name? || Seu cachorro tem nome?"] },
+    { h: "Taking care || Cuidando", say: ["Feed the cat twice a day. || Alimente o gato duas vezes por dia.", "Walk the dog every morning. || Passeie com o cachorro toda manhã.", "Clean the cage once a week. || Limpe a gaiola uma vez por semana.", "Don't give chocolate to dogs! || Não dê chocolate para cachorros!"] },
+    { trap: { wrong: "The dog is wagging it's tail.", right: "The dog is wagging its tail. || O cachorro está abanando o rabo.", note: "its = dele / dela · it's = it is. || its sem apóstrofo." } }
+  ],
+  vocab: [["a puppy", "um filhote de cachorro"], ["a kitten", "um filhote de gato"], ["a parrot", "um papagaio"], ["a turtle", "uma tartaruga"], ["a collar", "uma coleira"], ["a cage", "uma gaiola"], ["a vet", "um veterinário"], ["to feed", "alimentar"], ["pet food", "ração"], ["a bowl", "uma tigela"]],
+  ex: [
+    MC("My sister ___ two cats.", ["has", "have", "is"], 0),
+    MC("___ your parrot talk?", ["Does", "Do", "Is"], 0),
+    MC("Não dê chocolate para o cachorro! →", ["Don't give the dog chocolate!", "No give the dog chocolate!", "Not give the dog chocolate!"], 0),
+    FILL("The cat is licking ___ paw.", ["its"], null, ["its", "it's", "his it"]),
+    FILL("Take your dog to the ___ when he's sick. || veterinário", ["vet"], null, ["vet", "cage", "collar"]),
+    ORD(["Feed the fish once a day."]),
+    ORD(["Does your dog have a collar?"]),
+    FIX("My dog have a long tail.", ["My dog has a long tail."]),
+    TR("Eu não tenho bichinho de estimação.", ["I don't have a pet.", "I do not have a pet.", "I haven't got a pet."]),
+    TR("Passeie com o cachorro todo dia.", ["Walk the dog every day."]),
+    LIS("My cat has big green eyes."),
+    LIS("Clean the cage once a week.")
+  ],
+  mission: { title: "Pet care card", text: "Make a care card for a pet (yours, a friend's or your dream pet). || Faça um cartão de cuidados.", steps: ["Name and description: He has… || Nome e descrição", "4 instructions: Feed… Walk… Don't… || 4 instruções", "Send a photo to your teacher || Mande uma foto"] }
+};
+L("x-a1-pets", {
+  r: ["Pets in Brazil", "Brazil is one of the countries with the most pets in the world! Many families have a dog or a cat — and some have both.\nDogs need a lot of attention: you have to walk them, play with them and take them to the vet. Cats are more independent, but they need love too!\nSome people have unusual pets, like turtles, parrots or even snakes.",
+    [["Brazil has a lot of pets. || O Brasil tem muitos bichinhos.", true], ["Dogs don't need attention. || Cachorros não precisam de atenção.", false], ["Cats are more independent. || Gatos são mais independentes.", true], ["Nobody has a turtle. || Ninguém tem tartaruga.", false]],
+    "What's the best pet for you? Why? || Qual é o melhor bichinho para você?", [["both", "os dois"], ["attention", "atenção"], ["independent", "independente"], ["unusual", "incomum"]]],
+  a: "Describe a pet and give 3 care instructions. || Descreva um bichinho e dê 3 instruções de cuidado."
+});
+
+CONTENT["m-a1-belong"] = {
+  song: { t: "You Belong with Me", a: "Taylor Swift", listen: "Listen: who wears what? Who likes what? || Quem usa o quê? Quem gosta do quê?" },
+  lesson: [
+    { h: "I wear · she wears", table: [["I / you / we / they", "he / she / it"], ["I **wear** jeans.", "She **wears** a dress."], ["I **don't like** pop.", "He **doesn't like** pop."], ["**Do** you **dream**?", "**Does** she **dream**?"]] },
+    { h: "Clothes and style || Roupas e estilo", say: ["She wears a uniform at work. || Ela usa uniforme no trabalho.", "I wear sneakers every day. || Uso tênis todo dia.", "He doesn't understand me. || Ele não me entende.", "Does she laugh at your jokes? || Ela ri das suas piadas?"] },
+    { trap: { wrong: "She wear high heels.", right: "She wears high heels. || Ela usa salto alto.", note: "he / she / it → verb + s. || Com he/she/it, o verbo ganha -s." } }
+  ],
+  vocab: [["a T-shirt", "uma camiseta"], ["a skirt", "uma saia"], ["high heels", "salto alto"], ["sneakers", "tênis"], ["to wear", "usar / vestir"], ["to laugh", "rir"], ["a joke", "uma piada"], ["to belong", "pertencer"]],
+  ex: [
+    MC("My sister ___ glasses.", ["wears", "wear", "wearing"], 0),
+    MC("He ___ like rock music.", ["doesn't", "don't", "isn't"], 0),
+    MC("Ela ri das minhas piadas. →", ["She laughs at my jokes.", "She laugh at my jokes.", "She laughs of my jokes."], 0),
+    FILL("___ your friend like the same music?", ["Does"], null, ["Does", "Do", "Is"]),
+    FILL("I ___ a jacket in winter.", ["wear"], null, ["wear", "wears", "wearing"]),
+    ORD(["She wears a uniform at school."]),
+    ORD(["Does he understand you?"]),
+    FIX("He don't understand me.", ["He doesn't understand me.", "He does not understand me."]),
+    TR("Ele usa boné todo dia.", ["He wears a cap every day."]),
+    TR("Ela não gosta de salto alto.", ["She doesn't like high heels.", "She does not like high heels."]),
+    LIS("She wears a dress to the party."),
+    LIS("He doesn't like my jokes.")
+  ],
+  mission: { title: "Me and my friend", text: "Compare yourself with a friend. || Compare você com um amigo.", steps: ["Clothes: I wear… / She wears… || Roupas", "Music: I like… / He doesn't like… || Música", "Record a 1-minute audio || Grave 1 minuto"] }
+};
+L("m-a1-belong", {
+  r: ["Different styles", "Mia and Sofia are best friends, but they are very different.\nMia wears dresses and high heels. She likes pop music and she reads fashion magazines.\nSofia wears T-shirts and sneakers. She doesn't like pop — she listens to rock. She plays the guitar in a band.\nBut they both love pizza and they laugh at the same jokes!",
+    [["Mia wears high heels. || Mia usa salto.", true], ["Sofia likes pop music. || Sofia gosta de pop.", false], ["Sofia plays the guitar. || Sofia toca violão.", true], ["They don't like the same food. || Não gostam da mesma comida.", false]],
+    "What's your style? || Qual é o seu estilo?", [["fashion", "moda"], ["magazines", "revistas"], ["band", "banda"], ["both", "as duas"]]],
+  a: "Describe your style and a friend's style: I wear… / She wears… || Descreva seu estilo e o de um amigo."
+});
+
+CONTENT["m-a1-flowers"] = {
+  song: { t: "Flowers", a: "Miley Cyrus", listen: "How many times do you hear “I can”? || Quantas vezes você ouve “I can”?" },
+  lesson: [
+    { h: "I can… for myself || Eu posso… por mim mesmo", say: ["I can cook for myself. || Posso cozinhar pra mim mesmo.", "I can go to the movies alone. || Posso ir ao cinema sozinho.", "I talk to myself. || Eu falo sozinho.", "I love myself. || Eu me amo."] },
+    { h: "Me and myself", table: [["", "myself…"], ["I", "I love **myself**."], ["you", "Take care of **yourself**!"], ["he / she", "He talks to **himself**. · She buys **herself** flowers."]] },
+    { trap: { wrong: "I love me.", right: "I love myself. || Eu me amo.", note: "Same person → myself. || Mesma pessoa: myself." } }
+  ],
+  vocab: [["flowers", "flores"], ["myself", "eu mesmo / a mim mesmo"], ["alone", "sozinho"], ["to buy", "comprar"], ["to hold", "segurar"], ["better", "melhor"], ["the sand", "a areia"], ["to feel good", "sentir-se bem"]],
+  ex: [
+    MC("I can make breakfast for ___.", ["myself", "me", "mine"], 0),
+    MC("She ___ dance very well.", ["can", "cans", "can to"], 0),
+    MC("Cuide-se! →", ["Take care of yourself!", "Take care of you!", "Take care yourself of!"], 0),
+    FILL("I'm tired. I ___ walk anymore.", ["can't", "cannot"], null, ["can't", "can", "don't can"]),
+    FILL("He talks to ___ when he studies.", ["himself"], null, ["himself", "myself", "herself"]),
+    ORD(["I can go to the beach alone."]),
+    ORD(["Can you cook for yourself?"]),
+    FIX("I love me.", ["I love myself."]),
+    TR("Eu posso cozinhar pra mim mesmo.", ["I can cook for myself."]),
+    TR("Ela compra flores pra ela mesma.", ["She buys herself flowers.", "She buys flowers for herself."]),
+    LIS("I can take care of myself."),
+    LIS("She can't sleep at night.")
+  ],
+  mission: { title: "Self-care list", text: "Write 5 things you can do for yourself this week — and do one! || 5 coisas que você pode fazer por você.", steps: ["I can… for myself || Eu posso…", "Choose one and do it || Escolha uma e faça", "Tell your teacher how it was || Conte como foi"] }
+};
+L("m-a1-flowers", {
+  r: ["Me time", "“Me time” is time for yourself. Many people don't have it — they work, study and help other people all day.\nBut psychologists say it's important. You can read a book, go for a walk, cook something special or just listen to music.\nYou don't need a lot of money or a lot of time. Ten minutes a day can help!",
+    [["“Me time” is time for yourself. || Tempo para você mesmo.", true], ["Psychologists say it isn't important. || Dizem que não é importante.", false], ["You need a lot of money for it. || Precisa de muito dinheiro.", false], ["Ten minutes a day can help. || 10 minutos ajudam.", true]],
+    "What do you do in your “me time”? || O que você faz no seu tempo para você?", [["me time", "tempo para mim"], ["psychologists", "psicólogos"], ["go for a walk", "dar uma volta"], ["special", "especial"]]],
+  a: "Say 5 things you can do for yourself: I can… || Diga 5 coisas que você pode fazer por você."
+});
+
+CONTENT["m-a1-wayyouare"] = {
+  song: { t: "Just the Way You Are", a: "Bruno Mars", listen: "Listen: what is beautiful about her? || O que é lindo nela?" },
+  lesson: [
+    { h: "Describe a person || Descreva uma pessoa", say: ["She has green eyes. || Ela tem olhos verdes.", "His hair is short and black. || O cabelo dele é curto e preto.", "Her smile is beautiful. || O sorriso dela é lindo.", "He has a funny laugh. || Ele tem uma risada engraçada."] },
+    { h: "his · her", table: [["his = dele", "her = dela"], ["**His** eyes are brown.", "**Her** eyes are blue."], ["I like **his** laugh.", "I love **her** smile."]] },
+    { trap: { wrong: "She has hair long.", right: "She has long hair. || Ela tem cabelo comprido.", note: "Adjective before the noun. || Adjetivo antes do substantivo." } }
+  ],
+  vocab: [["eyes", "olhos"], ["hair", "cabelo"], ["curly", "cacheado"], ["straight", "liso"], ["a smile", "um sorriso"], ["a laugh", "uma risada"], ["amazing", "incrível"], ["the way", "o jeito"]],
+  ex: [
+    MC("Ana is my sister. ___ eyes are brown.", ["Her", "His", "She"], 0),
+    MC("My dad ___ short grey hair.", ["has", "is", "have"], 0),
+    MC("Ele tem cabelo cacheado. →", ["He has curly hair.", "He has hair curly.", "He is curly hair."], 0),
+    FILL("Her hair ___ long and straight.", ["is"], null, ["is", "are", "has"]),
+    FILL("Leo is funny. I love ___ laugh. || dele", ["his"], null, ["his", "her", "he"]),
+    ORD(["She has a beautiful smile."]),
+    ORD(["His eyes are blue."]),
+    FIX("She has hair black.", ["She has black hair."]),
+    TR("O sorriso dela é lindo.", ["Her smile is beautiful."]),
+    TR("Eu gosto do jeito que ele fala.", ["I like the way he talks.", "I like the way he speaks."]),
+    LIS("He has short black hair."),
+    LIS("Her eyes are green.")
+  ],
+  mission: { title: "Who is it?", text: "Describe someone in your family — no names! || Descreva alguém da família — sem nomes!", steps: ["Eyes, hair, smile, personality || Olhos, cabelo, sorriso, personalidade", "Record it || Grave", "Your teacher guesses! || O professor adivinha!"] }
+};
+L("m-a1-wayyouare", {
+  r: ["My grandma", "My grandma is 78. She has short white hair and small blue eyes. She wears glasses.\nHer smile is the best in the world! And her laugh is very loud — everybody in the restaurant looks at us.\nShe isn't tall, but she's very strong. She walks every morning and she cooks for the whole family on Sundays.",
+    [["Grandma has long hair. || A avó tem cabelo comprido.", false], ["She wears glasses. || Ela usa óculos.", true], ["Her laugh is very quiet. || A risada é baixa.", false], ["She cooks on Sundays. || Ela cozinha aos domingos.", true]],
+    "Who has the best smile in your family? || Quem tem o melhor sorriso da família?", [["glasses", "óculos"], ["loud", "alto (som)"], ["strong", "forte"], ["the whole family", "a família toda"]]],
+  a: "Describe someone you love: eyes, hair, smile and personality. || Descreva alguém que você ama."
+});
+
+/* ✨ Extra lessons — A2 and B1 (themed + music). */
+
+/* ---------------- A2 ---------------- */
+CONTENT["x-a2-disasters"] = {
+  lesson: [
+    { h: "Two pasts in one story || Dois passados na mesma história", say: ["I was sleeping when the earthquake started. || Eu estava dormindo quando o terremoto começou.", "While we were driving home, it started to hail. || Enquanto voltávamos de carro, começou a chover granizo.", "The power went out while she was cooking. || A luz acabou enquanto ela cozinhava.", "What were you doing when the storm started? || O que você estava fazendo quando a tempestade começou?"] },
+    { h: "was / were + -ing", forms: { aff: ["It was raining all night. || Choveu a noite toda."], neg: ["We weren't sleeping. || Não estávamos dormindo."], int: ["Were you driving? — Yes, I was. || Você estava dirigindo?"] } },
+    { trap: { wrong: "When I was sleep, the wind broke the window.", right: "While I was sleeping, the wind broke the window. || Enquanto eu dormia, o vento quebrou a janela.", note: "was / were + verb-ing. || Use -ing depois de was / were." } }
+  ],
+  vocab: [["an earthquake", "um terremoto"], ["a flood", "uma enchente"], ["a drought", "uma seca"], ["a wildfire", "um incêndio florestal"], ["a hurricane", "um furacão"], ["a landslide", "um deslizamento de terra"], ["hail", "granizo"], ["a power cut", "uma falta de luz"], ["to evacuate", "evacuar"], ["to shake", "tremer"]],
+  ex: [
+    MC("I ___ TV when the lights went out.", ["was watching", "were watching", "watched was"], 0),
+    MC("___ we were walking, it started to rain.", ["While", "During", "When while"], 0),
+    MC("Eles estavam dormindo quando o alarme tocou. →", ["They were sleeping when the alarm rang.", "They was sleeping when the alarm rang.", "They were sleep when the alarm rang."], 0),
+    FILL("It ___ raining when we left school.", ["was"], null, ["was", "were", "did"]),
+    FILL("No rain for six months — it was a terrible ___. || seca", ["drought"], null, ["drought", "flood", "hurricane"]),
+    ORD(["What were you doing when the storm started?"]),
+    ORD(["The house shook while we were having dinner."]),
+    FIX("She were cooking when the power went out.", ["She was cooking when the power went out."]),
+    TR("Estava chovendo muito quando a luz acabou.", ["It was raining a lot when the power went out.", "It was raining hard when the power went out.", "It was raining heavily when the power went out."]),
+    TR("O que você estava fazendo às 8 da noite?", ["What were you doing at 8 p.m.?", "What were you doing at 8 o'clock at night?", "What were you doing at eight p.m.?"]),
+    LIS("We were driving home when it started to hail."),
+    LIS("The river flooded while they were sleeping.")
+  ],
+  mission: { title: "Weather story", text: "Ask an older person about the worst storm they remember. || Pergunte a alguém mais velho sobre a pior tempestade de que lembra.", steps: ["Ask: What were you doing when…? || Pergunte", "Write 5 sentences in English || Escreva 5 frases", "Tell the story in class || Conte na aula"] }
+};
+L("x-a2-disasters", {
+  r: ["The night of the hail — by Tiago, 16", "Last October, I was doing my homework in my bedroom when I heard a strange noise on the roof. It was hail! The pieces of ice were as big as golf balls.\nWhile my mom was closing the windows, a big piece of ice broke the glass in the kitchen. My little sister was crying, so my dad stayed with her.\nIt only lasted ten minutes, but our car looked like the Moon!",
+    [["Tiago was sleeping when the hail started. || Ele estava dormindo.", false], ["The hail was as big as golf balls. || O granizo era do tamanho de bolas de golfe.", true], ["The hail broke the kitchen window. || Quebrou a janela da cozinha.", true], ["The storm lasted two hours. || Durou duas horas.", false]],
+    "What extreme weather do you remember? || Que tempo extremo você lembra?", [["roof", "telhado"], ["glass", "vidro"], ["lasted", "durou"], ["looked like", "parecia"]]],
+  a: "Tell a weather story: where were you, what were you doing, what happened? || Conte uma história do tempo."
+});
+
+CONTENT["x-a2-space"] = {
+  lesson: [
+    { h: "Comparing planets || Comparando planetas", say: ["Jupiter is bigger than Earth. || Júpiter é maior que a Terra.", "Mercury is the smallest planet. || Mercúrio é o menor planeta.", "Venus is the hottest planet. || Vênus é o planeta mais quente.", "Is space more dangerous than the ocean? || O espaço é mais perigoso que o mar?"] },
+    { h: "-er / more · -est / most", table: [["", "comparative", "superlative"], ["big", "bigger than", "the biggest"], ["hot", "hotter than", "the hottest"], ["heavy", "heavier than", "the heaviest"], ["dangerous", "more dangerous than", "the most dangerous"], ["good / bad", "better / worse than", "the best / the worst"]] },
+    { trap: { wrong: "Jupiter is more big than Earth.", right: "Jupiter is bigger than Earth. || Júpiter é maior que a Terra.", note: "Short adjectives: -er, not more. || Adjetivo curto: -er." } }
+  ],
+  vocab: [["a planet", "um planeta"], ["a star", "uma estrela"], ["the Moon", "a Lua"], ["the Sun", "o Sol"], ["an astronaut", "um astronauta"], ["a rocket", "um foguete"], ["a telescope", "um telescópio"], ["far", "longe"], ["bright", "brilhante"], ["to land", "pousar"]],
+  ex: [
+    MC("The Sun is ___ than the Moon.", ["bigger", "more big", "biggest"], 0),
+    MC("Neptune is ___ planet from the Sun.", ["the farthest", "the farer", "farthest than"], 0),
+    MC("Qual é o planeta mais bonito? →", ["Which is the most beautiful planet?", "Which is the beautifullest planet?", "Which is the more beautiful planet?"], 0),
+    FILL("Mars is ___ than Earth. || menor", ["smaller"], null, ["smaller", "smallest", "more small"]),
+    FILL("For me, it's ___ job in the world! || o melhor", ["the best"], null, ["the best", "the better", "the goodest"]),
+    ORD(["Jupiter is the biggest planet."]),
+    ORD(["Is the Moon closer than Mars?"]),
+    FIX("Venus is more hot than Mercury.", ["Venus is hotter than Mercury."]),
+    TR("A Lua é menor que a Terra.", ["The Moon is smaller than Earth.", "The Moon is smaller than the Earth."]),
+    TR("Mercúrio é o menor planeta.", ["Mercury is the smallest planet."]),
+    LIS("Venus is hotter than Mercury."),
+    LIS("Jupiter is the biggest planet in the Solar System.")
+  ],
+  mission: { title: "Night sky", text: "Look at the sky tonight (or use a free sky app). || Olhe o céu hoje à noite.", steps: ["Find the Moon and the brightest star || Ache a Lua e a estrela mais brilhante", "Write 4 sentences with -er / the -est || 4 frases", "Show your teacher || Mostre ao professor"] }
+};
+L("x-a2-space", {
+  r: ["Our Moon", "The Moon is about 384,000 kilometers from Earth. It's much smaller than our planet: about a quarter of its size.\nThere's no air on the Moon, so there's no wind and no rain. That's why the astronauts' footprints are still there, more than 50 years later!\nGravity on the Moon is much weaker. If you weigh 60 kilos on Earth, you weigh only 10 kilos on the Moon. Twelve people walked on the Moon, all between 1969 and 1972.",
+    [["The Moon is bigger than Earth. || A Lua é maior que a Terra.", false], ["There's no wind on the Moon. || Não há vento na Lua.", true], ["You are lighter on the Moon. || Você fica mais leve na Lua.", true], ["Twenty people walked on the Moon. || Vinte pessoas andaram na Lua.", false]],
+    "Do you want to go to the Moon? Why (not)? || Você quer ir à Lua?", [["a quarter", "um quarto"], ["footprints", "pegadas"], ["weaker", "mais fraca"], ["weigh", "pesar"]]],
+  a: "Compare two planets (or two cities): 4 sentences with -er than and the -est. || Compare dois planetas."
+});
+
+CONTENT["x-a2-dinos"] = {
+  lesson: [
+    { h: "Talking about the past || Falando do passado", say: ["T. rex was huge. || O tiranossauro era enorme.", "Its arms were very short. || Os braços eram muito curtos.", "Velociraptor couldn't fly. || O velociraptor não conseguia voar.", "Some dinosaurs ate only plants. || Alguns dinossauros só comiam plantas."] },
+    { h: "was / were · could", table: [["", "✔", "✘ / ?"], ["was / were", "It **was** fast.", "It **wasn't** slow. · **Were** they big?"], ["could", "Pterosaurs **could** fly.", "T. rex **couldn't** fly."], ["past simple", "They **lived** in forests.", "They **didn't live** with humans."]] },
+    { trap: { wrong: "Dinosaurs didn't lived with humans.", right: "Dinosaurs didn't live with humans. || Dinossauros não viveram com humanos.", note: "didn't + verb (no -ed). || Depois de didn't, verbo sem -ed." } }
+  ],
+  vocab: [["a dinosaur", "um dinossauro"], ["a fossil", "um fóssil"], ["a bone", "um osso"], ["extinct", "extinto"], ["a carnivore", "um carnívoro"], ["a herbivore", "um herbívoro"], ["sharp teeth", "dentes afiados"], ["claws", "garras"], ["huge", "enorme"], ["feathers", "penas"]],
+  ex: [
+    MC("T. rex ___ a carnivore.", ["was", "were", "is been"], 0),
+    MC("Pterosaurs ___ fly.", ["could", "can to", "coulded"], 0),
+    MC("Eles não comiam carne. →", ["They didn't eat meat.", "They didn't ate meat.", "They not ate meat."], 0),
+    FILL("Its teeth ___ very sharp.", ["were"], null, ["were", "was", "did"]),
+    FILL("A herbivore eats only ___. || plantas", ["plants"], null, ["plants", "meat", "fish"]),
+    ORD(["Dinosaurs lived for millions of years."]),
+    ORD(["Could T. rex run fast?"]),
+    FIX("Velociraptor didn't could fly.", ["Velociraptor couldn't fly.", "Velociraptor could not fly."]),
+    TR("Os dinossauros eram enormes.", ["Dinosaurs were huge.", "The dinosaurs were huge."]),
+    TR("Alguns dinossauros tinham penas.", ["Some dinosaurs had feathers."]),
+    LIS("T. rex had very short arms."),
+    LIS("Some dinosaurs could run very fast.")
+  ],
+  mission: { title: "Museum card", text: "Choose a dinosaur and make a museum card. || Escolha um dinossauro e faça uma ficha de museu.", steps: ["Name, size, food || Nome, tamanho, comida", "3 sentences: It was… It ate… It could… || 3 frases", "Send a photo to your teacher || Mande uma foto"] }
+};
+L("x-a2-dinos", {
+  r: ["Brazilian dinosaurs", "Brazil has a lot of dinosaur fossils! Some of the oldest dinosaurs in the world lived in Rio Grande do Sul, about 230 million years ago. They were small, and they could run fast on two legs.\nIn Maranhão, scientists found Oxalaia, a big carnivore with a long head like a crocodile's. It probably ate fish.\nYou can see dinosaur fossils in museums in many Brazilian cities.",
+    [["Brazil has no dinosaur fossils. || O Brasil não tem fósseis.", false], ["Some very old dinosaurs lived in Rio Grande do Sul. || Dinossauros muito antigos viveram no RS.", true], ["The oldest dinosaurs were huge. || Os mais antigos eram enormes.", false], ["Oxalaia probably ate fish. || Provavelmente comia peixe.", true]],
+    "Did you ever see a dinosaur fossil? Where? || Você já viu um fóssil?", [["oldest", "mais antigos"], ["scientists", "cientistas"], ["probably", "provavelmente"], ["museums", "museus"]]],
+  a: "Present a dinosaur in 5 sentences: It was… It had… It could… It ate… || Apresente um dinossauro."
+});
+
+CONTENT["x-a2-games"] = {
+  lesson: [
+    { h: "Game rules || Regras do jogo", say: ["You have to collect 100 coins. || Você tem que coletar 100 moedas.", "You don't have to pay. It's free! || Você não precisa pagar. É grátis!", "You can play with friends. || Dá para jogar com amigos.", "You can't save in the middle of a level. || Não dá para salvar no meio da fase."] },
+    { h: "have to · don't have to · can · can't", table: [["", "meaning"], ["**have to / has to**", "it's necessary || é obrigatório"], ["**don't have to**", "it isn't necessary || não precisa"], ["**can**", "it's possible / allowed || pode"], ["**can't**", "it isn't allowed || não pode"]] },
+    { trap: { wrong: "She have to win three games.", right: "She has to win three games. || Ela tem que vencer três partidas.", note: "he / she / it → has to. || Com he/she/it: has to." } }
+  ],
+  vocab: [["a player", "um jogador"], ["a level", "uma fase"], ["a life · lives", "uma vida · vidas"], ["a coin", "uma moeda"], ["a boss", "um chefão"], ["to win", "ganhar"], ["to lose", "perder"], ["to beat", "derrotar"], ["to save", "salvar (o jogo)"], ["to unlock", "desbloquear"]],
+  ex: [
+    MC("He ___ finish level 1 first.", ["has to", "have to", "has"], 0),
+    MC("It's free! You ___ pay.", ["don't have to", "have to", "has to"], 0),
+    MC("Você tem que jogar online? →", ["Do you have to play online?", "Have you to play online?", "You have to play online?"], 0),
+    FILL("You ___ play this game offline. You need the internet.", ["can't", "cannot"], null, ["can't", "can", "have to"]),
+    FILL("Beat the final ___ and you win! || chefão", ["boss"], null, ["boss", "coin", "level"]),
+    ORD(["You have to collect all the stars."]),
+    ORD(["Can you play with friends?"]),
+    FIX("You don't can save now.", ["You can't save now.", "You cannot save now."]),
+    TR("Você não precisa criar uma conta.", ["You don't have to create an account.", "You do not have to create an account."]),
+    TR("Ele tem que derrotar o chefão.", ["He has to beat the boss.", "He has to defeat the boss."]),
+    LIS("You have to unlock the next level."),
+    LIS("You don't have to pay to play.")
+  ],
+  mission: { title: "Invent a game", text: "Invent a simple game (phone, board or street game). || Invente um jogo simples.", steps: ["Name and goal || Nome e objetivo", "5 rules: You have to… You can't… || 5 regras", "Teach it to someone at home || Ensine para alguém"] }
+};
+L("x-a2-games", {
+  r: ["How to play Uno", "Uno is a card game for 2 to 10 players. Each player starts with seven cards.\nOn your turn, you have to play a card with the same colour or the same number as the card on the table. If you can't, you have to take a card from the pile.\nWhen you have only one card, you have to say “Uno!”. If you forget and someone notices, you have to take two cards. The first player with no cards wins!",
+    [["Each player starts with seven cards. || Cada jogador começa com sete cartas.", true], ["You can play any card you want. || Pode jogar qualquer carta.", false], ["With one card, you have to say “Uno!”. || Com uma carta, diga “Uno!”.", true], ["The player with the most cards wins. || Quem tem mais cartas vence.", false]],
+    "What's your favourite card or board game? || Seu jogo de cartas ou tabuleiro favorito?", [["turn", "vez"], ["pile", "monte"], ["notices", "percebe"], ["wins", "vence"]]],
+  a: "Explain the rules of a game you like: You have to… You can… You can't… || Explique as regras de um jogo."
+});
+
+CONTENT["m-a2-perfect"] = {
+  song: { t: "Perfect", a: "Ed Sheeran", listen: "Listen for past verbs: found, knew, fell, said, heard, saw… || Preste atenção nos verbos no passado." },
+  lesson: [
+    { h: "A love story in the past || Uma história de amor no passado", say: ["We met at a party. || Nós nos conhecemos numa festa.", "They fell in love in Paris. || Eles se apaixonaram em Paris.", "I found the perfect ring. || Encontrei o anel perfeito.", "We danced all night. || Dançamos a noite toda."] },
+    { h: "Irregular past || Passado irregular", table: [["verb", "past"], ["meet", "met"], ["find", "found"], ["fall", "fell"], ["know", "knew"], ["see / hear / say", "saw / heard / said"]] },
+    { trap: { wrong: "We meeted in 2010.", right: "We met in 2010. || Nós nos conhecemos em 2010.", note: "meet → met (irregular). || meet é irregular." } }
+  ],
+  vocab: [["to fall in love", "apaixonar-se"], ["a wedding", "um casamento"], ["a dress", "um vestido"], ["darling", "querido / querida"], ["barefoot", "descalço"], ["the grass", "a grama"], ["strong", "forte"], ["an angel", "um anjo"]],
+  ex: [
+    MC("We ___ at school in 2015.", ["met", "meeted", "meet"], 0),
+    MC("He ___ in love with her.", ["fell", "falled", "felt"], 0),
+    MC("Eu não sabia o nome dela. →", ["I didn't know her name.", "I didn't knew her name.", "I no knew her name."], 0),
+    FILL("I ___ my keys under the bed. || encontrei", ["found"], null, ["found", "finded", "find"]),
+    FILL("They ___ kids when they met.", ["were"], null, ["were", "was", "did"]),
+    ORD(["They danced barefoot on the grass."]),
+    ORD(["Where did your parents meet?"]),
+    FIX("She sayed yes!", ["She said yes!"]),
+    TR("Nós nos conhecemos numa festa.", ["We met at a party."]),
+    TR("Eles se apaixonaram em Paris.", ["They fell in love in Paris."]),
+    LIS("They met at a friend's wedding."),
+    LIS("I knew it was love.")
+  ],
+  mission: { title: "A family love story", text: "Ask your parents or grandparents how they met. || Pergunte como seus pais ou avós se conheceram.", steps: ["Ask: Where did you meet? || Pergunte", "Write the story in 6 sentences || Escreva 6 frases", "Tell it in class || Conte na aula"] }
+};
+L("m-a2-perfect", {
+  r: ["How my grandparents met", "My grandparents met in 1975, at a dance in a small town in Minas Gerais. My grandpa was very shy, so he didn't ask my grandma to dance.\nBut she saw him and walked to his table. She said: “Do you want to dance?” He said yes, and they danced all night.\nThey got married two years later. Today they still dance in the kitchen!",
+    [["They met in 1975. || Eles se conheceram em 1975.", true], ["Grandpa asked Grandma to dance. || O avô a chamou para dançar.", false], ["They danced all night. || Dançaram a noite toda.", true], ["They got married ten years later. || Casaram dez anos depois.", false]],
+    "How did your parents or grandparents meet? || Como seus pais ou avós se conheceram?", [["a dance", "um baile"], ["shy", "tímido"], ["got married", "se casaram"], ["still", "ainda"]]],
+  a: "Tell a love story (real or invented) in the past: met, fell in love, danced… || Conte uma história de amor."
+});
+
+CONTENT["m-a2-hall"] = {
+  song: { t: "Hall of Fame", a: "The Script ft. will.i.am", listen: "Listen: what can you be? || O que você pode ser?" },
+  lesson: [
+    { h: "Dreams and success || Sonhos e sucesso", say: ["You can be anything you want. || Você pode ser o que quiser.", "One day you will win. || Um dia você vai vencer.", "She's the best player on the team. || Ela é a melhor jogadora do time.", "He's the most famous singer in my city. || Ele é o cantor mais famoso da minha cidade."] },
+    { h: "can · could · will", table: [["", "meaning", "example"], ["can", "possible || é possível", "You **can** be a champion."], ["could", "possible (softer) || poderia", "You **could** be a doctor one day."], ["will", "future || futuro", "You **will** win one day."]] },
+    { trap: { wrong: "She's the most good player.", right: "She's the best player. || Ela é a melhor jogadora.", note: "good → better → the best. || Irregular!" } }
+  ],
+  vocab: [["a champion", "um campeão"], ["famous", "famoso"], ["to believe", "acreditar"], ["a hero", "um herói"], ["the greatest", "o maior / o melhor"], ["a record", "um recorde"], ["a mountain", "uma montanha"], ["a wall", "um muro"]],
+  ex: [
+    MC("She's ___ student in the class.", ["the best", "the goodest", "the better"], 0),
+    MC("One day you ___ famous.", ["will be", "will", "will are"], 0),
+    MC("Acredite em você! →", ["Believe in yourself!", "Believe on you!", "Believes in yourself!"], 0),
+    FILL("You ___ be anything you want. || pode", ["can"], null, ["can", "will to", "cans"]),
+    FILL("It was the ___ day of my life! || melhor", ["best"], null, ["best", "better", "goodest"]),
+    ORD(["You can be a champion."]),
+    ORD(["Who is the greatest athlete of all time?"]),
+    FIX("He's the most famous than his brother.", ["He's more famous than his brother.", "He is more famous than his brother."]),
+    TR("Um dia você vai vencer.", ["One day you will win.", "One day you'll win.", "Someday you will win."]),
+    TR("Ela é a atleta mais famosa do Brasil.", ["She's the most famous athlete in Brazil.", "She is the most famous athlete in Brazil."]),
+    LIS("You can be the best."),
+    LIS("One day you will break a record.")
+  ],
+  mission: { title: "My hall of fame", text: "Choose 3 people for your personal hall of fame. || Escolha 3 pessoas para seu hall da fama.", steps: ["Famous or not famous! || Famosos ou não", "2 sentences each: She's the… He can… || 2 frases cada", "Share with your teacher || Compartilhe"] }
+};
+L("m-a2-hall", {
+  r: ["Marta", "Marta Vieira da Silva is one of the greatest soccer players of all time. She was FIFA World Player of the Year six times.\nShe scored 17 goals in Women's World Cups — more than any other player, man or woman.\nWhen she was a girl in Alagoas, she played soccer with boys, and some people said girls couldn't play soccer. Marta didn't listen. Today, she's a hero for millions of girls.",
+    [["Marta was World Player of the Year six times. || Foi eleita a melhor do mundo seis vezes.", true], ["She scored 7 goals in World Cups. || Marcou 7 gols em Copas.", false], ["She played soccer with boys as a girl. || Jogava com meninos.", true], ["Everybody said girls could play soccer. || Todos diziam que meninas podiam jogar.", false]],
+    "Who is in your hall of fame? Why? || Quem está no seu hall da fama?", [["scored", "marcou"], ["any other", "qualquer outro"], ["didn't listen", "não deu ouvidos"], ["millions", "milhões"]]],
+  a: "Talk about your hero: who is she or he, and why are they the greatest for you? || Fale do seu herói."
+});
+
+CONTENT["m-a2-sky"] = {
+  song: { t: "A Sky Full of Stars", a: "Coldplay", listen: "Listen: what is he going to do? || O que ele vai fazer?" },
+  lesson: [
+    { h: "Plans || Planos", say: ["I'm going to travel next year. || Vou viajar no ano que vem.", "She isn't going to come. || Ela não vai vir.", "Are you going to watch the concert? || Você vai assistir ao show?", "Look at those clouds! It's going to rain. || Olha essas nuvens! Vai chover."] },
+    { h: "going to", forms: { aff: ["We're going to see the stars tonight. || Vamos ver as estrelas hoje."], neg: ["I'm not going to stay home. || Não vou ficar em casa."], int: ["What are you going to do this weekend? || O que você vai fazer no fim de semana?"] } },
+    { trap: { wrong: "I going to travel.", right: "I'm going to travel. || Eu vou viajar.", note: "Don't forget am / is / are! || Não esqueça o am / is / are." } }
+  ],
+  vocab: [["the sky", "o céu"], ["full of", "cheio de"], ["to light up", "iluminar"], ["the heart", "o coração"], ["tonight", "hoje à noite"], ["next year", "no ano que vem"], ["one day", "um dia"], ["to care", "importar-se"]],
+  ex: [
+    MC("She ___ going to buy the tickets.", ["is", "are", "am"], 0),
+    MC("We ___ going to stay home tonight.", ["aren't", "isn't", "don't"], 0),
+    MC("Você vai viajar nas férias? →", ["Are you going to travel on vacation?", "You going to travel on vacation?", "Do you going to travel on vacation?"], 0),
+    FILL("I'm going ___ call you later.", ["to"], null, ["to", "for", "at"]),
+    FILL("Look at the clouds! It's going to ___.", ["rain"], null, ["rain", "raining", "rains"]),
+    ORD(["What are you going to do next year?"]),
+    ORD(["I'm going to see Coldplay one day."]),
+    FIX("They going to travel to the beach.", ["They're going to travel to the beach.", "They are going to travel to the beach."]),
+    TR("Eu vou ver o show no sábado.", ["I'm going to see the show on Saturday.", "I'm going to watch the show on Saturday.", "I am going to see the concert on Saturday.", "I'm going to see the concert on Saturday."]),
+    TR("Ela não vai vir.", ["She isn't going to come.", "She's not going to come.", "She is not going to come."]),
+    LIS("We're going to look at the stars tonight."),
+    LIS("What are you going to do this weekend?")
+  ],
+  mission: { title: "Stargazing night", text: "Plan a night to look at the stars. || Planeje uma noite para olhar as estrelas.", steps: ["Where? Who with? When? || Onde? Com quem? Quando?", "Write 5 sentences with going to || 5 frases com going to", "Do it and tell your teacher! || Faça e conte!"] }
+};
+L("m-a2-sky", {
+  r: ["My plans for next year", "Next year is going to be a big year for me! I'm going to finish school, and I'm going to start a course in design.\nIn July, my best friend and I are going to travel to Chapada dos Veadeiros. We're going to camp and look at the stars — the sky there is amazing.\nI'm not going to spend a lot of money: I'm going to work in my uncle's café on weekends.",
+    [["The writer is going to finish school. || Vai terminar a escola.", true], ["They're going to travel in December. || Vão viajar em dezembro.", false], ["They're going to look at the stars. || Vão olhar as estrelas.", true], ["The writer is going to spend a lot of money. || Vai gastar muito.", false]],
+    "What are your plans for next year? || Quais são seus planos para o ano que vem?", [["big year", "ano importante"], ["course", "curso"], ["camp", "acampar"], ["spend", "gastar"]]],
+  a: "Say 5 plans: tonight, this weekend, next month, next year, one day. || Diga 5 planos."
+});
+
+/* ---------------- B1 ---------------- */
+CONTENT["x-b1-cooking"] = {
+  lesson: [
+    { h: "Menu English || Inglês de cardápio", say: ["Pizza topped with fresh basil. || Pizza com manjericão fresco por cima.", "Steak served with fries. || Bife acompanhado de batata frita.", "Pastel filled with cheese. || Pastel recheado com queijo.", "Fish cooked in coconut milk. || Peixe cozido no leite de coco."] },
+    { h: "crunchy or crispy?", table: [["crunchy", "crispy"], ["firm and loud when you bite || firme, faz barulho", "thin, dry, breaks easily || fininho e sequinho"], ["carrots · nuts · granola", "fries · bacon · potato chips"]] },
+    { trap: { wrong: "Bake the chicken and the potatoes.", right: "Roast the chicken and the potatoes. || Asse o frango e as batatas.", note: "bake = cake, bread · roast = meat, vegetables. || Os dois são “assar”." } }
+  ],
+  vocab: [["to chop", "picar"], ["to slice", "fatiar"], ["to peel", "descascar"], ["to grate", "ralar"], ["to stir", "mexer"], ["to boil", "ferver"], ["crispy", "crocante (sequinho)"], ["juicy", "suculento"], ["bland", "sem graça / sem tempero"], ["seasoned", "temperado"], ["tender", "macio (carne)"], ["sour", "azedo"]],
+  ex: [
+    MC("Good fries are ___.", ["crispy", "juicy", "creamy"], 0),
+    MC("You ___ a cake in the oven.", ["bake", "fry", "boil"], 0),
+    MC("Pão de queijo is ___ with cheese.", ["made", "making", "make"], 0),
+    FILL("___ the cheese over the pasta. || Rale", ["Grate"], null, ["Grate", "Peel", "Stir"]),
+    FILL("The steak is served ___ rice and salad.", ["with"], null, ["with", "of", "by"]),
+    ORD(["Peel the potatoes and chop the onion."]),
+    ORD(["The pizza is topped with fresh basil."]),
+    FIX("This soup is very bland. Put more salty.", ["This soup is very bland. Put more salt.", "This soup is very bland. Add more salt."]),
+    TR("Mexa o molho, senão ele queima.", ["Stir the sauce, or it will burn.", "Stir the sauce or it will burn.", "Stir the sauce, otherwise it will burn."]),
+    TR("A batata frita está crocante.", ["The fries are crispy.", "The French fries are crispy."]),
+    LIS("Boil the pasta for eight minutes."),
+    LIS("The chicken is juicy and well seasoned.")
+  ],
+  mission: { title: "Cook and describe", text: "Cook something simple this week and describe it in English. || Cozinhe algo simples e descreva em inglês.", steps: ["Write the steps: First… Then… Finally… || Escreva os passos", "Describe it like a TV chef: crispy, juicy… || Descreva como chef", "Send a photo + 3 sentences || Foto + 3 frases"] }
+};
+L("x-b1-cooking", {
+  r: ["A Brazilian street food menu", "Acarajé — a crispy fried ball made with black-eyed peas, filled with vatapá and shrimp. Spicy, if you want!\nCoxinha — fried dough filled with shredded chicken. Crunchy outside, creamy inside.\nPão de queijo — small cheese bread, crispy on the outside and soft on the inside. Best served warm with coffee.\nTapioca — a thin pancake made with cassava starch, filled with cheese and coconut, or with banana and cinnamon.",
+    [["Acarajé is made with black-eyed peas. || É feito de feijão-fradinho.", true], ["Coxinha is filled with cheese. || A coxinha é recheada com queijo.", false], ["Pão de queijo is best served cold. || É melhor frio.", false], ["Tapioca is made with cassava starch. || É feita de goma de mandioca.", true]],
+    "Which Brazilian dish would you describe to a tourist? How? || Que prato você descreveria para um turista?", [["black-eyed peas", "feijão-fradinho"], ["shredded", "desfiado"], ["dough", "massa"], ["cassava starch", "goma de mandioca"]]],
+  a: "Describe your favourite dish like a TV chef: what it's made with, how it's cooked, how it tastes. || Descreva seu prato favorito como um chef."
+});
+
+CONTENT["x-b1-camping"] = {
+  lesson: [
+    { h: "Rules and advice || Regras e conselhos", table: [["", "meaning"], ["must", "it's necessary / a rule || obrigatório"], ["mustn't", "it's prohibited || proibido"], ["don't have to", "it isn't necessary || não precisa"], ["should", "advice || conselho"]] },
+    { h: "If…, will… (first conditional)", forms: { aff: ["If it rains, we'll stay in the tent. || Se chover, ficamos na barraca."], neg: ["We won't see the stars if it's cloudy. || Não vamos ver as estrelas se estiver nublado."], int: ["What will you do if you get lost? || O que você vai fazer se se perder?"] } },
+    { trap: { wrong: "If it will rain, we'll stay inside.", right: "If it rains, we'll stay inside. || Se chover, vamos ficar dentro.", note: "No will after if! || Nunca will depois de if." } }
+  ],
+  vocab: [["a tent", "uma barraca"], ["a sleeping bag", "um saco de dormir"], ["a campfire", "uma fogueira"], ["a flashlight", "uma lanterna"], ["to get lost", "perder-se"], ["to set up", "montar"], ["a shelter", "um abrigo"], ["insect repellent", "repelente"], ["slippery", "escorregadio"], ["poisonous", "venenoso"]],
+  ex: [
+    MC("You ___ swim in this river. It's dangerous!", ["mustn't", "don't have to", "must"], 0),
+    MC("If it ___, we'll play cards in the tent.", ["rains", "will rain", "rained"], 0),
+    MC("You ___ bring food. We have a lot.", ["don't have to", "mustn't", "must"], 0),
+    FILL("If you get lost, you ___ stay where you are.", ["should"], null, ["should", "shouldn't", "should to"]),
+    FILL("We ___ see the stars if it's cloudy.", ["won't", "will not"], null, ["won't", "don't", "aren't"]),
+    ORD(["What will you do if you get lost?"]),
+    ORD(["You must take your trash with you."]),
+    FIX("You don't must feed the animals.", ["You mustn't feed the animals.", "You must not feed the animals."]),
+    TR("Se fizer frio, vamos acender uma fogueira.", ["If it gets cold, we'll light a fire.", "If it's cold, we'll light a fire.", "If it gets cold, we will light a fire.", "If it is cold, we will make a fire.", "If it's cold, we'll make a fire."]),
+    TR("Você não precisa trazer barraca.", ["You don't have to bring a tent.", "You do not have to bring a tent."]),
+    LIS("If you don't drink water, you'll get dehydrated."),
+    LIS("You mustn't light fires near the trees.")
+  ],
+  mission: { title: "Weekend survival plan", text: "Plan a weekend in nature (real or imaginary). || Planeje um fim de semana na natureza.", steps: ["Your kit: 6 things || Seu kit: 6 coisas", "4 rules: must / mustn't / should || 4 regras", "3 plans B: If it rains, we'll… || 3 planos B"] }
+};
+L("x-b1-camping", {
+  r: ["National park rules", "Welcome to the park! To keep you and nature safe, please read our rules.\nYou must stay on the marked trails. If you leave them, you can get lost or damage plants.\nYou mustn't feed the animals. Human food can make them sick.\nYou must take all your trash with you — there are no bins on the trails.\nYou don't have to book a guide for the short trails, but you should hire one for the waterfall trail. If it rains, the rocks will be very slippery.",
+    [["You can walk anywhere you want. || Pode andar onde quiser.", false], ["Feeding the animals is prohibited. || É proibido alimentar os animais.", true], ["There are bins on the trails. || Há lixeiras nas trilhas.", false], ["A guide is a good idea for the waterfall trail. || Guia é uma boa ideia para a cachoeira.", true]],
+    "Which rule is the most important for you? Why? || Qual regra é a mais importante?", [["trails", "trilhas"], ["damage", "danificar"], ["bins", "lixeiras"], ["hire", "contratar"]]],
+  a: "Give a friend advice for a camping trip: 3 rules (must / mustn't) and 2 warnings (If you…, you'll…). || Dê conselhos para acampar."
+});
+
+CONTENT["x-b1-fixing"] = {
+  lesson: [
+    { h: "I did it · someone did it || Eu fiz · alguém fez", table: [["I did it myself", "someone did it for me"], ["I **fixed** my bike.", "I **had** my bike **fixed**."], ["I **painted** my room.", "I **had** my room **painted**."], ["I **cut** my hair. (oh no!)", "I **had** my hair **cut**."]] },
+    { h: "Problems at home || Problemas em casa", say: ["The tap is leaking. || A torneira está vazando.", "My screen is cracked. || Minha tela está trincada.", "The sink is blocked. || A pia está entupida.", "I need to get the door fixed. || Preciso mandar consertar a porta."] },
+    { trap: { wrong: "I fixed my car at the mechanic.", right: "I had my car fixed at the mechanic. || Mandei consertar meu carro no mecânico.", note: "Someone else did it → have / get + thing + participle. || Outra pessoa fez." } }
+  ],
+  vocab: [["broken", "quebrado"], ["leaking", "vazando"], ["cracked", "rachado / trincado"], ["stuck", "emperrado"], ["blocked", "entupido"], ["a plumber", "um encanador"], ["an electrician", "um eletricista"], ["a locksmith", "um chaveiro"], ["to replace", "trocar / substituir"], ["to repair", "consertar"]],
+  ex: [
+    MC("I didn't fix it myself. I ___.", ["had it fixed", "fixed it", "had fixed it"], 0),
+    MC("Where do you get your hair ___?", ["cut", "cutting", "to cut"], 0),
+    MC("The sink is blocked. Call a ___!", ["plumber", "locksmith", "mechanic"], 0),
+    FILL("I had my screen ___ last week. || trocada", ["replaced"], null, ["replaced", "replace", "replacing"]),
+    FILL("We're ___ the kitchen painted next month.", ["having", "getting"], null, ["having", "have", "had to"]),
+    ORD(["She had her car washed yesterday."]),
+    ORD(["Did you get the tap fixed?"]),
+    FIX("I had my phone repair.", ["I had my phone repaired."]),
+    TR("Mandei consertar meu celular.", ["I had my phone fixed.", "I had my phone repaired.", "I got my phone fixed.", "I got my phone repaired."]),
+    TR("A torneira está vazando.", ["The tap is leaking.", "The faucet is leaking."]),
+    LIS("I need to have my bike repaired."),
+    LIS("The door is stuck. Call a locksmith.")
+  ],
+  mission: { title: "Repair list", text: "Make a list of things at home that need fixing. || Faça uma lista do que precisa de conserto.", steps: ["5 problems: The… is leaking / broken… || 5 problemas", "Decide: I'll fix it myself or I'll have it fixed || Decida", "Tell your teacher || Conte ao professor"] }
+};
+L("x-b1-fixing", {
+  r: ["Repair cafés", "What do you do when your toaster, lamp or jacket breaks? Many people throw it away and buy a new one.\nIn 2009, Martine Postma opened the first Repair Café in Amsterdam. The idea is simple: you bring something broken, and volunteers help you fix it — for free. You don't just have it fixed: you learn how to do it yourself.\nToday there are thousands of Repair Cafés around the world.",
+    [["The first Repair Café opened in Amsterdam. || O primeiro abriu em Amsterdã.", true], ["You have to pay a lot. || Precisa pagar caro.", false], ["Volunteers teach you how to fix things. || Voluntários ensinam a consertar.", true], ["There are only ten Repair Cafés today. || Há só dez hoje.", false]],
+    "Do you fix things or buy new ones? Why? || Você conserta ou compra novo?", [["throw away", "jogar fora"], ["volunteers", "voluntários"], ["for free", "de graça"], ["including", "incluindo"]]],
+  a: "Talk about 3 things you had done recently (hair cut, phone repaired…) and 2 things you do yourself. || Fale de coisas que você mandou fazer."
+});
+
+CONTENT["m-b1-viva"] = {
+  song: { t: "Viva la Vida", a: "Coldplay", listen: "Listen: what did the king use to do? What does he do now? || O que o rei costumava fazer? E agora?" },
+  lesson: [
+    { h: "Then and now || Antes e agora", say: ["I used to live in a small town. || Eu morava numa cidade pequena.", "He used to be rich. || Ele já foi rico.", "I didn't use to like coffee. || Eu não gostava de café.", "Did you use to play outside? || Você costumava brincar na rua?"] },
+    { h: "used to · would", table: [["", "habits (actions)", "states"], ["used to", "✔ I used to play soccer.", "✔ I used to have long hair."], ["would", "✔ Every Sunday we would visit Grandma.", "✘ I would have long hair."]] },
+    { trap: { wrong: "I use to wake up at 7.", right: "I usually wake up at 7. || Eu costumo acordar às 7.", note: "Now → usually. Past → used to. || Hoje: usually." } }
+  ],
+  vocab: [["a king", "um rei"], ["to rule", "governar / reinar"], ["a castle", "um castelo"], ["a crowd", "uma multidão"], ["an enemy", "um inimigo"], ["a sword", "uma espada"], ["bells", "sinos"], ["to sweep", "varrer"]],
+  ex: [
+    MC("I ___ live in Recife, but now I live in Natal.", ["used to", "use to", "usually"], 0),
+    MC("___ you use to wear a uniform at school?", ["Did", "Do", "Were"], 0),
+    MC("Eu não costumava gostar de legumes. →", ["I didn't use to like vegetables.", "I didn't used to like vegetables.", "I wasn't use to like vegetables."], 0),
+    FILL("Now I ___ go to bed at midnight. || costumo", ["usually"], null, ["usually", "use to", "used to"]),
+    FILL("When I was a kid, I used to ___ glasses.", ["wear"], null, ["wear", "wearing", "wore"]),
+    ORD(["We used to play in the street every day."]),
+    ORD(["Did you use to have long hair?"]),
+    FIX("When I was a child, I would have a dog.", ["When I was a child, I used to have a dog."]),
+    TR("Eu morava no interior.", ["I used to live in the countryside.", "I lived in the countryside."]),
+    TR("Você costumava brincar na rua?", ["Did you use to play in the street?", "Did you use to play outside?"]),
+    LIS("My grandparents used to live on a farm."),
+    LIS("I didn't use to like coffee, but now I love it.")
+  ],
+  mission: { title: "Then and now", text: "Find an old photo of yourself. || Encontre uma foto antiga sua.", steps: ["Write 5 sentences: I used to… but now I… || 5 frases", "1 sentence with would || 1 frase com would", "Show the photo in class || Mostre na aula"] }
+};
+L("m-b1-viva", {
+  r: ["Life in the 90s", "My parents love to talk about the 90s. They used to rent movies on VHS tapes every Friday — and you had to rewind them before you returned them!\nThere were no smartphones. People used to call their friends from public phones, the famous “orelhões”, with phone cards.\nMy dad used to have long hair and listen to grunge. My mom didn't use to watch TV much; she would read magazines and listen to the radio.",
+    [["They used to rent movies on Fridays. || Alugavam filmes às sextas.", true], ["Everybody had a smartphone. || Todos tinham smartphone.", false], ["Dad used to have short hair. || O pai tinha cabelo curto.", false], ["Mom used to read magazines. || A mãe lia revistas.", true]],
+    "What did your parents use to do when they were young? || O que seus pais costumavam fazer?", [["rent", "alugar"], ["rewind", "rebobinar"], ["public phones", "telefones públicos"], ["phone cards", "cartões telefônicos"]]],
+  a: "Talk about your life 10 years ago: 5 sentences with used to / didn't use to. || Fale da sua vida há 10 anos."
+});
+
+CONTENT["m-b1-counting"] = {
+  song: { t: "Counting Stars", a: "OneRepublic", listen: "Listen: what has he been doing lately? || O que ele tem feito ultimamente?" },
+  lesson: [
+    { h: "Lately… || Ultimamente…", say: ["I've been studying a lot lately. || Tenho estudado muito ultimamente.", "She's been working here since 2020. || Ela trabalha aqui desde 2020.", "I haven't been sleeping well. || Não tenho dormido bem.", "How long have you been waiting? || Há quanto tempo você está esperando?"] },
+    { h: "have been + -ing", forms: { aff: ["We've been living here for five years. || Moramos aqui há cinco anos."], neg: ["He hasn't been feeling well. || Ele não tem se sentido bem."], int: ["What have you been doing lately? || O que você tem feito?"] } },
+    { trap: { wrong: "I'm studying English since 2022.", right: "I've been studying English since 2022. || Estudo inglês desde 2022.", note: "Started in the past and continues → have been + -ing. || Começou no passado e continua." } }
+  ],
+  vocab: [["lately", "ultimamente"], ["to lose sleep", "perder o sono"], ["to pray", "rezar / orar"], ["to count", "contar"], ["to dream", "sonhar"], ["bold", "ousado / corajoso"], ["alive", "vivo"], ["hope", "esperança"]],
+  ex: [
+    MC("She ___ been working too much.", ["has", "have", "is"], 0),
+    MC("I've been reading this book ___ a month.", ["for", "since", "during"], 0),
+    MC("Há quanto tempo você mora aqui? →", ["How long have you been living here?", "How long are you living here?", "How long do you live here?"], 0),
+    FILL("We've been dating ___ last summer.", ["since"], null, ["since", "for", "from"]),
+    FILL("I ___ been sleeping well. I'm so tired.", ["haven't", "have not"], null, ["haven't", "didn't", "don't"]),
+    ORD(["What have you been doing lately?"]),
+    ORD(["I've been learning English for two years."]),
+    FIX("I am working here since 2019.", ["I have been working here since 2019.", "I've been working here since 2019."]),
+    TR("Eu tenho estudado muito ultimamente.", ["I've been studying a lot lately.", "I have been studying a lot lately.", "I've been studying hard lately."]),
+    TR("Ela não tem dormido bem.", ["She hasn't been sleeping well.", "She has not been sleeping well."]),
+    LIS("I've been working all day."),
+    LIS("How long have you been waiting for me?")
+  ],
+  mission: { title: "Catch-up message", text: "Send a message in English to a friend you haven't seen for a while. || Mande uma mensagem para um amigo que você não vê há tempos.", steps: ["Ask: What have you been doing lately? || Pergunte", "Tell 3 things you've been doing || Conte 3 coisas", "Show your teacher the answer || Mostre a resposta"] }
+};
+L("m-b1-counting", {
+  r: ["A message from Dublin", "Hi, Carol! Sorry I haven't been answering your messages. I've been working a lot lately!\nI've been living in Dublin for six months now. I've been studying English in the mornings and working in a café in the afternoons.\nIt's been raining almost every day since I arrived, but I love it here. I've been saving money for a trip to Scotland in December. Have you been studying for your exams? Miss you!",
+    [["She hasn't been answering messages. || Ela não tem respondido.", true], ["She's been living in Dublin for a year. || Mora lá há um ano.", false], ["She works in a café in the afternoons. || Trabalha num café à tarde.", true], ["It hasn't rained since she arrived. || Não choveu desde que chegou.", false]],
+    "What have you been doing lately? || O que você tem feito ultimamente?", [["lately", "ultimamente"], ["arrived", "chegou"], ["saving money", "economizando"], ["miss you", "saudade"]]],
+  a: "Tell your teacher about the last 3 months: 5 sentences with I've been… || Fale dos seus últimos 3 meses."
+});
+
+CONTENT["m-b1-thinking"] = {
+  song: { t: "Thinking Out Loud", a: "Ed Sheeran", listen: "Listen: what will happen when they're old? || O que vai acontecer quando eles forem velhos?" },
+  lesson: [
+    { h: "The future after when || O futuro depois de when", say: ["When I'm 70, I'll still dance. || Quando eu tiver 70 anos, ainda vou dançar.", "I'll call you as soon as I arrive. || Te ligo assim que chegar.", "I'll wait until you're ready. || Vou esperar até você estar pronto.", "Before I go, I'll say goodbye. || Antes de ir, vou me despedir."] },
+    { h: "when · as soon as · until · before · after", table: [["time word + present", "main clause: will"], ["When I **finish** school,", "I**'ll** travel."], ["As soon as she **gets** home,", "she**'ll** call you."], ["Until you **say** sorry,", "I **won't** talk to you."]] },
+    { trap: { wrong: "When I will be old, I'll live by the sea.", right: "When I'm old, I'll live by the sea. || Quando eu for velho, vou morar na praia.", note: "Portuguese: quando eu for · English: when I am (present)! || Em inglês, presente." } }
+  ],
+  vocab: [["to fall in love", "apaixonar-se"], ["to sweep someone off their feet", "conquistar alguém de repente"], ["to think out loud", "pensar alto"], ["memory", "memória"], ["to fade", "sumir aos poucos"], ["a crowd", "uma multidão"], ["cheeks", "bochechas"], ["as soon as", "assim que"]],
+  ex: [
+    MC("When I ___ 70, I'll still love you.", ["am", "will be", "would be"], 0),
+    MC("I'll text you as soon as the movie ___.", ["ends", "will end", "ending"], 0),
+    MC("Vou esperar até você voltar. →", ["I'll wait until you come back.", "I'll wait until you will come back.", "I wait until you'll come back."], 0),
+    FILL("___ you still love me when I'm old?", ["Will"], null, ["Will", "Do", "Are"]),
+    FILL("After we ___ dinner, we'll go for a walk.", ["have"], null, ["have", "will have", "had"]),
+    ORD(["I'll call you as soon as I get home."]),
+    ORD(["When I retire, I'll live by the sea."]),
+    FIX("When she will arrive, we'll start the party.", ["When she arrives, we'll start the party.", "When she arrives, we will start the party."]),
+    TR("Quando eu tiver 70 anos, vou continuar dançando.", ["When I'm 70, I'll still dance.", "When I'm 70, I'll keep dancing.", "When I am 70, I will still dance.", "When I'm 70, I'll still be dancing."]),
+    TR("Te ligo assim que chegar.", ["I'll call you as soon as I arrive.", "I'll call you as soon as I get there.", "I'll call you as soon as I get home."]),
+    LIS("She'll be happy when she hears the news."),
+    LIS("We won't leave until the rain stops.")
+  ],
+  mission: { title: "Letter to my future self", text: "Write a short letter to yourself at 70. || Escreva uma carta para você aos 70.", steps: ["When I'm 70, I'll… || Quando eu tiver 70…", "Use as soon as and until || Use as soon as e until", "Keep it — and read it in 10 years! || Guarde e leia em 10 anos!"] }
+};
+L("m-b1-thinking", {
+  r: ["Seventy years together", "Dona Lúcia and Seu Antônio got married in 1954. They're now in their nineties, and they still hold hands when they walk.\n“What's the secret?” people ask. Lúcia laughs: “When he's grumpy, I make him coffee. When I'm sad, he sings to me — very badly!”\nAntônio has a plan: “As soon as I turn 100, I'll take her dancing again. And until that day comes, I'll keep practising in the kitchen.”",
+    [["They got married in 1954. || Casaram em 1954.", true], ["They don't hold hands anymore. || Não andam mais de mãos dadas.", false], ["Antônio sings very well. || Ele canta muito bem.", false], ["He plans to take her dancing at 100. || Quer levá-la para dançar aos 100.", true]],
+    "What's the secret of a long relationship? || Qual é o segredo de uma relação longa?", [["in their nineties", "na casa dos 90"], ["grumpy", "rabugento"], ["turn 100", "fazer 100 anos"], ["keep practising", "continuar praticando"]]],
+  a: "Imagine your life at 70: 5 sentences with when / as soon as / until + will. || Imagine sua vida aos 70."
+});
+
+/* ✨ Extra lessons — B2 and C1 (themed + music). */
+
+/* ---------------- B2 ---------------- */
+CONTENT["x-b2-crime"] = {
+  lesson: [
+    { h: "How sure are you? || Qual sua certeza?", table: [["", "meaning", "example"], ["must have + participle", "almost sure it happened || com certeza foi", "The thief must have used a key."], ["can't have + participle", "almost sure it didn't happen || não pode ter sido", "She can't have done it. She was in Paris."], ["might / may / could have + participle", "maybe || talvez", "He might have left through the window."]] },
+    { h: "Thinking like a detective || Pensando como detetive", say: ["The window isn't broken, so he must have had a key. || A janela não está quebrada; ele deve ter tido uma chave.", "It can't have been the guard. His shoes are bigger. || Não pode ter sido o vigia.", "She might have forgotten the code. || Ela pode ter esquecido o código.", "You must have been scared! || Você deve ter ficado com medo!"] },
+    { trap: { wrong: "She must have stole the painting.", right: "She must have stolen the painting. || Ela deve ter roubado o quadro.", note: "have + past participle (stolen, gone, been…). || Particípio passado!" } }
+  ],
+  vocab: [["evidence", "provas / evidências"], ["a clue", "uma pista"], ["a suspect", "um suspeito"], ["a witness", "uma testemunha"], ["an alibi", "um álibi"], ["fingerprints", "impressões digitais"], ["a footprint", "uma pegada"], ["CCTV footage", "imagens de câmera de segurança"], ["to steal", "roubar (algo)"], ["to deny", "negar"]],
+  ex: [
+    MC("The door wasn't forced. The thief ___ a key.", ["must have had", "can't have had", "must had"], 0),
+    MC("He ___ the money — he was in hospital that day.", ["can't have taken", "must have taken", "can't have took"], 0),
+    MC("Talvez ela tenha perdido o ônibus. →", ["She might have missed the bus.", "She might has missed the bus.", "She might have miss the bus."], 0),
+    FILL("The streets are wet. It must have ___ raining.", ["been"], null, ["been", "be", "being"]),
+    FILL("Nobody saw the robbery. There were no ___. || testemunhas", ["witnesses"], null, ["witnesses", "suspects", "alibis"]),
+    ORD(["He can't have stolen it."]),
+    ORD(["They might have left through the window."]),
+    FIX("You must have be very tired.", ["You must have been very tired."]),
+    TR("Ele deve ter usado uma chave.", ["He must have used a key."]),
+    TR("Não pode ter sido ela. Ela estava em casa.", ["It can't have been her. She was at home.", "It couldn't have been her. She was at home.", "It can't have been her. She was home."]),
+    LIS("The thief must have known the code."),
+    LIS("She can't have taken it. She has an alibi.")
+  ],
+  mission: { title: "Mystery at home", text: "Something is missing or strange at home? Investigate! || Algo sumiu ou está estranho em casa? Investigue!", steps: ["Find 3 clues || Encontre 3 pistas", "Write: It must have been… It can't have been… || Escreva suas deduções", "Tell the story in class || Conte na aula"] }
+};
+L("x-b2-crime", {
+  r: ["The science of fingerprints", "No two people have the same fingerprints — not even identical twins. Your fingerprints form before you are born, and they don't change during your whole life.\nWhen you touch something, you leave a thin layer of sweat and oil in the shape of your fingerprint. Detectives use special powders and lights to make these invisible prints visible.\nAnd here's a strange fact: koalas have fingerprints that are very similar to ours. Under a microscope, it can be hard to tell the difference!",
+    [["Identical twins have the same fingerprints. || Gêmeos idênticos têm as mesmas digitais.", false], ["Fingerprints form before birth. || As digitais se formam antes do nascimento.", true], ["Detectives use powders to see prints. || Usam pós para ver as digitais.", true], ["Koala fingerprints are very different from ours. || As do coala são bem diferentes.", false]],
+    "Would you like to work in forensic science? Why (not)? || Você trabalharia com perícia?", [["identical twins", "gêmeos idênticos"], ["sweat", "suor"], ["powders", "pós"], ["tell the difference", "notar a diferença"]]],
+  a: "Your friend didn't come to your party. Give 4 explanations with must have / might have / can't have. || Dê 4 explicações."
+});
+
+CONTENT["x-b2-space"] = {
+  lesson: [
+    { h: "Two futures || Dois futuros", table: [["", "meaning", "example"], ["will be + -ing", "in progress at a future time || estará fazendo", "This time next year, I'll be living in Lisbon."], ["will have + participle", "finished before a future time || terá feito", "By 2040, humans will have landed on Mars."]] },
+    { h: "Predictions || Previsões", say: ["By 2050, we'll have built a base on the Moon. || Até 2050, teremos construído uma base na Lua.", "At midnight, the crew will be sleeping. || À meia-noite, a tripulação estará dormindo.", "By 2030, we won't have reached Mars. || Até 2030, não teremos chegado a Marte.", "Will you have finished by Monday? || Você terá terminado até segunda?"] },
+    { trap: { wrong: "By 2040, humans will land on Mars already.", right: "By 2040, humans will have landed on Mars. || Até 2040, os humanos terão pousado em Marte.", note: "by + date → will have + participle. || by + data: will have." } }
+  ],
+  vocab: [["a mission", "uma missão"], ["a crew", "uma tripulação"], ["to launch", "lançar"], ["to orbit", "orbitar"], ["gravity", "gravidade"], ["oxygen", "oxigênio"], ["reusable", "reutilizável"], ["a space tourist", "um turista espacial"], ["fuel", "combustível"], ["a light-year", "um ano-luz"]],
+  ex: [
+    MC("Don't call me at 9 tonight. I ___.", ["'ll be sleeping", "'ll have slept", "'m sleep"], 0),
+    MC("By 2040, humans ___ on Mars.", ["will have landed", "will have land", "will landed"], 0),
+    MC("Daqui a um ano, estarei morando em outro país. →", ["This time next year, I'll be living in another country.", "This time next year, I'll have lived in another country.", "This time next year, I'll living in another country."], 0),
+    FILL("By the time you wake up, the crew will have ___. || pousado", ["landed"], null, ["landed", "land", "landing"]),
+    FILL("At 10 o'clock, they'll be ___ the rocket. || lançando", ["launching"], null, ["launching", "launched", "launch"]),
+    ORD(["What will you be doing this time next year?"]),
+    ORD(["By 2050, we will have built a base on the Moon."]),
+    FIX("By Friday, I will finished the project.", ["By Friday, I will have finished the project.", "By Friday, I'll have finished the project."]),
+    TR("Até 2040, teremos chegado a Marte.", ["By 2040, we'll have reached Mars.", "By 2040, we will have reached Mars.", "By 2040, we'll have arrived on Mars.", "By 2040, we will have got to Mars."]),
+    TR("Você terá terminado até segunda?", ["Will you have finished by Monday?"]),
+    LIS("By 2030, we won't have reached Mars."),
+    LIS("This time tomorrow, I'll be flying to Lisbon.")
+  ],
+  mission: { title: "My timeline", text: "Make a personal timeline: 1, 5 and 10 years from now. || Faça uma linha do tempo pessoal.", steps: ["By…, I'll have… || Até…, terei…", "This time next year, I'll be… || Daqui a um ano, estarei…", "Share it with your teacher || Compartilhe"] }
+};
+L("x-b2-space", {
+  r: ["The James Webb Space Telescope", "On 25 December 2021, the James Webb Space Telescope left Earth on a rocket. It now orbits the Sun about 1.5 million kilometers from our planet.\nIts main mirror is 6.5 meters wide and is made of 18 gold-coated pieces. Webb can see light from galaxies that formed more than 13 billion years ago — light that has been travelling almost since the beginning of the universe.\nIt has enough fuel for about 20 years, so by the end of its mission it will have studied thousands of galaxies and planets.",
+    [["Webb was launched in 2021. || Foi lançado em 2021.", true], ["Its mirror is made of one single piece. || O espelho é uma peça só.", false], ["It can see very old light. || Vê luz muito antiga.", true], ["It has fuel for only two years. || Combustível para só dois anos.", false]],
+    "What do you hope Webb will have discovered by 2040? || O que você espera que o Webb tenha descoberto até 2040?", [["mirror", "espelho"], ["gold-coated", "revestido de ouro"], ["formed", "se formaram"], ["fuel", "combustível"]]],
+  a: "Predict the future of space travel: 3 sentences with will have and 2 with will be + -ing. || Faça previsões."
+});
+
+CONTENT["x-b2-brain"] = {
+  lesson: [
+    { h: "The meaning changes! || O sentido muda!", table: [["", "+ to", "+ -ing"], ["remember", "a task: Remember **to lock** the door. || lembrar de fazer", "a memory: I remember **locking** it. || lembrar de ter feito"], ["forget", "I forgot **to call** her. || esqueci de ligar", "I'll never forget **meeting** her. || nunca vou esquecer"], ["stop", "I stopped **to buy** bread. || parei para comprar", "I stopped **drinking** soda. || parei de tomar"], ["try", "I tried **to open** it, but I couldn't. || tentei (esforço)", "Try **drinking** tea. || experimente"]] },
+    { h: "Memory tricks || Truques de memória", say: ["Repeat new words out loud. || Repita palavras novas em voz alta.", "Try associating words with pictures. || Experimente associar palavras a imagens.", "Avoid cramming the night before a test. || Evite estudar tudo na véspera.", "Remember to review every week. || Lembre-se de revisar toda semana."] },
+    { trap: { wrong: "I stopped to smoke ten years ago.", right: "I stopped smoking ten years ago. || Parei de fumar há dez anos.", note: "stop + -ing = parar de · stop + to = parar para. || Atenção!" } }
+  ],
+  vocab: [["to memorise", "decorar / memorizar"], ["to recall", "recordar"], ["to remind", "lembrar (alguém)"], ["absent-minded", "distraído"], ["forgetful", "esquecido"], ["to concentrate", "concentrar-se"], ["a habit", "um hábito"], ["long-term memory", "memória de longo prazo"], ["to review", "revisar"], ["to cram", "estudar tudo na última hora"]],
+  ex: [
+    MC("Did you remember ___ the milk? The fridge is empty.", ["to buy", "buying", "buy"], 0),
+    MC("I'll never forget ___ the sea for the first time.", ["seeing", "to see", "see"], 0),
+    MC("Paramos para tomar um café. →", ["We stopped to have a coffee.", "We stopped having a coffee.", "We stopped have a coffee."], 0),
+    FILL("I keep ___ my password! || esquecendo", ["forgetting"], null, ["forgetting", "to forget", "forget"]),
+    FILL("Can you remind me ___ the dentist?", ["to call"], null, ["to call", "calling", "call"]),
+    ORD(["I regret not studying more."]),
+    ORD(["Remember to lock the door."]),
+    FIX("He stopped to drink soda and lost five kilos.", ["He stopped drinking soda and lost five kilos."]),
+    TR("Eu me lembro de ter trancado a porta.", ["I remember locking the door.", "I remember having locked the door."]),
+    TR("Não esqueça de me ligar.", ["Don't forget to call me.", "Do not forget to call me."]),
+    LIS("I avoid using my phone before bed."),
+    LIS("Try reading the words out loud.")
+  ],
+  mission: { title: "Memory experiment", text: "Learn 10 new English words this week with a memory trick. || Aprenda 10 palavras com um truque de memória.", steps: ["Choose a trick: pictures, flashcards, repeating out loud || Escolha um truque", "Review on day 1, 3 and 7 || Revise nos dias 1, 3 e 7", "Test yourself in class! || Teste-se na aula"] }
+};
+L("x-b2-brain", {
+  r: ["The forgetting curve", "In the 1880s, a German scientist called Hermann Ebbinghaus tried an unusual experiment: he memorised lists of nonsense syllables and tested himself again and again.\nHe discovered that we forget most new information very quickly — much of it within a day — unless we review it. But every time we review, we forget more slowly.\nThat's why many language apps use spaced repetition: they remind you to practise a word just before you're likely to forget it.",
+    [["Ebbinghaus tested his memory on himself. || Testou a memória em si mesmo.", true], ["We remember almost everything for weeks. || Lembramos de quase tudo por semanas.", false], ["Reviewing makes us forget more slowly. || Revisar faz esquecer mais devagar.", true], ["Language apps never use spaced repetition. || Apps nunca usam repetição espaçada.", false]],
+    "How do you remember new words? || Como você memoriza palavras novas?", [["nonsense syllables", "sílabas sem sentido"], ["again and again", "repetidas vezes"], ["unless", "a menos que"], ["likely to", "propenso a"]]],
+  a: "Share your 3 best study tips using try + -ing, remember to, stop + -ing. || Dê 3 dicas de estudo."
+});
+
+CONTENT["m-b2-yourman"] = {
+  song: { t: "When I Was Your Man", a: "Bruno Mars", listen: "Listen: what should he have done? || O que ele deveria ter feito?" },
+  lesson: [
+    { h: "Regrets || Arrependimentos", say: ["I should have called you. || Eu deveria ter ligado para você.", "You shouldn't have said that. || Você não deveria ter dito isso.", "I wish I had listened to you. || Queria ter ouvido você.", "What should I have done? || O que eu deveria ter feito?"] },
+    { h: "should have · shouldn't have", forms: { aff: ["We should have left earlier. || Deveríamos ter saído mais cedo."], neg: ["I shouldn't have eaten so much. || Não deveria ter comido tanto."], int: ["Should I have apologised? — Yes, you should have. || Eu deveria ter pedido desculpas?"] } },
+    { trap: { wrong: "I should have went to the party.", right: "I should have gone to the party. || Eu deveria ter ido à festa.", note: "should have + past participle. || Particípio: gone, not went." } }
+  ],
+  vocab: [["pride", "orgulho"], ["selfish", "egoísta"], ["to realise", "perceber"], ["to break up", "terminar (namoro)"], ["an ex", "um(a) ex"], ["to apologise", "pedir desculpas"], ["to move on", "seguir em frente"], ["to take someone out", "levar alguém para sair"]],
+  ex: [
+    MC("I ___ to you. You were right.", ["should have listened", "should listened", "should have listen"], 0),
+    MC("I wish I ___ the tickets earlier.", ["had bought", "have bought", "bought had"], 0),
+    MC("Você não deveria ter dito isso. →", ["You shouldn't have said that.", "You shouldn't said that.", "You don't should have said that."], 0),
+    FILL("We should have ___ earlier. Now we're late! || saído", ["left"], null, ["left", "leave", "leaved"]),
+    FILL("I shouldn't have ___ so much cake. || comido", ["eaten"], null, ["eaten", "ate", "eat"]),
+    ORD(["What should I have done?"]),
+    ORD(["He should have been more patient."]),
+    FIX("You should have tell me the truth.", ["You should have told me the truth."]),
+    TR("Eu deveria ter estudado mais.", ["I should have studied more.", "I should have studied harder."]),
+    TR("Queria ter passado mais tempo com ela.", ["I wish I had spent more time with her.", "I wish I'd spent more time with her."]),
+    LIS("I should have said sorry."),
+    LIS("She shouldn't have been so selfish.")
+  ],
+  mission: { title: "A real apology", text: "Is there someone you should have said sorry to? || Tem alguém a quem você deveria ter pedido desculpas?", steps: ["Write the message in English first || Escreva em inglês primeiro", "Use I should have… / I shouldn't have… || Use should have", "Send it (in Portuguese, if you want!) || Envie"] }
+};
+L("m-b2-yourman", {
+  r: ["How to say sorry", "Psychologists say a good apology has three parts.\nFirst, say exactly what you did wrong: “I shouldn't have shouted at you.” Don't say “I'm sorry if you were upset” — that sounds like it's their fault.\nSecond, show you understand how they felt: “You must have felt humiliated.”\nThird, say what you will do differently. And then — the hard part — don't make excuses. A “but” can destroy the best apology!",
+    [["A good apology has three parts. || Um bom pedido de desculpas tem três partes.", true], ["“I'm sorry if you were upset” is a great apology. || É um ótimo pedido.", false], ["You should show you understand their feelings. || Mostre que entende.", true], ["Adding excuses makes it better. || Desculpas esfarrapadas ajudam.", false]],
+    "Is it hard for you to say sorry? Why? || É difícil para você pedir desculpas?", [["exactly", "exatamente"], ["shouted", "gritou"], ["humiliated", "humilhado"], ["excuses", "desculpas (justificativas)"]]],
+  a: "Talk about 3 small regrets: I should have… / I shouldn't have… / I wish I had… || Fale de 3 pequenos arrependimentos."
+});
+
+CONTENT["m-b2-wakeup"] = {
+  song: { t: "Wake Me Up", a: "Avicii", listen: "Listen: what does he wish? || O que ele deseja?" },
+  lesson: [
+    { h: "I wish… || Eu queria…", table: [["", "meaning", "example"], ["wish + past", "now || agora", "I wish I had more free time."], ["wish + were", "now (be) || agora", "I wish I were on holiday."], ["wish + could", "ability || conseguir", "I wish I could speak Japanese."], ["wish + had + participle", "past regret || queria ter", "I wish I had studied music."], ["wish + would", "annoyed || irritação", "I wish you would stop talking!"]] },
+    { h: "Growing up || Crescendo", say: ["When I'm older, I'll be wiser. || Quando eu for mais velho, serei mais sábio.", "I wish I could stay young forever. || Queria poder ser jovem para sempre.", "I'm still figuring out my life. || Ainda estou descobrindo minha vida.", "Life is a journey. || A vida é uma jornada."] },
+    { trap: { wrong: "I wish I can fly.", right: "I wish I could fly. || Queria poder voar.", note: "After wish: could, not can. || Depois de wish: could." } }
+  ],
+  vocab: [["the darkness", "a escuridão"], ["a journey", "uma jornada"], ["lost", "perdido"], ["wiser", "mais sábio"], ["a prize", "um prêmio"], ["to grow up", "crescer"], ["freedom", "liberdade"], ["to figure out", "descobrir / entender"]],
+  ex: [
+    MC("I wish I ___ more time.", ["had", "have", "will have"], 0),
+    MC("I wish I ___ on a beach right now.", ["were", "am", "will be"], 0),
+    MC("Queria ter estudado música. →", ["I wish I had studied music.", "I wish I studied music yesterday.", "I wish I have studied music."], 0),
+    FILL("I wish I ___ speak five languages.", ["could"], null, ["could", "can", "will"]),
+    FILL("I wish my neighbour ___ stop playing the drums at night.", ["would"], null, ["would", "will", "does"]),
+    ORD(["When I'm older, I'll understand."]),
+    ORD(["I wish I had known that before."]),
+    FIX("I wish I can travel more.", ["I wish I could travel more."]),
+    TR("Queria estar de férias.", ["I wish I were on holiday.", "I wish I was on holiday.", "I wish I were on vacation.", "I wish I was on vacation."]),
+    TR("Queria poder viajar mais.", ["I wish I could travel more."]),
+    LIS("I wish I could stop time."),
+    LIS("When I'm older, I'll have more freedom.")
+  ],
+  mission: { title: "Letter to my 15-year-old self", text: "Write a short letter to yourself at 15. || Escreva uma carta para você aos 15.", steps: ["I wish I had known… || Queria ter sabido…", "Don't worry about… / Try to… || Conselhos", "Read it to your teacher || Leia para o professor"] }
+};
+L("m-b2-wakeup", {
+  r: ["Dear 18-year-old me — by Marcos, 45", "Dear Marcos,\nI wish I could tell you everything I know now. You think you have to figure out your whole life this year. You don't!\nI wish I had travelled more when I was young and free. I wish I hadn't worried so much about what other people thought.\nAnd please, call Grandma more often. One day you'll wish you could hear her voice again.\nYou'll be fine. Life is a long journey, not a race.",
+    [["Marcos thinks you have to figure out your life at 18. || Ele acha que é preciso decidir tudo aos 18.", false], ["He wishes he had travelled more. || Queria ter viajado mais.", true], ["He's happy he worried a lot. || Está feliz por ter se preocupado.", false], ["He says life is a journey. || Diz que a vida é uma jornada.", true]],
+    "What do you wish you had known at 15? || O que você queria ter sabido aos 15?", [["figure out", "descobrir"], ["worried", "se preocupou"], ["voice", "voz"], ["race", "corrida"]]],
+  a: "Make 3 wishes: one for now, one about the past and one ability. || Faça 3 desejos."
+});
+
+CONTENT["m-b2-rewrite"] = {
+  song: { t: "Rewrite the Stars", a: "Zac Efron & Zendaya", listen: "It's a duet: who thinks it's possible, and who thinks it's impossible? || Quem acha possível e quem acha impossível?" },
+  lesson: [
+    { h: "What if…? || E se…?", say: ["What if we moved to another country? || E se a gente se mudasse para outro país?", "What if it rains tomorrow? || E se chover amanhã?", "We were meant to meet. || Era para a gente se conhecer.", "It's up to you. || Depende de você."] },
+    { h: "Destiny and expectations || Destino e expectativas", table: [["", "meaning", "example"], ["be meant to", "destiny || estar destinado", "Maybe we were meant to be together."], ["be supposed to", "expected || era para / deveria", "You were supposed to call me!"], ["it's up to", "their decision || depende de", "It's up to you."]] },
+    { trap: { wrong: "It depends of you.", right: "It's up to you. / It depends on you. || Depende de você.", note: "depend ON (not of) — or say “it's up to you”. || depend on." } }
+  ],
+  vocab: [["to rewrite", "reescrever"], ["fate / destiny", "destino"], ["to keep apart", "manter separados"], ["hopeless", "sem esperança"], ["to wonder", "perguntar-se"], ["a choice", "uma escolha"], ["to judge", "julgar"], ["society", "a sociedade"]],
+  ex: [
+    MC("What if we ___ everything?", ["changed", "would change", "will changed"], 0),
+    MC("You were supposed to ___ me last night!", ["call", "calling", "called"], 0),
+    MC("Depende de você. →", ["It's up to you.", "It's up of you.", "It depends of you."], 0),
+    FILL("I think we were ___ to meet. || destinados", ["meant"], null, ["meant", "mean", "meaning"]),
+    FILL("If I ___ change one thing, I'd change my job.", ["could"], null, ["could", "can", "will"]),
+    ORD(["What if nobody knew about us?"]),
+    ORD(["Maybe it was meant to be."]),
+    FIX("It depends of you.", ["It depends on you.", "It's up to you."]),
+    TR("E se a gente tentasse de novo?", ["What if we tried again?"]),
+    TR("Era para você ter me ligado!", ["You were supposed to call me!", "You were supposed to have called me!"]),
+    LIS("What if we rewrote the rules?"),
+    LIS("It's not up to them. It's our choice.")
+  ],
+  mission: { title: "What if…?", text: "Write 5 “What if…?” questions about your life and answer one. || Escreva 5 perguntas “E se…?”.", steps: ["What if I had… / What if I moved… || Perguntas", "Answer one: If…, I'd… || Responda uma", "Ask your teacher one in class! || Pergunte ao professor"] }
+};
+L("m-b2-rewrite", {
+  r: ["The Greatest Showman", "The Greatest Showman (2017) is a musical inspired by P. T. Barnum, the American showman who created a famous circus in the 1800s.\nIn the film, Phillip, a rich young man, falls in love with Anne, a trapeze artist in the circus. But in that time, society didn't accept a couple like them: Anne is African American, and Phillip's family is rich and white.\nThey sing “Rewrite the Stars” while flying on the trapeze. The soundtrack became the best-selling album in the world in 2018.",
+    [["The film is inspired by a real showman. || É inspirado num homem real.", true], ["Anne is a singer in a band. || Anne é cantora de banda.", false], ["Society accepted their relationship easily. || A sociedade aceitou fácil.", false], ["The soundtrack was a huge success. || A trilha foi um grande sucesso.", true]],
+    "Do you believe in destiny or in choices? || Você acredita em destino ou em escolhas?", [["inspired by", "inspirado em"], ["showman", "empresário de espetáculos"], ["trapeze artist", "trapezista"], ["best-selling", "mais vendido"]]],
+  a: "Ask 3 “What if…?” questions and answer them: What if…? — I'd… || Faça e responda 3 perguntas “E se…?”."
+});
+
+/* ---------------- C1 ---------------- */
+CONTENT["x-c1-idioms"] = {
+  lesson: [
+    { h: "Idioms about people || Expressões sobre pessoas", say: ["I'm an early bird. || Sou matutino.", "My brother is a night owl. || Meu irmão é noturno.", "I felt like a fish out of water. || Me senti um peixe fora d'água.", "She's the black sheep of the family. || Ela é a ovelha negra da família."] },
+    { h: "Using idioms well || Usando bem as expressões", table: [["tip", "example"], ["Change the tense || conjugue", "She **let** the cat out of the bag yesterday."], ["Change the possessive || troque o pronome", "I had butterflies in **my** stomach."], ["Don't change the words || não troque palavras", "✘ the elephant in the kitchen"], ["Watch the register || cuidado no formal", "✔ with friends · ✘ in a legal report"]] },
+    { trap: { wrong: "When chickens have teeth!", right: "When pigs fly! || Quando as galinhas criarem dentes!", note: "Idioms don't translate word for word. || Expressões não se traduzem palavra por palavra." } }
+  ],
+  vocab: [["an early bird", "pessoa que acorda cedo"], ["a night owl", "pessoa noturna"], ["the elephant in the room", "o assunto que todos evitam"], ["let the cat out of the bag", "deixar escapar um segredo"], ["when pigs fly", "nunca"], ["the lion's share", "a maior parte"], ["hold your horses", "calma, espera aí"], ["smell a rat", "desconfiar de algo"], ["cry wolf", "dar alarme falso"], ["butterflies in your stomach", "frio na barriga"]],
+  ex: [
+    MC("He'll be on time when ___.", ["pigs fly", "pigs swim", "dogs fly"], 0),
+    MC("Who ___ the cat out of the bag?", ["let", "put", "took"], 0),
+    MC("Estou com frio na barriga. →", ["I've got butterflies in my stomach.", "I've got cold in my belly.", "I've got bees in my stomach."], 0),
+    FILL("My brother always eats the ___ share of the pizza.", ["lion's"], null, ["lion's", "tiger's", "elephant's"]),
+    FILL("Don't believe him. He always cries ___.", ["wolf"], null, ["wolf", "fox", "dog"]),
+    ORD(["I heard it straight from the horse's mouth."]),
+    ORD(["Nobody mentioned the elephant in the room."]),
+    FIX("Hold your horse! Let me finish.", ["Hold your horses! Let me finish."]),
+    TR("Ele deu com a língua nos dentes.", ["He let the cat out of the bag.", "He spilled the beans.", "He spilt the beans."]),
+    TR("Me senti um peixe fora d'água.", ["I felt like a fish out of water."]),
+    LIS("I'm a real night owl. I work best at midnight."),
+    LIS("When he offered to pay, I smelled a rat.")
+  ],
+  mission: { title: "Idiom hunt", text: "Watch a series or listen to a podcast in English this week. || Assista a uma série ou ouça um podcast em inglês.", steps: ["Find 3 idioms (animal or not!) || Encontre 3 expressões", "Write the sentence and guess the meaning || Anote e adivinhe o sentido", "Bring them to class || Traga para a aula"] }
+};
+L("x-c1-idioms", {
+  r: ["Raining cats and dogs", "English is full of animal idioms, and some of them are very old. Nobody knows for sure where “it's raining cats and dogs” comes from — there are several theories, and none of them is proven.\nMany idioms are different in British and American English. A Brit might say something is “the bee's knees” (excellent), while an American would probably just say it's awesome.\nLearners often try to translate idioms from their own language. But a Portuguese speaker who says “I'm going to pay the duck” will only get confused looks!",
+    [["Everybody agrees on the origin of “raining cats and dogs”. || Todos concordam com a origem.", false], ["Some idioms are different in British and American English. || Algumas variam entre os países.", true], ["“The bee's knees” means excellent. || Significa excelente.", true], ["Translating idioms word for word usually works. || Traduzir palavra por palavra funciona.", false]],
+    "Which Portuguese idiom would be fun to explain in English? || Que expressão em português seria divertida de explicar?", [["for sure", "com certeza"], ["proven", "comprovado"], ["learners", "aprendizes"], ["confused looks", "olhares confusos"]]],
+  a: "Tell a short story (real or invented) using 5 animal idioms. || Conte uma história com 5 expressões."
+});
+
+CONTENT["x-c1-ads"] = {
+  lesson: [
+    { h: "Cleft sentences: add emphasis || Dando ênfase", table: [["normal", "with emphasis"], ["Our brain hates losing.", "**What** our brain hates **is** losing."], ["The colour made me buy it.", "**It was** the colour **that** made me buy it."], ["I bought it because it was on sale.", "**The reason why** I bought it **is that** it was on sale."], ["I only wanted a coffee.", "**All** I wanted **was** a coffee."]] },
+    { h: "Persuasion tricks || Truques de persuasão", say: ["Scarcity: “Only 2 left!” || Escassez: “Só restam 2!”", "Social proof: “10,000 happy customers.” || Prova social", "Anchoring: “Was R$ 600 — now R$ 300.” || Ancoragem", "A decoy makes another option look cheap. || Uma isca faz outra opção parecer barata."] },
+    { trap: { wrong: "What I need it's a holiday.", right: "What I need is a holiday. || O que eu preciso é de férias.", note: "What… + is (no “it”). || Sem o “it”." } }
+  ],
+  vocab: [["a brand", "uma marca"], ["a slogan", "um slogan"], ["a target audience", "um público-alvo"], ["an endorsement", "um endosso (de famoso)"], ["scarcity", "escassez"], ["a decoy", "uma opção chamariz"], ["an impulse buy", "uma compra por impulso"], ["to persuade", "persuadir"], ["to appeal to", "atrair / apelar a"], ["to go viral", "viralizar"]],
+  ex: [
+    MC("What I need ___ a holiday.", ["is", "are", "it's"], 0),
+    MC("It was the price ___ convinced me.", ["that", "what", "who"], 0),
+    MC("Tudo o que eu queria era um café. →", ["All I wanted was a coffee.", "All what I wanted was a coffee.", "Everything I wanted it was a coffee."], 0),
+    FILL("___ makes this ad special is the music.", ["What"], null, ["What", "That", "It"]),
+    FILL("The reason ___ they use celebrities is that people trust them.", ["why"], null, ["why", "because", "what"]),
+    ORD(["It's the music that makes this ad memorable."]),
+    ORD(["What I hate is pop-up ads."]),
+    FIX("The reason why I bought it is because of it was cheap.", ["The reason why I bought it is that it was cheap.", "The reason I bought it is that it was cheap.", "The reason why I bought it is because it was cheap."]),
+    TR("Foi o preço que me convenceu.", ["It was the price that convinced me.", "It was the price which convinced me."]),
+    TR("O que me irrita é a música do anúncio.", ["What annoys me is the music in the ad.", "What annoys me is the ad's music.", "What irritates me is the music in the ad."]),
+    LIS("What our brain hates is missing an opportunity."),
+    LIS("It's young people that they're targeting.")
+  ],
+  mission: { title: "Ad detective", text: "Find 2 real ads this week (TV, Instagram, a shop window). || Encontre 2 anúncios reais.", steps: ["Who is the target audience? || Quem é o público-alvo?", "Which tricks do they use? || Que truques usam?", "Write 3 cleft sentences about them || 3 cleft sentences"] }
+};
+L("x-c1-ads", {
+  r: ["Did Coca-Cola invent Santa?", "What many people believe is that Coca-Cola invented the modern, red-suited Santa Claus. It's a great story — but it isn't quite true.\nIt was 19th-century illustrators, such as Thomas Nast, who first drew Santa as a jolly, round man, and red was already a common colour for his suit before the 1930s.\nWhat Coca-Cola did do, from 1931, was hire the artist Haddon Sundblom to paint Santa for its Christmas ads. Those warm, friendly images were everywhere for decades, which is why so many people connect Santa with the brand.",
+    [["Coca-Cola created Santa Claus. || A Coca-Cola criou o Papai Noel.", false], ["Thomas Nast drew Santa in the 19th century. || Thomas Nast desenhou o Papai Noel no século 19.", true], ["Red was already used for Santa's suit before the 1930s. || O vermelho já era usado antes.", true], ["Haddon Sundblom painted for Pepsi. || Sundblom pintava para a Pepsi.", false]],
+    "What's an ad that really worked on you? Why? || Que anúncio funcionou com você?", [["red-suited", "de roupa vermelha"], ["jolly", "alegre, bonachão"], ["hire", "contratar"], ["connect", "associar"]]],
+  a: "Analyse an ad you remember using 3 cleft sentences: What makes it… / It's… that… / The reason why… || Analise um anúncio."
+});
+
+CONTENT["x-c1-food"] = {
+  lesson: [
+    { h: "How sure are you? || Qual sua certeza?", table: [["expression", "meaning", "example"], ["is bound to", "certain || com certeza", "Food prices are bound to change."], ["is likely to", "probable || provável", "Cultivated meat is likely to get cheaper."], ["may well", "a real possibility || é bem possível", "Insects may well become a staple."], ["there's a slim chance", "unlikely || pouca chance", "There's a slim chance we'll all eat pills."], ["I doubt / it's unlikely", "probably not || duvido", "I doubt people will give up pizza."]] },
+    { h: "Food of the future || Comida do futuro", say: ["Cultivated meat is grown from animal cells. || A carne cultivada é feita de células animais.", "Vertical farms use far less water. || Fazendas verticais usam muito menos água.", "Crickets are rich in protein. || Grilos são ricos em proteína.", "The yuck factor is the biggest obstacle. || O fator nojo é o maior obstáculo."] },
+    { trap: { wrong: "It's bound to rising.", right: "It's bound to rise. || Com certeza vai subir.", note: "bound to / likely to + base verb. || + verbo no infinitivo." } }
+  ],
+  vocab: [["cultivated meat", "carne cultivada"], ["plant-based", "à base de plantas"], ["edible insects", "insetos comestíveis"], ["vertical farming", "agricultura vertical"], ["a staple", "um alimento básico"], ["affordable", "acessível (preço)"], ["sustainable", "sustentável"], ["to scale up", "aumentar em grande escala"], ["a breakthrough", "um grande avanço"], ["the yuck factor", "o fator nojo"]],
+  ex: [
+    MC("Prices are bound ___.", ["to rise", "rising", "rise"], 0),
+    MC("It's ___ that we'll stop eating meat completely.", ["unlikely", "unlike", "unlikelihood"], 0),
+    MC("Duvido que as pessoas parem de comer pizza. →", ["I doubt people will stop eating pizza.", "I doubt people will stop to eat pizza.", "I'm doubt people stop eating pizza."], 0),
+    FILL("Seaweed could ___ be the next superfood.", ["well"], null, ["well", "good", "much"]),
+    FILL("Chances ___ we'll all be eating more vegetables.", ["are"], null, ["are", "is", "will"]),
+    ORD(["Insects may well become a staple."]),
+    ORD(["Cultivated meat is likely to get cheaper."]),
+    FIX("There's a good chance of cultivated meat will get cheaper.", ["There's a good chance that cultivated meat will get cheaper.", "There's a good chance cultivated meat will get cheaper."]),
+    TR("É bem provável que a carne fique mais cara.", ["Meat is likely to get more expensive.", "Meat is very likely to get more expensive.", "It's likely that meat will get more expensive.", "Meat is likely to become more expensive."]),
+    TR("Com certeza isso vai mudar.", ["That's bound to change.", "This is bound to change.", "That is bound to change."]),
+    LIS("In all likelihood, we'll eat less beef."),
+    LIS("I doubt my grandma will ever try a cricket burger.")
+  ],
+  mission: { title: "Try something new", text: "Try a food you've never eaten (a plant-based burger, a new fruit, seaweed…). || Experimente algo novo.", steps: ["Describe it: taste, texture || Descreva", "Predict: Is it likely to become popular? || Faça uma previsão", "Tell your teacher in class || Conte na aula"] }
+};
+L("x-c1-food", {
+  r: ["Insects on the menu", "For about two billion people in Asia, Africa and Latin America, eating insects is nothing unusual. In parts of Mexico, toasted grasshoppers called chapulines are a popular snack.\nIn Europe, insects were long seen as a novelty, but in 2021 the European Union approved the yellow mealworm as food, and other insects soon followed.\nInsects need much less water, land and feed than cattle to produce the same amount of protein. Whether Europeans — or Brazilians — will ever see them as normal food is another question: the yuck factor is bound to slow things down.",
+    [["About two billion people already eat insects. || Cerca de 2 bilhões já comem insetos.", true], ["Chapulines are a snack from Japan. || Chapulines são do Japão.", false], ["The EU approved the yellow mealworm in 2021. || A UE aprovou o tenébrio em 2021.", true], ["Insects need more water than cattle. || Insetos precisam de mais água que o gado.", false]],
+    "Would you eat insects? Under what conditions? || Você comeria insetos? Em que condições?", [["grasshoppers", "gafanhotos"], ["novelty", "novidade, curiosidade"], ["mealworm", "larva-da-farinha (tenébrio)"], ["feed", "ração"]]],
+  a: "Make 4 predictions about food in 2050: one certain, one likely, one possible, one unlikely. || Faça 4 previsões."
+});
+
+CONTENT["m-c1-hello"] = {
+  song: { t: "Hello", a: "Adele", listen: "Listen: who is she calling, and why? || Para quem ela liga, e por quê?" },
+  lesson: [
+    { h: "Polite distance || Distância educada", table: [["direct", "softer", "even softer"], ["Do you want to meet?", "I was wondering if you'd like to meet.", "I was wondering whether you might like to meet."], ["Can you help me?", "Would you mind helping me?", "I was hoping you could help me."], ["Call me.", "Could you call me?", "I'd really appreciate it if you could call me."]] },
+    { h: "Reconnecting || Retomando contato", say: ["We drifted apart after college. || Nos afastamos depois da faculdade.", "Let's catch up soon! || Vamos colocar o papo em dia!", "Thanks for reaching out. || Obrigado por me procurar.", "At least I tried. || Pelo menos eu tentei."] },
+    { trap: { wrong: "Would you mind to help me?", right: "Would you mind helping me? || Você se importaria de me ajudar?", note: "mind + -ing. || Depois de mind: -ing." } }
+  ],
+  vocab: [["to heal", "curar / cicatrizar"], ["to tear apart", "despedaçar"], ["at least", "pelo menos"], ["to get in touch", "entrar em contato"], ["to catch up", "colocar o papo em dia"], ["to drift apart", "afastar-se aos poucos"], ["closure", "encerramento emocional"], ["to reach out", "procurar / estender a mão"]],
+  ex: [
+    MC("I was wondering ___ you'd like to meet.", ["if", "that", "what"], 0),
+    MC("Would you mind ___ me back?", ["calling", "to call", "call"], 0),
+    MC("Pelo menos eu tentei. →", ["At least I tried.", "At last I tried.", "At less I tried."], 0),
+    FILL("I'd appreciate it if you ___ reply by Friday.", ["could"], null, ["could", "can to", "would can"]),
+    FILL("We drifted ___ after school. || nos afastamos", ["apart"], null, ["apart", "away of", "out"]),
+    ORD(["I was hoping you could help me."]),
+    ORD(["Would you mind sending me the file?"]),
+    FIX("I was wondering if you would like meet.", ["I was wondering if you would like to meet.", "I was wondering if you'd like to meet."]),
+    TR("Você se importaria de me ligar?", ["Would you mind calling me?", "Would you mind giving me a call?"]),
+    TR("Eu estava pensando se você gostaria de tomar um café.", ["I was wondering if you'd like to have a coffee.", "I was wondering if you would like to have a coffee.", "I was wondering if you'd like to get a coffee.", "I was wondering if you'd like to have coffee."]),
+    LIS("I was wondering if we could catch up sometime."),
+    LIS("Thanks for reaching out after all these years.")
+  ],
+  mission: { title: "Reach out", text: "Is there someone you'd like to get in touch with again? || Tem alguém com quem você gostaria de retomar contato?", steps: ["Write the message in English first: I was wondering if… || Escreva em inglês", "Make it polite and warm || Educado e carinhoso", "Send it — in any language! || Envie"] }
+};
+L("m-c1-hello", {
+  r: ["The record-breaking “Hello”", "When Adele released “Hello” in October 2015, after a three-year break, the response was enormous. The music video reached one billion views on YouTube in just 87 days — a record at the time.\nMany fans also laughed at a small detail: in the video, she uses an old flip phone, which became an internet joke.\nHer album 25 then sold more than three million copies in its first week in the United States alone, something no album had done before.",
+    [["“Hello” was released in 2015. || Foi lançada em 2015.", true], ["The video took five years to reach a billion views. || Levou cinco anos.", false], ["People joked about her phone in the video. || Brincaram com o celular dela.", true], ["Her album 25 sold badly. || O álbum vendeu mal.", false]],
+    "Why do you think sad songs are so popular? || Por que músicas tristes fazem tanto sucesso?", [["released", "lançou"], ["break", "pausa"], ["flip phone", "celular de flip"], ["alone", "sozinho (só nos EUA)"]]],
+  a: "Record a polite voice message to someone from your past: I was wondering if… / I'd love to… || Grave um recado educado."
+});
+
+CONTENT["m-c1-thisisme"] = {
+  song: { t: "This Is Me", a: "Keala Settle (The Greatest Showman)", listen: "Count the images of strength you can hear. || Conte as imagens de força que você ouve." },
+  lesson: [
+    { h: "Passive infinitives and -ing", table: [["form", "after…", "example"], ["to be + participle", "want, need, deserve, expect", "Everybody wants to be loved."], ["being + participle", "like, hate, avoid, be afraid of", "I hate being judged."], ["to have been + participle", "about the past", "He's proud to have been chosen."]] },
+    { h: "Courage || Coragem", say: ["I'm not ashamed of my scars. || Não tenho vergonha das minhas cicatrizes.", "She makes no apologies for who she is. || Ela não pede desculpas por quem é.", "Don't let anyone make you feel small. || Não deixe ninguém te fazer sentir pequeno.", "We'll march on together. || Vamos seguir em frente juntos."] },
+    { trap: { wrong: "I hate be judged.", right: "I hate being judged. || Odeio ser julgado.", note: "hate / like / avoid + being + participle. || Use being." } }
+  ],
+  vocab: [["brave", "corajoso"], ["bruised", "machucado"], ["scars", "cicatrizes"], ["ashamed", "envergonhado"], ["glorious", "glorioso"], ["a warrior", "um guerreiro"], ["to drown out", "abafar (um som)"], ["to march on", "seguir em frente"]],
+  ex: [
+    MC("Everybody deserves ___.", ["to be respected", "to respected", "being respect"], 0),
+    MC("She hates ___ what to do.", ["being told", "being tell", "to tell"], 0),
+    MC("Ele tem orgulho de ter sido escolhido. →", ["He's proud to have been chosen.", "He's proud to have chosen.", "He's proud to be chose."], 0),
+    FILL("I hate ___ interrupted.", ["being"], null, ["being", "be", "been"]),
+    FILL("Don't let anyone ___ you feel small.", ["make"], null, ["make", "to make", "making"]),
+    ORD(["Everyone wants to be heard."]),
+    ORD(["I'm not afraid of being seen."]),
+    FIX("I don't want to ignored anymore.", ["I don't want to be ignored anymore."]),
+    TR("Odeio ser julgado.", ["I hate being judged."]),
+    TR("Não tenho vergonha das minhas cicatrizes.", ["I'm not ashamed of my scars.", "I am not ashamed of my scars."]),
+    LIS("Everyone deserves to be accepted."),
+    LIS("She asked not to be disturbed.")
+  ],
+  mission: { title: "My manifesto", text: "Write your own 6-line manifesto: “This is me”. || Escreva seu manifesto.", steps: ["2 passive forms: to be seen, being judged… || 2 formas passivas", "1 metaphor of strength || 1 metáfora", "Record yourself reading it || Grave a leitura"] }
+};
+L("m-c1-thisisme", {
+  r: ["The song that broke the room", "“This Is Me” was written for The Greatest Showman by Benj Pasek and Justin Paul and sung by Keala Settle, who plays Lettie, the bearded lady of the circus.\nBefore the film was made, there was a workshop to present the songs to the studio. Settle was so nervous that she stayed behind a music stand — until, halfway through, she stepped out and sang straight to the room. The video of that moment later went viral.\nThe song won the Golden Globe for Best Original Song and was nominated for an Oscar.",
+    [["Keala Settle plays a trapeze artist. || Ela faz uma trapezista.", false], ["She was nervous at the workshop. || Ela estava nervosa.", true], ["The workshop video went viral. || O vídeo viralizou.", true], ["The song won an Oscar. || Ganhou o Oscar.", false]],
+    "What makes you proud of who you are? || O que te dá orgulho de quem você é?", [["bearded lady", "mulher barbada"], ["workshop", "ensaio de apresentação"], ["music stand", "estante de partitura"], ["halfway through", "na metade"]]],
+  a: "Talk about something people judge and why it shouldn't matter: use being + participle and to be + participle. || Fale sobre julgamentos."
+});
+
+CONTENT["m-c1-unstoppable"] = {
+  song: { t: "Unstoppable", a: "Sia", listen: "How does she hide her feelings? What does she compare herself to? || Como ela esconde os sentimentos?" },
+  lesson: [
+    { h: "Word formation || Formação de palavras", table: [["", "meaning", "examples"], ["-able / -ible", "can be done || que pode ser", "stoppable · believable · visible"], ["un- / in- / im- / ir-", "not || não", "unstoppable · invincible · impossible · irresponsible"], ["-ful / -less", "with / without || com / sem", "powerful · hopeless · fearless"], ["-ence / -ness / -ity", "noun || substantivo", "confidence · weakness · vulnerability"]] },
+    { h: "Hidden feelings || Sentimentos escondidos", say: ["Deep down, he was scared. || Lá no fundo, ele estava com medo.", "She put on a brave face. || Ela fez cara de forte.", "He shed a tear at the end. || Ele derramou uma lágrima no final.", "Showing vulnerability takes courage. || Mostrar vulnerabilidade exige coragem."] },
+    { trap: { wrong: "It's unpossible!", right: "It's impossible! || É impossível!", note: "possible → impossible (im- before p, b, m). || im- antes de p." } }
+  ],
+  vocab: [["unstoppable", "imparável"], ["invincible", "invencível"], ["powerful", "poderoso"], ["confident", "confiante"], ["armour", "armadura"], ["deep down", "lá no fundo"], ["to put on a brave face", "fazer cara de forte"], ["vulnerable", "vulnerável"]],
+  ex: [
+    MC("Nothing can stop her. She's ___.", ["unstoppable", "instoppable", "stopless"], 0),
+    MC("He's never afraid. He's completely ___.", ["fearless", "fearful", "unfear"], 0),
+    MC("Ela fala com muita confiança. →", ["She speaks with a lot of confidence.", "She speaks with a lot of confidentness.", "She speaks with a lot of confident."], 0),
+    FILL("Asking for help shows ___, not weakness. || força", ["strength"], null, ["strength", "strongness", "strongity"]),
+    FILL("That excuse isn't very ___. || convincente", ["believable"], null, ["believable", "believible", "unbelief"]),
+    ORD(["Deep down, she was scared."]),
+    ORD(["Showing your feelings isn't a weakness."]),
+    FIX("It's unpossible to win every game.", ["It's impossible to win every game.", "It is impossible to win every game."]),
+    TR("Ela é imparável.", ["She's unstoppable.", "She is unstoppable."]),
+    TR("Ele fez cara de forte.", ["He put on a brave face."]),
+    LIS("On a good day, I feel unstoppable."),
+    LIS("Vulnerability isn't a sign of weakness.")
+  ],
+  mission: { title: "Word builder", text: "Collect 10 new words with prefixes or suffixes this week. || Colecione 10 palavras com prefixos ou sufixos.", steps: ["From songs, series, news… || De músicas, séries, notícias", "Write the root word too: hope → hopeless || Anote a raiz", "Use 3 of them about yourself || Use 3 sobre você"] }
+};
+L("m-c1-unstoppable", {
+  r: ["The singer without a face", "Sia is one of the most successful songwriters of her generation. Before becoming a star herself, she wrote hits for other artists, including “Diamonds” for Rihanna and “Pretty Hurts” for Beyoncé.\nWhen she became famous, she decided to hide her face — on stage she often wears huge wigs that cover her eyes. She has said it's a way of protecting her privacy and her mental health.\n“Unstoppable”, from her 2016 album This Is Acting, became a global hit years later, when it was used in ads and sports videos.",
+    [["Sia wrote songs for other artists. || Sia compôs para outros artistas.", true], ["She always shows her face on stage. || Ela sempre mostra o rosto.", false], ["Hiding her face protects her privacy. || Esconder o rosto protege a privacidade.", true], ["“Unstoppable” was a hit the day it came out. || Fez sucesso no dia do lançamento.", false]],
+    "Why do you think some artists hide their face? || Por que alguns artistas escondem o rosto?", [["songwriters", "compositores"], ["wigs", "perucas"], ["privacy", "privacidade"], ["mental health", "saúde mental"]]],
+  a: "Describe yourself on a good day and on a bad day using 5 words with prefixes or suffixes. || Descreva-se num dia bom e num dia ruim."
+});
+
 /* A0 class material. Keys: w warm-up · v video [before, [while], after] · r reading [title, text, [[statement, true/false]], open question, [[word, gloss]]]
    t speaking cards · o open answers [[prompt, target codes, min words]] · h homework writing [prompt, codes, min] · a WhatsApp audio task */
 
@@ -12328,6 +13498,14 @@ const COURSE = [
       ["a0-food", "Let's eat!", "I like / I don't like", "Basic food and drinks", "Say what food you like", ["A0-7"]],
       ["A0-9"], ["A0-10"],
       ["rev", "Review: My A0 project", "Present yourself and your family in 1 minute with a photo: names, ages, jobs, countries, animals you like and food you love."]
+    ]},
+    { t: "✨ Extra lessons", x: true, u: [
+      ["x-a0-animals", "Animal bodies", "It has / they have, doesn't / don't have", "Animal body parts", "Describe an animal's body", ["a0-animals"]],
+      ["x-a0-bag", "What's in my bag?", "this / these / that / those, It's / They're", "Things in a bag", "Say what's in your bag", ["A0-8"]],
+      ["x-a0-market", "At the supermarket", "a can of, a bag of…, How much is / are…?", "Containers and shopping", "Buy food at a market", ["a0-price"]],
+      ["m-a0-count", "🎵 Count on Me", "I'm / you're / we're / they're", "Friendship words", "Sing and talk about friends", ["A0-4"]],
+      ["m-a0-happy", "🎵 Happy", "be + feelings: Are you…? I'm not…", "Feelings", "Say how you feel and why", ["a0-feel"]],
+      ["m-a0-beautiful", "🎵 What Makes You Beautiful", "you're or your?", "Adjectives for people", "Give compliments", ["a0-adj"]]
     ]}
   ]},
   { id: "A1", name: "Beginner", tag: "My home, my town, my day", modules: [
@@ -12375,6 +13553,15 @@ const COURSE = [
       ["a1-blog", "A day in my life", "Present simple and continuous together", "Daily life", "Write a blog post about your life", ["a1-tech"]],
       ["a1-phone", "On the phone", "Phone language, Can I speak to…?", "Calls and messages", "Make a simple phone call", ["a1-help"]],
       ["rev", "Review: My A1 project", "Create a “Welcome to my life” blog post with photos: your home, your week, your food, your city and what you're doing these days."]
+    ]},
+    { t: "✨ Extra lessons", x: true, u: [
+      ["x-a1-powers", "Superpowers", "can / can't / Can you…? + well, fast", "Superpowers and abilities", "Say what you can and can't do", ["A1-15"]],
+      ["x-a1-sports", "Sports and equipment", "play / do / go + sports", "Sports and equipment", "Talk about the sports you do", ["A1-12"]],
+      ["x-a1-help", "Help! Emergencies", "Imperatives: Call… Don't…", "Emergencies", "Call for help and give instructions", ["A1-7"]],
+      ["x-a1-pets", "Pets and pet care", "have / has + care instructions", "Pets", "Give instructions to a pet sitter", ["A1-2"]],
+      ["m-a1-belong", "🎵 You Belong with Me", "Present simple: I wear / she wears", "Clothes and style", "Compare yourself with a friend", ["A1-9"]],
+      ["m-a1-flowers", "🎵 Flowers", "can + myself", "Self-care", "Say what you can do for yourself", ["A1-15"]],
+      ["m-a1-wayyouare", "🎵 Just the Way You Are", "his / her + has / is", "Describing people", "Describe someone you love", ["A1-2"]]
     ]}
   ]},
   { id: "A2", name: "Elementary", tag: "Past, plans and comparisons", modules: [
@@ -12427,6 +13614,15 @@ const COURSE = [
       ["a2-town", "Tell me about your town", "Comparatives, superlatives, there is / are", "Describing towns", "Write a guide to your town", ["A2-6"]],
       ["a2-journey", "My English journey", "Past, present and future together", "Learning and goals", "Talk about your English story and goals", ["a2-town"]],
       ["rev", "Review: My A2 project", "Make a “Visit my town” guide with a short story of a day there, a comparison with another city and plans for visitors."]
+    ]},
+    { t: "✨ Extra lessons", x: true, u: [
+      ["x-a2-disasters", "Natural disasters", "Past continuous + past simple: when / while", "Disasters and extreme weather", "Tell a weather story with when and while", ["A2-16"]],
+      ["x-a2-space", "Space and planets", "Comparatives and superlatives", "Space", "Compare the planets", ["A2-7"]],
+      ["x-a2-dinos", "Dinosaurs", "was / were, could / couldn't, past simple", "Dinosaurs and fossils", "Present a dinosaur", ["A2-4"]],
+      ["x-a2-games", "Video games", "have to / don't have to / can / can't", "Gaming", "Explain the rules of a game", ["A2-13"]],
+      ["m-a2-perfect", "🎵 Perfect", "Past simple: found, met, fell, knew", "Love and weddings", "Tell a love story", ["A2-3"]],
+      ["m-a2-hall", "🎵 Hall of Fame", "can / will + superlatives", "Success", "Talk about your heroes", ["A2-7"]],
+      ["m-a2-sky", "🎵 A Sky Full of Stars", "going to for plans", "Plans and the sky", "Talk about your plans", ["A2-9"]]
     ]}
   ]},
   { id: "B1", name: "Intermediate", tag: "Experiences, opinions, what if", modules: [
@@ -12488,6 +13684,14 @@ const COURSE = [
       ["b1-story", "Storytelling night", "Past simple, past continuous, past perfect", "Stories", "Tell a story to a group", ["b1-crime"]],
       ["b1-mycity", "My city's future", "Conditionals, will, might", "Urban life", "Present ideas for your city", ["b1-future"]],
       ["rev", "Review: My B1 project", "Give a 3-minute presentation: “My city in 2040”, with experiences, opinions, conditionals and a story."]
+    ]},
+    { t: "✨ Extra lessons", x: true, u: [
+      ["x-b1-cooking", "Cooking show", "Menu English: topped with, served with + textures", "Cooking and food", "Present a dish like a TV chef", ["B1-10"]],
+      ["x-b1-camping", "Survival and camping", "must / mustn't / should + first conditional", "Camping and survival", "Give rules and advice for a trip", ["B1-6"]],
+      ["x-b1-fixing", "Fixing things", "have / get something done", "Repairs at home", "Describe a problem and book a repair", ["B1-10"]],
+      ["m-b1-viva", "🎵 Viva la Vida", "used to / would", "Kings and power", "Compare your life then and now", ["B1-5"]],
+      ["m-b1-counting", "🎵 Counting Stars", "Present perfect continuous", "Life lately", "Talk about what you've been doing", ["B1-4"]],
+      ["m-b1-thinking", "🎵 Thinking Out Loud", "when / as soon as / until + present for the future", "Love that lasts", "Imagine your life at 70", ["B1-6"]]
     ]}
   ]},
   { id: "B2", name: "Upper-intermediate", tag: "Stories, debates, work", modules: [
@@ -12550,6 +13754,14 @@ const COURSE = [
       ["b2-cultures", "Cultural differences", "tend to, be used to, generalizing", "Culture", "Compare cultures without stereotypes", ["B2-11"]],
       ["b2-podcast", "Your life in a podcast", "Spoken discourse", "Interviews, podcasts", "Record a podcast episode", ["b2-cultures"]],
       ["rev", "Review: My B2 project", "Record a 4-minute podcast episode with a story, a debate and a recommendation."]
+    ]},
+    { t: "✨ Extra lessons", x: true, u: [
+      ["x-b2-crime", "Crime scene science", "must have / can't have / might have + participle", "Forensic science", "Solve a case and explain your reasoning", ["B2-7"]],
+      ["x-b2-space", "Space exploration", "Future continuous and future perfect", "Space travel", "Predict the future of space travel", ["B2-4"]],
+      ["x-b2-brain", "The brain and memory", "remember / forget / stop / try + to or -ing", "Memory and learning", "Share your memory tricks", ["B1-8"]],
+      ["m-b2-yourman", "🎵 When I Was Your Man", "should have / shouldn't have / I wish I had", "Regrets", "Talk about regrets", ["B2-3"]],
+      ["m-b2-wakeup", "🎵 Wake Me Up", "wish + past / could / had / would", "Growing up", "Make three wishes", ["B2-3"]],
+      ["m-b2-rewrite", "🎵 Rewrite the Stars", "What if…? · be meant to · be supposed to", "Destiny and choices", "Ask and answer What if…? questions", ["B1-7"]]
     ]}
   ]},
   { id: "C1", name: "Advanced", tag: "Nuance, style, impact", modules: [
@@ -12605,6 +13817,14 @@ const COURSE = [
       ["c1-sounds", "Sounding natural", "Connected speech, weak forms", "Pronunciation", "Understand fast, natural speech", ["C1-6"]],
       ["c1-legacy", "Your legacy", "Integrated advanced grammar", "Values, goals", "Write about the mark you want to leave", ["c1-talk"]],
       ["rev", "Review: My C1 project", "Give a 5-minute talk on an idea worth sharing, then write the article version."]
+    ]},
+    { t: "✨ Extra lessons", x: true, u: [
+      ["x-c1-idioms", "Animal idioms", "18 animal idioms in context", "Idioms", "Tell a story with 5 idioms", ["B2-13"]],
+      ["x-c1-ads", "The psychology of advertising", "Cleft sentences for emphasis", "Marketing and persuasion", "Analyse an ad and pitch a product", ["C1-2"]],
+      ["x-c1-food", "The future of food", "Speculating: bound to, likely to, may well, I doubt", "Food technology", "Debate what we'll eat in 2050", ["C1-4"]],
+      ["m-c1-hello", "🎵 Hello", "Polite distance: I was wondering if…, would you mind…", "Reconnecting", "Write a message to someone from your past", ["C1-4"]],
+      ["m-c1-thisisme", "🎵 This Is Me", "Passive infinitives and -ing: to be seen, being judged", "Identity and strength", "Write your own manifesto", ["C1-3"]],
+      ["m-c1-unstoppable", "🎵 Unstoppable", "Word formation: -able, un-, -ful, -ness", "Hidden feelings", "Describe yourself on good and bad days", ["C1-9"]]
     ]}
   ]}
 ];
@@ -12992,7 +14212,7 @@ const WORDMARK = () => `<span class="wordmark"><span class="st">Start</span><spa
 const OLDU = {}; LEVELS.forEach(l => l.units.forEach((u, i) => { OLDU[`${l.id}-${i + 1}`] = u; }));
 const NODE = {}, KEY2ID = {}, ORDER = [], LVINFO = {};
 COURSE.forEach(L => {
-  let n = 0; LVINFO[L.id] = { name: L.name, tag: L.tag, modules: [] };
+  let n = 0, core = 0; LVINFO[L.id] = { name: L.name, tag: L.tag, modules: [] };
   L.modules.forEach((m, mi) => {
     const mod = { t: m.t, ids: [] }; const keys = [];
     m.u.forEach(u => {
@@ -13000,18 +14220,20 @@ COURSE.forEach(L => {
       if (u[0] === "rev") node = { key: `rev-${L.id}-${mi + 1}`, review: true, title: u[1], grammar: "Review & project", vocab: m.t, mission: u[2], range: keys.slice(), builds: keys.slice(-2) };
       else if (u.length === 1) { const o = OLDU[u[0]]; node = { key: u[0], title: o[0], grammar: o[1], vocab: o[2], mission: o[3], builds: (BUILDS[u[0]] || []).slice() }; }
       else node = { key: u[0], title: u[1], grammar: u[2], vocab: u[3], mission: u[4], builds: (u[5] || []).slice() };
-      Object.assign(node, { id, lv: L.id, lvName: L.name, n, mod: mi, modT: m.t });
+      Object.assign(node, { id, lv: L.id, lvName: L.name, n, mod: mi, modT: m.t, extra: !!m.x });
+      if (!m.x) core++; /* the ✨ extras don't count in the level total */
       if (!node.review) keys.push(node.key);
       NODE[id] = node; KEY2ID[node.key] = id; ORDER.push(id); mod.ids.push(id);
     });
     LVINFO[L.id].modules.push(mod);
   });
-  LVINFO[L.id].count = n;
+  LVINFO[L.id].count = core;
 });
 ORDER.forEach(id => { NODE[id].of = LVINFO[NODE[id].lv].count; NODE[id].builds = NODE[id].builds.filter(k => KEY2ID[k] && ORDER.indexOf(KEY2ID[k]) < ORDER.indexOf(id)); });
 const LEADS = {}; ORDER.forEach(id => NODE[id].builds.forEach(k => { const b = KEY2ID[k]; if (!NODE[id].review) (LEADS[b] = LEADS[b] || []).push(id); }));
 const byKey = k => NODE[KEY2ID[k]];
-const nextId = id => ORDER[ORDER.indexOf(id) + 1] || null;
+/* next lesson: from a core lesson skip the ✨ extras (they are optional); from an extra, go to the next extra */
+const nextId = id => { const cur = NODE[id]; for (let j = ORDER.indexOf(id) + 1; j < ORDER.length; j++) { const nx = NODE[ORDER[j]]; if (!nx.extra || (cur && cur.extra)) return ORDER[j]; } return null; };
 const titleOf = id => NODE[id] ? NODE[id].title : id;
 const HOSTED = /^https?:$/.test(location.protocol) && !/claude|anthropic/i.test(location.hostname);
 const FORM = { aff: ["+", "Affirmative"], neg: ["−", "Negative"], int: ["?", "Question"] };
@@ -13529,7 +14751,7 @@ function topBar() {
 }
 function isDark() { const t = document.documentElement.dataset.theme; if (t) return t === "dark"; return window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches; }
 const lvIds = lv => ORDER.filter(id => NODE[id].lv === lv);
-const levelDone = lv => lvIds(lv).filter(id => S.done[NODE[id].key]).length;
+const levelDone = lv => lvIds(lv).filter(id => !NODE[id].extra && S.done[NODE[id].key]).length;
 
 function viewHub(lv) {
   CUR = null;
@@ -13582,7 +14804,7 @@ function unitCard(id, search) {
 
 /* ================= LESSON ================= */
 let ITEMS = [], OPEN = {}, SC = null;
-const SECS = [["words", "New words", "cards"], ["watch", "Watch", "video"], ["listen", "Listen & write", "ear"], ["how", "How it works", "target"], ["practice", "Practice", "pencil"], ["read", "Read", "book"], ["translate", "Translate", "translate"], ["after", "After the lesson", "wa"]];
+const SECS = [["words", "New words", "cards"], ["watch", "Watch", "video"], ["song", "The song", "video"], ["listen", "Listen & write", "ear"], ["how", "How it works", "target"], ["practice", "Practice", "pencil"], ["read", "Read", "book"], ["translate", "Translate", "translate"], ["after", "After the lesson", "wa"]];
 const RSECS = { words: "Words to remember", practice: "Mixed practice", listen: "Listen & write", read: "Read", translate: "Translate", after: "Your project" };
 function secHead(i, key, review) {
   const s = SECS.find(x => x[0] === key);
@@ -13621,6 +14843,14 @@ function vxCard(o, key) {
   return `<div class="card rv vcard">${vbox}<p class="vnote">${ic("info")} ${bi("Turn on English subtitles (CC) if you need them.", "Ative as legendas em inglês (CC) se precisar.")}${dur ? ` · ${mmss(dur)}` : ""}</p>
     ${qs.length ? `<h3 class="vqh">${ic("check")} ${bi("Watch and choose", "Assista e escolha")}</h3>${qs.map((e, j) => exItem(e, j + 1)).join("")}`
       : `<ol class="vqs">${o.q.slice(0, 3).map(q => `<li><a class="ts" href="${ytAt(o.id, q[0])}" target="_blank" rel="noopener">▶ ${mmss(q[0])}</a> <span>${gl(q[1])}</span>${q[2] ? `<details><summary>${bi("Answer", "Resposta")}</summary>${esc(q[2])}</details>` : ""}</li>`).join("")}</ol>`}</div>`;
+}
+/* music lessons: the song itself (we link to a YouTube search, never to lyrics) */
+function songCard(sg) {
+  const q = encodeURIComponent(`${sg.t} ${sg.a} official`);
+  return `<div class="card rv"><h3>🎵 ${esc(sg.t)} <span style="font-weight:600;opacity:.75">— ${esc(sg.a)}</span></h3>
+    ${sg.listen ? `<p style="font-size:17.5px;font-weight:600">${gl(sg.listen)}</p>` : ""}
+    <div class="row"><a class="btn yt" href="https://www.youtube.com/results?search_query=${q}" target="_blank" rel="noopener">${ic("play")} ${bi("Find the song on YouTube", "Procure a música no YouTube")}</a></div>
+    <p class="note">${ic("info")} ${bi("In class, we play it as a lyrics game: fill in the missing words!", "Na aula, a gente joga com a letra: complete as palavras que faltam!")}</p></div>`;
 }
 function readingBlock(r, key) {
   const [rt, rx, tf, rq, rg] = r;
@@ -13663,7 +14893,7 @@ function viewLesson(id) {
   const add = (key, html) => { if (html) parts.push([key, html]); };
   add("words", wordGame(c.vocab || []));
   const o = typeof VX !== "undefined" && VX[n.key];
-  add("watch", o ? vxCard(o, n.key) : "");
+  if (o) add("watch", vxCard(o, n.key)); else if (c.song) add("song", songCard(c.song));
   const lis = ex.filter(e => e.t === "listen").slice(0, 2);
   add("listen", lis.length ? `<div class="card rv">${lis.map((e, j) => exItem(e, j + 1)).join("")}</div>` : "");
   add("how", (c.lesson || []).length ? `<div class="card rv">${lessonBlocks(c.lesson)}</div>` : "");

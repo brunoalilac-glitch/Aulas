@@ -18,8 +18,8 @@ input { width: 100%; font: inherit; font-size: 26px; font-weight: 800; padding: 
 input:focus { border-color: var(--ac); }
 #code { text-align: center; letter-spacing: .4em; font-size: 40px; }
 .lbl { margin: 10px 0 8px; font-weight: 800; font-size: 14px; color: var(--mu); text-transform: uppercase; letter-spacing: .05em; }
-.emos { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; }
-.emos button { aspect-ratio: 1; border-radius: 12px; background: var(--sf); font-size: 26px; display: grid; place-items: center; border: 2px solid transparent; }
+.emos { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 6px; }
+.emos button { aspect-ratio: 1; border-radius: 12px; background: var(--sf); font-size: clamp(18px, 6.4vw, 26px); padding: 0; min-width: 0; display: grid; place-items: center; border: 2px solid transparent; }
 .emos button.on { border-color: var(--ac); background: var(--sf2); transform: scale(1.06); }
 .go { width: 100%; margin-top: 18px; padding: 18px; border-radius: 16px; background: var(--ac); color: #0F131B; font-weight: 800; font-size: 21px; }
 .go:active { transform: scale(.98); }
@@ -69,6 +69,32 @@ input:focus { border-color: var(--ac); }
 .buy:disabled { background: var(--sf2); color: var(--mu); }
 .maxd { font-weight: 800; color: var(--ok); }
 @media (min-width: 420px) { .opts.n4 { grid-template-columns: 1fr 1fr; } .opts.n4 .opt { flex-direction: column; justify-content: center; text-align: center; } }
+
+/* listen and write */
+.dplay { display: flex; align-items: center; gap: 10px; margin: 14px 0 10px; }
+.dbtn { background: var(--ac); color: #0F131B; font-weight: 800; font-size: 19px; border-radius: 14px; padding: 14px 18px; }
+.dbtn.sl { background: var(--sf2); color: var(--tx); }
+.dbtn:disabled { opacity: .35; }
+.dleft { margin-left: auto; font-size: 20px; color: var(--mu); font-weight: 700; }
+textarea { width: 100%; font: inherit; font-size: 21px; font-weight: 600; line-height: 1.35; padding: 14px 16px; border-radius: 16px; border: 2px solid var(--ln); background: var(--sf); color: var(--tx); outline: none; resize: none; }
+textarea:focus { border-color: var(--ac); }
+.dsent { background: var(--sf); border-radius: 16px; padding: 12px 16px; margin: 12px 0; font-size: 20px; font-weight: 600; }
+.dsent small { display: block; color: var(--mu); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+.dsent.ok { outline: 3px solid var(--ok); }
+.dsent .ghost { margin-top: 6px; }
+.ddiff { font-size: 22px; font-weight: 700; line-height: 1.7; margin: 6px 0 4px; }
+.ddiff i { font-style: normal; padding: 1px 5px; border-radius: 7px; }
+.ddiff i.ok { color: var(--ok); } .ddiff i.close { color: var(--hl); background: rgba(255,211,110,.12); } .ddiff i.miss { color: var(--no); background: rgba(255,138,138,.12); text-decoration: underline wavy; }
+.ddiff i small { display: block; font-size: 12px; line-height: 1; color: var(--mu); text-decoration: line-through; }
+.ddiff i.xtra { color: var(--mu); text-decoration: line-through; }
+.res.dres { margin: 14px 0 6px; padding: 0; }
+/* song */
+.lyl { text-align: center; font-size: 24px; font-weight: 800; line-height: 1.5; margin: 14px 0; background: var(--sf); border-radius: 18px; padding: 14px; }
+.lgap { display: inline-block; min-width: 2.6em; border-bottom: 3px solid var(--ln); color: var(--mu); }
+.lgap.act { border-color: var(--hl); color: var(--hl); } .lgap.done { color: var(--ac); border-color: var(--ac); } .lgap.ok { color: var(--ok); border-color: var(--ok); } .lgap.no { color: var(--no); border-color: var(--no); }
+.lwait { text-align: center; color: var(--hl); font-weight: 800; }
+.lw { display: flex; gap: 8px; } .lw input { margin: 0; font-size: 22px; } .lw .go { width: auto; margin: 0; padding: 0 18px; }
+.opts.long .opt { font-size: 17px; padding: 10px 14px; } .opts.long { grid-auto-rows: minmax(60px, auto); }
 </style></head>
 <body><div id="app"></div>
 <noscript>Turn on JavaScript to play.</noscript>
@@ -121,6 +147,55 @@ async function liveConnect(start = 0, onclose) {
 const liveTopic = (code, k) => `${LIVE_ROOT}/${code}/${k}`;
 /* answer checking shared by phone and teacher: lenient compare for typed answers */
 const liveNorm = s => String(s || "").toLowerCase().replace(/[’']/g, "'").replace(/[^a-z0-9' ]+/g, " ").replace(/\s+/g, " ").trim();
+/* ---------- dictation check, word by word (shared by the teacher hub and the phones) ----------
+   liveDiff(correct, answer) → { words: [[display word, "ok"|"close"|"miss", what the student wrote]], extra: [extra words], score: 0–100 } */
+const LNUM = { zero: 0, oh: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90,
+  first: 1, second: 2, third: 3, fourth: 4, fifth: 5, sixth: 6, seventh: 7, eighth: 8, ninth: 9, tenth: 10, eleventh: 11, twelfth: 12, thirteenth: 13, fifteenth: 15, twentieth: 20, thirtieth: 30 };
+const LCON = { "can't": "can not", cannot: "can not", "won't": "will not", "shan't": "shall not", "let's": "let us", "ain't": "is not" };
+function liveToks(s, fix) {
+  const disp = String(s || "").trim().split(/\s+/).filter(Boolean), raw = [];
+  disp.forEach((d, w) => String(d).toLowerCase().replace(/[’‘`´]/g, "'").replace(/(\d),(\d{3})/g, "$1$2").replace(/(\d+)(st|nd|rd|th)\b/g, "$1").replace(/[^a-z0-9'\s-]/g, " ").replace(/-/g, " ").split(/\s+/).map(t => t.replace(/^'+|'+$/g, "")).filter(Boolean).forEach(t => raw.push({ t, w })));
+  const ex = []; raw.forEach(r => { // contractions → full forms on both sides (I've = I have)
+    if (fix && fix[r.t]) r.t = fix[r.t]; // "isnt" written without the apostrophe
+    const t = r.t, m = LCON[t] || (t.endsWith("n't") && t.slice(0, -3) + " not") || (/'(m|re|ve|ll)$/.test(t) && t.replace(/'(m|re|ve|ll)$/, (x, y) => " " + { m: "am", re: "are", ve: "have", ll: "will" }[y])) || (/^(he|she|it|that|there|what|who|where|here|how)'s$/.test(t) && t.replace("'s", " is"));
+    if (m) m.split(" ").forEach(x => ex.push(x === "is" && /'s$/.test(t) ? { t: x, alt: "has", w: r.w } : { t: x, w: r.w })); else ex.push(r);
+  });
+  raw.length = 0; ex.forEach(r => raw.push(r));
+  const out = [];
+  for (let i = 0; i < raw.length; i++) { // number words → digits ("two hundred and fifty" → 250, "twenty fifteen" → 2015)
+    if (!(raw[i].t in LNUM) && !/^\d+$/.test(raw[i].t)) { out.push(raw[i]); continue; }
+    if (/^\d+$/.test(raw[i].t)) { out.push(raw[i]); continue; }
+    let total = 0, cur = 0, j = i, parts = [];
+    while (j < raw.length) {
+      const t = raw[j].t;
+      if (t in LNUM) { const v = LNUM[t]; if (cur && cur % 10 === 0 && cur >= 20 && v < 10 && v > 0) cur += v; else if (cur && cur >= 10 && v >= 10 && cur < 100) { parts.push(cur); cur = v; } else if (cur && v < 100 && cur % 100 === 0) cur += v; else if (!cur) cur = v; else break; j++; }
+      else if (t === "hundred" && cur) { cur *= 100; j++; }
+      else if (t === "thousand") { total += (cur || 1) * 1000; cur = 0; j++; }
+      else if (t === "and" && j + 1 < raw.length && raw[j + 1].t in LNUM && (cur >= 100 || total)) { j++; }
+      else break;
+    }
+    const val = parts.length ? parts.join("") + String(cur) : String(total + cur);
+    out.push({ t: val, w: raw[i].w, to: raw[j - 1].w }); i = j - 1;
+  }
+  return { disp, toks: out };
+}
+function liveLev(a, b) { if (Math.abs(a.length - b.length) > 2) return 9; const d = Array.from({ length: a.length + 1 }, (_, i) => [i]); for (let j = 1; j <= b.length; j++) d[0][j] = j; for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); return d[a.length][b.length]; }
+function liveDiff(correct, answer) {
+  const fix = {}; (String(correct).toLowerCase().replace(/[’‘`´]/g, "'").match(/[a-z]+'[a-z]+/g) || []).forEach(w => fix[w.replace(/'/g, "")] = w);
+  const C = liveToks(correct), A = liveToks(answer, fix), c = C.toks, a = A.toks, n = c.length;
+  const cs = new Set(c.map(x => x.t)); // "breath taking" → "breathtaking"
+  for (let k = 0; k < a.length - 1; k++) if (!cs.has(a[k].t) && cs.has(a[k].t + a[k + 1].t)) { a[k] = { t: a[k].t + a[k + 1].t, w: a[k].w }; a.splice(k + 1, 1); }
+  const m = a.length;
+  const sim = (X, Y) => { const x = X.t, y = Y.t; if (x === y || (X.alt && X.alt === y)) return 1; if (x.replace(/'/g, "") === y.replace(/'/g, "")) return .9; const L = Math.max(x.length, y.length); return Math.min(x.length, y.length) >= 3 && L >= 4 && !/^\d+$/.test(x + y) && liveLev(x, y) <= (L >= 6 ? 2 : 1) ? .6 : 0; };
+  const S = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) { const s = sim(c[i], a[j]); S[i][j] = Math.max(S[i + 1][j], S[i][j + 1], s ? S[i + 1][j + 1] + s : 0); }
+  const st = new Array(n).fill(null), used = new Array(m).fill(false); let i = 0, j = 0;
+  while (i < n && j < m) { const s = sim(c[i], a[j]); if (s && S[i][j] === S[i + 1][j + 1] + s) { st[i] = [s >= .9 ? "ok" : "close", a[j].t]; used[j] = true; i++; j++; } else if (S[i + 1][j] >= S[i][j + 1]) i++; else j++; }
+  const words = C.disp.map(d => [d, "ok", ""]), rank = { ok: 0, close: 1, miss: 2 };
+  c.forEach((tk, k) => { const s = st[k] || ["miss", ""]; for (let w = tk.w; w <= (tk.to != null ? tk.to : tk.w); w++) if (rank[s[0]] > rank[words[w][1]] || (s[0] === "close" && !words[w][2])) { words[w][1] = s[0]; words[w][2] = s[1]; } });
+  const got = st.reduce((t, s) => t + (s ? (s[0] === "ok" ? 1 : .5) : 0), 0), extra = a.filter((_, k) => !used[k]).map(x => x.t);
+  return { words, extra, score: n ? Math.max(0, Math.round(100 * (got - Math.max(0, extra.length - 1) * .25) / n)) : 0 };
+}
 
 /* Start it — the students' phone page for the live games (live/index.html).
    Link: …/live/#4821b0  (4821 = game code, b0 = which live server the teacher's QR points to). Works without an account. */
@@ -180,9 +255,11 @@ function draw() {
   let body;
   if (P.kicked) body = msgView("👋", "You left the game", "Você saiu do jogo.");
   else if (!s) body = msgView("⏳", P.conn ? "Waiting for the teacher…" : "Connecting…", P.conn ? "Esperando o professor…" : "Conectando…");
-  else body = ({ lobby: lobbyView, get: getView, q: qView, rev: revView, board: boardView, end: endView, gk: gkView, closed: () => msgView("🏁", "The game is closed", "O jogo foi encerrado. Obrigado!") }[s.k] || (() => msgView("⏳", "Waiting…", "Esperando…")))(s);
+  else body = ({ lyric: lyricView, lyrrev: lyrrevView, dict: dictView, drev: drevView, lobby: lobbyView, get: getView, q: qView, rev: revView, board: boardView, end: endView, gk: gkView, closed: () => msgView("🏁", "The game is closed", "O jogo foi encerrado. Obrigado!") }[s.k] || (() => msgView("⏳", "Waiting…", "Esperando…")))(s);
+  const ta = $("#dtx"), keep = ta ? { v: ta.value, f: document.activeElement === ta, a: ta.selectionStart, b: ta.selectionEnd } : null;
   el.innerHTML = `<div class="bar"><span class="me">${P.e} <b>${esc(P.n)}</b></span><span class="sp"></span>${P.conn ? "" : `<span class="off">Reconnecting… · Reconectando…</span>`}<span class="cd">#${esc(P.code)}</span></div>${body}`;
   if (s && s.k === "q") tickBar();
+  const t2 = $("#dtx"); if (t2 && keep) { t2.value = keep.v; if (keep.f) { t2.focus(); try { t2.setSelectionRange(keep.a, keep.b); } catch (e) { } } }
 }
 function msgView(e, t, pt) { return `<div class="msg"><div class="big">${e}</div><h1>${esc(t)}</h1><p>${esc(pt)}</p></div>`; }
 function codeView() {
@@ -206,7 +283,7 @@ function qView(s) {
   const key = s.g + ":" + s.qn, mine = ans()[key];
   if (mine != null) return `${qhead(s)}${qtext(s.q)}<div class="chosen" style="--c:${COL[mine][0]}"><span>${COL[mine][1]}</span>${esc(s.o[mine])}</div><div class="msg sm"><div class="big">👍</div><h1>Answer sent!</h1><p>Resposta enviada. Wait for the others…</p></div>`;
   if (Date.now() > P.deadline) return `${qhead(s)}${qtext(s.q)}<div class="msg sm"><div class="big">⏰</div><h1>Time's up!</h1><p>Acabou o tempo.</p></div>`;
-  return `${qhead(s)}<div class="tbar"><i id="tb"></i></div>${qtext(s.q)}<div class="opts n${s.o.length}">${s.o.map((o, i) => `<button class="opt" style="--c:${COL[i][0]}" data-a="ans" data-i="${i}"><span class="sh">${COL[i][1]}</span><span class="ot">${esc(o)}</span></button>`).join("")}</div>`;
+  return `${qhead(s)}<div class="tbar"><i id="tb"></i></div>${qtext(s.q)}<div class="opts n${s.o.length} ${s.o.some(o => o.length > 34) ? "long" : ""}">${s.o.map((o, i) => `<button class="opt" style="--c:${COL[i][0]}" data-a="ans" data-i="${i}"><span class="sh">${COL[i][1]}</span><span class="ot">${esc(o)}</span></button>`).join("")}</div>`;
 }
 function tickBar() { const tb = $("#tb"); if (!tb || !P.s || !P.s.dur) return; const left = Math.max(0, P.deadline - Date.now()); tb.style.transition = "none"; tb.style.width = (left / (P.s.dur * 1000) * 100) + "%"; requestAnimationFrame(() => { tb.style.transition = `width ${left}ms linear`; tb.style.width = "0%"; }); clearTimeout(P.tbT); P.tbT = setTimeout(() => { if (P.s && P.s.k === "q") draw(); }, left + 80); }
 function ans() { try { return JSON.parse(sessionStorage.getItem("sit-ans-" + P.code) || "{}"); } catch (e) { return {}; } }
@@ -229,6 +306,54 @@ function endView(s) {
   const r = s.res && s.res[P.id], money = !!s.gk;
   if (r) buzzOnce("end" + s.g, r[1] === 1 ? [60, 60, 60, 60, 200] : 60);
   return `<div class="msg sm">${r ? `<div class="big">${r[1] <= 3 ? ["🥇", "🥈", "🥉"][r[1] - 1] : "🎉"}</div><h1>${r[1] === 1 ? "You won! · Você venceu!" : `You finished ${ord(r[1])}`}</h1><p>${money ? "$" : ""}${fmt(r[0])}${money ? "" : " points"} · ${s.np || ""} players</p>` : `<div class="big">🏁</div><h1>Game over</h1>`}</div>${topList(s.top, money)}<p class="thanks">Great job! · Mandou bem!</p>`;
+}
+
+/* ---------- 🎵 sing & fill ---------- */
+const lans = () => { try { return JSON.parse(sessionStorage.getItem("sit-lyr-" + P.code) || "{}"); } catch (e) { return {}; } };
+function setLans(k, v) { const a = lans(); a[k] = v; try { sessionStorage.setItem("sit-lyr-" + P.code, JSON.stringify(a)); } catch (e) { } }
+function lyricView(s) {
+  const head = `<div class="qh"><span>🎵 ${esc(s.stitle || "Song")}</span><span>${s.mode === "write" ? "⌨️ Write" : "🔘 Choose"}</span></div>`;
+  if (!s.gaps || !s.gaps.length) return `${head}<div class="msg"><div class="big">🎶</div><p class="lyl">${esc((s.w || []).join(" "))}</p><p>Listen… · Escute…</p></div>`;
+  const my = lans(), mine = gi => my[s.g + ":" + gi], next = s.gaps.find(x => mine(x.i) == null);
+  let k = 0; const line = s.w.map(w => { if (w != null) return `<span>${esc(w)}</span>`; const gp = s.gaps[k++], a = mine(gp.i); return `<span class="lgap ${next && next.i === gp.i ? "act" : ""} ${a != null ? "done" : ""}">${a != null ? esc(a) : "____"}</span>`; }).join(" ");
+  let ctl;
+  if (!next) ctl = `<div class="msg sm"><div class="big">👍</div><p>Done! Keep listening… · Pronto! Continue ouvindo…</p></div>`;
+  else if (s.mode === "write") ctl = `<div class="lw"><input id="lin" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="${"•".repeat(next.n)}  (${next.n} letters)"><button class="go" data-a="lsend" data-i="${next.i}">OK ▸</button></div>`;
+  else ctl = `<div class="opts n${next.o.length}">${next.o.map((o, j) => `<button class="opt" style="--c:${COL[j][0]}" data-a="lpick" data-i="${next.i}" data-j="${j}"><span class="sh">${COL[j][1]}</span><span class="ot">${esc(o)}</span></button>`).join("")}</div>`;
+  return `${head}<div class="lyl cur">${line}</div>${s.wait ? `<p class="lwait">⏸ The song is waiting for you! · A música está esperando!</p>` : ""}${ctl}`;
+}
+function lyrrevView(s) {
+  const r = s.res && s.res[P.id], my = lans(); let k = 0;
+  const line = (s.w || []).map((w, ti) => { const isGap = (s.gi || []).includes(ti); if (!isGap) return `<span>${esc(w)}</span>`; const ok = r && r[3] && r[3][k]; k++; return `<span class="lgap ${ok ? "ok" : "no"}">${esc(w)}</span>`; }).join(" ");
+  if (r) buzzOnce("l" + s.g + s.li, r[0] ? 40 : [30, 40, 30]);
+  return `<div class="qh"><span>🎵 Results</span></div><div class="lyl cur">${line}</div>${r ? `<div class="res dres ${r[0] ? "ok" : "no"}"><div class="pts">${r[0] ? "+" + fmt(r[0]) : "0"}</div><p>${ord(r[2])} place · ${fmt(r[1])} points</p></div>` : ""}`;
+}
+
+/* ---------- 🎧 listen and write ---------- */
+const dans = () => { try { return JSON.parse(sessionStorage.getItem("sit-dict-" + P.code) || "{}"); } catch (e) { return {}; } };
+function setDans(k, v) { const a = dans(); a[k] = v; try { sessionStorage.setItem("sit-dict-" + P.code, JSON.stringify(a)); } catch (e) { } }
+P.dplays = {}; P.dedit = "";
+function dPlay(s, rate) {
+  const key = s.g + ":" + s.qn; if ((P.dplays[key] || 0) >= 3 || !s.au) return;
+  P.dplays[key] = (P.dplays[key] || 0) + 1;
+  try { if (P.aud) P.aud.pause(); const a = new Audio("data:audio/mpeg;base64," + s.au); a.preservesPitch = true; a.playbackRate = rate; P.aud = a; a.play().catch(() => { }); } catch (e) { }
+  draw();
+}
+function dictView(s) {
+  const key = s.g + ":" + s.qn, mine = dans()[key], left = 3 - (P.dplays[key] || 0);
+  const head = `<div class="qh"><span>🎧 Listen and write · ${s.qn + 1} / ${s.tot}</span><span>${s.n} words</span></div>`;
+  const play = s.au ? `<div class="dplay"><button class="dbtn" data-a="dplay" ${left > 0 ? "" : "disabled"}>▶ Listen</button><button class="dbtn sl" data-a="dslow" ${left > 0 ? "" : "disabled"}>🐢 Slow</button><span class="dleft">${"👂".repeat(Math.max(0, left))}${left > 0 ? "" : " no more plays"}</span></div>` : `<p class="pt">🔊 Listen to the teacher's screen. · Ouça na tela do professor.</p>`;
+  if (mine != null && P.dedit !== key) return `${head}${play}<div class="dsent"><small>You wrote · Você escreveu</small><div>${esc(mine)}</div><button class="ghost" data-a="dedit">Edit · Editar</button></div><div class="msg sm"><div class="spin"></div><p>Wait for the check… · Espere a correção…</p></div>`;
+  return `${head}${play}<textarea id="dtx" rows="3" placeholder="Write what you hear… · Escreva o que ouvir…" autocomplete="off" autocorrect="off" autocapitalize="sentences" spellcheck="false">${esc(mine || "")}</textarea><button class="go" data-a="dsend">Send ▸</button>`;
+}
+function drevView(s) {
+  const key = s.g + ":" + s.qn, mine = dans()[key];
+  const head = `<div class="qh"><span>🎧 Listen and write · ${s.qn + 1} / ${s.tot}</span></div>`;
+  if (mine == null) return `${head}<div class="msg sm"><h1>The answer:</h1></div><div class="dsent ok"><div>${esc(s.txt)}</div></div>`;
+  const r = liveDiff(s.txt, mine); buzzOnce("d" + key, r.score >= 90 ? 40 : [30, 40, 30]);
+  return `${head}<div class="res dres ${r.score >= 80 ? "ok" : "no"}"><div class="pts">${r.score}%</div><p>${r.score === 100 ? "Perfect! · Perfeito!" : r.score >= 80 ? "Very good! · Muito bom!" : "Look at the red words. · Veja as palavras em vermelho."}</p></div>
+    <div class="ddiff">${r.words.map(w => `<i class="${w[1]}">${esc(w[0])}${w[1] === "close" ? `<small>${esc(w[2])}</small>` : ""}</i>`).join(" ")}${r.extra.length ? ` <i class="xtra">+ ${esc(r.extra.join(" "))}</i>` : ""}</div>
+    <div class="dsent"><small>You wrote · Você escreveu</small><div>${esc(mine)}</div></div>`;
 }
 
 /* ---------- 💰 own pace ---------- */
@@ -267,7 +392,7 @@ function gkView(s) {
     const f = g.fb;
     return head + `<div class="res ${f.ok ? "ok" : "no"} gkf"><div class="big">${f.ok ? "✅" : "❌"}</div><div class="pts">${f.d >= 0 ? "+" : "−"}$${fmt(Math.abs(f.d))}</div>${f.ok ? "" : `<p>The answer is:</p><div class="chosen ok" style="--c:${COL[f.a][0]}"><span>${COL[f.a][1]}</span>${esc(Q[1][f.a])}</div>`}</div>`;
   }
-  return head + qtext(Q[0]) + `<div class="opts n${Q[1].length}">${Q[1].map((o, i) => `<button class="opt" style="--c:${COL[i][0]}" data-a="gans" data-i="${i}"><span class="sh">${COL[i][1]}</span><span class="ot">${esc(o)}</span></button>`).join("")}</div>`;
+  return head + qtext(Q[0]) + `<div class="opts n${Q[1].length} ${Q[1].some(o => o.length > 34) ? "long" : ""}">${Q[1].map((o, i) => `<button class="opt" style="--c:${COL[i][0]}" data-a="gans" data-i="${i}"><span class="sh">${COL[i][1]}</span><span class="ot">${esc(o)}</span></button>`).join("")}</div>`;
 }
 
 /* ---------- taps ---------- */
@@ -279,10 +404,14 @@ document.addEventListener("click", e => {
   if (a === "rename") { P.scr = "name"; draw(); }
   if (a === "ans") { const s = P.s; if (!s || s.k !== "q" || Date.now() > P.deadline) return; const key = s.g + ":" + s.qn; if (ans()[key] != null) return; const i = +b.dataset.i; setAns(key, i); send({ t: "ans", g: s.g, q: s.qn, a: i, ms: Date.now() - (P.qShown && P.qShown[0] === key ? P.qShown[1] : Date.now()) }); buzz(15); draw(); }
   if (a === "gans") gkAnswer(+b.dataset.i);
+  if (a === "lpick" || a === "lsend") { const s = P.s; if (!s || s.k !== "lyric") return; const i = +b.dataset.i, gp = (s.gaps || []).find(x => x.i === i); if (!gp) return; const v = a === "lpick" ? gp.o[+b.dataset.j] : ($("#lin") && $("#lin").value || "").trim(); if (!v) { $("#lin") && $("#lin").focus(); return; } setLans(s.g + ":" + i, v); send({ t: "lyr", g: s.g, i, a: a === "lpick" ? +b.dataset.j : v }); buzz(15); draw(); setTimeout(() => $("#lin") && $("#lin").focus(), 30); }
+  if (a === "dplay" || a === "dslow") { if (P.s && P.s.k === "dict") dPlay(P.s, a === "dslow" ? .72 : 1); }
+  if (a === "dedit") { const s = P.s; if (s) { P.dedit = s.g + ":" + s.qn; draw(); setTimeout(() => $("#dtx") && $("#dtx").focus(), 30); } }
+  if (a === "dsend") { const s = P.s, t = ($("#dtx") && $("#dtx").value || "").trim(); if (!s || s.k !== "dict" || !t) { $("#dtx") && $("#dtx").focus(); return; } const key = s.g + ":" + s.qn; setDans(key, t.slice(0, 300)); P.dedit = ""; send({ t: "dict", g: s.g, q: s.qn, txt: t.slice(0, 300) }); buzz(15); draw(); }
   if (a === "shop") { P.gk.shop = !P.gk.shop; draw(); }
   if (a === "buy") gkBuy(b.dataset.k);
 });
-document.addEventListener("keydown", e => { if (e.key === "Enter") { const go = document.querySelector(".go"); if (go) go.click(); } });
+document.addEventListener("keydown", e => { if (e.key === "Enter" && !(e.target && e.target.id === "dtx" && e.shiftKey)) { const go = document.querySelector(".go"); if (go) { e.preventDefault(); go.click(); } } });
 window.addEventListener("hashchange", () => { const old = P.code; readHash(); if (P.code !== old) location.reload(); });
 readHash(); P.scr = P.code ? "name" : "code"; draw();
 </script></body></html>
