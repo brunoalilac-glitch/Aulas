@@ -95,6 +95,31 @@ textarea:focus { border-color: var(--ac); }
 .lwait { text-align: center; color: var(--hl); font-weight: 800; }
 .lw { display: flex; gap: 8px; } .lw input { margin: 0; font-size: 22px; } .lw .go { width: auto; margin: 0; padding: 0 18px; }
 .opts.long .opt { font-size: 17px; padding: 10px 14px; } .opts.long { grid-auto-rows: minmax(60px, auto); }
+/* ---------- 🏁 race · 🔔 buzzer · 🎨 draw & guess ---------- */
+.pt.c { text-align: center; }
+.big.rcn { font-family: "Bricolage Grotesque", sans-serif; font-size: 120px; font-weight: 800; color: var(--hl); animation: pop .5s ease; }
+.rctr { position: relative; height: 40px; background: var(--sf); border-radius: 999px; margin: 6px 0 12px; overflow: visible; }
+.rctr i { position: absolute; left: 0; top: 0; bottom: 0; background: rgba(122, 162, 255, .25); border-radius: 999px; transition: width .5s ease; }
+.rctr span { position: absolute; top: 50%; transform: translate(-50%, -50%) scaleX(-1); font-size: 28px; transition: left .5s cubic-bezier(.3, 1.4, .6, 1); margin-left: 18px; }
+.rctr b { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 22px; }
+.bzh { text-align: center; color: var(--mu); font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; margin-top: 8px; }
+.bzb { display: block; margin: 22px auto 12px; width: min(66vw, 270px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FF8080, #D62F35 58%, #A01E24); color: #fff; font-family: "Bricolage Grotesque", sans-serif; font-size: 44px; font-weight: 800; letter-spacing: .02em; box-shadow: 0 10px 0 #741317, 0 20px 34px rgba(0, 0, 0, .45); }
+.bzb:active { transform: translateY(8px); box-shadow: 0 2px 0 #741317, 0 8px 16px rgba(0, 0, 0, .4); }
+.res.bzme .big { animation: pop .5s ease; }
+.pwords { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.pw { padding: 18px; border-radius: 16px; background: var(--sf2); font-size: 24px; font-weight: 800; border: 2px solid var(--ln); }
+.pw.on { border-color: var(--ac); background: rgba(122, 162, 255, .18); }
+.pword { text-align: center; font-size: 19px; color: var(--tx2); margin: 4px 0 8px; } .pword b { color: var(--hl); font-size: 26px; font-family: "Bricolage Grotesque", sans-serif; }
+#pcv { width: 100%; aspect-ratio: 4 / 3; background: #fff; border-radius: 14px; touch-action: none; display: block; box-shadow: 0 0 0 3px var(--ln); }
+.ptools { display: flex; align-items: center; gap: 6px; margin: 10px 0 2px; } .ptools .sp { flex: 1; }
+.pcol { width: 34px; height: 34px; border-radius: 50%; background: var(--c); border: 3px solid transparent; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .28); }
+.pcol.on { border-color: #fff; box-shadow: 0 0 0 2px var(--ac); }
+.pwid, .ptool { width: 40px; height: 40px; border-radius: 12px; background: var(--sf2); display: grid; place-items: center; font-size: 20px; }
+.pwid i { display: block; border-radius: 50%; background: var(--tx); } .pwid.on { outline: 2px solid var(--ac); }
+.phint { font-family: ui-monospace, Menlo, monospace; font-size: 30px; font-weight: 800; text-align: center; letter-spacing: .05em; background: var(--sf); border-radius: 16px; padding: 14px 10px; margin: 10px 0 6px; white-space: pre-wrap; }
+.pnear, .pno { text-align: center; font-weight: 800; font-size: 17px; margin: 4px 0 8px; } .pnear { color: var(--hl); } .pno { color: var(--no); }
+.pw1 { font-size: 44px; color: var(--hl); }
+.lw .go { white-space: nowrap; }
 </style></head>
 <body><div id="app"></div>
 <noscript>Turn on JavaScript to play.</noscript>
@@ -241,6 +266,7 @@ function onState(msg) {
   if (s && s.k === "lobby" && s.pl && !s.pl[P.id] && Date.now() - P.lastJoin > 3000) sendJoin(); // the teacher doesn't have us (reload)
   if (s && (s.k === "q" || s.k === "get")) { const key = s.g + ":" + s.qn; if (P.cur !== key) { P.cur = key; P.shown = Date.now(); } if (s.k === "q") { if (!P.qShown || P.qShown[0] !== key) P.qShown = [key, Date.now()]; P.deadline = Date.now() + (s.left || 0); } }
   if (s && s.k === "gk") gkLoad(s);
+  if (s && typeof xvState === "function") xvState(s);
   P.s = s; draw();
 }
 
@@ -252,14 +278,16 @@ function draw() {
   if (P.scr === "code") return el.innerHTML = codeView();
   if (P.scr === "name") return el.innerHTML = nameView();
   const s = P.s;
+  if (!P.kicked && typeof xvKeep === "function" && xvKeep(s)) return; // the drawing canvas stays as it is
   let body;
   if (P.kicked) body = msgView("👋", "You left the game", "Você saiu do jogo.");
   else if (!s) body = msgView("⏳", P.conn ? "Waiting for the teacher…" : "Connecting…", P.conn ? "Esperando o professor…" : "Conectando…");
-  else body = ({ lyric: lyricView, lyrrev: lyrrevView, dict: dictView, drev: drevView, lobby: lobbyView, get: getView, q: qView, rev: revView, board: boardView, end: endView, gk: gkView, closed: () => msgView("🏁", "The game is closed", "O jogo foi encerrado. Obrigado!") }[s.k] || (() => msgView("⏳", "Waiting…", "Esperando…")))(s);
-  const ta = $("#dtx"), keep = ta ? { v: ta.value, f: document.activeElement === ta, a: ta.selectionStart, b: ta.selectionEnd } : null;
+  else body = (Object.assign({ lyric: lyricView, lyrrev: lyrrevView, dict: dictView, drev: drevView, lobby: lobbyView, get: getView, q: qView, rev: revView, board: boardView, end: endView, gk: gkView, closed: () => msgView("🏁", "The game is closed", "O jogo foi encerrado. Obrigado!") }, typeof XV !== "undefined" ? XV : {})[s.k] || (() => msgView("⏳", "Waiting…", "Esperando…")))(s);
+  const ta = $("#dtx") || $("#pgu"), keep = ta ? { id: ta.id, v: ta.value, f: document.activeElement === ta, a: ta.selectionStart, b: ta.selectionEnd } : null;
   el.innerHTML = `<div class="bar"><span class="me">${P.e} <b>${esc(P.n)}</b></span><span class="sp"></span>${P.conn ? "" : `<span class="off">Reconnecting… · Reconectando…</span>`}<span class="cd">#${esc(P.code)}</span></div>${body}`;
   if (s && s.k === "q") tickBar();
-  const t2 = $("#dtx"); if (t2 && keep) { t2.value = keep.v; if (keep.f) { t2.focus(); try { t2.setSelectionRange(keep.a, keep.b); } catch (e) { } } }
+  const t2 = keep && $("#" + keep.id); if (t2) { t2.value = keep.v; if (keep.f) { t2.focus(); try { t2.setSelectionRange(keep.a, keep.b); } catch (e) { } } }
+  if (s && typeof xvAfter === "function") xvAfter(s);
 }
 function msgView(e, t, pt) { return `<div class="msg"><div class="big">${e}</div><h1>${esc(t)}</h1><p>${esc(pt)}</p></div>`; }
 function codeView() {
@@ -303,9 +331,9 @@ function boardView(s) {
   return `${qhead(s)}<div class="msg sm">${r ? `<div class="big">${r[1] <= 3 ? ["🥇", "🥈", "🥉"][r[1] - 1] : "🏅"}</div><h1>You're ${ord(r[1])}</h1><p>${fmt(r[0])} points</p>` : `<h1>Scoreboard</h1>`}</div>${topList(s.top)}`;
 }
 function endView(s) {
-  const r = s.res && s.res[P.id], money = !!s.gk;
+  const r = s.res && s.res[P.id], money = !!s.gk, race = s.race;
   if (r) buzzOnce("end" + s.g, r[1] === 1 ? [60, 60, 60, 60, 200] : 60);
-  return `<div class="msg sm">${r ? `<div class="big">${r[1] <= 3 ? ["🥇", "🥈", "🥉"][r[1] - 1] : "🎉"}</div><h1>${r[1] === 1 ? "You won! · Você venceu!" : `You finished ${ord(r[1])}`}</h1><p>${money ? "$" : ""}${fmt(r[0])}${money ? "" : " points"} · ${s.np || ""} players</p>` : `<div class="big">🏁</div><h1>Game over</h1>`}</div>${topList(s.top, money)}<p class="thanks">Great job! · Mandou bem!</p>`;
+  return `<div class="msg sm">${r ? `<div class="big">${r[1] <= 3 ? ["🥇", "🥈", "🥉"][r[1] - 1] : "🎉"}</div><h1>${r[1] === 1 ? "You won! · Você venceu!" : `You finished ${ord(r[1])}`}</h1><p>${race ? `🏁 ${fmt(r[0])} / ${race} steps` : `${money ? "$" : ""}${fmt(r[0])}${money ? "" : " points"}`} · ${s.np || ""} players</p>` : `<div class="big">🏁</div><h1>Game over</h1>`}</div>${topList(s.top, money)}<p class="thanks">Great job! · Mandou bem!</p>`;
 }
 
 /* ---------- 🎵 sing & fill ---------- */
@@ -414,4 +442,141 @@ document.addEventListener("click", e => {
 document.addEventListener("keydown", e => { if (e.key === "Enter" && !(e.target && e.target.id === "dtx" && e.shiftKey)) { const go = document.querySelector(".go"); if (go) { e.preventDefault(); go.click(); } } });
 window.addEventListener("hashchange", () => { const old = P.code; readHash(); if (P.code !== old) location.reload(); });
 readHash(); P.scr = P.code ? "name" : "code"; draw();
+
+/* Start it — phone page, more games: 🏁 race · 🔔 buzzer · 🎨 draw & guess (hooks in live-phone.js: XV, xvState, xvKeep, xvAfter) */
+const XV = { race: raceView, buzz: buzzView, pic: picView };
+const PCCOL = ["#1B1F2A", "#E5484D", "#2F6BDB", "#2E9E5B", "#E89B0C", "#8E4EC6"], PCW = [5, 12, 28];
+const deob = s => { try { return decodeURIComponent(escape(atob(String(s).split("").reverse().join("")))); } catch (e) { return ""; } };
+function xvState(s) {
+  if (s.k === "race") rcLoad(s);
+  if (s.k === "buzz") { const key = s.g + ":" + s.qn + ":" + s.ro; if (P.bzKey !== key) { P.bzKey = key; P.bzShown = Date.now(); } if (s.ph === "lock" && s.who && s.who[0] === P.id) buzzOnce("bzme" + key, [90, 60, 90]); }
+  if (s.k === "pic") pcLoad(s);
+}
+
+/* ---------- 🏁 race ---------- */
+function rcLoad(s) {
+  const key = "sit-rc-" + P.code + "-" + s.g;
+  if (!P.rc || P.rc.g !== s.g) { let o = null; try { o = JSON.parse(ls.get(key, "null")); } catch (e) { } P.rc = Object.assign({ g: s.g, pos: 0, c: 0, w: 0, cur: null, last: -1 }, o || {}); P.rc.key = key; P.rc.fb = null; P.rc.lock = 0; }
+  const r = P.rc; r.bank = s.bank || []; r.goal = s.goal; r.end = Date.now() + (s.left || 0); r.go = Date.now() + (s.go || 0);
+  if (r.cur == null || !r.bank[r.cur]) rcNext();
+  if (s.ph === "go" && s.pos && (s.pos[P.id] || 0) < r.pos && Date.now() - (r.sent || 0) > 1500) rcReport(); // the teacher lost our steps (reload)
+  clearTimeout(P.rcT); if (s.ph === "ready") P.rcT = setTimeout(function t() { if (P.s && P.s.k === "race" && P.s.ph === "ready") { draw(); P.rcT = setTimeout(t, 250); } }, 250);
+}
+function rcSave() { const r = P.rc; ls.set(r.key, JSON.stringify({ g: r.g, pos: r.pos, c: r.c, w: r.w, cur: r.cur, last: r.last })); }
+function rcNext() { const r = P.rc, n = r.bank.length; if (!n) return; let i = Math.floor(Math.random() * n); if (n > 1 && i === r.last) i = (i + 1) % n; r.cur = i; r.last = i; r.fb = null; }
+function rcReport() { const r = P.rc; r.sent = Date.now(); send({ t: "race", g: r.g, pos: r.pos, c: r.c, w: r.w }); }
+function rcAnswer(i) {
+  const r = P.rc, s = P.s; if (!r || !s || s.k !== "race" || s.ph !== "go" || r.fb || r.pos >= r.goal || Date.now() > r.end) return;
+  const Q = r.bank[r.cur]; if (!Q) return; const ok = i === Q[2];
+  if (ok) { r.pos++; r.c++; buzz(25); } else { r.w++; buzz([30, 40, 30]); }
+  r.fb = { ok, a: Q[2] }; rcSave(); rcReport(); draw();
+  clearTimeout(P.fbT); P.fbT = setTimeout(() => { rcNext(); rcSave(); draw(); }, ok ? 450 : 2000);
+}
+function raceView(s) {
+  const r = P.rc; if (!r) return msgView("⏳", "Loading…", "Carregando…");
+  if (s.ph === "ready") { const n = Math.ceil(Math.max(0, r.go - Date.now()) / 1000); return `<div class="msg"><div class="big rcn">${n > 0 ? n : "GO!"}</div><h1>Get ready!</h1><p>Prepare-se! Right answers move your ${P.e} forward.</p></div>`; }
+  const mine = Math.max(r.pos, (s.pos && s.pos[P.id]) || 0), head = `<div id="rchd">${rcHead(s)}</div>`, body = x => head + `<div id="rcb" data-k="${rcKey(s)}">${x}</div>`;
+  if (mine >= r.goal) return body(msgView("🏁", "You finished!", "Você chegou! Look at the screen."));
+  if (Date.now() > r.end) return body(msgView("⏰", "Time's up!", "Acabou o tempo!"));
+  const Q = r.bank[r.cur]; if (!Q) return head;
+  if (r.fb) return body(r.fb.ok ? `<div class="res ok gkf"><div class="big">✅</div><div class="pts">+1 step</div></div>`
+    : `<div class="res no gkf"><div class="big">❌</div><p>Wait 2 seconds… · Espere 2 segundos…</p><div class="chosen ok" style="--c:${COL[r.fb.a][0]}"><span>${COL[r.fb.a][1]}</span>${esc(Q[1][r.fb.a])}</div></div>`);
+  return body(qtext(Q[0]) + `<div class="opts n${Q[1].length} ${Q[1].some(o => o.length > 34) ? "long" : ""}">${Q[1].map((o, i) => `<button class="opt" style="--c:${COL[i][0]}" data-a="rans" data-i="${i}"><span class="sh">${COL[i][1]}</span><span class="ot">${esc(o)}</span></button>`).join("")}</div>`);
+}
+function rcHead(s) {
+  const r = P.rc, mine = Math.max(r.pos, (s.pos && s.pos[P.id]) || 0), rank = 1 + Object.keys(s.pos || {}).filter(id => id !== P.id && s.pos[id] > mine).length, pct = Math.round(mine / r.goal * 100);
+  return `<div class="gkh"><span class="mo">🏁 ${mine} / ${r.goal}</span><span class="pill">${ord(rank)}</span><span class="sp"></span></div><div class="rctr"><i style="width:${pct}%"></i><span style="left:${pct}%">${P.e}</span><b>🏁</b></div>`;
+}
+const rcKey = s => { const r = P.rc; return [s.g, r.cur, r.fb ? (r.fb.ok ? 1 : 2) : 0, r.pos >= r.goal ? 1 : 0, Date.now() > r.end ? 1 : 0].join(":"); };
+
+/* ---------- 🔔 buzzer ---------- */
+function buzzView(s) {
+  const key = s.g + ":" + s.qn + ":" + s.ro, out = (s.out || []).includes(P.id), me = s.who && s.who[0] === P.id, r = s.res && s.res[P.id];
+  const head = `<div class="qh"><span>🔔 Buzzer · ${s.qn + 1} / ${s.tot}</span>${r ? `<span>${fmt(r[0])} pts · ${ord(r[1])}</span>` : ""}</div><div class="bzh">${esc(s.h || "")}</div>${qtext(s.q || "")}`;
+  if (s.ph === "open") {
+    if (out) return head + msgView("🙊", "The others can try now", "Agora os outros podem tentar.");
+    if (P.bzSent === key) return head + `<div class="msg sm"><div class="spin"></div><p>Buzzed! · Apertou!</p></div>`;
+    return head + `<button class="bzb" data-a="bz">BUZZ!</button><p class="pt c">Know it? Buzz, then say it out loud. · Sabe? Aperte e responda em voz alta.</p>`;
+  }
+  if (s.ph === "lock") return head + (me ? `<div class="res ok bzme"><div class="big">🎤</div><h1>Your turn!</h1><p>Say it out loud! · Responda em voz alta!</p></div>`
+    : `<div class="msg sm"><div class="big">${s.who ? s.who[2] : "🔒"}</div><h1>${esc(s.who ? s.who[1] : "")} was faster!</h1><p>Foi mais rápido(a). Listen! · Escute!</p></div>`);
+  const L = s.last, mine = L && L.id === P.id;
+  return head + `${s.a ? `<div class="dsent ok"><small>Answer · Resposta</small><div>${esc(s.a)}</div></div>` : ""}${mine ? `<div class="res ${L.ok ? "ok" : "no"} dres"><div class="pts">${L.pts > 0 ? "+" : ""}${fmt(L.pts)}</div></div>` : ""}<p class="pt c">Look at the screen · Olhe a tela</p>`;
+}
+
+/* ---------- 🎨 draw & guess ---------- */
+function pcLoad(s) {
+  const key = s.g + ":" + s.r;
+  if (P.pcKey !== key) { P.pcKey = key; P.pc = { st: [], cur: null, sid: 0, c: 0, w: 1 }; }
+  clearInterval(P.pcT); if (s.ph !== "rev") { P.pcEnd = Date.now() + (s.left || 0); P.pcT = setInterval(pcClock, 500); }
+}
+function pcClock() { if (!P.s || P.s.k !== "pic" || P.s.ph === "rev") { clearInterval(P.pcT); return; } const el = $("#ptm"); if (el) el.textContent = Math.max(0, Math.ceil((P.pcEnd - Date.now()) / 1000)); }
+function xvKeep(s) { // keep what's under the finger: only refresh the race header, never rebuild the drawing canvas
+  if (s && s.k === "race" && s.ph === "go" && P.rc) { const bx = $("#rcb"), hd = $("#rchd"); if (bx && hd && bx.dataset.k === rcKey(s)) { hd.innerHTML = rcHead(s); return true; } return false; }
+  if (!s || s.k !== "pic" || s.ph !== "draw" || !s.dr || s.dr[0] !== P.id) return false;
+  const cv = $("#pcv"); if (!cv || cv.dataset.k !== P.pcKey) return false;
+  const gl = $("#pgot"); if (gl) gl.textContent = Object.keys(s.gs || {}).length; return true;
+}
+function xvAfter(s) { if (s && s.k === "pic" && s.ph === "draw") { const cv = $("#pcv"); if (cv) pcInit(cv); } }
+function picView(s) {
+  const drawer = s.dr && s.dr[0] === P.id, head = `<div class="qh"><span>🎨 Draw & guess · ${s.r + 1} / ${s.tr}</span><span>⏱ <b id="ptm">${Math.ceil((s.left || 0) / 1000)}</b></span></div>`;
+  if (s.ph === "pick") {
+    if (drawer) return head + `<div class="msg sm"><div class="big">🎨</div><h1>Your turn to draw!</h1><p>É sua vez de desenhar! Choose a word:</p></div><div class="pwords">${(s.ob || []).map(deob).map((w, i) => `<button class="pw" data-a="pword" data-i="${i}">${esc(w)}</button>`).join("")}</div>`;
+    return head + msgView(s.dr ? s.dr[2] : "🎨", `${s.dr ? s.dr[1] : ""} is choosing a word…`, "Escolhendo uma palavra…");
+  }
+  if (s.ph === "draw") {
+    if (drawer) return `${head}<div class="pword">✏️ Draw: <b>${esc(deob((s.ob || [])[0]))}</b></div><canvas id="pcv" data-k="${esc(P.pcKey)}" width="800" height="600"></canvas>
+      <div class="ptools">${PCCOL.map((c, i) => `<button class="pcol ${P.pc.c === i ? "on" : ""}" style="--c:${c}" data-a="pcol" data-i="${i}"></button>`).join("")}<span class="sp"></span>${PCW.map((w, i) => `<button class="pwid ${P.pc.w === i ? "on" : ""}" data-a="pwid" data-i="${i}"><i style="width:${5 + i * 7}px;height:${5 + i * 7}px"></i></button>`).join("")}<button class="ptool" data-a="pundo">↩</button><button class="ptool" data-a="pclear">🗑</button></div>
+      <p class="pt c">No letters or numbers! · Sem letras! · ✅ <b id="pgot">${Object.keys(s.gs || {}).length}</b> guessed</p>`;
+    const mine = s.gs && s.gs[P.id];
+    if (mine != null) return head + `<div class="res ok"><div class="big">✅</div><h1>You got it!</h1><div class="pts">+${fmt(mine)}</div><p>Acertou! Wait for the others…</p></div>`;
+    const st = s.gl && s.gl[P.id];
+    return `${head}<div class="phint" style="font-size:${(s.hint || "").length > 17 ? Math.max(16, Math.round(520 / (s.hint || "").length)) : 30}px">${esc(s.hint || "")}</div><p class="pt c">${s.dr ? s.dr[2] + " " + esc(s.dr[1]) : ""} is drawing — look at the screen! · Olhe a tela!</p>${st === "near" ? `<p class="pnear">🔥 So close! · Quase!</p>` : st === "no" ? `<p class="pno">❌ Not that one · Não é essa</p>` : ""}
+      <div class="lw"><input id="pgu" maxlength="40" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Your guess in English…"><button class="go" data-a="pguess">OK ▸</button></div>`;
+  }
+  const mine = s.gs && s.gs[P.id];
+  return head + `<div class="msg sm"><p>The word was · A palavra era</p><h1 class="pw1">${esc(s.word || "")}</h1>${mine != null ? `<div class="pill">✅ +${fmt(mine)}</div>` : ""}</div><p class="pt c">Look at the screen · Olhe a tela</p>`;
+}
+function pcSeg(x, st, from) {
+  if (!st.p.length) return; x.strokeStyle = PCCOL[st.c]; x.lineWidth = PCW[st.w]; x.lineCap = x.lineJoin = "round"; x.beginPath();
+  const p = st.p, i = from > 0 ? from - 2 : 0; x.moveTo(p[i], p[i + 1]);
+  if (p.length - i <= 2) x.lineTo(p[i] + .1, p[i + 1]); else for (let j = i + 2; j < p.length; j += 2) x.lineTo(p[j], p[j + 1]);
+  x.stroke();
+}
+function pcRepaint(x) { x.fillStyle = "#fff"; x.fillRect(0, 0, 800, 600); P.pc.st.forEach(st => pcSeg(x, st, 0)); }
+function pcInit(cv) {
+  if (cv.dataset.on) return; cv.dataset.on = "1"; const x = cv.getContext("2d"); pcRepaint(x);
+  const pt = e => { const b = cv.getBoundingClientRect(); return [Math.max(0, Math.min(800, Math.round((e.clientX - b.left) / b.width * 800))), Math.max(0, Math.min(600, Math.round((e.clientY - b.top) / b.height * 600)))]; };
+  cv.addEventListener("pointerdown", e => { e.preventDefault(); try { cv.setPointerCapture(e.pointerId); } catch (er) { } const p = pt(e), st = { sid: P.id.slice(-3) + (++P.pc.sid), c: P.pc.c, w: P.pc.w, p: [p[0], p[1]], sent: 0 }; P.pc.st.push(st); P.pc.cur = st; pcSeg(x, st, 0); pcQueue(); });
+  cv.addEventListener("pointermove", e => { const st = P.pc.cur; if (!st) return; e.preventDefault(); const p = pt(e), n = st.p.length; if (Math.abs(p[0] - st.p[n - 2]) + Math.abs(p[1] - st.p[n - 1]) < 4) return; st.p.push(p[0], p[1]); pcSeg(x, st, n); pcQueue(); });
+  const up = () => { if (P.pc.cur) { P.pc.cur = null; pcFlush(); } };
+  ["pointerup", "pointercancel", "pointerleave"].forEach(ev => cv.addEventListener(ev, up));
+}
+function pcQueue() { if (!P.pcQ) P.pcQ = setTimeout(pcFlush, 110); }
+function pcFlush() {
+  clearTimeout(P.pcQ); P.pcQ = null; const s = P.s; if (!s || s.k !== "pic" || s.ph !== "draw") return;
+  const out = []; P.pc.st.forEach(st => { if (st.sent < st.p.length) { out.push([st.sid, st.c, st.w].concat(st.p.slice(st.sent))); st.sent = st.p.length; } });
+  if (out.length) send({ t: "pd", g: s.g, r: s.r, s: out });
+}
+function pcTool(a, i) {
+  const s = P.s; if (!s || s.k !== "pic" || s.ph !== "draw") return; const cv = $("#pcv"), x = cv && cv.getContext("2d");
+  if (a === "pcol") { P.pc.c = i; document.querySelectorAll(".pcol").forEach((b, j) => b.classList.toggle("on", j === i)); }
+  if (a === "pwid") { P.pc.w = i; document.querySelectorAll(".pwid").forEach((b, j) => b.classList.toggle("on", j === i)); }
+  if (a === "pundo") { pcFlush(); const st = P.pc.st.pop(); if (st) { if (x) pcRepaint(x); send({ t: "pu", g: s.g, r: s.r, sid: st.sid }); } }
+  if (a === "pclear") { P.pc.st = []; if (x) pcRepaint(x); send({ t: "pc", g: s.g, r: s.r }); }
+  buzz(10);
+}
+
+/* ---------- taps ---------- */
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-a]"); if (!b) return; const a = b.dataset.a, s = P.s;
+  if (a === "rans") rcAnswer(+b.dataset.i);
+  if (a === "bz") {
+    if (!s || s.k !== "buzz" || s.ph !== "open" || (s.out || []).includes(P.id)) return; const key = s.g + ":" + s.qn + ":" + s.ro; if (P.bzSent === key) return;
+    P.bzSent = key; send({ t: "bz", g: s.g, q: s.qn, ro: s.ro, ms: Date.now() - (P.bzKey === key ? P.bzShown : Date.now()) }); buzz(40); draw();
+  }
+  if (a === "pword" && s && s.k === "pic" && s.ph === "pick" && s.dr && s.dr[0] === P.id) { send({ t: "pw", g: s.g, r: s.r, w: +b.dataset.i }); buzz(20); b.classList.add("on"); }
+  if (a === "pguess") { const inp = $("#pgu"), t = (inp && inp.value || "").trim(); if (!s || s.k !== "pic" || s.ph !== "draw" || !t) { inp && inp.focus(); return; } send({ t: "pg", g: s.g, r: s.r, txt: t.slice(0, 40) }); inp.value = ""; inp.focus(); buzz(15); }
+  if (["pcol", "pwid", "pundo", "pclear"].includes(a)) pcTool(a, +b.dataset.i);
+});
 </script></body></html>

@@ -2224,8 +2224,8 @@ abbr.gl { text-decoration: underline dotted rgba(233,185,73,.9); text-underline-
 .lvsel { display: inline-flex; gap: 6px; }
 .lvsel button { border: 0; border-radius: 10px; padding: 9px 12px; font: inherit; font-size: 15px; font-weight: 800; background: var(--sf2); color: var(--tx2); cursor: pointer; }
 .lvsel button.on { background: var(--ac2); color: var(--ac); outline: 2px solid var(--ac); }
-.lvmode:last-child .lvsel button { background: var(--hl); color: #0F131B; }
-.lvmode:last-child .lvsel button:disabled { opacity: .4; cursor: default; }
+.lvsel.gold button { background: var(--hl); color: #0F131B; }
+.lvsel.gold button:disabled { opacity: .4; cursor: default; }
 
 /* playing */
 .lvplay { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
@@ -2335,6 +2335,67 @@ abbr.gl { text-decoration: underline dotted rgba(233,185,73,.9); text-underline-
 .dkdiff { flex: 1; line-height: 1.5; font-weight: 600; } .dkdiff.na { color: var(--mu); font-style: italic; }
 .dkdiff i { font-style: normal; } .dkdiff i.ok { color: var(--ok); } .dkdiff i.close { color: var(--hl); } .dkdiff i.miss { color: var(--no); text-decoration: underline wavy; } .dkdiff i.xtra { color: var(--mu); text-decoration: line-through; }
 .dksc { flex: none; font-size: 24px; width: 70px; text-align: right; }
+
+/* ---------- game picker (lobby) ---------- */
+.lvgames { display: flex; gap: 8px; flex-wrap: wrap; }
+.lvgames button { flex: 1; border: 2px solid var(--ln); border-radius: 14px; padding: 10px 8px; font: inherit; font-size: 16px; font-weight: 800; background: var(--sf); color: var(--tx2); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; white-space: nowrap; }
+.lvgames button span { font-size: 26px; line-height: 1; }
+.lvgames button.on { border-color: var(--ac); background: var(--ac2); color: var(--tx); }
+.lvmode.one { min-height: 132px; justify-content: flex-start; }
+.lvmode.one > small { font-size: 16px; }
+.lvlab { font-size: 13px !important; color: var(--mu); text-transform: uppercase; letter-spacing: .05em; display: inline !important; margin-left: 4px; }
+.lvb.ok { background: var(--ok); color: #0F131B; } .lvb.no { background: var(--no); color: #0F131B; }
+.lvmini { display: flex; flex-direction: column; gap: 6px; }
+.lvmini div { display: flex; align-items: center; gap: 8px; background: var(--sf); border-radius: 12px; padding: 6px 12px; font-size: 18px; }
+.lvmini span { width: 20px; color: var(--mu); font-weight: 800; } .lvmini b { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .lvmini i { font-style: normal; font-weight: 800; }
+.lvmini em { font-style: normal; font-weight: 800; font-size: 15px; } .lvmini em.ok { color: var(--ok); } .lvmini em.no { color: var(--no); }
+/* ---------- 🏁 race ---------- */
+.rctrack { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 6px; justify-content: center; }
+.rclane { display: flex; align-items: center; gap: 12px; flex: 1; max-height: 74px; min-height: 30px; }
+.rcnm { width: 120px; font-weight: 800; font-size: 19px; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rcroad { position: relative; flex: 1; height: 100%; background: var(--sf); border-radius: 14px; background-image: linear-gradient(90deg, transparent 0 calc(100% - 44px), rgba(255,255,255,.07) calc(100% - 44px)); }
+.rcroad::after { content: ""; position: absolute; left: 12px; right: 52px; top: 50%; border-top: 3px dashed var(--ln); }
+.rcfin { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 26px; }
+.rccar { position: absolute; top: 50%; left: calc(var(--p) * (100% - 58px) / 100 + 4px); transform: translateY(-50%) scaleX(-1); font-size: clamp(24px, 4.2vh, 44px); line-height: 1; transition: left .6s cubic-bezier(.3, 1.4, .6, 1); z-index: 1; }
+.rccar.hop { animation: rchop .5s ease; }
+@keyframes rchop { 40% { transform: translateY(-80%) scaleX(-1); } }
+.rcpos { width: 40px; font-size: 26px; text-align: center; }
+.rccw { width: 104px; font-size: 15px; font-weight: 800; } .rccw i { font-style: normal; } .rccw .ok { color: var(--ok); } .rccw .no { color: var(--no); }
+.rclane.lead .rcnm { color: var(--hl); } .rclane.lead .rcroad { outline: 2px solid var(--hl); }
+.rclane.bot .rcnm { color: var(--mu); }
+.rcgo { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(8, 11, 18, .55); border-radius: 18px; z-index: 3; pointer-events: none; }
+.rcgo span { grid-area: 1 / 1; font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 160px; color: var(--hl); opacity: 0; animation: rcnum .9s ease both; }
+.rcgo span:nth-child(2) { animation-delay: .9s; } .rcgo span:nth-child(3) { animation-delay: 1.8s; } .rcgo span:nth-child(4) { animation-delay: 2.7s; color: var(--ok); }
+@keyframes rcnum { 0% { opacity: 0; transform: scale(.4); } 25% { opacity: 1; transform: scale(1.1); } 75% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1.4); } }
+.rcnote { margin: 0; color: var(--mu); font-size: 16px; font-weight: 700; text-align: center; flex: none; }
+/* ---------- 🔔 buzzer ---------- */
+.bzgrid { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 290px; gap: 18px; }
+.bzmain { display: flex; flex-direction: column; gap: 12px; min-height: 0; }
+.bzh { color: var(--mu); font-weight: 800; font-size: 16px; text-transform: uppercase; letter-spacing: .06em; }
+.bzmain .lvq.big { min-height: 170px; }
+.bzwait, .bzwho, .bzans { flex: 1; min-height: 0; background: var(--sf); border-radius: 22px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; padding: 12px; }
+.bzwait b { font-size: 30px; } .bzwait small { font-size: 18px; font-weight: 800; } .bzwait .no { color: var(--no); }
+.bzbell { font-size: 64px; animation: bzring 1.6s ease-in-out infinite; transform-origin: 50% 10%; }
+@keyframes bzring { 0%, 60%, 100% { transform: rotate(0); } 10% { transform: rotate(14deg); } 20% { transform: rotate(-12deg); } 30% { transform: rotate(8deg); } 40% { transform: rotate(-5deg); } }
+.bzwho { background: var(--ac2); outline: 3px solid var(--ac); }
+.bzwho .e { font-size: 96px; line-height: 1; animation: lvpop .45s ease; } .bzwho b { font-size: 46px; font-family: "Bricolage Grotesque", sans-serif; } .bzwho small { font-size: 18px; color: var(--tx2); font-weight: 700; }
+.bzans small { color: var(--mu); font-weight: 800; text-transform: uppercase; letter-spacing: .06em; } .bzans b { font-size: 40px; color: var(--ok); font-family: "Bricolage Grotesque", sans-serif; line-height: 1.15; }
+.bzans span { font-size: 22px; font-weight: 800; } .bzans span.ok { color: var(--ok); } .bzans span.no { color: var(--no); }
+/* ---------- 🎨 draw & guess ---------- */
+.pcgrid { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 300px; gap: 16px; }
+.pcboard { position: relative; min-height: 0; display: flex; align-items: center; justify-content: center; }
+.pcbx { position: relative; height: 100%; aspect-ratio: 4 / 3; max-width: 100%; }
+.pcbx canvas { width: 100%; height: 100%; display: block; background: #fff; border-radius: 18px; box-shadow: 0 0 0 3px var(--ln); }
+.pcov { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; background: rgba(8, 11, 18, .72); border-radius: 18px; color: #fff; text-align: center; }
+.pcov .e { font-size: 80px; line-height: 1; animation: lvpop .45s ease; } .pcov b { font-size: 34px; } .pcov small { font-size: 18px; opacity: .8; }
+.pcov.rev { background: rgba(8, 11, 18, .55); } .pcov.rev b { font-family: "Bricolage Grotesque", sans-serif; font-size: 64px; color: #FFD36E; } .pcov.rev span { font-size: 22px; font-weight: 800; }
+.pcside { display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+.pcwho { font-size: 20px; font-weight: 700; color: var(--tx2); } .pcwho b { color: var(--tx); }
+.pchint { font-family: ui-monospace, Menlo, monospace; font-size: 30px; font-weight: 800; letter-spacing: .04em; background: var(--sf); border-radius: 14px; padding: 10px 12px; text-align: center; white-space: pre-wrap; }
+.pcfeed { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; font-size: 17px; }
+.pcfeed div { background: var(--sf); border-radius: 10px; padding: 4px 10px; animation: lvpop .3s ease; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pcfeed .ok { color: var(--ok); background: var(--okbg); } .pcfeed .near { color: var(--hl); } .pcfeed .mu { color: var(--mu); background: none; }
+.pcopt { text-align: right; } .pcopt .lvb.sm { margin: 0; }
 
 /* ---------- 🎵 Sing & fill ---------- */
 .w2.xsong .xbd { margin-top: 6px; }
@@ -26983,6 +27044,7 @@ function lvIn(msg) {
     if (!p) p = LV.pl[m.id] = { n, e, seen: lvNow(), t0: lvNow() }; else { p.n = n; p.e = e; }
     p.seen = lvNow(); if (isNew) lvSfx("join");
     if (LV.g && LV.g.mode === "k" && LV.g.sc && !LV.g.sc[m.id]) LV.g.sc[m.id] = { sc: 0, sk: 0, last: 0 };
+    if (typeof lvJoin2 === "function") lvJoin2(m.id);
     lvSyncSoon(); lvDraw(); return;
   }
   if (!p) return; p.seen = lvNow();
@@ -27000,6 +27062,7 @@ function lvIn(msg) {
   if (m.t === "dict" && g && g.mode === "dict" && g.ph === "write" && m.g === g.id && m.q === g.qn) {
     g.ans[m.id] = String(m.txt || "").slice(0, 300); g.who[m.id] = 1; if (typeof dkDraw === "function") dkDraw(); lvSfx("ans");
   }
+  if (typeof lvIn2 === "function") lvIn2(m, p, g);
   if (m.t === "bye") { p.seen = 0; lvSyncSoon(); lvDraw(); }
 }
 
@@ -27009,12 +27072,13 @@ function lvRank(sc) { // sc: {id: number} → [[id, value, rank]]
   const arr = Object.keys(sc).map(id => [id, sc[id]]).sort((a, b) => b[1] - a[1]); let r = 0, prev = null;
   return arr.map(([id, v], i) => { if (v !== prev) { r = i + 1; prev = v; } return [id, v, r]; });
 }
-function lvScores() { const g = LV.g, o = {}; if (!g) return o; if (g.sc) Object.keys(g.sc).forEach(id => o[id] = g.sc[id].sc); else if (g.m) Object.keys(g.m).forEach(id => o[id] = g.m[id].m); return o; }
-function lvTop(k) { const pl = LV.pl, g = LV.g; return lvRank(lvScores()).slice(0, k).map(([id, v, r]) => [pl[id] ? pl[id].n : "?", pl[id] ? pl[id].e : "🙂", v, r, g && g.sc && g.sc[id] ? (g.sc[id].last || 0) : 0]); }
+function lvScores() { const g = LV.g, o = {}; if (!g) return o; if (g.mode === "race") return Object.assign(o, g.pos); if (g.sc) Object.keys(g.sc).forEach(id => o[id] = g.sc[id].sc); else if (g.m) Object.keys(g.m).forEach(id => o[id] = g.m[id].m); return o; }
+function lvTop(k) { const g = LV.g; return lvRank(lvScores()).slice(0, k).map(([id, v, r]) => { const w = typeof lvWho === "function" ? lvWho(id) : [LV.pl[id] ? LV.pl[id].n : "?", LV.pl[id] ? LV.pl[id].e : "🙂"]; return [w[0], w[1], v, r, g && g.sc && g.sc[id] ? (g.sc[id].last || 0) : 0]; }); }
 function lvRes() { const o = {}; lvRank(lvScores()).forEach(([id, v, r]) => o[id] = [v, r]); return o; }
 function lvState() {
   const g = LV.g, base = { code: LV.code };
   if (!g) return Object.assign(base, { k: "lobby", pl: lvRoster() });
+  if (typeof lvState2 === "function") { const x = lvState2(g, base); if (x) return x; }
   const tot = g.qs ? g.qs.length : 0;
   if (g.mode === "k") {
     const Q = g.qs[g.qn] || {};
@@ -27084,7 +27148,7 @@ function lvGStart(bank, min) {
   lvSync(); lvDraw(); lvTickStart(); lvSfx("whoosh");
 }
 function lvGEnd() { const g = LV.g; if (!g || g.mode !== "gk") return; g.ph = "end"; lvTickStop(); lvSync(); lvDraw(); lvSfx("fanfare"); lvConfetti(); }
-function lvLobby() { const g = LV.g; if (g) clearTimeout(g.t); LV.g = null; lvTickStop(); lvMusic(false); lvSync(); lvDraw(); }
+function lvLobby() { const g = LV.g; if (g) { clearTimeout(g.t); clearTimeout(g.bt); } LV.g = null; lvTickStop(); lvMusic(false); lvSync(); lvDraw(); }
 
 /* clock: question countdown and the own-pace timer */
 function lvTickStart() {
@@ -27092,11 +27156,12 @@ function lvTickStart() {
   LV.tick = setInterval(() => {
     const g = LV.g; if (!g) return lvTickStop();
     const left = Math.max(0, g.end - lvNow()), s = Math.ceil(left / 1000);
-    const el = document.getElementById("lvt"); if (el) { el.textContent = g.mode === "gk" ? `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}` : s; el.parentElement.classList.toggle("lo", s <= 5); const ring = document.getElementById("lvring"); if (ring) ring.style.strokeDashoffset = String(283 * (1 - left / (g.dur * 1000))); }
+    if (g.mode === "pic" && typeof lvPTick === "function") lvPTick(g);
+    const el = document.getElementById("lvt"); if (el) { el.textContent = g.mode === "gk" || g.mode === "race" ? `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}` : s; el.parentElement.classList.toggle("lo", s <= 5); const ring = document.getElementById("lvring"); if (ring) ring.style.strokeDashoffset = String(283 * (1 - left / (g.dur * 1000))); }
     if (g.mode === "k" && s !== lastS && s <= 5 && s > 0) lvSfx("tick");
-    if (g.mode === "gk" && s !== lastS && s <= 10 && s > 0) lvSfx("tick");
+    if ((g.mode === "gk" || g.mode === "race" || (g.mode === "pic" && g.ph === "draw")) && s !== lastS && s <= 10 && s > 0) lvSfx("tick");
     lastS = s;
-    if (!left) { if (g.mode === "k" && g.ph === "q") lvReveal(); else if (g.mode === "gk" && g.ph === "play") lvGEnd(); }
+    if (!left) { if (g.mode === "k" && g.ph === "q") lvReveal(); else if (g.mode === "gk" && g.ph === "play") lvGEnd(); else if (g.mode === "race" && g.ph === "go") lvREnd(); else if (g.mode === "pic" && g.ph === "draw") lvPRev(); }
   }, 200);
 }
 function lvTickStop() { clearInterval(LV.tick); LV.tick = null; }
@@ -27106,6 +27171,10 @@ function lvSfx(k) {
   const A = typeof FXA === "function" ? FXA() : null; if (!A) return; const t = A.ctx.currentTime + .01;
   if (k === "join") { fxTone(A, t, 520, 880, .16, .09, "sine", .3); fxTone(A, t + .08, 880, 1320, .14, .06, "sine", .3); }
   if (k === "ans") fxTone(A, t, 900, 1100, .08, .05, "triangle", .1);
+  if (k === "buzz") { fxTone(A, t, 180, 170, .55, .16, "square", .2); fxTone(A, t, 360, 340, .55, .06, "sawtooth", .2); }
+  if (k === "go") [60, 67, 72].forEach((n, i) => { fxTone(A, t, mtof(n), mtof(n), .5, .08, "sawtooth", .3); fxTone(A, t + .02 * i, mtof(n + 12), mtof(n + 12), .5, .05, "triangle", .3); });
+  if (k === "step") fxTone(A, t, 620, 990, .1, .07, "triangle", .1);
+  if (k === "ding") [84, 91].forEach((n, i) => fxTone(A, t + i * .09, mtof(n), mtof(n), .6, .08, "sine", .6));
   if (k === "tick") fxTone(A, t, 1500, 1500, .05, .07, "square", 0);
   if (k === "whoosh") fxNoise(A, t, .45, 300, 3000, .18, "bandpass", 1.2);
   if (k === "reveal") [67, 71, 74, 79].forEach((n, i) => fxTone(A, t + i * .07, mtof(n), mtof(n), .5, .09, "triangle", .5));
@@ -27130,7 +27199,7 @@ function lvMusic(on) {
 
 /* ---------- screen ---------- */
 function lvDraw(quiet) {
-  const b = document.getElementById("lvbox"); if (b && CUR && CUR.deck[CUR.i] && CUR.deck[CUR.i].type === "c2live") b.innerHTML = lvView(CUR.deck[CUR.i]);
+  const b = document.getElementById("lvbox"); if (b && CUR && CUR.deck[CUR.i] && CUR.deck[CUR.i].type === "c2live") { b.innerHTML = lvView(CUR.deck[CUR.i]); if (typeof lvAfterDraw === "function") lvAfterDraw(); }
   const ov = document.getElementById("lvpanel"); if (ov) ov.outerHTML = lvPanelHTML();
   lvPill();
   if (!quiet) { /* nothing else */ }
@@ -27159,6 +27228,7 @@ function lvView(s) {
   const g = LV.g;
   if (!LV.on) return `<div class="lvoff"><b>📱 Live quiz</b><p>Students answer on their phones.</p><button class="lvb p" data-live="on">Turn on</button></div>`;
   if (!g) return lvLobbyView(s);
+  if (typeof lvView2 === "function") { const x = lvView2(s); if (x) return x; }
   if (g.mode === "k") return ({ get: lvGetView, q: lvQView, rev: lvRevView, board: lvBoardView, end: lvEndView }[g.ph] || lvLobbyView)(s);
   return g.ph === "end" ? lvEndView(s) : lvGkView(s);
 }
@@ -27166,14 +27236,10 @@ function lvLobbyView(s) {
   const bank = s.bank || [], nq = Math.min(LV.nq, bank.length), n = lvActive().length;
   return `<div class="lvlobby">${lvJoinCard(true)}
     <div class="lvside"><div class="lvhd"><h2>📱 Live quiz</h2>${lvStatusHTML()}</div>
-      <p class="lvsub">${bank.length} questions from today's lesson · words and grammar</p>
+      <p class="lvsub">From today's lesson: ${bank.length} questions${(s.oral || []).length ? ` · ${s.oral.length} speaking prompts` : ""}${(s.draw || []).length >= 3 ? ` · ${s.draw.length} words to draw` : ""}</p>
       <div class="lvpl"><div class="lvplh">👥 <b>${n}</b> player${n === 1 ? "" : "s"}<span>click a name to remove it</span></div>${lvChips(true)}</div>
-      <div class="lvmodes">
-        <div class="lvmode"><div><b>⚡ Together</b><small>Kahoot style: same question for everyone. Fast answers = more points.</small></div>
-          <div class="lvrow"><span class="lvsel">${[...new Set([5, 8, 12].map(k => Math.min(k, bank.length)))].map(k => `<button class="${nq === k ? "on" : ""}" data-live="nq" data-n="${k}">${k} Qs</button>`).join("")}</span><button class="lvb p" data-live="kstart" ${n && LV.st === "on" ? "" : "disabled"}>Start ▸</button></div></div>
-        <div class="lvmode"><div><b>💰 Own pace</b><small>Gimkit style: each phone gets its own questions. Earn money, buy upgrades!</small></div>
-          <div class="lvrow"><span class="lvsel">${[3, 5, 8].map(k => `<button data-live="gstart" data-min="${k}" ${n && LV.st === "on" ? "" : "disabled"}>${k} min ▸</button>`).join("")}</span></div></div>
-      </div></div></div>`;
+      ${typeof lvGamesBox === "function" ? lvGamesBox(s) : ""}
+    </div></div>`;
 }
 const lvTile = (o, i, extra = "") => `<div class="lvtile ${extra}" style="--c:${LVCOL[i][0]}"><span class="lvsh">${LVCOL[i][1]}</span><span class="lvtx">${esc(o)}</span></div>`;
 function lvHead(g, right = "") { return `<div class="lvtop"><span class="lvqn">Question <b>${g.qn + 1}</b> / ${g.qs.length}</span>${lvStatusHTML()}<span class="lvsp"></span>${right}</div>`; }
@@ -27204,9 +27270,10 @@ function lvBoardView() {
     <div class="lvboard">${top.map(t => `<div class="lvbr"><span class="lvrk">${t[3]}</span><span class="lve">${t[1]}</span><span class="lvnm">${esc(t[0])}</span><span class="lvbw"><i style="width:${Math.max(3, t[2] / mx * 100)}%"></i></span><b>${lvFmt(t[2])}</b>${t[4] ? `<span class="lvup">+${lvFmt(t[4])}</span>` : `<span class="lvup"></span>`}</div>`).join("")}</div></div>`;
 }
 function lvEndView() {
-  const g = LV.g, top = lvTop(10), money = g.mode === "gk", f = v => money ? "$" + lvFmt(v) : lvFmt(v);
+  const g = LV.g, top = lvTop(10), money = g.mode === "gk", f = v => money ? "$" + lvFmt(v) : g.mode === "race" ? `🏁 ${v}/${g.goal}` : lvFmt(v);
+  const lab = { gk: "💰 Own pace", race: "🏁 Race", buzz: "🔔 Buzzer", pic: "🎨 Draw & guess" }[g.mode] || "⚡ Together";
   const pod = [top[1], top[0], top[2]].map((t, i) => t ? `<div class="lvpod p${[2, 1, 3][i]}"><span class="lve">${t[1]}</span><b>${esc(t[0])}</b><span>${f(t[2])}</span><div class="lvstep">${["🥈", "🥇", "🥉"][i]}</div></div>` : `<div class="lvpod p${[2, 1, 3][i]} empty"></div>`).join("");
-  return `<div class="lvplay"><div class="lvtop"><span class="lvqn">${money ? "💰 Own pace" : "⚡ Together"} · final results</span><span class="lvsp"></span><button class="lvb" data-live="lobby">Back</button><button class="lvb p" data-live="again">Play again</button></div>
+  return `<div class="lvplay"><div class="lvtop"><span class="lvqn">${lab} · final results</span><span class="lvsp"></span><button class="lvb" data-live="lobby">Back</button><button class="lvb p" data-live="again">Play again</button></div>
     <div class="lvend"><div class="lvpods">${pod}</div>${top.length > 3 ? `<div class="lvrest">${top.slice(3).map(t => `<span>${t[3]}. ${t[1]} ${esc(t[0])} · ${f(t[2])}</span>`).join("")}</div>` : ""}</div></div>`;
 }
 function lvGkView() {
@@ -27239,7 +27306,8 @@ function lvAct(a, el) {
   if (a === "newcode") return lvNewCode();
   if (a === "copy") { try { navigator.clipboard.writeText(lvLink()); toast("Link copied — paste it in the Meet chat"); } catch (e) { toast(lvLink()); } return; }
   if (a === "kick") { const id = el.dataset.id; if (!LV.pl[id]) return; if (!confirm(`Remove ${LV.pl[id].n}?`)) return; LV.kick.add(id); delete LV.pl[id]; if (LV.g && LV.g.sc) delete LV.g.sc[id]; if (LV.g && LV.g.m) delete LV.g.m[id]; lvSync(); return lvDraw(); }
-  if (a === "nq") { LV.nq = +el.dataset.n; return lvDraw(); }
+  if (typeof lvAct2 === "function" && lvAct2(a, el, s)) return;
+  if (a === "nq") { LV.nq = +(el.dataset.v || el.dataset.n); return lvDraw(); }
   if (a === "kstart") return lvKStart(bank);
   if (a === "gstart") return lvGStart(bank, +el.dataset.min);
   if (a === "adv") return lvAdvance();
@@ -27247,10 +27315,11 @@ function lvAct(a, el) {
   if (a === "mus") { LV.mus = !LV.mus; lvMusic(LV.mus && LV.g && LV.g.ph === "q"); return lvDraw(); }
   if (a === "gend") return lvGEnd();
   if (a === "lobby") return lvLobby();
-  if (a === "again") { const m = LV.g && LV.g.mode; if (m === "gk") return lvGStart(bank, Math.round(LV.g.dur / 60)); return lvKStart(bank); }
+  if (a === "again") { const m = LV.g && LV.g.mode; if (m === "gk") return lvGStart(bank, Math.round(LV.g.dur / 60)); if (m === "race") return lvRStart(bank); if (m === "buzz") return lvBStart((s && s.oral) || []); if (m === "pic") return lvPStart((s && s.draw) || []); return lvKStart(bank); }
 }
 function lvKey(k) {
   const s = CUR && CUR.deck[CUR.i]; if (!s || s.type !== "c2live" || !LV.g) return false;
+  if (["race", "buzz", "pic"].includes(LV.g.mode)) return lvKey2(k);
   if (["ArrowRight", " ", "PageDown", "Enter"].includes(k)) { if (LV.g.mode === "gk") return LV.g.ph === "play"; return lvAdvance(); }
   return false;
 }
@@ -27258,10 +27327,310 @@ function lvKey(k) {
 /* the slide (added to every lesson by deck2, after the practice) */
 function lvSlide(n, L) {
   const bank = lvBank(n); if (bank.length < 3) return null;
-  return { sec: "prac", type: "c2live", n, L, bank, k: "live", t: "Live quiz", label: "📱 Live quiz", ans: bank.map((q, i) => `${i + 1}. ${q.o[q.a]}`),
-    tip: "Students scan the QR code and type their name. ⚡ Together = Kahoot style (same question for everyone). 💰 Own pace = Gimkit style (each phone gets its own questions and a shop). → / Space moves the game on." };
+  const oral = typeof lvOral === "function" ? lvOral(n) : [], draw = typeof lvDrawWords === "function" ? lvDrawWords(n) : [];
+  return { sec: "prac", type: "c2live", n, L, bank, oral, draw, k: "live", t: "Live quiz", label: "📱 Live quiz", ans: bank.map((q, i) => `${i + 1}. ${q.o[q.a]}`),
+    tip: "Students scan the QR code and type their name. ⚡ Together = Kahoot style · 💰 Own pace = Gimkit style · 🏁 Race = right answers move your animal (🤖 rival for one student) · 🔔 Buzzer = fastest phone answers out loud, you mark ✓ / ✗ (keys 1 / 2) · 🎨 Draw & guess = one phone draws, the others guess. → / Space moves the game on." };
 }
-if (typeof RV2 !== "undefined") RV2.c2live = s => { LV.title = (s.L && s.L.title) || s.n.title; if (!LV.on) setTimeout(lvStart, 50); else setTimeout(lvSyncSoon, 50); return w2(s, `<div id="lvbox" class="lvbox">${lvView(s)}</div>`, { notitle: true, cls: "xlive" }); };
+if (typeof RV2 !== "undefined") RV2.c2live = s => { LV.title = (s.L && s.L.title) || s.n.title; if (!LV.on) setTimeout(lvStart, 50); else setTimeout(lvSyncSoon, 50); if (typeof lvAfterDraw === "function") setTimeout(lvAfterDraw, 30); return w2(s, `<div id="lvbox" class="lvbox">${lvView(s)}</div>`, { notitle: true, cls: "xlive" }); };
+
+/* Start it — more live games on the students' phones (teacher side), on top of live.js.
+   🏁 Race      each right answer moves your animal one step; first to the flag wins (🤖 rival for one-to-one classes)
+   🔔 Buzzer    a spoken prompt from the lesson; the fastest phone answers out loud; the teacher marks ✓ / ✗
+   🎨 Draw & guess  one phone draws a word from the lesson, the drawing appears here, the others guess on their phones
+   Same players, connection and scoreboard as live.js. */
+
+const lvWho = id => id === "bot" ? ["Robo", "🤖"] : id === "teacher" ? ["Teacher", "🧑‍🏫"] : LV.pl[id] ? [LV.pl[id].n, LV.pl[id].e] : ["?", "🙂"];
+const RCBOT = { off: 0, easy: 9000, mid: 6000, hard: 4000 };
+const PCCOL = ["#1B1F2A", "#E5484D", "#2F6BDB", "#2E9E5B", "#E89B0C", "#8E4EC6"], PCW = [5, 12, 28];
+Object.assign(LV, { pick: "k", rgoal: 10, rbot: "off", bn: 10, pturn: 1, pdur: 75, pshow: true });
+function lvSyncLater(ms) { if (LV.syncL) return; LV.syncL = setTimeout(() => { LV.syncL = null; lvSync(); }, ms); }
+const lvOb = s => btoa(unescape(encodeURIComponent(String(s)))).split("").reverse().join(""); // keeps the secret word out of plain sight
+
+/* ---------- material from the lesson ---------- */
+function lvOral(n) { // prompts to answer out loud
+  const L = (typeof L2 !== "undefined" && L2[n.key]) || { s: [] }, src = { tr: [], w: [], ask: [], card: [] }, seen = new Set();
+  const add = (k, h, q, a) => { q = lvClean(q).replace(/\s*\([^)]*\)/g, ""); a = lvClean(a || "").replace(/\s*\([^)]*\)/g, ""); if (!q || q.length > 140 || /·/.test(q + a) || seen.has(q.toLowerCase())) return; seen.add(q.toLowerCase()); src[k].push({ h, q, a }); };
+  L.s.forEach(x => {
+    if (x.k === "tr") (x.items || []).forEach(it => add("tr", "Say it in English", it[0], it[1]));
+    if (x.k === "words") (x.items || []).forEach(it => add("w", "Say it in English", it[1], it[0]));
+    if (x.k === "ask") (x.items || []).forEach(it => add("ask", "Make the question", it[0], it[1]));
+    if (x.k === "cards") (x.items || []).forEach(it => add("card", "Answer in English — 2 sentences", it, ""));
+  });
+  Object.keys(src).forEach(k => { src[k] = seeded(src[k], n.key + "bz" + k); });
+  const order = ["tr", "w", "ask", "card", "tr", "w", "ask"], out = []; let guard = 0;
+  while (out.length < 15 && guard++ < 60) { let any = false; order.forEach(k => { if (out.length < 15 && src[k].length) { out.push(src[k].shift()); any = true; } }); if (!any) break; }
+  if (out.length < 6) lvBank(n).forEach(Q => { if (out.length < 12) out.push({ h: "Say the answer", q: Q.q, a: Q.o[Q.a] }); });
+  return out;
+}
+function lvDrawWords(n) { // things you can draw: picture labels and "a / an" words of the lesson (and of the lessons before it)
+  const out = [], seen = new Set();
+  const add = w => { w = lvClean(w).toLowerCase().replace(/\s*\(.*?\)\s*/g, " ").replace(/^(a|an|the|some)\s+/, "").trim(); if (!w || w.length > 18 || !/^[a-z][a-z' -]*[a-z]$/.test(w) || w.split(" ").length > 3 || seen.has(w)) return; seen.add(w); out.push(w); };
+  const take = key => {
+    const L = (typeof L2 !== "undefined" && L2[key]) || { s: [] };
+    L.s.forEach(x => { if (x.k === "pics") (x.items || []).forEach(it => { const l = lvClean(it[0]); if (/^(a|an|the)\s/i.test(l) || l === l.toLowerCase()) add(l); }); if (x.k === "words") (x.items || []).forEach(it => { if (/^(a|an)\s/i.test(lvClean(it[0]))) add(it[0]); }); });
+    ((CONTENT[key] || {}).vocab || []).forEach(v => { if (/^(a|an)\s/i.test(String(v[0]))) add(v[0]); });
+  };
+  take(n.key);
+  const id = KEY2ID[n.key], i = id ? ORDER.indexOf(id) : -1;
+  for (let j = i - 1; j >= 0 && out.length < 12; j--) { const m = NODE[ORDER[j]]; if (m && m.lv === n.lv) take(m.key); }
+  return out;
+}
+
+/* ---------- 🏁 Race ---------- */
+function lvRStart(bank) {
+  if (bank.length < 3) { toast("Not enough questions for this lesson"); return; }
+  const ids = lvActive(); if (!ids.length) return;
+  const pos = {}, cw = {}; ids.forEach(id => { pos[id] = 0; cw[id] = [0, 0]; });
+  const bot = RCBOT[LV.rbot] ? LV.rbot : "off"; if (bot !== "off") { pos.bot = 0; cw.bot = [0, 0]; }
+  const g = LV.g = { mode: "race", id: "r" + lvNow().toString(36), qs: bank, pos, cw, fin: {}, goal: LV.rgoal, bot, lanes: Object.keys(pos), ph: "ready", go: lvNow() + 3600, dur: 300, end: 0 };
+  lvSync(); lvDraw(); lvSfx("whoosh");
+  g.t = setTimeout(() => { if (LV.g !== g) return; g.ph = "go"; g.end = lvNow() + g.dur * 1000; lvSync(); lvDraw(); lvSfx("go"); lvTickStart(); lvMusic(true); lvRBot(g); }, 3600);
+}
+function lvRBot(g) {
+  clearTimeout(g.bt); if (g.bot === "off" || LV.g !== g || g.ph !== "go") return;
+  g.bt = setTimeout(() => { if (LV.g !== g || g.ph !== "go" || Object.keys(g.fin).length) return; if (Math.random() < .85) { g.cw.bot[0]++; lvRMove(g, "bot", g.pos.bot + 1); } else { g.cw.bot[1]++; lvRPaint("bot"); } lvRBot(g); }, RCBOT[g.bot] * (.7 + Math.random() * .6));
+}
+function lvRMove(g, id, np) {
+  if (Object.keys(g.fin).length) return; // someone already reached the flag: the race is decided
+  const old = g.pos[id] || 0; np = Math.max(old, Math.min(g.goal, np));
+  if (np > old) { g.pos[id] = np; lvSfx("step"); lvRPaint(id, true); }
+  if (np >= g.goal && !g.fin[id]) { g.fin[id] = lvNow(); if (Object.keys(g.fin).length === 1) setTimeout(() => { if (LV.g === g && g.ph === "go") lvREnd(); }, 1300); }
+  lvSyncLater(700);
+}
+function lvREnd() { const g = LV.g; if (!g || g.mode !== "race" || g.ph === "end") return; clearTimeout(g.t); clearTimeout(g.bt); g.ph = "end"; lvTickStop(); lvMusic(false); lvSync(); lvDraw(); lvSfx("fanfare"); lvConfetti(); }
+function lvRPaint(id, moved) {
+  const g = LV.g, car = document.getElementById("rc-" + id); if (!g || g.mode !== "race") return; if (!car) return lvDrawSoon();
+  car.style.setProperty("--p", ((g.pos[id] || 0) / g.goal * 100).toFixed(1));
+  if (moved) { car.classList.remove("hop"); void car.offsetWidth; car.classList.add("hop"); }
+  const lab = document.getElementById("rcp-" + id); if (lab) lab.textContent = g.pos[id] || 0;
+  const cw = document.getElementById("rcw-" + id), v = g.cw[id] || [0, 0]; if (cw) cw.innerHTML = `<i class="ok">✓ ${v[0]}</i> <i class="no">✗ ${v[1]}</i>`;
+  const mx = Math.max(...g.lanes.map(x => g.pos[x] || 0)); g.lanes.forEach(x => { const l = document.getElementById("rcl-" + x); if (l) l.classList.toggle("lead", mx > 0 && (g.pos[x] || 0) === mx); });
+}
+function lvRaceView() {
+  const g = LV.g, left = g.ph === "go" ? Math.max(0, g.end - lvNow()) : g.dur * 1000, s = Math.ceil(left / 1000), mx = Math.max(...g.lanes.map(x => g.pos[x] || 0));
+  const lanes = g.lanes.map(id => {
+    const [nm, e] = lvWho(id), cw = g.cw[id] || [0, 0], p = (g.pos[id] || 0) / g.goal * 100;
+    return `<div class="rclane ${id === "bot" ? "bot" : ""} ${mx > 0 && (g.pos[id] || 0) === mx ? "lead" : ""}" id="rcl-${id}"><span class="rcnm">${esc(nm)}</span><div class="rcroad"><span class="rcfin">🏁</span><span class="rccar" id="rc-${id}" style="--p:${p.toFixed(1)}">${e}</span></div><b class="rcpos" id="rcp-${id}">${g.pos[id] || 0}</b><span class="rccw" id="rcw-${id}"><i class="ok">✓ ${cw[0]}</i> <i class="no">✗ ${cw[1]}</i></span></div>`;
+  }).join("");
+  return `<div class="lvplay"><div class="lvtop"><span class="lvqn">🏁 Race · first to <b>${g.goal}</b> right answers wins</span>${lvStatusHTML()}<span class="lvsp"></span><span class="lvgt ${s <= 10 ? "lo" : ""}">⏱ <b id="lvt">${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}</b></span><button class="lvb" data-live="mus" title="Music">${LV.mus ? "🎵" : "🔇"}</button><button class="lvb" data-live="rend">End now</button></div>
+    <div class="rctrack" style="--lanes:${g.lanes.length}">${lanes}${g.ph === "ready" ? `<div class="rcgo"><span>3</span><span>2</span><span>1</span><span>GO!</span></div>` : ""}</div>
+    <p class="rcnote">Answer on your phone: ✓ = one step · ✗ = wait 2 seconds${g.bot !== "off" ? " · 🤖 Robo is racing too!" : ""}</p></div>`;
+}
+
+/* ---------- 🔔 Buzzer ---------- */
+function lvBStart(oral) {
+  const qs = oral.slice(0, Math.min(LV.bn, oral.length)); if (!qs.length) { toast("No prompts for this lesson"); return; }
+  const sc = {}; lvActive().forEach(id => sc[id] = { sc: 0, last: 0 });
+  LV.g = { mode: "buzz", id: "b" + lvNow().toString(36), qs, qn: -1, sc, ph: "open", ro: 0, out: [], who: null, bz: {}, res: null };
+  lvBNext();
+}
+function lvBNext() {
+  const g = LV.g; clearTimeout(g.bt); g.bt = null; g.qn++; if (g.qn >= g.qs.length) return lvBEnd();
+  Object.values(g.sc).forEach(s => s.last = 0);
+  Object.assign(g, { ph: "open", ro: 0, out: [], who: null, bz: {}, res: null }); lvSync(); lvDraw(); lvSfx("whoosh");
+}
+function lvBIn(m) { // a phone buzzed: wait a moment and give the turn to the fastest reaction (phones measure their own time)
+  const g = LV.g; if (g.ph !== "open" || +m.q !== g.qn || +m.ro !== g.ro || g.out.includes(m.id) || (m.id in g.bz)) return;
+  if (!(m.id in g.sc)) g.sc[m.id] = { sc: 0, last: 0 };
+  g.bz[m.id] = Math.max(0, Math.min(+m.ms || 0, 600000)); lvSfx("ans");
+  if (!g.bt) g.bt = setTimeout(() => {
+    g.bt = null; if (LV.g !== g || g.ph !== "open") return;
+    const ids = Object.keys(g.bz).sort((a, b) => g.bz[a] - g.bz[b]); if (!ids.length) return;
+    g.who = ids[0]; g.wms = g.bz[ids[0]]; g.ph = "lock"; lvSync(); lvDraw(); lvSfx("buzz");
+  }, 400);
+}
+function lvBMark(ok) {
+  const g = LV.g; if (!g || g.mode !== "buzz" || g.ph !== "lock") return; const s = g.sc[g.who] || (g.sc[g.who] = { sc: 0, last: 0 });
+  if (ok) { const pts = 100 + Math.round(100 * (1 - Math.min(g.wms || 0, 6000) / 6000)); s.sc += pts; s.last = pts; g.res = { id: g.who, pts, ok: 1 }; g.ph = "rev"; lvSfx("reveal"); }
+  else {
+    const lost = Math.min(s.sc, 50); s.sc -= lost; s.last = -lost; g.out.push(g.who); g.res = { id: g.who, pts: -lost, ok: 0 }; lvSfx("nobody");
+    if (!lvActive().some(id => !g.out.includes(id))) g.ph = "rev"; else { g.ph = "open"; g.ro++; g.who = null; g.bz = {}; }
+  }
+  lvSync(); lvDraw();
+}
+function lvBReveal() { const g = LV.g; if (!g || g.mode !== "buzz" || g.ph === "rev") return; clearTimeout(g.bt); g.bt = null; g.ph = "rev"; if (g.res && g.res.ok) g.res = null; lvSync(); lvDraw(); }
+function lvBEnd() { const g = LV.g; clearTimeout(g.bt); g.ph = "end"; lvSync(); lvDraw(); lvSfx("fanfare"); lvConfetti(); }
+function lvMini() { const top = lvTop(6); return top.length ? `<div class="lvmini">${top.map(t => `<div><span>${t[3]}</span>${t[1]} <b>${esc(t[0])}</b><i>${lvFmt(t[2])}</i>${t[4] ? `<em class="${t[4] > 0 ? "ok" : "no"}">${t[4] > 0 ? "+" : ""}${lvFmt(t[4])}</em>` : ""}</div>`).join("")}</div>` : ""; }
+function lvBuzzView() {
+  const g = LV.g, Q = g.qs[g.qn] || {}, last = g.res, lastW = last ? lvWho(last.id) : null;
+  const btns = g.ph === "open" ? `<button class="lvb" data-live="brev">👁 Show the answer</button>`
+    : g.ph === "lock" ? `<button class="lvb ok" data-live="bok">✓ Right</button><button class="lvb no" data-live="bno">✗ Wrong</button>`
+    : `<button class="lvb p" data-live="bnext">${g.qn + 1 >= g.qs.length ? "Final results 🏆" : "Next ▸"}</button>`;
+  let mid;
+  if (g.ph === "open") {
+    const still = lvActive().filter(id => !g.out.includes(id));
+    mid = `<div class="bzwait"><span class="bzbell">🔔</span><b>Buzz on your phone!</b><span class="lvav">${still.map(id => `<span title="${esc(LV.pl[id].n)}">${LV.pl[id].e}</span>`).join("")}</span>${last && !last.ok ? `<small class="no">✗ ${lastW[1]} ${esc(lastW[0])} ${last.pts ? lvFmt(last.pts) : ""} — the others can try!</small>` : ""}</div>`;
+  } else if (g.ph === "lock") { const [nm, e] = lvWho(g.who); mid = `<div class="bzwho"><span class="e">${e}</span><b>${esc(nm)}</b><small>Say it out loud! 🎤 · ✓ / ✗ (keys 1 / 2)</small></div>`; }
+  else mid = `<div class="bzans">${Q.a ? `<small>Answer</small><b>${esc(Q.a)}</b>` : `<b>Free answer 🗣️</b>`}${last ? `<span class="${last.ok ? "ok" : "no"}">${lastW[1]} ${esc(lastW[0])} ${last.pts > 0 ? "+" : ""}${lvFmt(last.pts)}</span>` : ""}</div>`;
+  return `<div class="lvplay"><div class="lvtop"><span class="lvqn">🔔 Buzzer · <b>${g.qn + 1}</b> / ${g.qs.length}</span>${lvStatusHTML()}<span class="lvsp"></span>${btns}</div>
+    <div class="bzgrid"><div class="bzmain"><div class="bzh">${esc(Q.h || "")}</div>${lvQText(Q.q || "", true)}${mid}</div>${lvMini()}</div></div>`;
+}
+
+/* ---------- 🎨 Draw & guess ---------- */
+const pcN = s => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z']+/g, " ").trim().replace(/^(a|an|the|some) /, "").replace(/'/g, "");
+function pcEq(a, b) { a = pcN(a); b = pcN(b); return !!a && (a === b || a + "s" === b || b + "s" === a || a + "es" === b || b + "es" === a); }
+function lvPStart(words) {
+  const ids = lvActive(); if (!ids.length) return; if (words.length < 3) { toast("Not enough words to draw in this lesson"); return; }
+  const sc = {}; ids.forEach(id => sc[id] = { sc: 0, last: 0 });
+  const base = seeded(ids.slice(), "pc" + lvNow()); let order = [];
+  if (ids.length === 1) order = [ids[0], ids[0], ids[0]]; else for (let t = 0; t < LV.pturn; t++) order = order.concat(base);
+  LV.g = { mode: "pic", id: "p" + lvNow().toString(36), words: seeded(words.slice(), "pw" + lvNow()), wi: 0, order, r: -1, sc, dur: LV.pdur, ph: "pick", st: {}, so: [], gs: {}, gl: {}, feed: [], hint: [] };
+  lvPNext();
+}
+function lvPOpts(g) { const o = []; for (let k = 0; k < 6 && o.length < 3; k++) { if (g.wi >= g.words.length) g.wi = 0; const w = g.words[g.wi++]; if (!o.includes(w)) o.push(w); } return o; }
+function lvPNext() {
+  const g = LV.g; clearTimeout(g.t);
+  do { g.r++; } while (g.r < g.order.length && !lvActive().includes(g.order[g.r])); // the drawer left: skip
+  if (g.r >= g.order.length) return lvPEnd();
+  Object.values(g.sc).forEach(s => s.last = 0);
+  Object.assign(g, { drawer: g.order[g.r], ph: "pick", opts: lvPOpts(g), word: null, st: {}, so: [], gs: {}, gl: {}, feed: [], hint: [], tg: 0, end: lvNow() + 15000 });
+  lvSync(); lvDraw(); lvSfx("whoosh"); lvTickStart();
+  g.t = setTimeout(() => { if (LV.g === g && g.ph === "pick") lvPWord(0); }, 15000);
+}
+function lvPWord(i) { const g = LV.g; if (!g || g.ph !== "pick") return; clearTimeout(g.t); g.word = g.opts[i] || g.opts[0]; g.ph = "draw"; g.t0 = lvNow(); g.end = g.t0 + g.dur * 1000; lvSync(); lvDraw(); lvSfx("go"); lvTickStart(); lvMusic(true); }
+function lvPRev() { const g = LV.g; if (!g || g.mode !== "pic" || g.ph === "rev" || g.ph === "end") return; if (!g.word) g.word = g.opts[0]; clearTimeout(g.t); g.ph = "rev"; lvTickStop(); lvMusic(false); lvSync(); lvDraw(); lvSfx(Object.keys(g.gs).length || g.tg ? "reveal" : "nobody"); }
+function lvPEnd() { const g = LV.g; clearTimeout(g.t); g.ph = "end"; lvTickStop(); lvMusic(false); lvSync(); lvDraw(); lvSfx("fanfare"); lvConfetti(); }
+function lvPAdd(id, pts) { const g = LV.g, s = g.sc[id] || (g.sc[id] = { sc: 0, last: 0 }); s.sc += pts; s.last = (s.last || 0) + pts; }
+function lvPGot() { // the teacher guessed it (one-to-one class)
+  const g = LV.g; if (!g || g.mode !== "pic" || g.ph !== "draw") return;
+  const left = Math.max(0, g.end - lvNow()); lvPAdd(g.drawer, 150 + Math.round(100 * left / (g.dur * 1000))); g.tg = 1; g.feed.push(["teacher", "", 1]); lvPRev();
+}
+function lvPGuess(id, txt) {
+  const g = LV.g, t = txt.replace(/[\u0000-\u001f<>]/g, "").trim(); if (!t) return;
+  if (!(id in g.sc)) g.sc[id] = { sc: 0, last: 0 };
+  if (pcEq(t, g.word)) {
+    const left = Math.max(0, g.end - lvNow()), pts = 50 + Math.round(250 * left / (g.dur * 1000));
+    g.gs[id] = pts; lvPAdd(id, pts); lvPAdd(g.drawer, 75); g.gl[id] = "ok"; g.feed.push([id, "", 1]); lvSfx("ding");
+    const others = lvActive().filter(x => x !== g.drawer); if (others.length && others.every(x => x in g.gs)) setTimeout(() => { if (LV.g === g && g.ph === "draw") lvPRev(); }, 900);
+  } else {
+    const a = pcN(t), b = pcN(g.word), near = b.length >= 4 && typeof liveLev === "function" && liveLev(a, b) <= (b.length >= 8 ? 2 : 1);
+    g.gl[id] = near ? "near" : "no"; g.feed.push([id, near ? "" : t.slice(0, 24), near ? 2 : 0]);
+  }
+  if (g.feed.length > 40) g.feed.splice(0, 10);
+  lvSyncSoon(); lvPSide();
+}
+function lvPStroke(a) {
+  const g = LV.g; if (!Array.isArray(a) || a.length < 5) return; const sid = String(a[0]).slice(0, 12);
+  let st = g.st[sid];
+  if (!st) { if (g.so.length > 400) return; st = g.st[sid] = { c: Math.max(0, Math.min(PCCOL.length - 1, a[1] | 0)), w: Math.max(0, Math.min(PCW.length - 1, a[2] | 0)), p: [] }; g.so.push(sid); }
+  const from = st.p.length;
+  for (let i = 3; i + 1 < a.length && st.p.length < 6000; i += 2) st.p.push(Math.max(0, Math.min(800, a[i] | 0)), Math.max(0, Math.min(600, a[i + 1] | 0)));
+  if (st.p.length > from) lvPSeg(st, from);
+}
+function lvPCtx() { const c = document.getElementById("pccv"); return c ? c.getContext("2d") : null; }
+function lvPSeg(st, from, x) {
+  x = x || lvPCtx(); if (!x || !st.p.length) return;
+  x.strokeStyle = PCCOL[st.c]; x.lineWidth = PCW[st.w]; x.lineCap = x.lineJoin = "round"; x.beginPath();
+  const p = st.p, i = from > 0 ? from - 2 : 0; x.moveTo(p[i], p[i + 1]);
+  if (p.length - i <= 2) x.lineTo(p[i] + .1, p[i + 1]); else for (let j = i + 2; j < p.length; j += 2) x.lineTo(p[j], p[j + 1]);
+  x.stroke();
+}
+function lvPPaint() { const g = LV.g, x = lvPCtx(); if (!x || !g || g.mode !== "pic") return; x.fillStyle = "#fff"; x.fillRect(0, 0, 800, 600); g.so.forEach(sid => g.st[sid] && lvPSeg(g.st[sid], 0, x)); }
+function lvPHint(g) { // _ _ _ _ _ with some letters shown as time goes by
+  return g.word.split("").map((ch, i) => ch === " " ? " " : ch === "-" || ch === "'" ? ch : g.hint.includes(i) ? ch : "_").join(" ");
+}
+function lvPTick(g) { // reveal a letter at 45 % and 70 % of the time
+  if (g.ph !== "draw" || !g.word) return; const f = (lvNow() - g.t0) / (g.dur * 1000), letters = g.word.split("").map((c, i) => /[a-z]/i.test(c) ? i : -1).filter(i => i >= 0);
+  const want = f > .7 && letters.length >= 5 ? 2 : f > .45 && letters.length >= 3 ? 1 : 0;
+  if (g.hint.length < want) { const free = letters.filter(i => !g.hint.includes(i)); if (free.length > 1) { g.hint.push(free[Math.floor(Math.random() * free.length)]); lvSyncSoon(); const h = document.getElementById("pchint"); if (h) h.textContent = lvPHint(g); } }
+}
+function lvPFeedHTML(g) {
+  return g.feed.slice(-9).map(([id, t, k]) => { const [nm, e] = lvWho(id); return k === 1 ? `<div class="ok">✅ ${e} <b>${esc(nm)}</b> guessed it!</div>` : k === 2 ? `<div class="near">🔥 ${e} <b>${esc(nm)}</b> is close!</div>` : `<div>${e} <b>${esc(nm)}</b>${LV.pshow ? `: ${esc(t)}` : " ✗"}</div>`; }).join("") || `<div class="mu">Guesses appear here · Palpites aparecem aqui</div>`;
+}
+function lvPSide() { const g = LV.g; if (!g || g.mode !== "pic") return; const f = document.getElementById("pcfeed"); if (f) f.innerHTML = lvPFeedHTML(g); const m = document.getElementById("pcsc"); if (m) m.outerHTML = `<div id="pcsc">${lvMini()}</div>`; }
+function lvPicView() {
+  const g = LV.g, [dn, de] = lvWho(g.drawer), left = Math.max(0, g.end - lvNow()), s = Math.ceil(left / 1000), last = g.r + 1 >= g.order.length;
+  const btns = g.ph === "draw" ? `<button class="lvb" data-live="pmore">+15 s</button><button class="lvb ok" data-live="pgot" title="One-to-one class: you guessed the drawing">✓ I guessed it!</button><button class="lvb" data-live="prev">Show the word</button>`
+    : g.ph === "pick" ? `<button class="lvb" data-live="pskip">Skip ▸</button>` : `<button class="lvb p" data-live="pnext">${last ? "Final results 🏆" : "Next drawing ▸"}</button>`;
+  const ov = g.ph === "pick" ? `<div class="pcov"><span class="e">${de}</span><b>${esc(dn)} is choosing a word…</b><small>Escolhendo uma palavra…</small></div>`
+    : g.ph === "rev" ? `<div class="pcov rev"><small>The word was</small><b>${esc(g.word)}</b><span>${Object.keys(g.gs).length || g.tg ? `${Object.keys(g.gs).map(id => lvWho(id)[1]).join(" ")}${g.tg ? " 🧑‍🏫" : ""} got it!` : "Nobody got it this time"}</span></div>` : "";
+  return `<div class="lvplay"><div class="lvtop"><span class="lvqn">🎨 Draw & guess · <b>${g.r + 1}</b> / ${g.order.length}</span>${lvStatusHTML()}<span class="lvsp"></span>${g.ph !== "rev" ? `<span class="lvgt ${s <= 10 ? "lo" : ""}">⏱ <b id="lvt">${s}</b></span>` : ""}${btns}<button class="lvb" data-live="mus" title="Music">${LV.mus ? "🎵" : "🔇"}</button></div>
+    <div class="pcgrid"><div class="pcboard"><div class="pcbx"><canvas id="pccv" width="800" height="600"></canvas>${ov}</div></div>
+      <div class="pcside"><div class="pcwho">${de} <b>${esc(dn)}</b> is drawing</div><div class="pchint" id="pchint" style="font-size:${g.word && g.word.length > 9 ? Math.max(18, Math.round(300 / g.word.length)) : 30}px">${g.ph === "draw" ? esc(lvPHint(g)) : g.ph === "rev" ? esc(g.word) : "…"}</div>
+        <div class="pcfeed" id="pcfeed">${lvPFeedHTML(g)}</div><div class="pcopt"><button class="lvb sm" data-live="pshow">${LV.pshow ? "🙈 Hide guesses" : "👀 Show guesses"}</button></div><div id="pcsc">${lvMini()}</div></div></div></div>`;
+}
+
+/* ---------- glue (called from live.js) ---------- */
+function lvIn2(m, p, g) {
+  if (!g) return;
+  if (m.t === "race" && g.mode === "race" && g.ph === "go" && m.g === g.id) {
+    if (!(m.id in g.pos)) { g.pos[m.id] = 0; g.lanes.push(m.id); lvDrawSoon(); }
+    g.cw[m.id] = [Math.max(0, +m.c || 0), Math.max(0, +m.w || 0)];
+    const np = Math.floor(+m.pos || 0); if (np > g.pos[m.id]) lvRMove(g, m.id, np); else lvRPaint(m.id);
+  }
+  if (m.t === "bz" && g.mode === "buzz" && m.g === g.id) lvBIn(m);
+  if (g.mode === "pic" && m.g === g.id && +m.r === g.r) {
+    if (m.t === "pw" && m.id === g.drawer && g.ph === "pick") lvPWord(Math.floor(+m.w || 0));
+    if (m.t === "pd" && m.id === g.drawer && g.ph === "draw" && Array.isArray(m.s)) m.s.slice(0, 30).forEach(lvPStroke);
+    if (m.t === "pc" && m.id === g.drawer && g.ph === "draw") { g.st = {}; g.so = []; lvPPaint(); }
+    if (m.t === "pu" && m.id === g.drawer && g.ph === "draw") { delete g.st[String(m.sid)]; g.so = g.so.filter(x => x !== String(m.sid)); lvPPaint(); }
+    if (m.t === "pg" && g.ph === "draw" && m.id !== g.drawer && !(m.id in g.gs)) lvPGuess(m.id, String(m.txt || "").slice(0, 40));
+  }
+}
+function lvJoin2(id) { // a phone joined in the middle of a game
+  const g = LV.g; if (!g) return;
+  if ((g.mode === "buzz" || g.mode === "pic") && !g.sc[id]) g.sc[id] = { sc: 0, last: 0 };
+  if (g.mode === "race" && !(id in g.pos)) { g.pos[id] = 0; g.cw[id] = [0, 0]; g.lanes.push(id); }
+}
+function lvState2(g, base) {
+  const end = () => Object.assign(base, { k: "end", g: g.id, race: g.mode === "race" ? g.goal : undefined, top: lvTop(10), res: lvRes(), np: g.mode === "race" ? g.lanes.length : Object.keys(g.sc).length });
+  if (g.mode === "race") return g.ph === "end" ? end() : Object.assign(base, { k: "race", g: g.id, ph: g.ph, goal: g.goal, bank: g.qs.map(q => [q.q, q.o, q.a]), go: Math.max(0, g.go - lvNow()), left: g.ph === "go" ? Math.max(0, g.end - lvNow()) : g.dur * 1000, pos: g.pos });
+  if (g.mode === "buzz") { const Q = g.qs[g.qn] || {}; return g.ph === "end" ? end() : Object.assign(base, { k: "buzz", g: g.id, qn: g.qn, tot: g.qs.length, ro: g.ro, ph: g.ph, h: Q.h, q: Q.q, a: g.ph === "rev" ? Q.a : null, out: g.out, who: g.who ? [g.who].concat(lvWho(g.who)) : null, last: g.res, res: lvRes() }); }
+  if (g.mode === "pic") return g.ph === "end" ? end() : Object.assign(base, { k: "pic", g: g.id, r: g.r, tr: g.order.length, ph: g.ph, dr: [g.drawer].concat(lvWho(g.drawer)), left: Math.max(0, g.end - lvNow()), hint: g.ph === "draw" ? lvPHint(g) : "", ob: g.ph === "pick" ? g.opts.map(lvOb) : g.ph === "draw" ? [lvOb(g.word)] : [], word: g.ph === "rev" ? g.word : null, gs: g.gs, gl: g.gl, res: lvRes() });
+  return null;
+}
+function lvView2() {
+  const g = LV.g; if (!g || !["race", "buzz", "pic"].includes(g.mode)) return null;
+  if (g.ph === "end") return lvEndView();
+  return g.mode === "race" ? lvRaceView() : g.mode === "buzz" ? lvBuzzView() : lvPicView();
+}
+function lvAfterDraw() { const g = LV.g; if (g && g.mode === "pic") lvPPaint(); }
+function lvAct2(a, el, s) {
+  const g = LV.g;
+  if (a === "pick") { LV.pick = el.dataset.v; return lvDraw(), true; }
+  if (a === "rgoal") { LV.rgoal = +el.dataset.v; return lvDraw(), true; }
+  if (a === "rbot") { LV.rbot = el.dataset.v; return lvDraw(), true; }
+  if (a === "bn") { LV.bn = +el.dataset.v; return lvDraw(), true; }
+  if (a === "pturn") { LV.pturn = +el.dataset.v; return lvDraw(), true; }
+  if (a === "pdur") { LV.pdur = +el.dataset.v; return lvDraw(), true; }
+  if (a === "rstart") return lvRStart((s && s.bank) || []), true;
+  if (a === "bstart") return lvBStart((s && s.oral) || []), true;
+  if (a === "pstart") return lvPStart((s && s.draw) || []), true;
+  if (a === "rend") return lvREnd(), true;
+  if (a === "bok") return lvBMark(true), true;
+  if (a === "bno") return lvBMark(false), true;
+  if (a === "brev") return lvBReveal(), true;
+  if (a === "bnext") return lvBNext(), true;
+  if (a === "pmore" && g && g.mode === "pic" && g.ph === "draw") { g.end += 15000; g.dur += 15; lvSync(); return lvDraw(), true; }
+  if (a === "pgot") return lvPGot(), true;
+  if (a === "prev") return lvPRev(), true;
+  if (a === "pskip" && g && g.mode === "pic" && g.ph === "pick") { clearTimeout(g.t); g.opts = lvPOpts(g); g.end = lvNow() + 15000; g.t = setTimeout(() => { if (LV.g === g && g.ph === "pick") lvPWord(0); }, 15000); lvSync(); return lvDraw(), true; }
+  if (a === "pnext") return lvPNext(), true;
+  if (a === "pshow") { LV.pshow = !LV.pshow; return lvDraw(), true; }
+  return false;
+}
+function lvKey2(k) { // keys while one of these games is on the screen
+  const g = LV.g; if (!g || !["race", "buzz", "pic"].includes(g.mode) || g.ph === "end") return false;
+  const adv = ["ArrowRight", " ", "PageDown", "Enter"].includes(k);
+  if (g.mode === "buzz") { if (g.ph === "lock" && (k === "1" || k === "y")) lvBMark(true); else if (g.ph === "lock" && (k === "2" || k === "n")) lvBMark(false); else if (adv && g.ph === "rev") lvBNext(); else if (adv && g.ph === "open") lvBReveal(); return true; }
+  if (g.mode === "pic") { if (adv && g.ph === "rev") lvPNext(); return true; }
+  return true; // race: keep the slide still while the race is on
+}
+function lvGamesBox(s) { // the game picker in the lobby
+  const bank = s.bank || [], oral = s.oral || [], draw = s.draw || [], n = lvActive().length, ok = n && LV.st === "on", pk = LV.pick;
+  const sel = (act, list, cur) => `<span class="lvsel">${list.map(([v, l]) => `<button class="${cur === v ? "on" : ""}" data-live="${act}" data-v="${v}">${l}</button>`).join("")}</span>`;
+  const G = [["k", "⚡", "Together"], ["gk", "💰", "Own pace"], ["race", "🏁", "Race"], ["buzz", "🔔", "Buzzer"], ["pic", "🎨", "Draw & guess"]];
+  let card;
+  if (pk === "gk") card = `<small>Gimkit style: each phone gets its own questions. Earn money, buy upgrades!</small><div class="lvrow"><span class="lvsel gold">${[3, 5, 8].map(k => `<button data-live="gstart" data-min="${k}" ${ok ? "" : "disabled"}>${k} min ▸</button>`).join("")}</span></div>`;
+  else if (pk === "race") card = `<small>Each right answer moves your animal one step. Wrong = wait 2 seconds. First to the 🏁 wins!</small>
+    <div class="lvrow"><b class="lvlab">Steps</b>${sel("rgoal", [[8, "8"], [10, "10"], [15, "15"]], LV.rgoal)}<b class="lvlab">🤖 Rival</b>${sel("rbot", [["off", "Off"], ["easy", "Easy"], ["mid", "Medium"], ["hard", "Hard"]], LV.rbot)}<button class="lvb p" data-live="rstart" ${ok ? "" : "disabled"}>Start ▸</button></div>`;
+  else if (pk === "buzz") card = `<small>A prompt from the lesson. The fastest phone answers out loud — you mark ✓ or ✗. Speaking practice!</small>
+    <div class="lvrow"><b class="lvlab">Prompts</b>${sel("bn", [...new Set([6, 10, 15].map(k => Math.min(k, oral.length)))].filter(k => k > 0).map(k => [k, String(k)]), Math.min(LV.bn, oral.length))}<button class="lvb p" data-live="bstart" ${ok && oral.length ? "" : "disabled"}>Start ▸</button></div>`;
+  else if (pk === "pic") card = draw.length < 3 ? `<small>Not enough words to draw in this lesson.</small>` : `<small>One phone draws a word from the lesson, the drawing shows here, the others guess on their phones. One student? You guess and click ✓.</small>
+    <div class="lvrow">${n > 1 ? `<b class="lvlab">Turns</b>${sel("pturn", [[1, "1 each"], [2, "2 each"]], LV.pturn)}` : ""}<b class="lvlab">Time</b>${sel("pdur", [[60, "60 s"], [75, "75 s"], [90, "90 s"]], LV.pdur)}<button class="lvb p" data-live="pstart" ${ok ? "" : "disabled"}>Start ▸</button></div>`;
+  else card = `<small>Kahoot style: same question for everyone. Fast answers = more points.</small><div class="lvrow">${sel("nq", [...new Set([5, 8, 12].map(k => Math.min(k, bank.length)))].map(k => [k, k + " Qs"]), Math.min(LV.nq, bank.length))}<button class="lvb p" data-live="kstart" ${ok ? "" : "disabled"}>Start ▸</button></div>`;
+  return `<div class="lvgames">${G.map(([v, e, t]) => `<button class="${pk === v ? "on" : ""}" data-live="pick" data-v="${v}"><span>${e}</span>${t}</button>`).join("")}</div><div class="lvmode one">${card}</div>`;
+}
 
 /* Start it — listening with a natural recorded voice (Kokoro TTS, Apache-2.0) and "Listen and write" dictations.
    Clips play inside the tab (an <audio> element), so Google Meet carries them when you share the tab with its audio.
