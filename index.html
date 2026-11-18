@@ -9098,6 +9098,36 @@ L("m-b2-rewrite", {
   a: "Ask 3 “What if…?” questions and answer them: What if…? — I'd… || Faça e responda 3 perguntas “E se…?”."
 });
 
+CONTENT["x-b2-gta6"] = {
+  lesson: [
+    { h: "Reporting like a journalist || Falando como jornalista", table: [["structure", "example"], ["It is said / rumoured that + sentence", "It is rumoured that the map is huge."], ["subject + is said / believed to + verb", "The game is said to be amazing."], ["subject + is believed to have + participle", "It is believed to have cost over $1 billion."], ["subject + is expected / due to + verb", "It is expected to sell millions of copies."]] },
+    { h: "Hype and rumours || Euforia e boatos", say: ["The trailer was leaked online. || O trailer vazou na internet.", "The game was delayed twice. || O jogo foi adiado duas vezes.", "There is said to be a secret island. || Dizem que existe uma ilha secreta.", "Will it live up to the hype? || Vai corresponder às expectativas?"] },
+    { trap: { wrong: "The trailer is said to break a record in 2023.", right: "The trailer is said to have broken a record in 2023. || Dizem que o trailer quebrou um recorde em 2023.", note: "About the past → to have + participle. || Passado: to have + particípio." } }
+  ],
+  vocab: [["hype", "euforia / expectativa"], ["highly anticipated", "muito aguardado"], ["a leak", "um vazamento"], ["a rumour", "um boato"], ["a developer", "uma desenvolvedora de jogos"], ["a budget", "um orçamento"], ["to delay", "adiar"], ["a release date", "uma data de lançamento"], ["to pre-order", "fazer a pré-venda"], ["an age rating", "uma classificação etária"], ["to break a record", "quebrar um recorde"], ["to live up to the hype", "corresponder às expectativas"]],
+  ex: [
+    MC("The game is said ___ the most expensive ever made.", ["to be", "being", "be"], 0),
+    MC("It ___ that a new trailer is coming soon.", ["is rumoured", "rumours", "is rumouring"], 0),
+    MC("Acredita-se que o jogo custou um bilhão. →", ["The game is believed to have cost a billion.", "The game is believed to cost yesterday a billion.", "The game believes to have cost a billion."], 0),
+    FILL("The first trailer is thought to ___ broken a YouTube record.", ["have"], null, ["have", "has", "be"]),
+    FILL("The release date was ___ twice. || adiado", ["delayed", "postponed"], null, ["delayed", "delay", "delaying"]),
+    ORD(["The game is expected to sell millions of copies."]),
+    ORD(["There is said to be a secret island."]),
+    FIX("The trailer is said to break a record in 2023.", ["The trailer is said to have broken a record in 2023."]),
+    TR("Dizem que o mapa é enorme.", ["The map is said to be huge.", "It is said that the map is huge.", "They say the map is huge.", "People say the map is huge.", "The map is said to be enormous."]),
+    TR("Espera-se que o jogo venda milhões de cópias.", ["The game is expected to sell millions of copies.", "It is expected that the game will sell millions of copies."]),
+    LIS("The first trailer is said to have been leaked."),
+    LIS("Will the game live up to the hype?")
+  ],
+  mission: { title: "Fact checker", text: "Find 3 pieces of news about a game, a film or a football player this week. || Ache 3 notícias desta semana.", steps: ["Decide: fact or rumour? || Fato ou boato?", "Write each one like a journalist: It is said that… / … is believed to… || Escreva como jornalista", "Bring them to class || Traga para a aula"] }
+};
+L("x-b2-gta6", {
+  r: ["How game trailers go viral", "A big game trailer is planned months in advance. Studios choose the date, the time and even the last second of music very carefully — and then wait for the internet to react.\nBut things don't always go to plan. Trailers are sometimes leaked a few hours early, and studios have to release the official version immediately. Within minutes, fans start pausing every frame, looking for hidden details and building fan theories.\nThe numbers can be enormous: the first GTA 6 trailer racked up 90 million YouTube views in 24 hours in 2023, a record for a video that wasn't a music video.",
+    [["Studios plan big trailers months in advance. || Os estúdios planejam com meses de antecedência.", true], ["Trailers are never leaked. || Trailers nunca vazam.", false], ["Fans look for hidden details in every frame. || Os fãs procuram detalhes escondidos.", true], ["The first GTA 6 trailer had 9 million views in 24 hours. || Teve 9 milhões de views.", false]],
+    "Have you ever looked for hidden details in a trailer? || Você já procurou detalhes escondidos num trailer?", [["in advance", "com antecedência"], ["go to plan", "sair como planejado"], ["frame", "quadro (do vídeo)"], ["racked up", "acumulou"]]],
+  a: "Report a piece of gaming news in 1 minute: 2 facts and 2 rumours, using is said to / is believed to have / it is rumoured that. || Apresente uma notícia de games."
+});
+
 /* ---------------- C1 ---------------- */
 CONTENT["x-c1-idioms"] = {
   lesson: [
@@ -13761,7 +13791,8 @@ const COURSE = [
       ["x-b2-brain", "The brain and memory", "remember / forget / stop / try + to or -ing", "Memory and learning", "Share your memory tricks", ["B1-8"]],
       ["m-b2-yourman", "🎵 When I Was Your Man", "should have / shouldn't have / I wish I had", "Regrets", "Talk about regrets", ["B2-3"]],
       ["m-b2-wakeup", "🎵 Wake Me Up", "wish + past / could / had / would", "Growing up", "Make three wishes", ["B2-3"]],
-      ["m-b2-rewrite", "🎵 Rewrite the Stars", "What if…? · be meant to · be supposed to", "Destiny and choices", "Ask and answer What if…? questions", ["B1-7"]]
+      ["m-b2-rewrite", "🎵 Rewrite the Stars", "What if…? · be meant to · be supposed to", "Destiny and choices", "Ask and answer What if…? questions", ["B1-7"]],
+      ["x-b2-gta6", "GTA 6: hype and rumours", "Passive reporting: is said to, is believed to have…", "Video games and the news", "Report gaming news like a journalist", ["B2-8"]]
     ]}
   ]},
   { id: "C1", name: "Advanced", tag: "Nuance, style, impact", modules: [
