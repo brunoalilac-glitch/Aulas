@@ -1125,6 +1125,7 @@ ol.vqs details { margin-top: 3px; font-size: 14px; color: var(--muted); } ol.vqs
 @media (max-width: 420px) { .tutopts { grid-template-columns: 1fr 1fr; } .tutbub { left: calc(50% + 40px); font-size: 13px; } .tutstage { height: 220px; } .tutstage.big { height: 250px; } }
 @media (prefers-reduced-motion: reduce) { .tutfloat, .tutshadow, .tutbub { animation: none; } }
 .obcard.tutc::before { height: 100%; background: radial-gradient(520px 280px at 50% 34%, rgba(255, 213, 74, .22), transparent 70%), linear-gradient(180deg, rgba(79, 179, 255, .12), transparent 55%); }
+.tutnx { min-width: 0; overflow: hidden; } .tutnx .stage { max-width: 100%; justify-content: center; } .tutnx .stage .avw img { max-width: 100%; object-fit: contain; }
 
 </style></head><body>
 <div id="app"></div>
@@ -14560,7 +14561,7 @@ function levArr(a, b) {
   }
   const P = new WeakMap(); // box → { p, ready: Promise, stop, tick, btn }
   function ensure(box, autoplayFrom) {
-    let o = P.get(box); if (o && o.p && box.contains(o.el)) return o.ready;
+    let o = P.get(box); if (o && o.ready && box.querySelector("iframe, .vxp")) return o.ready;
     const id = box.dataset.id, s = +box.dataset.s || 0, e = +box.dataset.e || 0;
     box.classList.add("vxlive"); box.innerHTML = `<div class="vxp"></div>`; const el = box.firstChild;
     o = { el }; P.set(box, o);
@@ -14578,7 +14579,7 @@ function levArr(a, b) {
   function stopWatch(o) { if (o && o.tick) { clearInterval(o.tick); o.tick = 0; } if (o) o.stop = null; }
   function playAt(box, t, btn) {
     const s = +box.dataset.s || 0, e = +box.dataset.e || 0, from = Math.max(s, t - LEAD), to = e ? Math.min(e, t + TAIL) : t + TAIL;
-    const fresh = !(P.get(box) && P.get(box).p);
+    const fresh = !P.get(box);
     mark(box, btn); if (btn) btn.classList.add("vxt-load");
     ensure(box, from).then(p => {
       const o = P.get(box); stopWatch(o);
@@ -14597,7 +14598,7 @@ function levArr(a, b) {
     const go = t.closest("[data-vxgo]");
     if (go) { const box = go.closest("[data-vxbox]"); if (!box || !ONLINE) return; ev.preventDefault(); ev.stopPropagation(); const s = +box.dataset.s || 0; ensure(box, s).then(p => { try { p.playVideo(); } catch (e) { } }); return; }
     /* answering pauses the video: student (options, true/false) and teacher (revealing a question) */
-    const ans = t.closest(".vcard .opt, .vcard [data-tfa], .vxq");
+    const ans = t.closest(".vcard .opt, .vcard [data-tfa], .vxq, .vq .xit");
     if (ans && !t.closest("[data-vxt]")) { const box = boxFor(ans); if (box) setTimeout(() => pause(box), 0); }
   }, true);
   document.addEventListener("toggle", ev => { const d = ev.target; if (d.tagName === "DETAILS" && d.open && d.closest(".vcard")) pause(boxFor(d)); }, true);
@@ -14975,7 +14976,7 @@ function sheetHTML() {
       <button class="sw-snd ${S.tiltAv ? "on" : ""}" data-tiltav aria-pressed="${!!S.tiltAv}">${ic("repeat")} Avatar tilts with phone: ${S.tiltAv ? "on" : "off"}</button>
       ${NEEDS_TILT_OK && !GYRO ? `<button class="btn sm" data-tilt>${ic("check")} Allow motion sensor</button>` : ""}
 </div>
-    <h4>Level & tour</h4><div class="row"><button class="btn ghost sm" data-retest>🎯 Refazer o teste de nível</button><button class="btn ghost sm" data-retour>👆 Ver o tour de novo</button></div>
+    <h4>Level & tour</h4><div class="row"><button class="btn ghost sm" data-retest>🎯 Refazer o teste de nível</button><button class="btn ghost sm" data-retour>👆 Ver o tour de novo</button><button class="btn ghost sm" data-retut>✨ Ver o tutorial de novo</button></div>
     <h4>Secret codes <small>${bi("Your teacher may give you codes for bonus stars", "O professor pode te dar códigos de estrelas extras")}</small></h4>${S.god ? `<div class="godon">${ic("spark")}<span><b>God mode is on</b><small>Every aura, metal, lightning and background is unlocked.</small></span><button class="btn ghost sm" data-godoff>Turn off</button></div>` : ""}${(S.bonus || 0) ? `<p class="bonusline">${STAR(true)} Bonus stars from codes: <b>${S.bonus}</b></p>` : ""}${`<form class="code" data-codeform><input id="scode" class="inp" placeholder="Type a code…" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Secret code"><button class="btn sm" type="submit">${ic("check")} Enter</button></form><div class="codemsg" id="codemsg" role="status"></div>`}`;
   if (SHEET_TAB === "set") return `<div class="sbox setbox" role="dialog" aria-modal="true" aria-label="Settings">
     <div class="shd"><h3>${ic("gear")} Settings</h3><button class="iconbtn" data-sclose aria-label="Close">${ic("x")}</button></div>
@@ -15803,6 +15804,104 @@ document.addEventListener("submit", ev => {
 window.addEventListener("hashchange", route);
 
 
+/* Start it — first-time tutorial (before the level test):
+   1) choose your character  2) a first question → 3 stars  3) spend them: unlock the first aura (animated).
+   Shows students that stars from lessons unlock new things for their character. Runs once (S.obTut = "done"). */
+const OBT = { busy: false, replay: false, step: 0, got: 0 }; /* replay = seen again from Settings: a demo, it never changes stars */
+const OBT_Q = { q: "Como se diz “Olá” em inglês?", en: "How do you say “Olá” in English?", o: ["Hello", "Goodbye", "Thank you", "Please"], a: 0, hint: "Dica: é o que a gente fala quando encontra alguém. 👋" };
+const OBT_AURA = "sky", OBT_COST = () => costOf("aura", OBT_AURA);
+function tutStep() { return OBT.replay ? OBT.step : (+S.obTut || 0); }
+const tutWallet = () => OBT.replay ? OBT.got : wallet();
+const tutGot = () => OBT.replay ? OBT.got > 0 || OBT.lit : S.obStars;
+function tutDots(i) { return `<div class="tutdots">${[0, 1, 2].map(k => `<i class="${k < i ? "ok" : k === i ? "on" : ""}"></i>`).join("")}</div>`; }
+function tutStage(extra, cls) { return `<div class="tutstage ${cls || ""}" id="tutstage"><span class="tring" aria-hidden="true"></span><span class="tutfloat"><span class="tiltw">${OBT.replay ? avImg({ nobolt: true, cls: "tutbig", cur: false, fx: { aura: OBT.lit ? OBT_AURA : "none", metal: "none", bolt: "none" } }) : avImg({ nobolt: true, cls: "tutbig" })}</span></span><span class="tutshadow" aria-hidden="true"></span>${extra || ""}</div>`; }
+function viewTut() {
+  const st = tutStep(), g = guide();
+  const nm = x => x.id === "teacher" ? (TEACHER_NAME || "Teacher") : x.name;
+  let body = "";
+  if (st === 0) body = `${tutDots(0)}<span class="eyebrow">Passo 1 de 3</span>
+    <h1>Escolha o seu personagem</h1><p class="lead">Ele vai estudar com você e ganhar poderes a cada lição. <small>Choose your character!</small></p>
+    ${tutStage(`<span class="tutname">${esc(nm(g))}</span>`)}
+    <div class="tutavs" role="listbox" aria-label="Characters">${GUIDE_LIST.map(x => `<button class="tutav ${x.id === g.id ? "on" : ""}" data-tutav="${x.id}" role="option" aria-selected="${x.id === g.id}" style="--g1:${x.color || "#2F6BDB"};--g2:${x.c2 || "#7FA6FF"}" title="${esc(nm(x))}"><span class="pic" style="--hs:${x.hs || 1}"><img src="${x.src}" alt="${esc(nm(x))}" loading="lazy"></span></button>`).join("")}</div>
+    <button class="btn gold tutgo" data-tutnext>É esse! ${ic("right")}</button>`;
+  if (st === 1) body = `${tutDots(1)}<div class="tuttop"><span class="eyebrow">Passo 2 de 3</span><span class="tutstars" id="tutstars">${STAR(true)} <b>${tutWallet()}</b></span></div>
+    <h1>Sua primeira pergunta!</h1><p class="lead">Acerte e ganhe suas primeiras estrelas. ⭐</p>
+    ${tutStage(`<span class="tutbub">Answer me! 😄</span>`, "sm")}
+    <div class="tutq"><b>${esc(OBT_Q.q)}</b><small>${esc(OBT_Q.en)}</small>
+      <div class="tutopts">${sshuffle(OBT_Q.o.map((o, i) => [o, i]), S.name + "obq").map(([o, i]) => `<button class="opt" data-tuta="${i}">${esc(o)}</button>`).join("")}</div>
+      <div class="tutfb" id="tutfb" aria-live="polite"></div></div>
+    <button class="btn gold tutgo" data-tutnext ${tutGot() ? "" : "hidden"}>Próximo ${ic("right")}</button>`;
+  if (st === 2) {
+    const done = OBT.replay ? !!OBT.lit : S.fx.aura === OBT_AURA && isOpen("aura", OBT_AURA);
+    const next = [["aura", "mint"], ["bolt", "spark"], ["metal", "gold"]].map(([k, id]) => { const it = COSM[k].find(x => x[0] === id); const f = Object.assign({ aura: "none", metal: "none", bolt: "none" }, { [k]: id }); return `<div class="tutnx"><span class="stage">${avImg({ fx: f, cur: false, color: it[3] || "", src: avSrc(), cls: "def", nobolt: k !== "bolt" })}</span><b>${esc(it[1])}</b><span class="lk">${ic("lock")} ${STAR(true)} ${it[2]}</span></div>`; }).join("");
+    body = `${tutDots(2)}<div class="tuttop"><span class="eyebrow">Passo 3 de 3</span><span class="tutstars" id="tutstars">${STAR(true)} <b>${tutWallet()}</b></span></div>
+    <h1 id="tuth">${done ? "Aura liberada! 🎉" : "Libere sua primeira aura!"}</h1>
+    <p class="lead" id="tutlead">${done ? "Seu personagem agora brilha. Cada lição dá estrelas — e com elas você libera coisas novas." : "Estrelas compram efeitos para o seu personagem. Use as 3 que você ganhou!"}</p>
+    ${tutStage(done ? "" : `<span class="tutlock" id="tutlock">${ic("lock")} Aura Sky · ${STAR(true)} ${OBT_COST()}</span>`, "big" + (done ? " lit" : ""))}
+    <div class="tutafter" id="tutafter" ${done ? "" : "hidden"}><p class="tutnxh">Próximas conquistas <small>(Next unlocks)</small></p><div class="tutnxs">${next}</div></div>
+    ${done ? `<button class="btn gold tutgo" data-tutdone>Começar ${ic("right")}</button>` : `<button class="btn gold tutgo tutunlock" data-tutunlock>✨ Liberar a aura · ${STAR(true)} ${OBT_COST()}</button>`}`;
+  }
+  return `<main class="obwrap tut"><section class="obcard tutc">${body}</section></main>`;
+}
+function tutRender() { const app = document.getElementById("app"); if (!app) return; app.innerHTML = viewTut() + overlays(); syncAvatars(); window.scrollTo(0, 0); }
+/* stars fly from the answer to the counter */
+function tutStars(from, n, done) {
+  const box = $("#tutstars"); if (!box || reduced()) { done(); return; }
+  const a = from.getBoundingClientRect(), b = box.getBoundingClientRect(); let k = 0;
+  for (let i = 0; i < n; i++) setTimeout(() => {
+    const s = document.createElement("span"); s.className = "tutfly"; s.innerHTML = STAR(true); document.body.appendChild(s);
+    const x0 = a.left + a.width / 2 - 16, y0 = a.top + a.height / 2 - 16, x1 = b.left + 8, y1 = b.top + b.height / 2 - 16, mx = (x0 + x1) / 2 + (i - 1) * 60, my = Math.min(y0, y1) - 90;
+    const an = s.animate([{ transform: `translate(${x0}px,${y0}px) scale(.4)`, opacity: 0 }, { transform: `translate(${mx}px,${my}px) scale(1.5) rotate(160deg)`, opacity: 1, offset: .45 }, { transform: `translate(${x1}px,${y1}px) scale(.8) rotate(360deg)`, opacity: 1 }], { duration: 850, easing: "cubic-bezier(.3,.7,.3,1)" });
+    an.onfinish = () => { s.remove(); k++; const bb = box.querySelector("b"); if (bb) bb.textContent = k; box.classList.remove("pop"); void box.offsetWidth; box.classList.add("pop"); SFX.star(); if (k === n) done(); };
+  }, i * 260);
+}
+/* the aura unlock: energy gathers around the character, flash, the aura lights up */
+function tutUnlock(btn) {
+  if (OBT.busy) return; OBT.busy = true; btn.disabled = true; btn.classList.add("going");
+  const stage = $("#tutstage"), av = stage && stage.querySelector(".avw"); const au = AURAS.find(x => x[0] === OBT_AURA), col = au[3];
+  const finish = () => {
+    if (OBT.replay) { OBT.got = 0; OBT.lit = true; }
+    else { if (!isOpen("aura", OBT_AURA)) { S.spent = (S.spent || 0) + OBT_COST(); S.owned.push("aura:" + OBT_AURA); } S.fx.aura = OBT_AURA; save(); if (typeof starBadge === "function") starBadge(); }
+    const b = $("#tutstars b"); if (b) b.textContent = tutWallet();
+    if (av) { av.dataset.aura = OBT_AURA; av.style.setProperty("--a", col); }
+    stage.classList.remove("charge"); stage.classList.add("lit", "boom");
+    const lk = $("#tutlock"); if (lk) lk.remove();
+    SFX.win(); const r = stage.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height * .45, 90);
+    $("#tuth").textContent = "Aura liberada! 🎉"; $("#tutlead").textContent = "Seu personagem agora brilha. Cada lição dá estrelas — e com elas você libera coisas novas.";
+    const af = $("#tutafter"); if (af) { af.hidden = false; af.classList.add("in"); }
+    btn.outerHTML = `<button class="btn gold tutgo" data-tutdone>Começar ${ic("right")}</button>`;
+    OBT.busy = false;
+  };
+  if (reduced() || !stage) { finish(); return; }
+  const lk = $("#tutlock"); if (lk) lk.classList.add("open");
+  stage.style.setProperty("--a", col); stage.classList.add("charge"); SFX.streak();
+  const W = stage.clientWidth, H = stage.clientHeight;
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement("i"); p.className = "tpart"; stage.appendChild(p);
+    const ang = Math.random() * Math.PI * 2, R = Math.max(W, H) * (.45 + Math.random() * .25), x = Math.cos(ang) * R, y = Math.sin(ang) * R * .7, d = 700 + Math.random() * 600;
+    p.animate([{ transform: `translate(${x}px,${y}px) scale(.3)`, opacity: 0 }, { opacity: 1, offset: .3 }, { transform: "translate(0,0) scale(1.2)", opacity: .9 }], { duration: d, delay: Math.random() * 700, easing: "cubic-bezier(.5,0,.75,0)", fill: "both" }).onfinish = () => p.remove();
+  }
+  setTimeout(() => SFX.star(), 700); setTimeout(() => SFX.star(), 1100);
+  setTimeout(finish, 1700);
+}
+document.addEventListener("click", ev => {
+  const el = ev.target.closest("button"); if (!el || !el.closest(".tutc")) return; const d = el.dataset;
+  if (d.tutav) { ev.preventDefault(); S.av = d.tutav; save(); syncAvatars(); if (OBT.replay) { const sc = ($(".tutavs") || {}).scrollTop || 0; tutRender(); const a2 = $(".tutavs"); if (a2) a2.scrollTop = sc; } $$(".tutav").forEach(b => { const on = b.dataset.tutav === d.tutav; b.classList.toggle("on", on); b.setAttribute("aria-selected", on); }); const g = guide(), n = $(".tutname"); if (n) n.textContent = g.id === "teacher" ? (TEACHER_NAME || "Teacher") : g.name; const fl = $(".tutfloat"); if (fl) { fl.classList.remove("hop"); void fl.offsetWidth; fl.classList.add("hop"); } SFX.tap(); return; }
+  if (d.tutnext !== undefined) { ev.preventDefault(); if (OBT.replay) OBT.step++; else { S.obTut = tutStep() + 1; save(); } SFX.tap(); tutRender(); return; }
+  if (d.tuta !== undefined) {
+    ev.preventDefault(); if ((OBT.replay ? OBT.got : S.obStars) || OBT.busy) return;
+    const fb = $("#tutfb");
+    if (+d.tuta !== OBT_Q.a) { SFX.bad(); el.classList.remove("shake"); void el.offsetWidth; el.classList.add("shake", "bad"); if (fb) fb.innerHTML = `<span class="no">Quase! ${esc(OBT_Q.hint)}</span>`; return; }
+    OBT.busy = true; el.classList.add("good"); SFX.good(); $$(".tutopts .opt").forEach(b => b.disabled = true);
+    if (fb) fb.innerHTML = `<span class="ok">✓ Isso! “Hello” = “Olá”.</span>`;
+    const bub = $(".tutbub"); if (bub) bub.textContent = "Great job! 🎉";
+    tutStars(el, 3, () => { if (OBT.replay) OBT.got = 3; else { S.bonus = (S.bonus || 0) + 3; S.obStars = 1; save(); } OBT.busy = false; if (fb) fb.innerHTML += `<span class="won">Você ganhou ${STAR(true)}${STAR(true)}${STAR(true)} 3 estrelas!</span>`; const nx = $("[data-tutnext]"); if (nx) { nx.hidden = false; nx.classList.add("in"); } burstAt(el, 24); });
+    return;
+  }
+  if (d.tutunlock !== undefined) { ev.preventDefault(); tutUnlock(el); return; }
+  if (d.tutdone !== undefined) { ev.preventDefault(); if (OBT.replay) { OBT.replay = false; OBT.lit = false; syncAvatars(); } else { S.obTut = "done"; save(); } SFX.tap(); route(); return; }
+}, true);
+
 /* Start it — first screen, placement test, guided tours */
 
 /* ---------- friendly level names (the CEFR code stays as a small badge) ---------- */
@@ -15861,6 +15960,8 @@ function obRender() {
   const app = document.getElementById("app"); const h = location.hash.replace(/^#/, "");
   if (PT) { app.innerHTML = viewPlacement() + overlays(); window.scrollTo(0, 0); return true; }
   if (!S.onboard && Object.keys(S.done || {}).length) { S.onboard = true; S.tourHub = true; save(); }
+  if (h === "tutorial" && typeof viewTut === "function") { OBT.replay = true; OBT.step = 0; OBT.got = 0; history.replaceState(null, "", location.pathname + location.search); }
+  if (typeof OBT !== "undefined" && OBT.replay) { CUR = null; app.innerHTML = viewTut() + overlays(); document.title = "Start it · Tutorial"; window.scrollTo(0, 0); syncAvatars(); return true; }
   if (!S.onboard && S.obTut !== "done" && !h && typeof viewTut === "function") { CUR = null; app.innerHTML = viewTut() + overlays(); document.title = "Start it · Bem-vindo!"; window.scrollTo(0, 0); syncAvatars(); return true; }
   if (h === "choose" || (!S.onboard && !h)) { CUR = null; app.innerHTML = viewWelcome(h === "choose") + overlays(); document.title = "Start it · Bem-vindo!"; window.scrollTo(0, 0); syncAvatars(); return true; }
   return false;
@@ -15946,6 +16047,7 @@ document.addEventListener("click", ev => {
   if (d.pta !== undefined) { if (!PT || PT.lock) return; const q = ptQ(); const good = +d.pta === q.a; el.classList.add(good ? "good" : "bad"); if (!good) { const r = $(`[data-pta="${q.a}"]`); if (r) r.classList.add("good"); } ptAnswer(good, q.o[+d.pta]); return; }
   if (d.ptskip !== undefined) { if (PT) ptAnswer(false, ""); return; }
   if (d.retest !== undefined) { closeSheet(); PT = { lv: "A0", i: 0, ok: {}, done: false }; route(); return; }
+  if (d.retut !== undefined) { closeSheet(); OBT.replay = true; OBT.step = 0; OBT.got = 0; route(); return; }
   if (d.retour !== undefined) { closeSheet(); location.hash = "#" + (S.lv || "A0"); setTimeout(hubTour, 500); return; }
 }, true);
 document.addEventListener("submit", ev => {
@@ -16061,103 +16163,7 @@ window.addEventListener("hashchange", () => { setTimeout(() => { const h = locat
 
 try { if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol) && !/claude|anthropic/i.test(location.hostname)) navigator.serviceWorker.register("sw.js").catch(() => { }); } catch (e) { }
 render();
-setTimeout(() => { const h = location.hash.replace("#", ""); if (S.onboard && !S.tourHub && !TUT && (!h || LVINFO[h])) hubTour(); }, 900);
-
-/* Start it — first-time tutorial (before the level test):
-   1) choose your character  2) a first question → 3 stars  3) spend them: unlock the first aura (animated).
-   Shows students that stars from lessons unlock new things for their character. Runs once (S.obTut = "done"). */
-const OBT = { busy: false };
-const OBT_Q = { q: "Como se diz “Olá” em inglês?", en: "How do you say “Olá” in English?", o: ["Hello", "Goodbye", "Thank you", "Please"], a: 0, hint: "Dica: é o que a gente fala quando encontra alguém. 👋" };
-const OBT_AURA = "sky", OBT_COST = () => costOf("aura", OBT_AURA);
-function tutStep() { const s = +S.obTut || 0; return s; }
-function tutDots(i) { return `<div class="tutdots">${[0, 1, 2].map(k => `<i class="${k < i ? "ok" : k === i ? "on" : ""}"></i>`).join("")}</div>`; }
-function tutStage(extra, cls) { return `<div class="tutstage ${cls || ""}" id="tutstage"><span class="tring" aria-hidden="true"></span><span class="tutfloat"><span class="tiltw">${avImg({ nobolt: true, cls: "tutbig" })}</span></span><span class="tutshadow" aria-hidden="true"></span>${extra || ""}</div>`; }
-function viewTut() {
-  const st = tutStep(), g = guide();
-  const nm = x => x.id === "teacher" ? (TEACHER_NAME || "Teacher") : x.name;
-  let body = "";
-  if (st === 0) body = `${tutDots(0)}<span class="eyebrow">Passo 1 de 3</span>
-    <h1>Escolha o seu personagem</h1><p class="lead">Ele vai estudar com você e ganhar poderes a cada lição. <small>Choose your character!</small></p>
-    ${tutStage(`<span class="tutname">${esc(nm(g))}</span>`)}
-    <div class="tutavs" role="listbox" aria-label="Characters">${GUIDE_LIST.map(x => `<button class="tutav ${x.id === g.id ? "on" : ""}" data-tutav="${x.id}" role="option" aria-selected="${x.id === g.id}" style="--g1:${x.color || "#2F6BDB"};--g2:${x.c2 || "#7FA6FF"}" title="${esc(nm(x))}"><span class="pic" style="--hs:${x.hs || 1}"><img src="${x.src}" alt="${esc(nm(x))}" loading="lazy"></span></button>`).join("")}</div>
-    <button class="btn gold tutgo" data-tutnext>É esse! ${ic("right")}</button>`;
-  if (st === 1) body = `${tutDots(1)}<div class="tuttop"><span class="eyebrow">Passo 2 de 3</span><span class="tutstars" id="tutstars">${STAR(true)} <b>${wallet()}</b></span></div>
-    <h1>Sua primeira pergunta!</h1><p class="lead">Acerte e ganhe suas primeiras estrelas. ⭐</p>
-    ${tutStage(`<span class="tutbub">Answer me! 😄</span>`, "sm")}
-    <div class="tutq"><b>${esc(OBT_Q.q)}</b><small>${esc(OBT_Q.en)}</small>
-      <div class="tutopts">${sshuffle(OBT_Q.o.map((o, i) => [o, i]), S.name + "obq").map(([o, i]) => `<button class="opt" data-tuta="${i}">${esc(o)}</button>`).join("")}</div>
-      <div class="tutfb" id="tutfb" aria-live="polite"></div></div>
-    <button class="btn gold tutgo" data-tutnext ${S.obStars ? "" : "hidden"}>Próximo ${ic("right")}</button>`;
-  if (st === 2) {
-    const done = S.fx.aura === OBT_AURA && isOpen("aura", OBT_AURA);
-    const next = [["aura", "mint"], ["bolt", "spark"], ["metal", "gold"]].map(([k, id]) => { const it = COSM[k].find(x => x[0] === id); const f = Object.assign({ aura: "none", metal: "none", bolt: "none" }, { [k]: id }); return `<div class="tutnx"><span class="stage">${avImg({ fx: f, cur: false, color: it[3] || "", src: avSrc(), cls: "def", nobolt: k !== "bolt" })}</span><b>${esc(it[1])}</b><span class="lk">${ic("lock")} ${STAR(true)} ${it[2]}</span></div>`; }).join("");
-    body = `${tutDots(2)}<div class="tuttop"><span class="eyebrow">Passo 3 de 3</span><span class="tutstars" id="tutstars">${STAR(true)} <b>${wallet()}</b></span></div>
-    <h1 id="tuth">${done ? "Aura liberada! 🎉" : "Libere sua primeira aura!"}</h1>
-    <p class="lead" id="tutlead">${done ? "Seu personagem agora brilha. Cada lição dá estrelas — e com elas você libera coisas novas." : "Estrelas compram efeitos para o seu personagem. Use as 3 que você ganhou!"}</p>
-    ${tutStage(done ? "" : `<span class="tutlock" id="tutlock">${ic("lock")} Aura Sky · ${STAR(true)} ${OBT_COST()}</span>`, "big" + (done ? " lit" : ""))}
-    <div class="tutafter" id="tutafter" ${done ? "" : "hidden"}><p class="tutnxh">Próximas conquistas <small>(Next unlocks)</small></p><div class="tutnxs">${next}</div></div>
-    ${done ? `<button class="btn gold tutgo" data-tutdone>Começar ${ic("right")}</button>` : `<button class="btn gold tutgo tutunlock" data-tutunlock>✨ Liberar a aura · ${STAR(true)} ${OBT_COST()}</button>`}`;
-  }
-  return `<main class="obwrap tut"><section class="obcard tutc">${body}</section></main>`;
-}
-function tutRender() { const app = document.getElementById("app"); if (!app) return; app.innerHTML = viewTut() + overlays(); syncAvatars(); window.scrollTo(0, 0); }
-/* stars fly from the answer to the counter */
-function tutStars(from, n, done) {
-  const box = $("#tutstars"); if (!box || reduced()) { done(); return; }
-  const a = from.getBoundingClientRect(), b = box.getBoundingClientRect(); let k = 0;
-  for (let i = 0; i < n; i++) setTimeout(() => {
-    const s = document.createElement("span"); s.className = "tutfly"; s.innerHTML = STAR(true); document.body.appendChild(s);
-    const x0 = a.left + a.width / 2 - 16, y0 = a.top + a.height / 2 - 16, x1 = b.left + 8, y1 = b.top + b.height / 2 - 16, mx = (x0 + x1) / 2 + (i - 1) * 60, my = Math.min(y0, y1) - 90;
-    const an = s.animate([{ transform: `translate(${x0}px,${y0}px) scale(.4)`, opacity: 0 }, { transform: `translate(${mx}px,${my}px) scale(1.5) rotate(160deg)`, opacity: 1, offset: .45 }, { transform: `translate(${x1}px,${y1}px) scale(.8) rotate(360deg)`, opacity: 1 }], { duration: 850, easing: "cubic-bezier(.3,.7,.3,1)" });
-    an.onfinish = () => { s.remove(); k++; const bb = box.querySelector("b"); if (bb) bb.textContent = k; box.classList.remove("pop"); void box.offsetWidth; box.classList.add("pop"); SFX.star(); if (k === n) done(); };
-  }, i * 260);
-}
-/* the aura unlock: energy gathers around the character, flash, the aura lights up */
-function tutUnlock(btn) {
-  if (OBT.busy) return; OBT.busy = true; btn.disabled = true; btn.classList.add("going");
-  const stage = $("#tutstage"), av = stage && stage.querySelector(".avw"); const au = AURAS.find(x => x[0] === OBT_AURA), col = au[3];
-  const finish = () => {
-    if (!isOpen("aura", OBT_AURA)) { S.spent = (S.spent || 0) + OBT_COST(); S.owned.push("aura:" + OBT_AURA); }
-    S.fx.aura = OBT_AURA; save(); if (typeof starBadge === "function") starBadge();
-    const b = $("#tutstars b"); if (b) b.textContent = wallet();
-    if (av) { av.dataset.aura = OBT_AURA; av.style.setProperty("--a", col); }
-    stage.classList.remove("charge"); stage.classList.add("lit", "boom");
-    const lk = $("#tutlock"); if (lk) lk.remove();
-    SFX.win(); const r = stage.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height * .45, 90);
-    $("#tuth").textContent = "Aura liberada! 🎉"; $("#tutlead").textContent = "Seu personagem agora brilha. Cada lição dá estrelas — e com elas você libera coisas novas.";
-    const af = $("#tutafter"); if (af) { af.hidden = false; af.classList.add("in"); }
-    btn.outerHTML = `<button class="btn gold tutgo" data-tutdone>Começar ${ic("right")}</button>`;
-    OBT.busy = false;
-  };
-  if (reduced() || !stage) { finish(); return; }
-  const lk = $("#tutlock"); if (lk) lk.classList.add("open");
-  stage.style.setProperty("--a", col); stage.classList.add("charge"); SFX.streak();
-  const W = stage.clientWidth, H = stage.clientHeight;
-  for (let i = 0; i < 28; i++) {
-    const p = document.createElement("i"); p.className = "tpart"; stage.appendChild(p);
-    const ang = Math.random() * Math.PI * 2, R = Math.max(W, H) * (.45 + Math.random() * .25), x = Math.cos(ang) * R, y = Math.sin(ang) * R * .7, d = 700 + Math.random() * 600;
-    p.animate([{ transform: `translate(${x}px,${y}px) scale(.3)`, opacity: 0 }, { opacity: 1, offset: .3 }, { transform: "translate(0,0) scale(1.2)", opacity: .9 }], { duration: d, delay: Math.random() * 700, easing: "cubic-bezier(.5,0,.75,0)", fill: "both" }).onfinish = () => p.remove();
-  }
-  setTimeout(() => SFX.star(), 700); setTimeout(() => SFX.star(), 1100);
-  setTimeout(finish, 1700);
-}
-document.addEventListener("click", ev => {
-  const el = ev.target.closest("button"); if (!el || !el.closest(".tutc")) return; const d = el.dataset;
-  if (d.tutav) { ev.preventDefault(); S.av = d.tutav; save(); syncAvatars(); $$(".tutav").forEach(b => { const on = b.dataset.tutav === d.tutav; b.classList.toggle("on", on); b.setAttribute("aria-selected", on); }); const g = guide(), n = $(".tutname"); if (n) n.textContent = g.id === "teacher" ? (TEACHER_NAME || "Teacher") : g.name; const fl = $(".tutfloat"); if (fl) { fl.classList.remove("hop"); void fl.offsetWidth; fl.classList.add("hop"); } SFX.tap(); return; }
-  if (d.tutnext !== undefined) { ev.preventDefault(); S.obTut = tutStep() + 1; save(); SFX.tap(); tutRender(); return; }
-  if (d.tuta !== undefined) {
-    ev.preventDefault(); if (S.obStars || OBT.busy) return;
-    const fb = $("#tutfb");
-    if (+d.tuta !== OBT_Q.a) { SFX.bad(); el.classList.remove("shake"); void el.offsetWidth; el.classList.add("shake", "bad"); if (fb) fb.innerHTML = `<span class="no">Quase! ${esc(OBT_Q.hint)}</span>`; return; }
-    OBT.busy = true; el.classList.add("good"); SFX.good(); $$(".tutopts .opt").forEach(b => b.disabled = true);
-    if (fb) fb.innerHTML = `<span class="ok">✓ Isso! “Hello” = “Olá”.</span>`;
-    const bub = $(".tutbub"); if (bub) bub.textContent = "Great job! 🎉";
-    tutStars(el, 3, () => { S.bonus = (S.bonus || 0) + 3; S.obStars = 1; save(); OBT.busy = false; if (fb) fb.innerHTML += `<span class="won">Você ganhou ${STAR(true)}${STAR(true)}${STAR(true)} 3 estrelas!</span>`; const nx = $("[data-tutnext]"); if (nx) { nx.hidden = false; nx.classList.add("in"); } burstAt(el, 24); });
-    return;
-  }
-  if (d.tutunlock !== undefined) { ev.preventDefault(); tutUnlock(el); return; }
-  if (d.tutdone !== undefined) { ev.preventDefault(); S.obTut = "done"; save(); SFX.tap(); route(); return; }
-}, true);
+setTimeout(() => { const h = location.hash.replace("#", ""); if (S.onboard && !S.tourHub && !TUT && !OBT.replay && (!h || LVINFO[h])) hubTour(); }, 900);
 
 /* Start it — progress inside a lesson, resume, auto-complete and "Review my mistakes".
    Everything stays on the phone (S.prog, S.miss). */
