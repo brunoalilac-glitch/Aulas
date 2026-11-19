@@ -15860,7 +15860,7 @@ function tutUnlock(btn) {
   if (OBT.busy) return; OBT.busy = true; btn.disabled = true; btn.classList.add("going");
   const stage = $("#tutstage"), av = stage && stage.querySelector(".avw"); const au = AURAS.find(x => x[0] === OBT_AURA), col = au[3];
   const finish = () => {
-    if (OBT.replay) { OBT.got = 0; OBT.lit = true; }
+    if (OBT.replay) { OBT.got = 0; OBT.lit = true; if (!isOpen("aura", OBT_AURA)) S.owned.push("aura:" + OBT_AURA); S.fx.aura = OBT_AURA; save(); } /* replay: the aura stays unlocked (free) and selected */
     else { if (!isOpen("aura", OBT_AURA)) { S.spent = (S.spent || 0) + OBT_COST(); S.owned.push("aura:" + OBT_AURA); } S.fx.aura = OBT_AURA; save(); if (typeof starBadge === "function") starBadge(); }
     const b = $("#tutstars b"); if (b) b.textContent = tutWallet();
     if (av) { av.dataset.aura = OBT_AURA; av.style.setProperty("--a", col); }
