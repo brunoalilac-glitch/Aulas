@@ -999,6 +999,133 @@ ol.vqs details { margin-top: 3px; font-size: 14px; color: var(--muted); } ol.vqs
 @keyframes slideHalf { to { transform: translate3d(-50%, 0, 0); } }
 @media (prefers-reduced-motion: reduce) { :root[data-bg] body::after, :root[data-bg] body::before { animation: none !important; } }
 
+/* grammar flash cards (student app + teacher hub) */
+.gref { cursor: help; text-decoration: underline dotted; text-decoration-color: color-mix(in srgb, currentColor 55%, #7C5CFF); text-decoration-thickness: 2px; text-underline-offset: .22em; border-radius: 4px; transition: background .15s; }
+.gref:hover, .gref.on { background: rgba(124, 92, 255, .16); text-decoration-color: #7C5CFF; }
+.gpop { position: fixed; inset: 0; z-index: 9000; pointer-events: none; }
+.gpop .gcard { position: absolute; pointer-events: auto; width: min(400px, calc(100vw - 24px)); background: #fff; color: #16213A; border-radius: 18px; padding: 16px 18px 14px; box-shadow: 0 22px 50px rgba(15, 20, 40, .32), 0 0 0 2px rgba(124, 92, 255, .25); font-family: Figtree, system-ui, sans-serif; font-size: 15px; line-height: 1.4; text-align: left; }
+.gpop.gsheet .gcard { left: 10px !important; right: 10px; bottom: 10px; top: auto !important; width: auto; border-radius: 20px; padding-bottom: calc(14px + env(safe-area-inset-bottom)); }
+.gcard .gx { position: absolute; right: 10px; top: 10px; width: 30px; height: 30px; border-radius: 10px; border: 0; background: #F1EEF9; color: #5B4BB0; font-weight: 800; cursor: pointer; font-size: 14px; }
+.gcard .gtop { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-right: 34px; }
+.gcard .gtag { background: #7C5CFF; color: #fff; font-weight: 800; font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; border-radius: 999px; padding: 3px 10px; }
+.gcard .gwhere { background: #F1EEF9; color: #5B4BB0; font-weight: 700; font-size: 12.5px; border-radius: 999px; padding: 3px 10px; }
+.gcard h4 { margin: 8px 0 0; font-family: "Bricolage Grotesque", Figtree, sans-serif; font-size: 21px; line-height: 1.15; color: #16213A; }
+.gcard .gsub { color: #6B7489; font-style: italic; font-size: 13.5px; margin-top: 1px; }
+.gcard .gform { margin: 10px 0 8px; background: #F4F1FF; border-left: 4px solid #7C5CFF; border-radius: 10px; padding: 8px 12px; display: grid; gap: 3px; font-weight: 600; }
+.gcard .gform b, .gcard .gex b { color: #5B3FE0; }
+.gcard .guse { font-size: 14.5px; color: #2D3854; }
+.gcard .gpt { display: block; color: #6B7489; font-style: italic; font-size: 13.5px; margin-top: 2px; }
+.gcard .gex { margin: 8px 0 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+.gcard .gex li { padding-left: 18px; position: relative; font-weight: 600; }
+.gcard .gex li::before { content: "›"; position: absolute; left: 4px; color: #7C5CFF; font-weight: 800; }
+/* teacher hub: the card sits on the 1280×720 slide, so students see it on Meet */
+.gpop.instage { position: absolute; z-index: 40; }
+.gpop.instage .gcard { width: 560px; font-size: 21px; border-radius: 24px; padding: 22px 26px 20px; }
+.gpop.instage .gcard h4 { font-size: 32px; } .gpop.instage .gcard .gsub { font-size: 18px; }
+.gpop.instage .gcard .gtag { font-size: 14px; } .gpop.instage .gcard .gwhere { font-size: 16px; }
+.gpop.instage .gcard .guse { font-size: 20px; } .gpop.instage .gcard .gpt { font-size: 17px; }
+.gpop.instage .gcard .gx { width: 38px; height: 38px; font-size: 18px; }
+/* video questions: the time button plays that part inside the app */
+[data-vxt] { cursor: pointer; }
+.vxt-on { box-shadow: 0 0 0 3px #FFC93C; animation: vxpulse 1.2s ease-in-out infinite; }
+.vxt-load { opacity: .6; }
+.vxt-done::after { content: " ↺"; font-weight: 800; }
+@keyframes vxpulse { 50% { box-shadow: 0 0 0 6px rgba(255, 201, 60, .45); } }
+.vxlive { padding: 0 !important; background: #000; }
+.vxlive > div, .vxlive iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* first-time tutorial: character, first stars, first aura */
+.tutc { text-align: center; padding-top: 22px; }
+.tutc .btn svg:not(.ic) { width: 20px; height: 20px; fill: currentColor; vertical-align: -3px; }
+.tutc .tutunlock svg:not(.ic) { fill: #B45309; }
+.tutc h1 { margin: 6px 0 4px; font-size: clamp(26px, 6vw, 34px); line-height: 1.1; }
+.tutc .lead { margin: 0 auto 6px; max-width: 460px; }
+.tutc .lead small { display: block; color: var(--muted); font-size: 14px; margin-top: 2px; }
+.tutdots { display: flex; justify-content: center; gap: 8px; margin-bottom: 8px; }
+.tutdots i { width: 9px; height: 9px; border-radius: 99px; background: var(--line-2); transition: width .3s; }
+.tutdots i.on { width: 28px; background: linear-gradient(90deg, #FFB800, #FF7A1A); }
+.tutdots i.ok { background: #2BC27A; }
+.tuttop { display: flex; align-items: center; justify-content: center; gap: 12px; position: relative; }
+.tutstars { position: absolute; right: 0; top: -4px; display: inline-flex; align-items: center; gap: 6px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px 5px 8px; font-weight: 800; font-size: 17px; }
+.tutstars svg { width: 22px; height: 22px; fill: #FFC21A; }
+.tutstars.pop { animation: tutpop .35s cubic-bezier(.3, 1.6, .5, 1); }
+@keyframes tutpop { 50% { transform: scale(1.35); } }
+.tutfly { position: fixed; left: 0; top: 0; width: 32px; height: 32px; z-index: 9999; pointer-events: none; filter: drop-shadow(0 4px 10px rgba(255, 180, 0, .7)); }
+.tutfly svg { width: 100%; height: 100%; fill: #FFC21A; }
+
+/* the floating character */
+.tutstage { position: relative; height: 250px; margin: 18px auto 4px; display: grid; place-items: end center; isolation: isolate; }
+.tutstage.sm { height: 190px; }
+.tutstage.big { height: 290px; }
+.tutstage::before { content: ""; position: absolute; left: 50%; top: 50%; width: 230px; height: 230px; margin: -130px 0 0 -115px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--a, #7FA6FF) 35%, transparent), transparent 68%); opacity: .55; z-index: -2; transition: opacity .6s; }
+.tutfloat { position: relative; display: block; animation: tutfl 3.4s ease-in-out infinite; margin-bottom: 22px; }
+.tutfloat.hop { animation: tuthop .5s cubic-bezier(.3, 1.5, .5, 1), tutfl 3.4s ease-in-out .5s infinite; }
+@keyframes tutfl { 0%, 100% { transform: translateY(0) rotate(-1.5deg); } 50% { transform: translateY(-16px) rotate(1.5deg); } }
+@keyframes tuthop { 0% { transform: scale(.85) translateY(10px); } 60% { transform: scale(1.06) translateY(-20px); } 100% { transform: none; } }
+.tutfloat .avw img { height: calc(200px * var(--hs, 1)); width: auto; max-width: 260px; object-fit: contain; }
+.tutstage.sm .tutfloat .avw img { height: calc(150px * var(--hs, 1)); }
+.tutstage.big .tutfloat .avw img { height: calc(225px * var(--hs, 1)); }
+.tutshadow { position: absolute; bottom: 8px; left: 50%; width: 130px; height: 18px; margin-left: -65px; border-radius: 50%; background: radial-gradient(closest-side, rgba(10, 20, 50, .35), transparent); animation: tutsh 3.4s ease-in-out infinite; z-index: -1; }
+@keyframes tutsh { 50% { transform: scale(.75); opacity: .6; } }
+.tutname { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 3px 14px; font-weight: 800; font-size: 15px; box-shadow: var(--shadow); }
+.tutbub { position: absolute; top: 12px; left: calc(50% + 70px); background: #fff; color: #16213A; font-weight: 800; border-radius: 16px 16px 16px 4px; padding: 8px 14px; box-shadow: 0 8px 20px rgba(10, 20, 50, .18); font-size: 15px; white-space: nowrap; animation: tutfl 3.4s ease-in-out infinite reverse; }
+
+/* character picker */
+.tutavs { display: grid; grid-template-columns: repeat(auto-fill, minmax(62px, 1fr)); gap: 8px; margin: 14px 0 18px; max-height: 214px; overflow-y: auto; padding: 4px; }
+.tutav { position: relative; aspect-ratio: 1; border-radius: 18px; border: 2px solid var(--line); background: linear-gradient(160deg, var(--g1), var(--g2)); overflow: hidden; cursor: pointer; padding: 0; transition: transform .15s, box-shadow .2s; }
+.tutav .pic { position: absolute; inset: 6px 0 0; display: flex; align-items: flex-end; justify-content: center; }
+.tutav img { height: calc(100% * var(--hs, 1)); width: auto; max-width: 120%; object-fit: contain; object-position: bottom; }
+.tutav:hover { transform: translateY(-2px); }
+.tutav.on { border-color: #FFB800; box-shadow: 0 0 0 3px rgba(255, 184, 0, .45); transform: scale(1.06); }
+.tutgo { min-width: 220px; font-size: 18px; padding: 14px 24px; margin-top: 6px; }
+.tutgo.in { animation: tutpop .45s cubic-bezier(.3, 1.6, .5, 1); }
+
+/* first question */
+.tutq { background: var(--surface-2); border: 1px solid var(--line); border-radius: 22px; padding: 16px; margin: 4px 0 14px; }
+.tutq > b { display: block; font-size: 21px; font-family: var(--f-display, inherit); }
+.tutq > small { color: var(--muted); }
+.tutopts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.tutopts .opt { font-size: 18px; padding: 14px 10px; }
+.tutopts .opt.good { background: #DDF7EA; border-color: #2BC27A; color: #0B7A4C; }
+.tutopts .opt.bad { opacity: .55; }
+.tutopts .opt.shake { animation: tutshake .35s; }
+@keyframes tutshake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+.tutfb { min-height: 26px; margin-top: 10px; font-weight: 700; display: grid; gap: 6px; }
+.tutfb .no { color: #C2410C; } .tutfb .ok { color: #0B8A55; }
+.tutfb .won { display: inline-flex; align-items: center; justify-content: center; gap: 2px; color: var(--ink); font-size: 17px; }
+.tutfb .won svg { width: 20px; height: 20px; fill: #FFC21A; }
+
+/* the aura unlock */
+.tutlock { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 6px; background: rgba(16, 24, 48, .86); color: #fff; border-radius: 999px; padding: 6px 14px; font-weight: 800; font-size: 15px; white-space: nowrap; transition: opacity .4s, transform .4s; }
+.tutlock svg { width: 17px; height: 17px; } .tutlock svg:last-child { fill: #FFC21A; }
+.tutlock.open { opacity: 0; transform: translate(-50%, 12px) scale(.8); }
+.tring { position: absolute; left: 50%; top: 46%; width: 180px; height: 180px; margin: -90px 0 0 -90px; border-radius: 50%; border: 3px solid var(--a, #4FB3FF); opacity: 0; z-index: -1; pointer-events: none; }
+.tutstage.charge .tring { animation: tutcharge 1.7s ease-in forwards; }
+@keyframes tutcharge { 0% { opacity: 0; transform: scale(1.6); } 30% { opacity: .9; } 100% { opacity: 1; transform: scale(.55); border-width: 8px; box-shadow: 0 0 40px 10px var(--a); } }
+.tutstage.charge .tutfloat { animation: tutshiver .12s linear infinite; }
+@keyframes tutshiver { 0%, 100% { transform: translate(0, -8px); } 25% { transform: translate(-2px, -9px); } 75% { transform: translate(2px, -7px); } }
+.tutstage.charge::before { opacity: 1; animation: tutglow 1.7s ease-in forwards; }
+@keyframes tutglow { to { transform: scale(1.35); } }
+.tpart { position: absolute; left: 50%; top: 46%; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: radial-gradient(circle, #fff 0 25%, var(--a, #4FB3FF) 60%, transparent 70%); box-shadow: 0 0 12px 3px var(--a, #4FB3FF); pointer-events: none; z-index: 3; }
+.tutstage.boom::after { content: ""; position: absolute; left: 50%; top: 46%; width: 60px; height: 60px; margin: -30px 0 0 -30px; border-radius: 50%; background: radial-gradient(circle, #fff, var(--a, #4FB3FF) 45%, transparent 70%); animation: tutboom .9s ease-out forwards; pointer-events: none; z-index: 4; }
+@keyframes tutboom { 0% { transform: scale(.2); opacity: 1; } 100% { transform: scale(9); opacity: 0; } }
+.tutstage.lit::before { opacity: .9; background: radial-gradient(circle, color-mix(in srgb, var(--a, #4FB3FF) 55%, transparent), transparent 68%); }
+.tutstage.boom .tutfloat { animation: tuthop .6s cubic-bezier(.3, 1.5, .5, 1), tutfl 3.4s ease-in-out .6s infinite; }
+.tutafter[hidden] { display: none; }
+.tutafter.in { animation: tutup .5s ease-out .3s both; }
+@keyframes tutup { from { opacity: 0; transform: translateY(14px); } }
+.tutnxh { margin: 6px 0 8px; font-weight: 800; } .tutnxh small { color: var(--muted); font-weight: 600; }
+.tutnxs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+.tutnx { background: var(--surface-2); border: 1px solid var(--line); border-radius: 18px; padding: 10px 6px 8px; display: grid; justify-items: center; gap: 4px; }
+.tutnx .stage { height: 84px; display: flex; align-items: flex-end; filter: grayscale(.35); opacity: .85; }
+.tutnx .stage .avw img { height: 80px; width: auto; }
+.tutnx b { font-size: 14px; }
+.tutnx .lk { display: inline-flex; align-items: center; gap: 3px; font-size: 13px; font-weight: 800; color: var(--muted); }
+.tutnx .lk svg { width: 14px; height: 14px; } .tutnx .lk svg:last-child { fill: #FFC21A; }
+@media (max-width: 420px) { .tutopts { grid-template-columns: 1fr 1fr; } .tutbub { left: calc(50% + 40px); font-size: 13px; } .tutstage { height: 220px; } .tutstage.big { height: 250px; } }
+@media (prefers-reduced-motion: reduce) { .tutfloat, .tutshadow, .tutbub { animation: none; } }
+.obcard.tutc::before { height: 100%; background: radial-gradient(520px 280px at 50% 34%, rgba(255, 213, 74, .22), transparent 70%), linear-gradient(180deg, rgba(79, 179, 255, .12), transparent 55%); }
+
 </style></head><body>
 <div id="app"></div>
 <script>
@@ -6493,7 +6620,9 @@ CONTENT["b2-headlines"] = {
     TR("O prefeito vai renunciar. (como manchete)", ["Mayor to resign", "Mayor to quit"]),
     TR("Cantor criticado após declaração polêmica. (manchete)", ["Singer slammed after controversial statement", "Singer criticized after controversial statement", "Singer slammed over controversial remark"]),
     FIX("Headline: “The government is going to increase the minimum wage”", ["Government to raise minimum wage", "Government to increase minimum wage"]),
-    LIS("Breaking news: the national team coach has decided to quit.")
+    LIS("Breaking news: the national team coach has decided to quit."),
+    LIS("Prices are expected to rise again next month."),
+    LIS("The mayor has promised to build three new hospitals.")
   ],
   mission: { title: "Headline writer", text: "Turn 5 Brazilian news stories into English headlines.", steps: ["Choose 5 stories from today", "Write a headline for each (follow the rules)", "Explain one headline as a full sentence"] }
 };
@@ -7685,7 +7814,9 @@ CONTENT["c1-ai"] = {
     TR("Precisamos mitigar as consequências não intencionais.", ["We need to mitigate the unintended consequences.", "We must mitigate the unintended consequences."]),
     TR("Isso não quer dizer que devemos parar a inovação.", ["This is not to say that we should stop innovation.", "That doesn't mean we should stop innovation."]),
     FIX("AI will 100% replace all teachers in five years.", ["AI is unlikely to replace all teachers, although it may transform their role.", "AI may well change the role of teachers, but it is unlikely to replace them."]),
-    LIS("There is some evidence to suggest that algorithms may reinforce existing biases.")
+    LIS("There is some evidence to suggest that algorithms may reinforce existing biases."),
+    LIS("It remains to be seen how many jobs will actually disappear."),
+    LIS("AI arguably poses risks, particularly if there are no safeguards.")
   ],
   mission: { title: "AI position paper", text: "Write a short, nuanced position on one AI issue.", steps: ["Choose: jobs, education, art, privacy or elections", "Use 5 speculation / hedging expressions", "Propose one safeguard"] }
 };
@@ -7831,7 +7962,9 @@ CONTENT["c1-talk"] = {
     TR("Levante a mão quem já sentiu medo de falar em público.", ["Raise your hand if you've ever been afraid of speaking in public.", "Raise your hand if you've ever been afraid of public speaking."]),
     TR("A mensagem principal é simples.", ["The main message is simple.", "The key takeaway is simple."]),
     FIX("In my talk I will speak about a lot of topics about education and life.", ["Today I want to share one idea: education changes lives.", "In this talk, I want to share one idea about education."]),
-    LIS("So next time you feel like giving up, remember this moment.")
+    LIS("So next time you feel like giving up, remember this moment."),
+    LIS("Let me start with a question that changed my life."),
+    LIS("Imagine a world where nobody was afraid of failing.")
   ],
   mission: { title: "Your idea worth sharing", text: "Prepare a 5-minute talk around one idea.", steps: ["Write the idea in one sentence", "Plan a hook, 2 stories and a call to action", "Rehearse 3 times — time yourself"] }
 };
@@ -14137,6 +14270,342 @@ function levArr(a, b) {
   return prev[n];
 }
 
+/* Start it — grammar flash cards (student app AND teacher hub).
+   In a lesson that comes AFTER the lesson where a grammar point was taught, the words that use it
+   ("I've been", "If I had…", "was delayed") get a dotted underline. One click opens a short card.
+   GR = topics: kw = how the teaching lesson is named in COURSE (grammar column), re = how the
+   structure looks in a sentence. The teaching lesson = the first core lesson whose grammar matches kw;
+   lessons whose own grammar matches kw don't get links for that topic (they are teaching it). */
+(function () {
+  const W = "[A-Za-z]+";
+  const IRR = "been|done|gone|seen|eaten|written|taken|given|known|made|built|bought|brought|caught|taught|thought|found|left|lost|met|paid|said|sold|sent|spent|told|understood|won|held|kept|slept|felt|heard|become|begun|broken|chosen|driven|drunk|fallen|flown|forgotten|frozen|gotten|grown|hidden|ridden|risen|rung|shaken|shown|sung|spoken|stolen|swum|thrown|woken|worn|beaten|bitten|blown|drawn|forgiven|mistaken|torn|fed|led|lit|meant|dealt|fought|hung|laid|lent|shot|stuck|struck|stood|had|read|cut|put|hit|hurt|let|set|shut|run|come|cost|quit|spread";
+  const IRR_D = IRR.split("|").filter(w => !/^(cut|put|hit|hurt|let|set|shut|run|come|cost|quit|spread|read|had)$/.test(w)).join("|"); /* after 'd (would/had) only clear participles */
+  const NOT_ED = new Set("red bed need speed seed feed bleed breed shed wed hundred sacred naked wicked beloved aged crooked rugged ragged kindred indeed proceed succeed exceed weed greed steed reed".split(" "));
+  const ADJ_ED = new Set("tired bored interested excited worried scared married surprised pleased confused embarrassed amazed disappointed relaxed annoyed shocked frightened satisfied exhausted terrified stressed ashamed crowded closed supposed retired divorced engaged qualified related determined convinced prepared experienced talented complicated dressed involved used fed".split(" "));
+  const ING_X = new Set("interesting boring amazing exciting relaxing surprising annoying tiring confusing embarrassing frightening terrifying shocking disappointing inspiring fascinating charming outstanding entertaining satisfying refreshing depressing frustrating exhausting worrying encouraging challenging rewarding demanding appealing convincing misleading overwhelming thrilling stunning touching disgusting amusing alarming astonishing breathtaking puzzling pleasing promising striking freezing boiling missing groundbreaking heartbreaking mind-blowing life-changing eye-opening record-breaking breaking-news willing loving caring outgoing easygoing hardworking upcoming ongoing everything nothing something anything thing things king ring spring string sibling darling ceiling wedding pudding morning evening clothing during bring sing swing wing sting cling".split(" "));
+  const ING_ISH = /^(hobby|thing|job|idea|problem|plan|goal|dream|favourite|favorite|part|aim|passion|secret|answer|solution|habit|trick|rule|mission|task|challenge)$/i;
+  const PP = `(?:${IRR}|${W}ed)`;
+  const ppOk = w => { w = w.toLowerCase(); if (/ed$/.test(w)) return w.length >= 5 && !NOT_ED.has(w) && !/^un[a-z]+ed$/.test(w); return true; };
+  /* modal + word: in a question ("Should schools ban…?", "What must Bia bring?") only the modal is linked */
+  const modal = (m, t) => { const s = sentenceOf(t, m.index), lead = s.slice(0, Math.max(0, m.index - (t.indexOf(s) < 0 ? 0 : t.indexOf(s)))).trim(); if (/\?\s*$/.test(s) && (!lead || /^(what|where|when|why|how|who|which|whose)\b/i.test(lead) && lead.split(/\s+/).length <= 2)) { const k = m[0].search(/\s/); return [m.index, m.index + (k < 0 ? m[0].length : k)]; } return true; };
+  const ingOk = w => !ING_X.has(w.toLowerCase());
+  const ADV = "(?:not |never |ever |just |already |always |still |recently |finally |only |also |really |now |currently |n't )?";
+  const SUBJ = "(?:I|you|he|she|it|we|they|there|[A-Z][a-z]+|the \\w+|your \\w+|my \\w+|his \\w+|her \\w+|our \\w+|their \\w+)";
+  const R = (s, f = "gi") => new RegExp(s, f);
+  const sentenceOf = (t, i) => { const a = Math.max(t.lastIndexOf(". ", i), t.lastIndexOf("! ", i), t.lastIndexOf("? ", i), t.lastIndexOf("\n", i)); let b = t.slice(i).search(/[.!?](\s|$)|\n/); b = b < 0 ? t.length : i + b + 1; return t.slice(a < 0 ? 0 : a + 1, b); };
+  const lastWord = m => (m[0].match(/[A-Za-z']+$/) || [""])[0];
+
+  /* topic: id, kw (lesson grammar), t/pt (title), f (form lines), u (use), ex (examples, **bold**), re: [[regex, check(m, text) → true|false|[start,end]]] */
+  const GR = [
+    { id: "qtag", kw: /question tags/i, t: "Question tags", pt: "question tags (né?)",
+      f: ["positive sentence → **negative** tag: It's nice, **isn't it?**", "negative sentence → **positive** tag: You don't eat meat, **do you?**"], u: "Checking information or inviting the other person to talk. || O nosso “né?”.",
+      ex: ["You're Brazilian, **aren't you?**", "She didn't come, **did she?**"],
+      re: [[`,\\s*((?:isn't|aren't|wasn't|weren't|don't|doesn't|didn't|won't|wouldn't|can't|couldn't|haven't|hasn't|hadn't|shouldn't|is|are|was|were|do|does|did|will|would|can|could|have|has|had|should|am)\\s+(?:I|you|he|she|it|we|they|there)\\s*\\?)`, m => [m.index + m[0].indexOf(m[1]), m.index + m[0].length]]] },
+    { id: "indirect", kw: /indirect questions/i, t: "Indirect questions", pt: "perguntas indiretas (mais educadas)",
+      f: ["Could you tell me / Do you know + **where / what / if** + subject + verb", "✘ where is the bank → ✔ where **the bank is**"], u: "Polite questions — the word order is like a normal sentence. || Perguntas educadas: ordem de frase normal.",
+      ex: ["**Could you tell me where** the museum **is**?", "**Do you know if** the shop is open?"],
+      re: [[`\\b(?:Could|Can|Would)\\s+you\\s+tell\\s+me\\s+(?:where|what|when|why|how|who|if|whether|which)\\b`], [`\\bDo\\s+you\\s+(?:know|have\\s+any\\s+idea|remember)\\s+(?:where|what|when|why|how|who|if|whether|which)\\b`], [`\\b(?:I\\s+wonder|I\\s+was\\s+wondering)\\s+(?:if|whether|where|what|why|how|when)\\b`]] },
+    { id: "causative", kw: /have something done/i, t: "have / get something done", pt: "mandar fazer (alguém faz para você)",
+      f: ["**have / get** + thing + past participle"], u: "Someone else does it for you. || Alguém faz para você: cortar o cabelo, consertar o carro.",
+      ex: ["I **had my hair cut** yesterday.", "We need to **get the tap fixed**."],
+      re: [[`\\b(?:have|has|had|having|get|gets|got|getting)\\s+(?:my|your|his|her|our|their|the|a|an|it|them|this|that)\\s+(?:[a-z]+\\s+){0,2}?(?:cut|fixed|repaired|done|painted|washed|checked|replaced|cleaned|delivered|installed|serviced|dyed|styled|ironed|printed|translated|removed|tested|changed)\\b`]] },
+    { id: "inversion", kw: /inversion|inverted/i, t: "Inversion", pt: "inversão (formal, enfático)",
+      f: ["Never / Rarely / Hardly / Not only + **auxiliary + subject**", "Had I known… = If I had known…"], u: "Formal or dramatic emphasis. || Ênfase formal ou dramática.",
+      ex: ["**Never have I** seen such a thing.", "**Had I known**, I would have left earlier."],
+      re: [[`(?:^|[.!?]\\s+|\\n)((?:Never|Rarely|Seldom|Hardly|Scarcely|Barely|Not only|Not until \\w+|No sooner|Little|Only then|Only when|Under no circumstances|At no time|In no way|Nowhere)\\s+(?:have|has|had|did|do|does|was|were|will|would|can|could|is|are|should|must))\\b`, m => [m.index + m[0].indexOf(m[1]), m.index + m[0].length]], [`(?:^|[.!?]\\s+|\\n)((?:Had|Were|Should)\\s+(?:I|you|he|she|we|they|it)\\b)`, (m, t) => !/\?\s*$/.test(sentenceOf(t, m.index + m[0].indexOf(m[1]))) && [m.index + m[0].indexOf(m[1]), m.index + m[0].length]]] },
+    { id: "cleft", kw: /cleft/i, t: "Cleft sentences", pt: "frases clivadas (para dar ênfase)",
+      f: ["**What** I need **is**… · **All** I want **is**…", "**It was** the price **that** convinced me."], u: "Splitting a sentence to focus on one part. || Dividir a frase para destacar uma parte.",
+      ex: ["**What** I love about Rio **is** the beach.", "**All** I wanted **was** a coffee."],
+      re: [[`(?:^|[.!?]\\s+|\\n)((?:What|All)\\s+(?:I|you|we|they|he|she|people|our brain|my \\w+)\\s+(?:[a-z']+\\s+){0,4}?(?:is|was))\\b`, (m, t) => !/\?\s*$/.test(sentenceOf(t, m.index + m[0].indexOf(m[1]))) && [m.index + m[0].indexOf(m[1]), m.index + m[0].length]], [`\\bThe\\s+(?:reason\\s+(?:why\\s+)?|thing\\s+(?:that\\s+)?)[a-z' ]{2,40}?\\s+is\\s+that\\b`]] },
+    { id: "ppc", kw: /present perfect continuous/i, t: "Present perfect continuous", pt: "presente perfeito contínuo",
+      f: ["have / has **been** + verb**-ing**"], u: "Something that started in the past and is still going on — often with **for / since / how long**. || Começou no passado e continua.",
+      ex: ["I**'ve been studying** English for two years.", "How long **have** you **been waiting**?"],
+      re: [[`\\b(?:have|has|haven't|hasn't|'ve|'s)\\s+${ADV}been\\s+(${W}ing)\\b`, m => ingOk(m[1])], [`\\b(?:Have|Has|have|has)\\s+${SUBJ}\\s+been\\s+(${W}ing)\\b`, m => ingOk(m[1])]] },
+    { id: "pfc", kw: /past perfect continuous/i, t: "Past perfect continuous", pt: "mais-que-perfeito contínuo",
+      f: ["had **been** + verb**-ing**"], u: "An activity that was going on for some time before another moment in the past. || Estava acontecendo antes de outro fato passado.",
+      ex: ["She was tired because she**'d been running**.", "We **had been waiting** for an hour when the bus came."],
+      re: [[`\\b(?:had|hadn't|'d)\\s+${ADV}been\\s+(${W}ing)\\b`, m => ingOk(m[1])]] },
+    { id: "fut", kw: /future continuous|future perfect/i, t: "Future continuous & future perfect", pt: "futuro contínuo e futuro perfeito",
+      f: ["will **be** + verb-ing → in progress then", "will **have** + past participle → finished before then"], u: "**This time next year**, I'll be… · **By 2030**, I'll have… || Estará fazendo · terá feito.",
+      ex: ["At 9 p.m. I**'ll be sleeping**.", "By Friday, I**'ll have finished** the project."],
+      re: [[`\\b(?:will|won't|'ll)\\s+(?:not\\s+)?be\\s+(${W}ing)\\b`, m => ingOk(m[1])], [`\\b(?:will|won't|'ll)\\s+(?:not\\s+|already\\s+)?have\\s+(${PP})\\b`, m => ppOk(m[1])]] },
+    { id: "cond3", kw: /third conditional|mixed conditional|inverted conditional/i, t: "Third conditional", pt: "condicional 3 — o passado que não aconteceu",
+      f: ["**If** + had + past participle, … **would have** + past participle"], u: "Imagining a different past (it didn't happen). || Imaginar um passado diferente.",
+      ex: ["**If** I**'d known**, I **would have helped** you.", "We **would have won** if he hadn't missed."],
+      re: [[`\\bif\\b`, (m, t) => { const s = sentenceOf(t, m.index); return /\b(had|'d)\s+(?:not\s+|never\s+|already\s+)?\w+/i.test(s) && /\b(would|could|might|'d)\s+(?:not\s+)?have\s+\w+/i.test(s); }], [`\\b(?:would|wouldn't|'d)\\s+(?:not\\s+)?have\\s+(${PP})\\b`, m => ppOk(m[1])]] },
+    { id: "cond2", kw: /second conditional|conditionals for hypotheses/i, t: "Second conditional", pt: "condicional 2 — situação imaginária",
+      f: ["**If** + past simple, … **would** + verb"], u: "Imaginary or unlikely situations, now or in the future. || Situações imaginárias. · **If I were you…** = conselho.",
+      ex: ["**If** I **had** more money, I **would travel**.", "**If** I **were** you, I'd say sorry."],
+      re: [[`\\bif\\b`, (m, t) => { const s = sentenceOf(t, m.index); return /\b(would|'d|could|might)\s+(?:not\s+)?(?!have\b)[a-z]+/i.test(s) && !/\b(will|'ll|won't)\b/i.test(s) && !/\b(had|'d)\s+(?:not\s+)?(been|\w+ed|gone|known|seen|done)\b/i.test(s); }]] },
+    { id: "cond1", kw: /first conditional/i, t: "First conditional", pt: "condicional 1 — possibilidade real",
+      f: ["**If** + present, … **will** + verb", "never “if … will” in the same half: ✘ If it will rain"], u: "A real possibility in the future and its result. || Possibilidade real e o resultado.",
+      ex: ["**If** it **rains**, we**'ll stay** home.", "You**'ll be** cold **if** you **don't take** a jacket."],
+      re: [[`\\b(?:if|unless)\\b`, (m, t) => { const s = sentenceOf(t, m.index); return /\b(will|'ll|won't)\b/i.test(s) && !/\bwould\b/i.test(s); }]] },
+    { id: "pastdeduc", kw: /past modals|modal perfects/i, t: "Past deduction: must have, can't have", pt: "dedução sobre o passado",
+      f: ["**must have** + past participle → I'm almost sure it happened", "**can't / couldn't have** + participle → it's impossible", "**might / may / could have** + participle → maybe"], u: "Guessing what happened, from the evidence. || Deduzir o que aconteceu.",
+      ex: ["The window isn't broken. He **must have had** a key.", "She **can't have done** it — she was in Paris."],
+      re: [[`\\b(?:must|mustn't|might|may|can't|cannot|couldn't|could)\\s+(?:not\\s+)?have\\s+(${PP})\\b`, m => ppOk(m[1])]] },
+    { id: "shouldhave", kw: /should have/i, t: "should have / shouldn't have", pt: "arrependimento e crítica sobre o passado",
+      f: ["**should have** + past participle", "**shouldn't have** + past participle"], u: "A past mistake: what was right to do (but didn't happen). || Deveria ter / não deveria ter.",
+      ex: ["I **should have called** you.", "You **shouldn't have said** that."],
+      re: [[`\\b(?:should|shouldn't|ought to)\\s+(?:not\\s+)?have\\s+(${PP})\\b`, m => ppOk(m[1])]] },
+    { id: "passrep", kw: /passive reporting/i, t: "Passive reporting", pt: "voz passiva para notícias e boatos",
+      f: ["subject + **is said / believed / thought to** + verb", "subject + is said **to have** + past participle (the past)", "**It is said that** + sentence"], u: "Reporting without saying who said it — typical of the news. || Notícia sem dizer quem falou.",
+      ex: ["The suspects **are said to be** in the Keys.", "**It is believed that** the game cost $1 billion."],
+      re: [[`\\b(?:is|are|was|were|'s|'re)\\s+(?:widely\\s+|generally\\s+)?(?:said|believed|thought|known|reported|rumou?red|expected|alleged|considered)\\s+to(?:\\s+have\\s+${PP}|\\s+be\\s+${W}ing)?\\b`], [`\\bit\\s+(?:is|was|'s)\\s+(?:widely\\s+)?(?:said|believed|thought|reported|rumou?red|expected|alleged)\\s+that\\b`]] },
+    { id: "pastperf", kw: /past perfect|narrative tenses/i, t: "Past perfect", pt: "mais-que-perfeito (tinha feito)",
+      f: ["**had** + past participle"], u: "The earlier past: something that happened before another past moment. || O que já tinha acontecido antes.",
+      ex: ["When we arrived, the film **had** already **started**.", "I**'d never seen** snow before that trip."],
+      re: [[`\\b(?:had|hadn't|had not)\\s+${ADV}(${PP})\\b`, m => ppOk(m[1])], [`'d\\s+${ADV}(${IRR_D}|${W}ed)\\b`, m => ppOk(m[1])], [`\\bHad\\s+(?:you|he|she|it|we|they)\\s+(?:ever\\s+|already\\s+)?(${PP})\\b`, m => ppOk(m[1])]] },
+    { id: "pperf", kw: /present perfect(?! continuous)/i, t: "Present perfect", pt: "present perfect (have / has + particípio)",
+      f: ["**have / has** + past participle", "ever · never · just · already · yet · for · since"], u: "Experiences (no exact time) and things that started in the past and continue. || Experiências e ações que vêm do passado até agora. · Data exata → past simple.",
+      ex: ["I**'ve been** to Los Angeles twice.", "**Have** you ever **tried** sushi?", "She**'s lived** here since 2019."],
+      re: [[`\\b(?:have|has|haven't|hasn't|have not|has not|'ve)\\s+${ADV}(${PP})\\b`, m => ppOk(m[1]) && !/\b(?:have|'ve|has)\s+(?:\w+\s+)?got\b/i.test(m[0])],
+        [`\\b(?:Have|Has|Haven't|Hasn't)\\s+${SUBJ}\\s+(?:ever\\s+|never\\s+|already\\s+|just\\s+|really\\s+)?(${PP})\\b`, m => ppOk(m[1])],
+        [`\\b(?:he|she|it|there|that|who|what|where|[A-Z][a-z]+)'s\\s+(?:never\\s+|ever\\s+|just\\s+|already\\s+|not\\s+|always\\s+|recently\\s+|finally\\s+)?(been|gone|had|seen|done|become|lived|worked|changed|happened|arrived|left|started|finished|visited|travelled|traveled|tried|won|lost|grown|known|written|read|eaten)\\b`]] },
+    { id: "usedto", kw: /^used to|\bused to \/ would|used to vs/i, t: "used to", pt: "costumava (hábito do passado)",
+      f: ["**used to** + verb", "**didn't use to** · **Did** you **use to**…?"], u: "Past habits and states that are not true now. || Costumava · era (e hoje não é mais).",
+      ex: ["I **used to live** in Recife.", "He **didn't use to like** coffee."],
+      re: [[`\\b(?:used|use)\\s+to\\s+(${W})\\b`, (m, t) => { const before = t.slice(Math.max(0, m.index - 14), m.index); if (/\b(be|am|is|are|was|were|been|being|get|gets|got|getting|become)\s*$|'(m|re|s)\s*$/i.test(before)) return false; if (/^use\b/i.test(m[0]) && !/\b(didn't|did|not)\s*$/i.test(before) && !/\bdid\s+\w+\s*$/i.test(before)) return false; return !/ing$/i.test(m[1]) && !/^(the|a|an|my|your|it|this|that)$/i.test(m[1]); }]] },
+    { id: "beusedto", kw: /be used to/i, t: "be / get used to + -ing", pt: "estar / ficar acostumado",
+      f: ["**be used to** + noun / verb-ing → it's normal for me", "**get used to** + noun / verb-ing → it's becoming normal"], u: "≠ used to + verb (past habit). || Acostumado com.",
+      ex: ["I**'m used to waking** up early.", "She **got used to** the cold."],
+      re: [[`\\b(?:be|am|is|are|was|were|been|being|get|gets|got|getting|'m|'re|'s)\\s+(?:not\\s+|still\\s+|never\\s+|quite\\s+)?used\\s+to\\b`]] },
+    { id: "wish", kw: /\bwish\b/i, t: "I wish…", pt: "eu queria / quem dera",
+      f: ["wish + **past simple** → now · wish + **could** → ability", "wish + **had** + participle → the past · wish + **would** → annoyance"], u: "Talking about things you'd like to be different. || Desejos e arrependimentos.",
+      ex: ["I **wish** I **had** more time.", "I **wish** I **had studied** harder."],
+      re: [[`\\b(?:wish|wishes|wished)\\b(?!\\s+(?:you|him|her|them|us|me)\\s+(?:a|an|good|luck|happy|the\\s+best|all)\\b)`]] },
+    { id: "passive", kw: /passive(?! reporting)/i, t: "The passive", pt: "voz passiva",
+      f: ["**be** + past participle (+ by …)", "is made · was built · has been sold · will be done"], u: "When the action matters more than who did it. || Quando a ação importa mais do que quem fez.",
+      ex: ["The Mona Lisa **was painted** by Leonardo.", "Coffee **is grown** in Minas Gerais."],
+      re: [[`\\b(?:am|is|are|was|were|be|been|being|isn't|aren't|wasn't|weren't)\\s+(?:not\\s+|never\\s+|often\\s+|usually\\s+|always\\s+|also\\s+|still\\s+|already\\s+|widely\\s+|first\\s+)?(${PP})\\b`, m => ppOk(m[1]) && !ADJ_ED.has(m[1].toLowerCase()) && !/^(been|had|gone|done|come|run|become|read|let|lost)$/i.test(m[1])],
+        [`\\b(?:it|that|this|what|which|he|she)'s\\s+(made|called|built|written|known|sold|made|grown|spoken|taken|given|done|told|played|used|located|produced|based|designed|named|considered)\\b`, m => !/^(done|used)$/i.test(m[1])]] },
+    { id: "reported", kw: /reported speech|reported questions/i, t: "Reported speech", pt: "discurso indireto",
+      f: ["said **(that)** + one tense back: is → was · will → would", "told **someone** to… · asked **if / whether**…"], u: "Telling what someone said. || Contar o que alguém disse.",
+      ex: ["She **said (that)** she **was** tired.", "He **asked me if** I **liked** sushi."],
+      re: [[`\\b(?:said|told|asked|explained|promised|warned|admitted|denied|claimed|replied|reminded)\\s+(?:me\\s+|him\\s+|her\\s+|us\\s+|them\\s+|[A-Z][a-z]+\\s+)?(?:that|if|whether)\\b`], [`\\b(?:said)\\s+(?:I|he|she|they|we|you|it)\\s+(?:was|were|had|would|could|'d|wasn't|weren't|didn't|couldn't|wouldn't)\\b`], [`\\b(?:told|asked|warned|reminded)\\s+(?:me|him|her|us|them|[A-Z][a-z]+)\\s+(?:not\\s+)?to\\s+[a-z]+`]] },
+    { id: "relative", kw: /relative clauses/i, t: "Relative clauses", pt: "orações relativas (que, onde, cujo)",
+      f: ["**who** people · **which** things · **that** both", "**where** places · **whose** possession"], u: "Adding information about a person or thing. With commas (, which…) = extra information. || Informação sobre alguém ou algo.",
+      ex: ["She's the actress **who** won the Oscar.", "That's the restaurant **where** we met."],
+      re: [[`\\bwhose\\b`, (m, t) => !/(^|[.!?]\s*)$/.test(t.slice(0, m.index))], [`,\\s+(?:which|who|whom|where|whose)\\b`, m => [m.index + m[0].search(/[a-z]/i), m.index + m[0].length]], [`\\b(?:people|person|man|woman|girl|boy|friend|friends|thing|things|place|one|something|someone|somebody|anyone|everyone|animal|book|film|movie|device|machine|company|app|city|country|house|restaurant|day|teacher|student|job|game|song|word|food|dish|actor|actress|singer|town|street|hotel|room|shop|woman|men|women|kids|children|guy|player|team|car|phone)\\s+(?:who|which|whose|where)\\b`, m => [m.index + m[0].search(/\s(?:who|which|whose|where)\b/) + 1, m.index + m[0].length]]] },
+    { id: "gerinf", kw: /gerunds and infinitives|change meaning/i, t: "Verb + -ing or to + verb", pt: "verbo + -ing ou to + verbo",
+      f: ["enjoy · avoid · mind · keep · finish + **-ing**", "remember / forget / stop / try + **to** or **-ing** — the meaning changes!"], u: "stop **-ing** = parar de · stop **to** = parar para · remember **to** = lembrar de fazer · remember **-ing** = lembrar de ter feito.",
+      ex: ["I **stopped drinking** soda.", "**Remember to lock** the door!"],
+      re: [[`\\b(?:enjoy|enjoys|enjoyed|enjoying|avoid|avoids|avoided|avoiding|mind|minds|keep|keeps|kept|keeping|finish|finishes|finished|stop|stops|stopped|stopping|remember|remembers|remembered|forget|forgets|forgot|regret|regrets|regretted|try|tries|tried|trying)\\s+(?:not\\s+)?(?:(${W}ing)|to\\s+[a-z]+)\\b`, m => !m[1] ? /^(stop|stops|stopped|remember|remembers|remembered|forget|forgets|forgot|try|tries|tried|regret)/i.test(m[0]) : ingOk(m[1])]] },
+    { id: "deduc", kw: /modals of deduction|might\b|modals of probability/i, t: "might, may, could, can't be", pt: "possibilidade e dedução",
+      f: ["**might / may / could** + verb → maybe", "**must be** → almost sure · **can't be** → impossible"], u: "How sure are you? || Qual a sua certeza?",
+      ex: ["It **might rain** later.", "He **can't be** at home — his car isn't there."],
+      re: [[`\\b(?:might|mightn't)\\s+(?:not\\s+)?(?!have\\b|as\\s+well\\b)(${W})\\b`, (m, t) => /^(I|we|you|he|she|they|it|the|a|an|to)$/i.test(m[1]) ? false : modal(m, t)], [`\\b(?:can't|cannot|couldn't|may|could)\\s+(?:not\\s+)?be\\b(?!\\s+able)`, (m, t) => !sentenceOf(t, m.index).trim().toLowerCase().startsWith(m[0].toLowerCase())]] },
+    { id: "oblig", kw: /have to, must|^have to/i, t: "have to / must / don't have to", pt: "obrigação",
+      f: ["**have to / must** → it's necessary", "**don't have to** → not necessary · **mustn't** → prohibited!"], u: "mustn't ≠ don't have to. || Proibido ≠ não precisa.",
+      ex: ["You **have to** wear a uniform.", "You **don't have to** pay. It's free!"],
+      re: [[`\\b(?:have to|has to|had to|having to|don't have to|doesn't have to|didn't have to|won't have to|mustn't|must not)\\b`], [`\\bmust\\s+(?!have\\b|be\\b)([a-z]+)\\b`, (m, t) => /^(I|we|you|he|she|they|it|the|a|an|to)$/i.test(m[1]) ? false : modal(m, t)]] },
+    { id: "should", kw: /^should|should \/|should, |, should/i, t: "should / shouldn't", pt: "conselho",
+      f: ["**should** + verb · **shouldn't** + verb"], u: "Giving advice and opinions. || Dar conselho: deveria / não deveria.",
+      ex: ["You **should** sleep more.", "We **shouldn't** eat so much sugar."],
+      re: [[`\\b(?:should|shouldn't)\\s+(?:not\\s+|really\\s+|always\\s+|never\\s+|definitely\\s+|probably\\s+)?(?!have\\b)([a-z]+)\\b`, (m, t) => /^(I|we|you|he|she|they|it)$/i.test(m[1]) ? false : modal(m, t)]] },
+    { id: "going", kw: /going to/i, t: "be going to", pt: "futuro com going to",
+      f: ["am / is / are **going to** + verb"], u: "Plans you already decided and predictions from what you can see. || Planos e previsões com evidência.",
+      ex: ["I**'m going to visit** my grandma on Sunday.", "Look at those clouds! It**'s going to rain**."],
+      re: [[`\\b(?:am|is|are|'m|'re|'s|was|were|isn't|aren't|wasn't|weren't)\\s+(?:not\\s+|just\\s+|really\\s+|never\\s+)?going\\s+to\\s+([a-z]+)\\b`, m => !/^(the|a|an|my|your|his|her|our|their|its|this|that|these|those|school|work|bed|church|class|town|be\b)/i.test(m[1]) || m[1].toLowerCase() === "be"]] },
+    { id: "will", kw: /^will$|^will for|will \/ going|, will|will$/i, t: "will (future)", pt: "futuro com will",
+      f: ["**will** + verb · **won't** + verb · I**'ll**"], u: "Predictions, promises, offers and decisions made now. || Previsões, promessas e decisões na hora.",
+      ex: ["I think it **will be** sunny tomorrow.", "I**'ll help** you!"],
+      re: [[`\\b(?:will|won't|'ll)\\s+(?:not\\s+|never\\s+|probably\\s+|definitely\\s+|always\\s+|still\\s+|soon\\s+|also\\s+|just\\s+)?([a-z]+)\\b`, (m, t) => !/^(I|we|you|he|she|they|it|there)$/.test(m[1]) && !/^Will\b/.test(m[0]) || /^Will\b/.test(m[0]) && /\?/.test(sentenceOf(t, m.index))]] },
+    { id: "pastcont", kw: /past continuous/i, t: "Past continuous", pt: "passado contínuo (estava fazendo)",
+      f: ["was / were + verb**-ing**"], u: "The background of a story — what was happening when something else happened. || O que estava acontecendo. · when + past simple · while + past continuous",
+      ex: ["I **was watching** TV when the lights went out.", "**While** we **were driving**, it started to rain."],
+      re: [[`\\b(?:was|were|wasn't|weren't)\\s+(?:not\\s+|just\\s+|still\\s+|always\\s+|really\\s+)?(${W}ing)\\b`, (m, t) => ingOk(m[1]) && !(/^going$/i.test(m[1]) && /^\s*to\s+(?!the\b|a\b|an\b|my\b|your\b|school\b|work\b|bed\b)[a-z]+/i.test(t.slice(m.index + m[0].length)))]] },
+    { id: "pcont", kw: /present continuous/i, t: "Present continuous", pt: "presente contínuo (estou fazendo)",
+      f: ["am / is / are + verb**-ing**"], u: "Now, around now, and fixed future arrangements. || Agora · por esses dias · compromissos marcados.",
+      ex: ["I**'m studying** right now.", "We**'re meeting** Ana on Friday."],
+      re: [[`\\b(?:am|is|are|'m|'re|'s|isn't|aren't)\\s+(?:not\\s+|just\\s+|still\\s+|always\\s+|really\\s+|now\\s+|currently\\s+|also\\s+|already\\s+)?(${W}ing)\\b`, (m, t) => { if (!ingOk(m[1])) return false; if (/^going$/i.test(m[1]) && /^\s*to\s+(?!the\b|a\b|an\b|my\b|your\b|school\b|work\b|bed\b)[a-z]+/i.test(t.slice(m.index + m[0].length))) return false; const before = t.slice(Math.max(0, m.index - 24), m.index).split(/\s+/).slice(-2).join(" "); return !ING_ISH.test((before.trim().match(/[A-Za-z]+$/) || [""])[0]); }]] },
+    { id: "compar", kw: /comparatives(?! .*advanced)|^comparatives/i, t: "Comparatives", pt: "comparativos",
+      f: ["short words: big → bigg**er than**", "long words: **more** expensive **than**", "good → **better** · bad → **worse**"], u: "Comparing two things. || Comparar duas coisas.",
+      ex: ["Jupiter is **bigger than** Earth.", "This phone is **more expensive than** mine."],
+      re: [[`\\b(?:(${W}er)|more\\s+[a-z]+|less\\s+[a-z]+|better|worse|further|farther)\\s+than\\b`, m => !m[1] || !/^(rather|other|whether|either|neither|never|ever|over|after|under|together|water|number|order|matter|letter|paper|summer|winter|corner|answer|member|father|mother|brother|sister|daughter|teacher|player|power|flower|weather|computer|later)$/i.test(m[1]) || /^later$/i.test(m[1])]] },
+    { id: "superl", kw: /superlatives/i, t: "Superlatives", pt: "superlativos",
+      f: ["**the** + adjective**-est**", "**the most** + long adjective", "**the best · the worst**"], u: "Number one in a group. || O mais… de todos.",
+      ex: ["It's **the biggest** planet.", "She's **the most famous** singer in Brazil."],
+      re: [[`\\bthe\\s+(?:(?:most|least)\\s+[a-z]+|best|worst|(${W}est))\\b`, m => !m[1] || !/^(rest|west|test|guest|chest|forest|interest|nest|contest|request|protest|honest|quest|harvest|conquest|arrest|crest|pest|vest|zest|priest|modest|manifest|suggest|everest|southwest|northwest|midwest|digest|invest|unrest|breast|east|beast|feast|least|coast|toast|post|host|ghost|most|cost|lost)$/i.test(m[1])]] }
+  ];
+
+  /* ---------- which topics can be linked in a lesson ---------- */
+  const isCore = id => typeof NODE !== "undefined" && NODE[id] && !NODE[id].review && !NODE[id].extra && !NODE[id].special;
+  let INTRO = null;
+  function intros() {
+    if (INTRO || typeof ORDER === "undefined") return INTRO || {};
+    INTRO = {};
+    GR.forEach(g => { const id = ORDER.find(i => isCore(i) && g.kw.test(NODE[i].grammar || "")); if (id) INTRO[g.id] = id; });
+    return INTRO;
+  }
+  function topicsFor(lessonId) {
+    if (typeof ORDER === "undefined" || !NODE[lessonId]) return [];
+    const at = ORDER.indexOf(lessonId); if (at < 0) return [];
+    const own = String(NODE[lessonId].grammar || ""), I = intros();
+    return GR.filter(g => I[g.id] && ORDER.indexOf(I[g.id]) < at && !g.kw.test(own));
+  }
+  const CRX = {};
+  function compile(g) { return CRX[g.id] || (CRX[g.id] = g.re.map(([s, ck]) => [R(s), ck])); }
+  /* all non-overlapping matches in a text: earlier topics in GR win */
+  function findIn(text, topics) {
+    const t = text.replace(/[’‘]/g, "'"), out = [];
+    topics.forEach((g, pri) => compile(g).forEach(([re, ck]) => {
+      re.lastIndex = 0; let m;
+      while ((m = re.exec(t))) {
+        if (!m[0]) { re.lastIndex++; continue; }
+        let r = ck ? ck(m, t) : true; if (!r) continue;
+        let [a, b] = Array.isArray(r) ? r : [m.index, m.index + m[0].length];
+        while (a < b && /\s/.test(t[a])) a++; while (b > a && /[\s,]/.test(t[b - 1])) b--;
+        if (b > a) out.push({ a, b, g, pri });
+      }
+    }));
+    out.sort((x, y) => x.pri - y.pri || x.a - y.a);
+    const keep = [], hold = [], used = new Set(); /* once per topic in a sentence block, but a repeated topic still holds its words */
+    out.forEach(o => { if (keep.concat(hold).some(k => o.a < k.b && k.a < o.b)) return; if (used.has(o.g.id)) { hold.push(o); return; } keep.push(o); used.add(o.g.id); });
+    return keep.sort((x, y) => x.a - y.a);
+  }
+
+  /* ---------- wrap matches in the DOM ---------- */
+  const INLINE = /^(SPAN|B|I|EM|STRONG|MARK|A|SMALL|U|S|SUB|SUP|CODE|Q|LABEL)$/;
+  const SKIP = "button,input,textarea,select,option,script,style,[contenteditable],.gref,.tiles,.opt,.bank,.dkcard,.dkans,.lab,.chips,.pt,.pt0,.ptq,.wrong,.blank,.gapline,.sgl,.sglines,.lvq,[data-nogref],.gcard,.pv,svg,.kind,.qn,.vxts,.ts,.foot,.part,.cbar,.wm,.ch,.xbad,.xchips,.hint,.trap .w,.bad,.plmsg,.tiny,.vnote,.note,.eyebrow,.hint,.namechip,.snav,.top";
+  function blockOf(n) { let e = n.parentElement; while (e && INLINE.test(e.tagName) && e.parentElement) e = e.parentElement; return e; }
+  function apply(root, lessonId) {
+    if (!root) return 0;
+    const topics = topicsFor(lessonId); if (!topics.length) return 0;
+    const groups = new Map(); const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    let n; while ((n = w.nextNode())) {
+      if (!n.nodeValue || !/[A-Za-z]{2}/.test(n.nodeValue)) continue;
+      const p = n.parentElement; if (!p || p.closest(SKIP)) continue;
+      const b = blockOf(n); if (!b) continue; if (!groups.has(b)) groups.set(b, []); groups.get(b).push(n);
+    }
+    let count = 0;
+    groups.forEach(nodes => {
+      let text = "", spans = []; nodes.forEach(t => { spans.push([t, text.length]); text += t.nodeValue; });
+      const ms = findIn(text, topics); if (!ms.length) return;
+      for (let k = ms.length - 1; k >= 0; k--) { // from the end, so earlier offsets stay valid
+        const { a, b, g } = ms[k];
+        for (let j = spans.length - 1; j >= 0; j--) {
+          const [t, off] = spans[j], len = t.nodeValue.length, s = Math.max(a, off), e = Math.min(b, off + len);
+          if (s >= e) continue;
+          const mid = t.splitText(s - off); mid.splitText(e - s);
+          const sp = document.createElement("span"); sp.className = "gref"; sp.dataset.g = g.id; sp.title = "Grammar: " + g.t;
+          mid.parentNode.replaceChild(sp, mid); sp.appendChild(mid);
+        }
+        count++;
+      }
+    });
+    return count;
+  }
+
+  /* ---------- the card ---------- */
+  const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const md = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+  const two = s => { const p = String(s).split(" || "); return `${md(p[0])}${p[1] ? `<span class="gpt">${esc(p[1])}</span>` : ""}`; };
+  function cardHTML(id) {
+    const g = GR.find(x => x.id === id); if (!g) return "";
+    const iid = intros()[id], n = iid && NODE[iid];
+    return `<div class="gcard" role="dialog" aria-label="${esc(g.t)}"><button class="gx" data-gclose aria-label="Close">✕</button>
+      <div class="gtop"><span class="gtag">🧩 Grammar</span>${n ? `<span class="gwhere">📍 ${esc(n.lv)} · ${esc(n.title)}</span>` : ""}</div>
+      <h4>${esc(g.t)}</h4><div class="gsub">${esc(g.pt)}</div>
+      <div class="gform">${g.f.map(l => `<div>${md(l)}</div>`).join("")}</div>
+      <div class="guse">${two(g.u)}</div>
+      <ul class="gex">${g.ex.map(e => `<li>${md(e)}</li>`).join("")}</ul></div>`;
+  }
+  function close() { const c = document.getElementById("gpop"); if (c) c.remove(); document.querySelectorAll(".gref.on").forEach(e => e.classList.remove("on")); }
+  function open(el) {
+    close(); const id = el.dataset.g; el.classList.add("on");
+    const stage = el.closest("#stage"), host = stage ? (stage.querySelector("#ov") || stage) : document.body;
+    const d = document.createElement("div"); d.id = "gpop"; d.className = "gpop" + (stage ? " instage" : ""); d.innerHTML = cardHTML(id); host.appendChild(d);
+    const card = d.firstElementChild, r = el.getBoundingClientRect();
+    if (stage) { // teacher: place it on the 1280×720 slide, near the words (students see it on Meet)
+      const sr = stage.getBoundingClientRect(), k = sr.width / 1280 || 1, x = (r.left - sr.left) / k, y = (r.bottom - sr.top) / k, top = (r.top - sr.top) / k;
+      const cw = card.offsetWidth, ch = card.offsetHeight;
+      let L = Math.min(Math.max(20, x - 40), 1280 - cw - 20), T = y + 12; if (T + ch > 700) T = Math.max(20, top - ch - 12);
+      card.style.left = L + "px"; card.style.top = T + "px";
+    } else if (innerWidth > 640) {
+      const cw = card.offsetWidth, ch = card.offsetHeight;
+      let L = Math.min(Math.max(12, r.left - 20), innerWidth - cw - 12), T = r.bottom + 10; if (T + ch > innerHeight - 10) T = Math.max(10, r.top - ch - 10);
+      card.style.left = L + "px"; card.style.top = T + "px";
+    } else d.classList.add("gsheet");
+    try { card.animate([{ opacity: 0, transform: "translateY(8px) scale(.97)" }, { opacity: 1, transform: "none" }], { duration: 180, easing: "ease-out" }); } catch (e) { }
+  }
+  document.addEventListener("click", e => {
+    const t = e.target, x = t.closest && t.closest(".gref");
+    if (x) { e.preventDefault(); e.stopImmediatePropagation(); if (x.classList.contains("on")) close(); else open(x); return; }
+    if (t.closest && t.closest("[data-gclose]")) { e.stopPropagation(); close(); return; }
+    if (document.getElementById("gpop") && !(t.closest && t.closest(".gcard"))) close();
+  }, true);
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && document.getElementById("gpop")) { close(); e.stopPropagation(); } }, true);
+  window.GREF = { GR, apply, findIn, topicsFor, intros, close, cardHTML };
+})();
+
+/* Start it — video questions play inside the app (student app AND teacher hub).
+   A time button (▶ 0:23) plays the video from just before that moment and pauses a few seconds
+   after it — the answer is said there. Click it again to hear it again. Answering the question
+   (choosing an option, revealing the answer) also pauses the video.
+   Needs a web address (GitHub Pages): YouTube doesn't play in the single file or in the Claude preview. */
+(function () {
+  const ONLINE = /^https?:$/.test(location.protocol) && !/claude|anthropic/i.test(location.hostname);
+  const LEAD = 2, TAIL = 8; // seconds before the time / after it
+  let apiP = null;
+  function api() {
+    if (window.YT && YT.Player) return Promise.resolve();
+    if (!apiP) apiP = new Promise((res, rej) => {
+      const prev = window.onYouTubeIframeAPIReady; window.onYouTubeIframeAPIReady = () => { try { prev && prev(); } catch (e) { } res(); };
+      if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) { const s = document.createElement("script"); s.src = "https://www.youtube.com/iframe_api"; s.onerror = () => { apiP = null; rej(new Error("yt")); }; document.head.appendChild(s); }
+      setTimeout(() => { if (!(window.YT && YT.Player)) { apiP = null; rej(new Error("timeout")); } }, 15000);
+    });
+    return apiP;
+  }
+  const P = new WeakMap(); // box → { p, ready: Promise, stop, tick, btn }
+  function ensure(box, autoplayFrom) {
+    let o = P.get(box); if (o && o.p && box.contains(o.el)) return o.ready;
+    const id = box.dataset.id, s = +box.dataset.s || 0, e = +box.dataset.e || 0;
+    box.classList.add("vxlive"); box.innerHTML = `<div class="vxp"></div>`; const el = box.firstChild;
+    o = { el }; P.set(box, o);
+    o.ready = api().then(() => new Promise(res => {
+      o.p = new YT.Player(el, { videoId: id, width: "100%", height: "100%",
+        playerVars: { rel: 0, modestbranding: 1, playsinline: 1, cc_load_policy: 1, cc_lang_pref: "en", iv_load_policy: 3, start: Math.floor(autoplayFrom != null ? autoplayFrom : s), ...(e ? { end: e } : {}), autoplay: autoplayFrom != null ? 1 : 0 },
+        events: { onReady: () => res(o.p), onStateChange: ev => { if (ev.data === 1 && o.stop == null) mark(box, null); } } });
+    }));
+    return o.ready;
+  }
+  function mark(box, btn) {
+    document.querySelectorAll(".vxt-on").forEach(b => { if (!btn || b !== btn) b.classList.remove("vxt-on"); });
+    if (btn) btn.classList.add("vxt-on");
+  }
+  function stopWatch(o) { if (o && o.tick) { clearInterval(o.tick); o.tick = 0; } if (o) o.stop = null; }
+  function playAt(box, t, btn) {
+    const s = +box.dataset.s || 0, e = +box.dataset.e || 0, from = Math.max(s, t - LEAD), to = e ? Math.min(e, t + TAIL) : t + TAIL;
+    const fresh = !(P.get(box) && P.get(box).p);
+    mark(box, btn); if (btn) btn.classList.add("vxt-load");
+    ensure(box, from).then(p => {
+      const o = P.get(box); stopWatch(o);
+      try { if (!fresh || Math.abs((p.getCurrentTime() || 0) - from) > 1.5) p.seekTo(from, true); p.playVideo(); } catch (er) { }
+      o.stop = to; o.btn = btn;
+      o.tick = setInterval(() => { let c = 0; try { c = p.getCurrentTime(); } catch (er) { } if (c >= o.stop) { try { p.pauseVideo(); } catch (er) { } stopWatch(o); if (btn) { btn.classList.remove("vxt-on"); btn.classList.add("vxt-done"); } } }, 200);
+      if (btn) btn.classList.remove("vxt-load");
+    }).catch(() => { if (btn) btn.classList.remove("vxt-load"); window.open(`https://www.youtube.com/watch?v=${box.dataset.id}&t=${Math.round(from)}s`, "_blank", "noopener"); });
+  }
+  function pause(box) { const o = box && P.get(box); if (!o || !o.p) return; stopWatch(o); try { o.p.pauseVideo(); } catch (e) { } mark(box, null); }
+  const boxFor = el => { const scope = el.closest(".vcard, .sl, #slide, .card") || document; return scope.querySelector("[data-vxbox]"); };
+  document.addEventListener("click", ev => {
+    const t = ev.target; if (!t.closest) return;
+    const ts = t.closest("[data-vxt]");
+    if (ts) { const box = boxFor(ts); if (!box || !ONLINE) return; ev.preventDefault(); ev.stopPropagation(); playAt(box, +ts.dataset.vxt, ts); return; }
+    const go = t.closest("[data-vxgo]");
+    if (go) { const box = go.closest("[data-vxbox]"); if (!box || !ONLINE) return; ev.preventDefault(); ev.stopPropagation(); const s = +box.dataset.s || 0; ensure(box, s).then(p => { try { p.playVideo(); } catch (e) { } }); return; }
+    /* answering pauses the video: student (options, true/false) and teacher (revealing a question) */
+    const ans = t.closest(".vcard .opt, .vcard [data-tfa], .vxq");
+    if (ans && !t.closest("[data-vxt]")) { const box = boxFor(ans); if (box) setTimeout(() => pause(box), 0); }
+  }, true);
+  document.addEventListener("toggle", ev => { const d = ev.target; if (d.tagName === "DETAILS" && d.open && d.closest(".vcard")) pause(boxFor(d)); }, true);
+  /* teacher hub: mount the player on the slide as soon as it is shown (no autoplay) */
+  function mountAll(root) { if (!ONLINE || !root) return; root.querySelectorAll("[data-vxbox][data-auto]").forEach(b => ensure(b)); }
+  window.VXP = { playAt, pause, mountAll, ONLINE };
+})();
+
 /* Start it — lesson hub engine v2 */
 const TEACHER_PHONE = ""; /* teacher's WhatsApp with country code, digits only, e.g. "5511987654321". Empty = students pick the contact. */
 const TEACHER_NAME = "";  /* e.g. "Teacher Bruno". Empty = "your teacher". */
@@ -14867,13 +15336,39 @@ const mmss = t => `${Math.floor(t / 60)}:${String(Math.round(t) % 60).padStart(2
 const ytAt = (id, t) => `https://www.youtube.com/watch?v=${id}${t ? `&t=${Math.round(t)}s` : ""}`;
 function vxCard(o, key) {
   const st = o.s || 0, en = o.e || 0, dur = o.d || (en ? en - st : 0);
-  const vbox = HOSTED ? `<div class="vbox"><img src="https://i.ytimg.com/vi/${o.id}/hqdefault.jpg" alt=""><button class="ov" data-embed-go="${o.id}" data-embed-s="${st}" data-embed-e="${en}" style="background:none;border:0;color:#fff"><span class="play"><svg viewBox="0 0 24 24">${ICONS.play}</svg></span><span class="vt">${esc(o.t)}</span></button></div>`
+  const vbox = HOSTED ? `<div class="vbox" data-vxbox data-id="${o.id}" data-s="${st}" data-e="${en}"><img src="https://i.ytimg.com/vi/${o.id}/hqdefault.jpg" alt=""><button class="ov" data-vxgo style="background:none;border:0;color:#fff"><span class="play"><svg viewBox="0 0 24 24">${ICONS.play}</svg></span><span class="vt">${esc(o.t)}</span></button></div>`
     : `<a class="vbox" href="${ytAt(o.id, st)}" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/${o.id}/hqdefault.jpg" alt=""><span class="ov"><span class="play"><svg viewBox="0 0 24 24">${ICONS.play}</svg></span><span class="vt">${esc(o.t)}</span></span></a>`;
   const mc = typeof VMC !== "undefined" && VMC[key];
   const qs = mc ? mc.map(([qi, opts, qt]) => { const q = o.q[qi]; return q ? { t: "mc", q: qt || q[1], o: opts, a: 0, ts: q[0], vid: o.id } : null; }).filter(Boolean) : [];
   return `<div class="card rv vcard">${vbox}<p class="vnote">${ic("info")} ${bi("Turn on English subtitles (CC) if you need them.", "Ative as legendas em inglês (CC) se precisar.")}${dur ? ` · ${mmss(dur)}` : ""}</p>
     ${qs.length ? `<h3 class="vqh">${ic("check")} ${bi("Watch and choose", "Assista e escolha")}</h3>${qs.map((e, j) => exItem(e, j + 1)).join("")}`
-      : `<ol class="vqs">${o.q.slice(0, 3).map(q => `<li><a class="ts" href="${ytAt(o.id, q[0])}" target="_blank" rel="noopener">▶ ${mmss(q[0])}</a> <span>${gl(q[1])}</span>${q[2] ? `<details><summary>${bi("Answer", "Resposta")}</summary>${esc(q[2])}</details>` : ""}</li>`).join("")}</ol>`}</div>`;
+      : `<ol class="vqs">${o.q.slice(0, 3).map(q => `<li><a class="ts" href="${ytAt(o.id, q[0])}" target="_blank" rel="noopener" data-vxt="${q[0]}">▶ ${mmss(q[0])}</a> <span>${gl(q[1])}</span>${q[2] ? `<details><summary>${bi("Answer", "Resposta")}</summary>${esc(q[2])}</details>` : ""}</li>`).join("")}</ol>`}</div>`;
+}
+/* ---------- Listen & write: at least 4 sentences (the lesson's own + clean sentences from its exercises) ---------- */
+function lisOk(t, lv) {
+  if (!t || /[\/()*_\[\]{}|…<>=→$%&#@:;"“”]|\.\.\.|\|\|/.test(t)) return false;
+  if (/[?!] [a-z]/.test(t) || /\d\s*[–-]\s*\d/.test(t) || /\b[A-Z]{2,}\b/.test(t) || /^[A-Za-z ]{2,18}:\s/.test(t)) return false;
+  if (!/^[A-Z0-9¿¡]/.test(t) || !/[.!?]$/.test(t)) return false;
+  const w = t.split(/\s+/).length, lo = lv <= "A1" ? 3 : 4, hi = lv === "A0" ? 8 : lv === "A1" ? 11 : lv === "A2" ? 13 : 18;
+  if (w < lo || w > hi) return false;
+  return !/[ãõçáéíóúâêô]/i.test(t.replace(/São Paulo|Brasília|Belém|Ipanema|Pão de Açúcar|açaí|Ceará|Paraná|Goiânia|Maranhão|feijão/gi, ""));
+}
+function listenSet(cs, seed, lv, min = 4, max = 5) {
+  const out = [], seen = new Set(), en = x => String(x || "").split(" || ")[0].replace(/\*\*/g, "").replace(/\s+/g, " ").trim();
+  const push = (t, e) => { const k = t.toLowerCase().replace(/[’]/g, "'"); if (out.length >= max || seen.has(k)) return; seen.add(k); out.push(e || LIS(t)); };
+  cs.forEach(c => (c.ex || []).filter(e => e.t === "listen").forEach(e => push(en(e.q), e)));
+  if (out.length >= min) return out.slice(0, max);
+  const pools = [[], [], []];
+  cs.forEach(c => {
+    const ex = c.ex || [];
+    ex.filter(e => e.t === "mc").forEach(e => { const q = en(e.q); if ((q.match(/_{3,}/g) || []).length === 1 && !/→\s*$/.test(q)) pools[0].push(q.replace(/_{3,}/, en(e.o[e.a]))); });
+    ex.filter(e => e.t === "fill").forEach(e => { const q = en(e.q); if ((q.match(/_{3,}/g) || []).length === 1) pools[0].push(q.replace(/_{3,}/, e.a[0])); });
+    ex.filter(e => e.t === "order" || e.t === "fix").forEach(e => pools[1].push(en(e.a[0])));
+    (c.lesson || []).forEach(b => { (b.say || []).forEach(l => pools[1].push(en(l))); if (b.trap) pools[2].push(en(b.trap.right)); });
+    ex.filter(e => e.t === "tr").forEach(e => pools[2].push(en(e.a[0])));
+  });
+  pools.forEach((p, i) => sshuffle(p, seed + "lis" + i).forEach(t => { t = t.replace(/\s+([.,!?])/g, "$1"); if (out.length < max && lisOk(t, lv)) push(t); }));
+  return out;
 }
 /* music lessons: the song itself (we link to a YouTube search, never to lyrics) */
 function songCard(sg) {
@@ -14925,7 +15420,7 @@ function viewLesson(id) {
   add("words", wordGame(c.vocab || []));
   const o = typeof VX !== "undefined" && VX[n.key];
   if (o) add("watch", vxCard(o, n.key)); else if (c.song) add("song", songCard(c.song));
-  const lis = ex.filter(e => e.t === "listen").slice(0, 2);
+  const lis = listenSet([c], n.key, n.lv);
   add("listen", lis.length ? `<div class="card rv">${lis.map((e, j) => exItem(e, j + 1)).join("")}</div>` : "");
   add("how", (c.lesson || []).length ? `<div class="card rv">${lessonBlocks(c.lesson)}</div>` : "");
   const prac = pickPractice(ex, 6);
@@ -15011,8 +15506,8 @@ function viewReview(n) {
   add("words", wordGame(sshuffle(voc, n.key).slice(0, 8)));
   const mix = []; cs.forEach(c => { const ex = c.ex || []; const a = ex.find(e => e.t === "mc"); const b = ex.find(e => e.t === "order" || e.t === "fix") || ex.find(e => e.t === "fill"); if (a) mix.push(a); if (b) mix.push(b); });
   add("practice", mix.length ? `<div class="card rv">${mix.slice(0, 8).map((e, j) => exItem(e, j + 1)).join("")}</div>` : "");
-  const lis = []; cs.forEach(c => { const l = (c.ex || []).find(e => e.t === "listen"); if (l) lis.push(l); });
-  add("listen", lis.length ? `<div class="card rv">${lis.slice(0, 2).map((e, j) => exItem(e, j + 1)).join("")}</div>` : "");
+  const lis = listenSet(cs, n.key, n.lv);
+  add("listen", lis.length ? `<div class="card rv">${lis.map((e, j) => exItem(e, j + 1)).join("")}</div>` : "");
   add("read", x.r ? readingBlock(x.r, n.key) : "");
   const trs = []; cs.forEach(c => { const t = (c.ex || []).find(e => e.t === "tr"); if (t) trs.push(t); });
   add("translate", trs.length ? `<div class="card rv">${trs.slice(0, 3).map((e, j) => exItem(e, j + 1)).join("")}</div>` : "");
@@ -15039,7 +15534,7 @@ function lessonBlocks(blocks) {
 const KIND = { recall: ["In English", "Em inglês"], pair: ["Match", "Ligue"], mc: ["Choose", "Escolha"], fill: ["Complete", "Complete"], order: ["Put in order", "Monte a frase"], fix: ["Fix the mistake", "Corrija o erro"], tr: ["Translate", "Traduza"], listen: ["Listen & write", "Ouça e escreva"] };
 function exItem(e, num) {
   const i = ITEMS.length; ITEMS.push(e); SC.total++; const k = `${NODE[CUR].key}-e${i}`;
-  const head = (q) => `<div class="qh"><span class="qn">${num}</span><div style="flex:1"><span class="kind">${e.ts != null ? `<a class="ts" href="${ytAt(e.vid, e.ts)}" target="_blank" rel="noopener">▶ ${mmss(e.ts)}</a>` : bi(KIND[e.t][0], KIND[e.t][1])}</span><div class="qt">${q}</div></div></div>`;
+  const head = (q) => `<div class="qh"><span class="qn">${num}</span><div style="flex:1"><span class="kind">${e.ts != null ? `<a class="ts" href="${ytAt(e.vid, e.ts)}" target="_blank" rel="noopener" data-vxt="${e.ts}">▶ ${mmss(e.ts)}</a>` : bi(KIND[e.t][0], KIND[e.t][1])}</span><div class="qt">${q}</div></div></div>`;
   let body = "";
   if (e.t === "mc") body = head(gl(e.q)) + `<div class="opts">${shuffle(e.o.map((o, j) => [o, j])).map(([o, j]) => `<button class="opt" data-mc="${i}" data-j="${j}">${esc(o)}</button>`).join("")}</div>`;
   else if (e.t === "fill") {
@@ -15192,7 +15687,7 @@ function render() {
   if (synth) try { synth.cancel(); } catch (e) { }
   const app = document.getElementById("app");
   if (h === "mistakes" && typeof viewMistakes === "function") { app.innerHTML = viewMistakes() + overlays(); document.title = "My mistakes · Start it"; }
-  else if (NODE[h] && !NODE[h].virtual) { app.innerHTML = viewLesson(h) + overlays(); document.title = `${NODE[h].title} · Start it`; S.last = h; S.lv = NODE[h].lv; save(); spy(); if (typeof afterLesson === "function") afterLesson(h); updScore(false); }
+  else if (NODE[h] && !NODE[h].virtual) { app.innerHTML = viewLesson(h) + overlays(); document.title = `${NODE[h].title} · Start it`; if (window.GREF) try { GREF.apply(app, h); } catch (e) { } S.last = h; S.lv = NODE[h].lv; save(); spy(); if (typeof afterLesson === "function") afterLesson(h); updScore(false); }
   else { const lv = LVINFO[h] ? h : (S.lv || "A0"); S.lv = lv; save(); app.innerHTML = viewHub(lv) + overlays(); document.title = "Start it · Lessons"; }
   syncAvatars(); if (!(typeof RESUME !== "undefined" && RESUME.go)) window.scrollTo(0, 0); reveal(); if (typeof resumeScroll === "function") resumeScroll();
 }
@@ -15366,6 +15861,7 @@ function obRender() {
   const app = document.getElementById("app"); const h = location.hash.replace(/^#/, "");
   if (PT) { app.innerHTML = viewPlacement() + overlays(); window.scrollTo(0, 0); return true; }
   if (!S.onboard && Object.keys(S.done || {}).length) { S.onboard = true; S.tourHub = true; save(); }
+  if (!S.onboard && S.obTut !== "done" && !h && typeof viewTut === "function") { CUR = null; app.innerHTML = viewTut() + overlays(); document.title = "Start it · Bem-vindo!"; window.scrollTo(0, 0); syncAvatars(); return true; }
   if (h === "choose" || (!S.onboard && !h)) { CUR = null; app.innerHTML = viewWelcome(h === "choose") + overlays(); document.title = "Start it · Bem-vindo!"; window.scrollTo(0, 0); syncAvatars(); return true; }
   return false;
 }
@@ -15374,7 +15870,7 @@ function viewWelcome(choose) {
   const cards = LV_ORDER.map(lv => `<button class="lvpick L-${lv}" data-oblv="${lv}"><span class="em">${LVPT[lv].emoji}</span><span class="tx"><b>${esc(LVPT[lv].name)} <i class="tag grad">${lv}</i></b><small>${esc(LVPT[lv].forr)}</small><span class="you">Você vai: ${esc(LVPT[lv].you)}.</span></span>${ic("right")}</button>`).join("");
   return `<main class="obwrap">
     <section class="obcard rv in">
-      <div class="obhead">${WORDMARK(false)}${AV ? `<span class="obav">${avImg({ src: AV, cur: false, nobolt: true, fx: { aura: "none", metal: "none", bolt: "none" }, hs: 1 })}</span>` : ""}</div>
+      <div class="obhead">${WORDMARK(false)}${AV ? `<span class="obav">${avImg({ nobolt: true })}</span>` : ""}</div>
       ${choose ? `<h1>Escolha o seu nível</h1><p class="lead">Não sabe? Tudo bem — <a href="#" data-obtest>faça o teste de nível</a> (5 minutos).</p><div class="lvpicks">${cards}</div>${S.onboard ? "" : `<p class="tiny"><a href="#" data-obback>${ic("left")} Voltar</a></p>`}`
       : `<h1>Bem-vindo ao <b>Start it</b>! 👋</h1><p class="lead">Your English, one lesson at a time. Vamos descobrir por onde você deve começar.</p>
       <label class="obname"><span>Como você se chama? <small>(What's your name?)</small></span><input id="obnm" class="inp" maxlength="40" placeholder="Seu nome" value="${esc(S.name)}" autocomplete="given-name"><small class="obpriv">Seu professor vê seu nome e os resultados das lições. <i>(Your teacher sees your name and lesson results.)</i></small></label>
@@ -15423,7 +15919,7 @@ function viewResult() {
   const lv = PT.result; const L = LVPT[lv];
   const bars = LV_ORDER.map(k => { const v = PT.ok[k]; return `<div class="rb ${k === lv ? "on" : ""}"><span>${LVPT[k].emoji} ${esc(LVPT[k].name)}</span><i><b style="width:${v === undefined ? 0 : v / 4 * 100}%"></b></i><small>${v === undefined ? "—" : v + "/4"}</small></div>`; }).join("");
   return `<main class="obwrap"><section class="obcard res L-${lv}">
-    ${AV ? `<span class="obav big">${avImg({ src: AV, cur: false, nobolt: true, fx: { aura: "none", metal: "none", bolt: "none" }, hs: 1 })}</span>` : ""}
+    ${AV ? `<span class="obav big">${avImg({ nobolt: true })}</span>` : ""}
     <span class="eyebrow">Resultado do teste</span>
     <h1>Seu nível: <span class="em2">${L.emoji}</span><b>${esc(L.name)}</b> <i class="tag grad">${lv}</i></h1>
     <p class="lead">${esc(L.forr)}. Aqui você vai aprender a ${esc(L.you)}.</p>
@@ -15566,6 +16062,102 @@ window.addEventListener("hashchange", () => { setTimeout(() => { const h = locat
 try { if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol) && !/claude|anthropic/i.test(location.hostname)) navigator.serviceWorker.register("sw.js").catch(() => { }); } catch (e) { }
 render();
 setTimeout(() => { const h = location.hash.replace("#", ""); if (S.onboard && !S.tourHub && !TUT && (!h || LVINFO[h])) hubTour(); }, 900);
+
+/* Start it — first-time tutorial (before the level test):
+   1) choose your character  2) a first question → 3 stars  3) spend them: unlock the first aura (animated).
+   Shows students that stars from lessons unlock new things for their character. Runs once (S.obTut = "done"). */
+const OBT = { busy: false };
+const OBT_Q = { q: "Como se diz “Olá” em inglês?", en: "How do you say “Olá” in English?", o: ["Hello", "Goodbye", "Thank you", "Please"], a: 0, hint: "Dica: é o que a gente fala quando encontra alguém. 👋" };
+const OBT_AURA = "sky", OBT_COST = () => costOf("aura", OBT_AURA);
+function tutStep() { const s = +S.obTut || 0; return s; }
+function tutDots(i) { return `<div class="tutdots">${[0, 1, 2].map(k => `<i class="${k < i ? "ok" : k === i ? "on" : ""}"></i>`).join("")}</div>`; }
+function tutStage(extra, cls) { return `<div class="tutstage ${cls || ""}" id="tutstage"><span class="tring" aria-hidden="true"></span><span class="tutfloat"><span class="tiltw">${avImg({ nobolt: true, cls: "tutbig" })}</span></span><span class="tutshadow" aria-hidden="true"></span>${extra || ""}</div>`; }
+function viewTut() {
+  const st = tutStep(), g = guide();
+  const nm = x => x.id === "teacher" ? (TEACHER_NAME || "Teacher") : x.name;
+  let body = "";
+  if (st === 0) body = `${tutDots(0)}<span class="eyebrow">Passo 1 de 3</span>
+    <h1>Escolha o seu personagem</h1><p class="lead">Ele vai estudar com você e ganhar poderes a cada lição. <small>Choose your character!</small></p>
+    ${tutStage(`<span class="tutname">${esc(nm(g))}</span>`)}
+    <div class="tutavs" role="listbox" aria-label="Characters">${GUIDE_LIST.map(x => `<button class="tutav ${x.id === g.id ? "on" : ""}" data-tutav="${x.id}" role="option" aria-selected="${x.id === g.id}" style="--g1:${x.color || "#2F6BDB"};--g2:${x.c2 || "#7FA6FF"}" title="${esc(nm(x))}"><span class="pic" style="--hs:${x.hs || 1}"><img src="${x.src}" alt="${esc(nm(x))}" loading="lazy"></span></button>`).join("")}</div>
+    <button class="btn gold tutgo" data-tutnext>É esse! ${ic("right")}</button>`;
+  if (st === 1) body = `${tutDots(1)}<div class="tuttop"><span class="eyebrow">Passo 2 de 3</span><span class="tutstars" id="tutstars">${STAR(true)} <b>${wallet()}</b></span></div>
+    <h1>Sua primeira pergunta!</h1><p class="lead">Acerte e ganhe suas primeiras estrelas. ⭐</p>
+    ${tutStage(`<span class="tutbub">Answer me! 😄</span>`, "sm")}
+    <div class="tutq"><b>${esc(OBT_Q.q)}</b><small>${esc(OBT_Q.en)}</small>
+      <div class="tutopts">${sshuffle(OBT_Q.o.map((o, i) => [o, i]), S.name + "obq").map(([o, i]) => `<button class="opt" data-tuta="${i}">${esc(o)}</button>`).join("")}</div>
+      <div class="tutfb" id="tutfb" aria-live="polite"></div></div>
+    <button class="btn gold tutgo" data-tutnext ${S.obStars ? "" : "hidden"}>Próximo ${ic("right")}</button>`;
+  if (st === 2) {
+    const done = S.fx.aura === OBT_AURA && isOpen("aura", OBT_AURA);
+    const next = [["aura", "mint"], ["bolt", "spark"], ["metal", "gold"]].map(([k, id]) => { const it = COSM[k].find(x => x[0] === id); const f = Object.assign({ aura: "none", metal: "none", bolt: "none" }, { [k]: id }); return `<div class="tutnx"><span class="stage">${avImg({ fx: f, cur: false, color: it[3] || "", src: avSrc(), cls: "def", nobolt: k !== "bolt" })}</span><b>${esc(it[1])}</b><span class="lk">${ic("lock")} ${STAR(true)} ${it[2]}</span></div>`; }).join("");
+    body = `${tutDots(2)}<div class="tuttop"><span class="eyebrow">Passo 3 de 3</span><span class="tutstars" id="tutstars">${STAR(true)} <b>${wallet()}</b></span></div>
+    <h1 id="tuth">${done ? "Aura liberada! 🎉" : "Libere sua primeira aura!"}</h1>
+    <p class="lead" id="tutlead">${done ? "Seu personagem agora brilha. Cada lição dá estrelas — e com elas você libera coisas novas." : "Estrelas compram efeitos para o seu personagem. Use as 3 que você ganhou!"}</p>
+    ${tutStage(done ? "" : `<span class="tutlock" id="tutlock">${ic("lock")} Aura Sky · ${STAR(true)} ${OBT_COST()}</span>`, "big" + (done ? " lit" : ""))}
+    <div class="tutafter" id="tutafter" ${done ? "" : "hidden"}><p class="tutnxh">Próximas conquistas <small>(Next unlocks)</small></p><div class="tutnxs">${next}</div></div>
+    ${done ? `<button class="btn gold tutgo" data-tutdone>Começar ${ic("right")}</button>` : `<button class="btn gold tutgo tutunlock" data-tutunlock>✨ Liberar a aura · ${STAR(true)} ${OBT_COST()}</button>`}`;
+  }
+  return `<main class="obwrap tut"><section class="obcard tutc">${body}</section></main>`;
+}
+function tutRender() { const app = document.getElementById("app"); if (!app) return; app.innerHTML = viewTut() + overlays(); syncAvatars(); window.scrollTo(0, 0); }
+/* stars fly from the answer to the counter */
+function tutStars(from, n, done) {
+  const box = $("#tutstars"); if (!box || reduced()) { done(); return; }
+  const a = from.getBoundingClientRect(), b = box.getBoundingClientRect(); let k = 0;
+  for (let i = 0; i < n; i++) setTimeout(() => {
+    const s = document.createElement("span"); s.className = "tutfly"; s.innerHTML = STAR(true); document.body.appendChild(s);
+    const x0 = a.left + a.width / 2 - 16, y0 = a.top + a.height / 2 - 16, x1 = b.left + 8, y1 = b.top + b.height / 2 - 16, mx = (x0 + x1) / 2 + (i - 1) * 60, my = Math.min(y0, y1) - 90;
+    const an = s.animate([{ transform: `translate(${x0}px,${y0}px) scale(.4)`, opacity: 0 }, { transform: `translate(${mx}px,${my}px) scale(1.5) rotate(160deg)`, opacity: 1, offset: .45 }, { transform: `translate(${x1}px,${y1}px) scale(.8) rotate(360deg)`, opacity: 1 }], { duration: 850, easing: "cubic-bezier(.3,.7,.3,1)" });
+    an.onfinish = () => { s.remove(); k++; const bb = box.querySelector("b"); if (bb) bb.textContent = k; box.classList.remove("pop"); void box.offsetWidth; box.classList.add("pop"); SFX.star(); if (k === n) done(); };
+  }, i * 260);
+}
+/* the aura unlock: energy gathers around the character, flash, the aura lights up */
+function tutUnlock(btn) {
+  if (OBT.busy) return; OBT.busy = true; btn.disabled = true; btn.classList.add("going");
+  const stage = $("#tutstage"), av = stage && stage.querySelector(".avw"); const au = AURAS.find(x => x[0] === OBT_AURA), col = au[3];
+  const finish = () => {
+    if (!isOpen("aura", OBT_AURA)) { S.spent = (S.spent || 0) + OBT_COST(); S.owned.push("aura:" + OBT_AURA); }
+    S.fx.aura = OBT_AURA; save(); if (typeof starBadge === "function") starBadge();
+    const b = $("#tutstars b"); if (b) b.textContent = wallet();
+    if (av) { av.dataset.aura = OBT_AURA; av.style.setProperty("--a", col); }
+    stage.classList.remove("charge"); stage.classList.add("lit", "boom");
+    const lk = $("#tutlock"); if (lk) lk.remove();
+    SFX.win(); const r = stage.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height * .45, 90);
+    $("#tuth").textContent = "Aura liberada! 🎉"; $("#tutlead").textContent = "Seu personagem agora brilha. Cada lição dá estrelas — e com elas você libera coisas novas.";
+    const af = $("#tutafter"); if (af) { af.hidden = false; af.classList.add("in"); }
+    btn.outerHTML = `<button class="btn gold tutgo" data-tutdone>Começar ${ic("right")}</button>`;
+    OBT.busy = false;
+  };
+  if (reduced() || !stage) { finish(); return; }
+  const lk = $("#tutlock"); if (lk) lk.classList.add("open");
+  stage.style.setProperty("--a", col); stage.classList.add("charge"); SFX.streak();
+  const W = stage.clientWidth, H = stage.clientHeight;
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement("i"); p.className = "tpart"; stage.appendChild(p);
+    const ang = Math.random() * Math.PI * 2, R = Math.max(W, H) * (.45 + Math.random() * .25), x = Math.cos(ang) * R, y = Math.sin(ang) * R * .7, d = 700 + Math.random() * 600;
+    p.animate([{ transform: `translate(${x}px,${y}px) scale(.3)`, opacity: 0 }, { opacity: 1, offset: .3 }, { transform: "translate(0,0) scale(1.2)", opacity: .9 }], { duration: d, delay: Math.random() * 700, easing: "cubic-bezier(.5,0,.75,0)", fill: "both" }).onfinish = () => p.remove();
+  }
+  setTimeout(() => SFX.star(), 700); setTimeout(() => SFX.star(), 1100);
+  setTimeout(finish, 1700);
+}
+document.addEventListener("click", ev => {
+  const el = ev.target.closest("button"); if (!el || !el.closest(".tutc")) return; const d = el.dataset;
+  if (d.tutav) { ev.preventDefault(); S.av = d.tutav; save(); syncAvatars(); $$(".tutav").forEach(b => { const on = b.dataset.tutav === d.tutav; b.classList.toggle("on", on); b.setAttribute("aria-selected", on); }); const g = guide(), n = $(".tutname"); if (n) n.textContent = g.id === "teacher" ? (TEACHER_NAME || "Teacher") : g.name; const fl = $(".tutfloat"); if (fl) { fl.classList.remove("hop"); void fl.offsetWidth; fl.classList.add("hop"); } SFX.tap(); return; }
+  if (d.tutnext !== undefined) { ev.preventDefault(); S.obTut = tutStep() + 1; save(); SFX.tap(); tutRender(); return; }
+  if (d.tuta !== undefined) {
+    ev.preventDefault(); if (S.obStars || OBT.busy) return;
+    const fb = $("#tutfb");
+    if (+d.tuta !== OBT_Q.a) { SFX.bad(); el.classList.remove("shake"); void el.offsetWidth; el.classList.add("shake", "bad"); if (fb) fb.innerHTML = `<span class="no">Quase! ${esc(OBT_Q.hint)}</span>`; return; }
+    OBT.busy = true; el.classList.add("good"); SFX.good(); $$(".tutopts .opt").forEach(b => b.disabled = true);
+    if (fb) fb.innerHTML = `<span class="ok">✓ Isso! “Hello” = “Olá”.</span>`;
+    const bub = $(".tutbub"); if (bub) bub.textContent = "Great job! 🎉";
+    tutStars(el, 3, () => { S.bonus = (S.bonus || 0) + 3; S.obStars = 1; save(); OBT.busy = false; if (fb) fb.innerHTML += `<span class="won">Você ganhou ${STAR(true)}${STAR(true)}${STAR(true)} 3 estrelas!</span>`; const nx = $("[data-tutnext]"); if (nx) { nx.hidden = false; nx.classList.add("in"); } burstAt(el, 24); });
+    return;
+  }
+  if (d.tutunlock !== undefined) { ev.preventDefault(); tutUnlock(el); return; }
+  if (d.tutdone !== undefined) { ev.preventDefault(); S.obTut = "done"; save(); SFX.tap(); route(); return; }
+}, true);
 
 /* Start it — progress inside a lesson, resume, auto-complete and "Review my mistakes".
    Everything stays on the phone (S.prog, S.miss). */
