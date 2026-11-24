@@ -2108,6 +2108,26 @@ body.dkh .glvbar button.on { background: #FFC93C; color: #14213D; }
 .wlog { flex: 1; min-height: 0; overflow: auto; display: grid; align-content: start; gap: 6px; font-size: 17px; color: var(--tx2); }
 .wlog div:first-child { color: var(--tx); font-size: 19px; } .wlog .ok { color: var(--ok) !important; } .wlog .no { color: var(--no) !important; }
 .wlr { font-size: 15px; color: var(--mu); display: flex; gap: 8px; align-items: center; }
+/* clock */
+.ckwrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; align-items: center; height: 100%; }
+.ckface svg { width: 100%; max-height: 62vh; display: block; margin: auto; }
+.ckrim { fill: #fffdf7; stroke: var(--ink, #1d2433); stroke-width: 6; }
+.cktk line { stroke: var(--ink, #1d2433); } .cknum text { font: 700 17px system-ui, sans-serif; text-anchor: middle; fill: var(--ink, #1d2433); }
+.ckh, .ckm { stroke-linecap: round; transition: transform .35s ease; } .ckh { stroke: #1d2433; stroke-width: 7; } .ckm { stroke: #e8743b; stroke-width: 4.5; } .ckc { fill: #1d2433; }
+.ckq { font-size: 1.6em; font-weight: 800; margin-bottom: 14px; }
+.ckbtns { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; } .ckbtns button, .ckshow, .btbtn button, .ball { font: inherit; font-weight: 700; padding: 8px 14px; border-radius: 12px; border: 2px solid rgba(255,255,255,.22); background: rgba(255,255,255,.08); color: inherit; cursor: pointer; }
+.ckbtns [data-rnd], .ckshow, .btbtn button { background: #f5a524; color: #1d2433; border-color: #f5a524; }
+.ckans { position: relative; background: rgba(255,255,255,.07); border-radius: 16px; padding: 16px 18px; display: none; } .ckwrap.shown .ckans { display: block; } .ckwrap.shown .ckshow { display: none; }
+.ckdig { font: 800 2.2em ui-monospace, monospace; margin-bottom: 8px; } .ckrow { display: flex; gap: 12px; align-items: baseline; margin: 4px 0; } .ckrow span { width: 110px; font-size: .85em; opacity: .65; } .ckrow b { font-size: 1.25em; }
+.ckpart { opacity: .7; margin-top: 6px; } .ckans .xsp { position: absolute; top: 12px; right: 12px; }
+/* body */
+.bwrap { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 24px; align-items: center; height: 100%; }
+.bfig { width: 100%; max-height: 57vh; display: block; margin: auto; }
+.bhit { fill: transparent; cursor: pointer; } .bhit:hover { fill: rgba(232,116,59,.22); }
+.bm circle { fill: #e8743b; stroke: #fff; stroke-width: 2; } .bm line { stroke: #f5a524; stroke-width: 2; } .bm text { font: 800 16px system-ui, sans-serif; fill: #fff; paint-order: stroke; stroke: #11141b; stroke-width: 4px; }
+.bmarks { pointer-events: none; }
+.bxq { position: relative; } .bcmd { font-size: 1.7em; font-weight: 800; margin-bottom: 14px; } .bsay { font-size: 1.5em; min-height: 1.6em; margin-bottom: 14px; color: #f5a524; font-weight: 700; }
+.btbtn { display: flex; gap: 10px; margin-bottom: 12px; } .bhint { opacity: .65; font-size: .55em; } .bxq .xsp { margin-right: 10px; }
 
 /* ---------- detective case ("The Midnight Giant") ---------- */
 .sl.gcasesl { padding: 14px 18px 46px; font-size: 18px; line-height: 1.4; }
@@ -20696,6 +20716,1216 @@ var XIMG = {
   "@a1-rev2": ["https://images.pexels.com/photos/16664939/pexels-photo-16664939.jpeg?auto=compress&cs=tinysrgb&w=1200", "https://images.pexels.com/photos/8292828/pexels-photo-8292828.jpeg?auto=compress&cs=tinysrgb&w=1200"]
 };
 
+/* photos picked for vocabulary pictures, keyed by the picture label ("#a beak"). [chosen, alternative]. */
+Object.assign(XIMG, {
+"#feathers": [
+"https://images.pexels.com/photos/36025311/pexels-photo-36025311.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/15829932/pexels-photo-15829932.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a beak": [
+"https://images.pexels.com/photos/17789942/pexels-photo-17789942.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/15174543/pexels-photo-15174543.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#fur": [
+"https://images.pexels.com/photos/20339293/pexels-photo-20339293.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7232502/pexels-photo-7232502.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#whiskers": [
+"https://images.pexels.com/photos/763669/pexels-photo-763669.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/39626/cat-head-female-cat-face-39626.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#scales": [
+"https://images.pexels.com/photos/33654489/pexels-photo-33654489.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/10112452/pexels-photo-10112452.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a shell": [
+"https://images.pexels.com/photos/13767261/pexels-photo-13767261.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/11922450/pexels-photo-11922450.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#horns": [
+"https://images.pexels.com/photos/28607451/pexels-photo-28607451.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/31120652/pexels-photo-31120652.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a trunk": [
+"https://images.pexels.com/photos/23232502/pexels-photo-23232502.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/26605695/pexels-photo-26605695.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#Hi! / Hello!": [
+"https://images.pexels.com/photos/5537575/pexels-photo-5537575.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5537579/pexels-photo-5537579.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#Good morning!": [
+"https://images.pexels.com/photos/9641782/pexels-photo-9641782.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/10912806/pexels-photo-10912806.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#Good night!": [
+"https://images.pexels.com/photos/7504922/pexels-photo-7504922.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5801247/pexels-photo-5801247.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a microphone": [
+"https://images.pexels.com/photos/164829/pexels-photo-164829.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5934959/pexels-photo-5934959.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#phone": [
+"https://images.pexels.com/photos/48602/pexels-photo-48602.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/33039024/pexels-photo-33039024.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#coffee": [
+"https://images.pexels.com/photos/12039010/pexels-photo-12039010.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/459489/pexels-photo-459489.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#key": [
+"https://images.pexels.com/photos/27522902/pexels-photo-27522902.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/31015267/pexels-photo-31015267.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#book": [
+"https://images.pexels.com/photos/6373290/pexels-photo-6373290.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/3804409/pexels-photo-3804409.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#bike": [
+"https://images.pexels.com/photos/24198/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/30678898/pexels-photo-30678898.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#watch": [
+"https://images.pexels.com/photos/9713527/pexels-photo-9713527.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/28383343/pexels-photo-28383343.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#open your book": [
+"https://images.pexels.com/photos/6958552/pexels-photo-6958552.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6929197/pexels-photo-6929197.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#write": [
+"https://images.pexels.com/photos/6779632/pexels-photo-6779632.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5357177/pexels-photo-5357177.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#listen": [
+"https://images.pexels.com/photos/16591968/pexels-photo-16591968.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6609355/pexels-photo-6609355.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#read": [
+"https://images.pexels.com/photos/8922322/pexels-photo-8922322.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/256455/pexels-photo-256455.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#look at the screen": [
+"https://images.pexels.com/photos/4350285/pexels-photo-4350285.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6958484/pexels-photo-6958484.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#raise your hand": [
+"https://images.pexels.com/photos/12716111/pexels-photo-12716111.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/8423044/pexels-photo-8423044.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a teacher": [
+"https://images.pexels.com/photos/5905444/pexels-photo-5905444.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5212342/pexels-photo-5212342.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#Bye! See you!": [
+"https://images.pexels.com/photos/5537578/pexels-photo-5537578.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/3752946/pexels-photo-3752946.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a baby": [
+"https://images.pexels.com/photos/27177805/pexels-photo-27177805.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/27175628/pexels-photo-27175628.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a teenager": [
+"https://images.pexels.com/photos/452558/pexels-photo-452558.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/4626730/pexels-photo-4626730.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#an adult": [
+"https://images.pexels.com/photos/36828104/pexels-photo-36828104.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/36712860/pexels-photo-36712860.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a grandmother": [
+"https://images.pexels.com/photos/11423009/pexels-photo-11423009.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6248451/pexels-photo-6248451.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a woman": [
+"https://images.pexels.com/photos/1586335/pexels-photo-1586335.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/3791554/pexels-photo-3791554.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a boy": [
+"https://images.pexels.com/photos/2524326/pexels-photo-2524326.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/28872506/pexels-photo-28872506.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a girl": [
+"https://images.pexels.com/photos/37629591/pexels-photo-37629591.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/28376906/pexels-photo-28376906.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#friends": [
+"https://images.pexels.com/photos/6146961/pexels-photo-6146961.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/3768884/pexels-photo-3768884.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a student": [
+"https://images.pexels.com/photos/5538594/pexels-photo-5538594.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7972659/pexels-photo-7972659.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a photo": [
+"https://images.pexels.com/photos/6377/man-hand-smartphone-lake.jpg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/13012476/pexels-photo-13012476.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a family": [
+"https://images.pexels.com/photos/5857048/pexels-photo-5857048.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/38866854/pexels-photo-38866854.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#two friends": [
+"https://images.pexels.com/photos/10653649/pexels-photo-10653649.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/8769205/pexels-photo-8769205.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#famous people": [
+"https://images.pexels.com/photos/7594122/pexels-photo-7594122.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7005622/pexels-photo-7005622.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a man": [
+"https://images.pexels.com/photos/3799717/pexels-photo-3799717.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/3799797/pexels-photo-3799797.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#Brazil": [
+"https://images.pexels.com/photos/40046985/pexels-photo-40046985.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5544022/pexels-photo-5544022.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#the USA": [
+"https://images.pexels.com/photos/5324291/pexels-photo-5324291.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7758569/pexels-photo-7758569.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#Japan": [
+"https://images.pexels.com/photos/36537725/pexels-photo-36537725.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/40617184/pexels-photo-40617184.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#France": [
+"https://images.pexels.com/photos/5976924/pexels-photo-5976924.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/38523298/pexels-photo-38523298.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#Argentina": [
+"https://images.pexels.com/photos/21702090/pexels-photo-21702090.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/15942533/pexels-photo-15942533.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#the UK": [
+"https://images.pexels.com/photos/17160708/pexels-photo-17160708.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/29253512/pexels-photo-29253512.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#Italy": [
+"https://images.pexels.com/photos/11101878/pexels-photo-11101878.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/15562413/pexels-photo-15562413.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#Mexico": [
+"https://images.pexels.com/photos/28121859/pexels-photo-28121859.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/28121872/pexels-photo-28121872.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a doctor": [
+"https://images.pexels.com/photos/4309557/pexels-photo-4309557.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/4227109/pexels-photo-4227109.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a cook": [
+"https://images.pexels.com/photos/8629103/pexels-photo-8629103.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/33618534/pexels-photo-33618534.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a police officer": [
+"https://images.pexels.com/photos/7714714/pexels-photo-7714714.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7714983/pexels-photo-7714983.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a nurse": [
+"https://images.pexels.com/photos/4930705/pexels-photo-4930705.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6129680/pexels-photo-6129680.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a driver": [
+"https://images.pexels.com/photos/18889487/pexels-photo-18889487.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/29221981/pexels-photo-29221981.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a programmer": [
+"https://images.pexels.com/photos/89724/pexels-photo-89724.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/340152/pexels-photo-340152.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a hairdresser": [
+"https://images.pexels.com/photos/10593034/pexels-photo-10593034.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/3356170/pexels-photo-3356170.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#happy": [
+"https://images.pexels.com/photos/15088458/pexels-photo-15088458.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/3781538/pexels-photo-3781538.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#sad": [
+"https://images.pexels.com/photos/8871423/pexels-photo-8871423.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5466185/pexels-photo-5466185.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#tired": [
+"https://images.pexels.com/photos/6958639/pexels-photo-6958639.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6958643/pexels-photo-6958643.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#angry": [
+"https://images.pexels.com/photos/8059079/pexels-photo-8059079.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/3965232/pexels-photo-3965232.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#hungry": [
+"https://images.pexels.com/photos/5734314/pexels-photo-5734314.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/8511876/pexels-photo-8511876.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#scared": [
+"https://images.pexels.com/photos/3812729/pexels-photo-3812729.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6471730/pexels-photo-6471730.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#bored": [
+"https://images.pexels.com/photos/8119984/pexels-photo-8119984.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/4114908/pexels-photo-4114908.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#nervous": [
+"https://images.pexels.com/photos/6471730/pexels-photo-6471730.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6382590/pexels-photo-6382590.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#acting": [
+"https://images.pexels.com/photos/6896323/pexels-photo-6896323.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6896223/pexels-photo-6896223.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a coffee": [
+"https://images.pexels.com/photos/2226091/pexels-photo-2226091.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/19252265/pexels-photo-19252265.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#sneakers": [
+"https://images.pexels.com/photos/3375910/pexels-photo-3375910.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/30063866/pexels-photo-30063866.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a pizza": [
+"https://images.pexels.com/photos/31596394/pexels-photo-31596394.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/31094832/pexels-photo-31094832.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a T-shirt": [
+"https://images.pexels.com/photos/7824049/pexels-photo-7824049.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/8217466/pexels-photo-8217466.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a movie ticket": [
+"https://images.pexels.com/photos/8261816/pexels-photo-8261816.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/8261829/pexels-photo-8261829.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a wallet": [
+"https://images.pexels.com/photos/915917/pexels-photo-915917.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7085786/pexels-photo-7085786.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#keys": [
+"https://images.pexels.com/photos/27522902/pexels-photo-27522902.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/37003193/pexels-photo-37003193.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a charger": [
+"https://images.pexels.com/photos/4195332/pexels-photo-4195332.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/305084/pexels-photo-305084.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#headphones": [
+"https://images.pexels.com/photos/210927/pexels-photo-210927.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5269699/pexels-photo-5269699.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#earphones": [
+"https://images.pexels.com/photos/18573077/pexels-photo-18573077.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/30009009/pexels-photo-30009009.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#an umbrella": [
+"https://images.pexels.com/photos/5357833/pexels-photo-5357833.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/11831748/pexels-photo-11831748.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#sunglasses": [
+"https://images.pexels.com/photos/10837797/pexels-photo-10837797.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5202048/pexels-photo-5202048.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a water bottle": [
+"https://images.pexels.com/photos/5274533/pexels-photo-5274533.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/12393320/pexels-photo-12393320.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#gum": [
+"https://images.pexels.com/photos/29479795/pexels-photo-29479795.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7680139/pexels-photo-7680139.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a notebook": [
+"https://images.pexels.com/photos/12914430/pexels-photo-12914430.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/33911281/pexels-photo-33911281.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a backpack": [
+"https://images.pexels.com/photos/4887255/pexels-photo-4887255.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/8423383/pexels-photo-8423383.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#red": [
+"https://images.pexels.com/photos/30512140/pexels-photo-30512140.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/277262/pexels-photo-277262.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#yellow": [
+"https://images.pexels.com/photos/7194965/pexels-photo-7194965.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/4399936/pexels-photo-4399936.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#green": [
+"https://images.pexels.com/photos/32633628/pexels-photo-32633628.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/38681769/pexels-photo-38681769.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#blue": [
+"https://images.pexels.com/photos/32047220/pexels-photo-32047220.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/12181103/pexels-photo-12181103.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#orange": [
+"https://images.pexels.com/photos/18452311/pexels-photo-18452311.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7397930/pexels-photo-7397930.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#purple": [
+"https://images.pexels.com/photos/40383924/pexels-photo-40383924.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/33344322/pexels-photo-33344322.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#pink": [
+"https://images.pexels.com/photos/30597916/pexels-photo-30597916.png?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/950049/pexels-photo-950049.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#black and white": [
+"https://images.pexels.com/photos/33401701/pexels-photo-33401701.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/36023962/pexels-photo-36023962.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a room": [
+"https://images.pexels.com/photos/6903157/pexels-photo-6903157.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/32331030/pexels-photo-32331030.png?auto=compress&cs=tinysrgb&w=1000"
+],
+"#big": [
+"https://images.pexels.com/photos/17471029/pexels-photo-17471029.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/17081254/pexels-photo-17081254.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#small": [
+"https://images.pexels.com/photos/9980949/pexels-photo-9980949.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/30374722/pexels-photo-30374722.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#old": [
+"https://images.pexels.com/photos/18749156/pexels-photo-18749156.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5484514/pexels-photo-5484514.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#new": [
+"https://images.pexels.com/photos/4582581/pexels-photo-4582581.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/4744623/pexels-photo-4744623.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#fast": [
+"https://images.pexels.com/photos/13365348/pexels-photo-13365348.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/39257494/pexels-photo-39257494.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#slow": [
+"https://images.pexels.com/photos/17953065/pexels-photo-17953065.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/38011485/pexels-photo-38011485.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#hot": [
+"https://images.pexels.com/photos/11828629/pexels-photo-11828629.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/16792942/pexels-photo-16792942.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#cold": [
+"https://images.pexels.com/photos/34927438/pexels-photo-34927438.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/12987267/pexels-photo-12987267.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a mystery box": [
+"https://images.pexels.com/photos/33774172/pexels-photo-33774172.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/1428477/pexels-photo-1428477.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a dog": [
+"https://images.pexels.com/photos/20680840/pexels-photo-20680840.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/34762928/pexels-photo-34762928.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a cat": [
+"https://images.pexels.com/photos/34345889/pexels-photo-34345889.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/30239303/pexels-photo-30239303.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a horse": [
+"https://images.pexels.com/photos/13340061/pexels-photo-13340061.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/13340068/pexels-photo-13340068.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a shark": [
+"https://images.pexels.com/photos/12829675/pexels-photo-12829675.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/2747248/pexels-photo-2747248.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a monkey": [
+"https://images.pexels.com/photos/2424736/pexels-photo-2424736.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/27558085/pexels-photo-27558085.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a snake": [
+"https://images.pexels.com/photos/4576625/pexels-photo-4576625.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/14747265/pexels-photo-14747265.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a parrot": [
+"https://images.pexels.com/photos/14413302/pexels-photo-14413302.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/39824948/pexels-photo-39824948.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a capybara": [
+"https://images.pexels.com/photos/28977022/pexels-photo-28977022.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/36504419/pexels-photo-36504419.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#rice and beans": [
+"https://images.pexels.com/photos/19781592/pexels-photo-19781592.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/32655177/pexels-photo-32655177.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#pizza": [
+"https://images.pexels.com/photos/1653877/pexels-photo-1653877.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/842519/pexels-photo-842519.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#chicken": [
+"https://images.pexels.com/photos/27831789/pexels-photo-27831789.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/9872916/pexels-photo-9872916.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#salad": [
+"https://images.pexels.com/photos/3070968/pexels-photo-3070968.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/34618702/pexels-photo-34618702.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#eggs": [
+"https://images.pexels.com/photos/32986480/pexels-photo-32986480.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/722223/pexels-photo-722223.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#ice cream": [
+"https://images.pexels.com/photos/9227955/pexels-photo-9227955.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/1352251/pexels-photo-1352251.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#juice": [
+"https://images.pexels.com/photos/10277953/pexels-photo-10277953.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6412586/pexels-photo-6412586.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a can of soda": [
+"https://images.pexels.com/photos/6920721/pexels-photo-6920721.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/9203769/pexels-photo-9203769.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a bottle of water": [
+"https://images.pexels.com/photos/1540235/pexels-photo-1540235.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/31699476/pexels-photo-31699476.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a box of cereal": [
+"https://images.pexels.com/photos/5893078/pexels-photo-5893078.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/13670950/pexels-photo-13670950.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a carton of milk": [
+"https://images.pexels.com/photos/14534512/pexels-photo-14534512.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7451957/pexels-photo-7451957.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a jar of jam": [
+"https://images.pexels.com/photos/5590969/pexels-photo-5590969.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6588431/pexels-photo-6588431.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a loaf of bread": [
+"https://images.pexels.com/photos/38168543/pexels-photo-38168543.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/209206/pexels-photo-209206.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a bunch of bananas": [
+"https://images.pexels.com/photos/10899478/pexels-photo-10899478.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/31374526/pexels-photo-31374526.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a dozen eggs": [
+"https://images.pexels.com/photos/17903969/pexels-photo-17903969.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6827029/pexels-photo-6827029.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#earbuds": [
+"https://images.pexels.com/photos/8858287/pexels-photo-8858287.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7417547/pexels-photo-7417547.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a hoodie": [
+"https://images.pexels.com/photos/6311538/pexels-photo-6311538.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7236113/pexels-photo-7236113.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a power bank": [
+"https://images.pexels.com/photos/37475677/pexels-photo-37475677.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/14706040/pexels-photo-14706040.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a cap": [
+"https://images.pexels.com/photos/33611287/pexels-photo-33611287.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/12284599/pexels-photo-12284599.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a lunchbox": [
+"https://images.pexels.com/photos/12861383/pexels-photo-12861383.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5905678/pexels-photo-5905678.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#curly hair": [
+"https://images.pexels.com/photos/1195111/pexels-photo-1195111.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#straight hair": [
+"https://images.pexels.com/photos/19403505/pexels-photo-19403505.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/16814318/pexels-photo-16814318.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a beard": [
+"https://images.pexels.com/photos/36712860/pexels-photo-36712860.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/10250420/pexels-photo-10250420.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#bald": [
+"https://images.pexels.com/photos/6333498/pexels-photo-6333498.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/26970608/pexels-photo-26970608.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#glasses": [
+"https://images.pexels.com/photos/899357/pexels-photo-899357.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/8053345/pexels-photo-8053345.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#freckles": [
+"https://images.pexels.com/photos/4300132/pexels-photo-4300132.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/3763155/pexels-photo-3763155.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a tattoo": [
+"https://images.pexels.com/photos/5088473/pexels-photo-5088473.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/2126124/pexels-photo-2126124.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#braces": [
+"https://images.pexels.com/photos/5999363/pexels-photo-5999363.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/3812720/pexels-photo-3812720.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a puppy": [
+"https://images.pexels.com/photos/38344785/pexels-photo-38344785.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/36831879/pexels-photo-36831879.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a kitten": [
+"https://images.pexels.com/photos/38371070/pexels-photo-38371070.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/39705295/pexels-photo-39705295.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a hamster": [
+"https://images.pexels.com/photos/28749492/pexels-photo-28749492.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/3362697/pexels-photo-3362697.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a turtle": [
+"https://images.pexels.com/photos/9177614/pexels-photo-9177614.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5263880/pexels-photo-5263880.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a rabbit": [
+"https://images.pexels.com/photos/19613749/pexels-photo-19613749.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/383557/pexels-photo-383557.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a goldfish": [
+"https://images.pexels.com/photos/8434726/pexels-photo-8434726.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/16705504/pexels-photo-16705504.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a lizard": [
+"https://images.pexels.com/photos/35098831/pexels-photo-35098831.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/35324898/pexels-photo-35324898.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a pet": [
+"https://images.pexels.com/photos/5256728/pexels-photo-5256728.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5749124/pexels-photo-5749124.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a map": [
+"https://images.pexels.com/photos/1468657/pexels-photo-1468657.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6664694/pexels-photo-6664694.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a guinea pig": [
+"https://images.pexels.com/photos/30468832/pexels-photo-30468832.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/33091471/pexels-photo-33091471.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a golden retriever": [
+"https://images.pexels.com/photos/40098533/pexels-photo-40098533.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/30810890/pexels-photo-30810890.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#wake up": [
+"https://images.pexels.com/photos/7622504/pexels-photo-7622504.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/11344545/pexels-photo-11344545.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#take a shower": [
+"https://images.pexels.com/photos/39205194/pexels-photo-39205194.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#brush my teeth": [
+"https://images.pexels.com/photos/27176887/pexels-photo-27176887.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/8762987/pexels-photo-8762987.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#get dressed": [
+"https://images.pexels.com/photos/10257099/pexels-photo-10257099.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/3023669/pexels-photo-3023669.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#have breakfast": [
+"https://images.pexels.com/photos/8763030/pexels-photo-8763030.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/4867894/pexels-photo-4867894.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#check my phone": [
+"https://images.pexels.com/photos/7622527/pexels-photo-7622527.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7341879/pexels-photo-7341879.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#take the bus": [
+"https://images.pexels.com/photos/33026307/pexels-photo-33026307.png?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/13474281/pexels-photo-13474281.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#start work / school": [
+"https://images.pexels.com/photos/5058926/pexels-photo-5058926.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/19895883/pexels-photo-19895883.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a nurse — a hospital": [
+"https://images.pexels.com/photos/18271838/pexels-photo-18271838.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/33932453/pexels-photo-33932453.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a chef — a restaurant": [
+"https://images.pexels.com/photos/15646686/pexels-photo-15646686.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/8629106/pexels-photo-8629106.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a firefighter — a fire station": [
+"https://images.pexels.com/photos/5965107/pexels-photo-5965107.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/19487945/pexels-photo-19487945.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a pilot — a plane": [
+"https://images.pexels.com/photos/9293261/pexels-photo-9293261.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/18048437/pexels-photo-18048437.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a lawyer — an office": [
+"https://images.pexels.com/photos/8112112/pexels-photo-8112112.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/8111876/pexels-photo-8111876.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a vet — a clinic": [
+"https://images.pexels.com/photos/6235114/pexels-photo-6235114.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6235650/pexels-photo-6235650.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a fire truck": [
+"https://images.pexels.com/photos/12274597/pexels-photo-12274597.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/20114399/pexels-photo-20114399.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#the bus": [
+"https://images.pexels.com/photos/32441052/pexels-photo-32441052.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/19961417/pexels-photo-19961417.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#the subway / metro": [
+"https://images.pexels.com/photos/19585349/pexels-photo-19585349.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/15921368/pexels-photo-15921368.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a car": [
+"https://images.pexels.com/photos/8891414/pexels-photo-8891414.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/17612417/pexels-photo-17612417.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a motorcycle": [
+"https://images.pexels.com/photos/20296343/pexels-photo-20296343.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/39971236/pexels-photo-39971236.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a bike": [
+"https://images.pexels.com/photos/40266598/pexels-photo-40266598.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/32403277/pexels-photo-32403277.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#an app car (Uber)": [
+"https://images.pexels.com/photos/6280705/pexels-photo-6280705.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5835466/pexels-photo-5835466.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a scooter": [
+"https://images.pexels.com/photos/26708106/pexels-photo-26708106.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/9168370/pexels-photo-9168370.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a ferry": [
+"https://images.pexels.com/photos/38522047/pexels-photo-38522047.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/32329043/pexels-photo-32329043.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a calendar": [
+"https://images.pexels.com/photos/29509502/pexels-photo-29509502.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/11706725/pexels-photo-11706725.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#sleep in": [
+"https://images.pexels.com/photos/9615247/pexels-photo-9615247.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6633585/pexels-photo-6633585.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#go to the beach": [
+"https://images.pexels.com/photos/7938723/pexels-photo-7938723.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/936018/pexels-photo-936018.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#have a barbecue": [
+"https://images.pexels.com/photos/7893786/pexels-photo-7893786.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6950712/pexels-photo-6950712.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#binge-watch a series": [
+"https://images.pexels.com/photos/4307882/pexels-photo-4307882.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/4307909/pexels-photo-4307909.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#go to a party": [
+"https://images.pexels.com/photos/36729938/pexels-photo-36729938.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6173843/pexels-photo-6173843.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#visit family": [
+"https://images.pexels.com/photos/8307532/pexels-photo-8307532.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5637736/pexels-photo-5637736.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#play soccer": [
+"https://images.pexels.com/photos/8813572/pexels-photo-8813572.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/38838943/pexels-photo-38838943.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#go shopping": [
+"https://images.pexels.com/photos/36712931/pexels-photo-36712931.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/36712934/pexels-photo-36712934.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#soccer": [
+"https://images.pexels.com/photos/39676592/pexels-photo-39676592.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/38185214/pexels-photo-38185214.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#volleyball": [
+"https://images.pexels.com/photos/12169045/pexels-photo-12169045.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/12169253/pexels-photo-12169253.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#swimming": [
+"https://images.pexels.com/photos/18353095/pexels-photo-18353095.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/261185/pexels-photo-261185.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#skateboarding": [
+"https://images.pexels.com/photos/2118483/pexels-photo-2118483.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/2006010/pexels-photo-2006010.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#jiu-jitsu": [
+"https://images.pexels.com/photos/38732379/pexels-photo-38732379.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/38732383/pexels-photo-38732383.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#yoga": [
+"https://images.pexels.com/photos/3822534/pexels-photo-3822534.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/13849179/pexels-photo-13849179.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#video games": [
+"https://images.pexels.com/photos/8652318/pexels-photo-8652318.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/1563796/pexels-photo-1563796.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#running": [
+"https://images.pexels.com/photos/4719945/pexels-photo-4719945.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/4719916/pexels-photo-4719916.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a burger": [
+"https://images.pexels.com/photos/2267538/pexels-photo-2267538.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/15007048/pexels-photo-15007048.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#fries": [
+"https://images.pexels.com/photos/29150162/pexels-photo-29150162.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/8272622/pexels-photo-8272622.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#sushi": [
+"https://images.pexels.com/photos/28291549/pexels-photo-28291549.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/17894270/pexels-photo-17894270.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a steak": [
+"https://images.pexels.com/photos/39452690/pexels-photo-39452690.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/26150616/pexels-photo-26150616.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#pasta": [
+"https://images.pexels.com/photos/31637793/pexels-photo-31637793.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/31637792/pexels-photo-31637792.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a smoothie": [
+"https://images.pexels.com/photos/1098758/pexels-photo-1098758.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/12119029/pexels-photo-12119029.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#açaí": [
+"https://images.pexels.com/photos/8465241/pexels-photo-8465241.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/1334129/pexels-photo-1334129.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#popcorn": [
+"https://images.pexels.com/photos/57043/pexels-photo-57043.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/13005068/pexels-photo-13005068.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a strange pizza": [
+"https://images.pexels.com/photos/32611521/pexels-photo-32611521.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/27582703/pexels-photo-27582703.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#pancakes": [
+"https://images.pexels.com/photos/5317627/pexels-photo-5317627.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/15128149/pexels-photo-15128149.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#cheese bread": [
+"https://images.pexels.com/photos/37778433/pexels-photo-37778433.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/34521009/pexels-photo-34521009.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a sandwich for lunch": [
+"https://images.pexels.com/photos/263103/pexels-photo-263103.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/11256670/pexels-photo-11256670.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#cereal with milk": [
+"https://images.pexels.com/photos/8964026/pexels-photo-8964026.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/8963981/pexels-photo-8963981.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#coffee with milk": [
+"https://images.pexels.com/photos/36268519/pexels-photo-36268519.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6954757/pexels-photo-6954757.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a lunch plate": [
+"https://images.pexels.com/photos/28992209/pexels-photo-28992209.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/34284708/pexels-photo-34284708.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a pan": [
+"https://images.pexels.com/photos/29462835/pexels-photo-29462835.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5093678/pexels-photo-5093678.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a pot": [
+"https://images.pexels.com/photos/10835546/pexels-photo-10835546.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/34640219/pexels-photo-34640219.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a knife": [
+"https://images.pexels.com/photos/6077633/pexels-photo-6077633.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/4252138/pexels-photo-4252138.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a cutting board": [
+"https://images.pexels.com/photos/6077632/pexels-photo-6077632.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/4397788/pexels-photo-4397788.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a blender": [
+"https://images.pexels.com/photos/6802636/pexels-photo-6802636.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6803737/pexels-photo-6803737.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#an oven": [
+"https://images.pexels.com/photos/36903812/pexels-photo-36903812.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7598126/pexels-photo-7598126.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a microwave": [
+"https://images.pexels.com/photos/32168944/pexels-photo-32168944.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/11701150/pexels-photo-11701150.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a spoon": [
+"https://images.pexels.com/photos/29517873/pexels-photo-29517873.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/26595162/pexels-photo-26595162.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#swim": [
+"https://images.pexels.com/photos/5269487/pexels-photo-5269487.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6539742/pexels-photo-6539742.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#dance": [
+"https://images.pexels.com/photos/8281157/pexels-photo-8281157.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/31405030/pexels-photo-31405030.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#play the guitar": [
+"https://images.pexels.com/photos/8590966/pexels-photo-8590966.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/8106241/pexels-photo-8106241.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#drive": [
+"https://images.pexels.com/photos/6817008/pexels-photo-6817008.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/4429509/pexels-photo-4429509.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#cook": [
+"https://images.pexels.com/photos/19148133/pexels-photo-19148133.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6248996/pexels-photo-6248996.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#draw": [
+"https://images.pexels.com/photos/8545585/pexels-photo-8545585.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/2897132/pexels-photo-2897132.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#do a cartwheel": [
+"https://images.pexels.com/photos/8034032/pexels-photo-8034032.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/32763472/pexels-photo-32763472.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#solve a Rubik's cube": [
+"https://images.pexels.com/photos/12539734/pexels-photo-12539734.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/8471948/pexels-photo-8471948.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a stage": [
+"https://images.pexels.com/photos/19658083/pexels-photo-19658083.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/12267669/pexels-photo-12267669.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a café": [
+"https://images.pexels.com/photos/39504288/pexels-photo-39504288.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/32061510/pexels-photo-32061510.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a pharmacy": [
+"https://images.pexels.com/photos/8657366/pexels-photo-8657366.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/8657368/pexels-photo-8657368.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a clothes shop": [
+"https://images.pexels.com/photos/5531709/pexels-photo-5531709.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/8311880/pexels-photo-8311880.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a hair salon": [
+"https://images.pexels.com/photos/7195805/pexels-photo-7195805.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7195811/pexels-photo-7195811.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a phone store": [
+"https://images.pexels.com/photos/12968298/pexels-photo-12968298.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/11297769/pexels-photo-11297769.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a bakery": [
+"https://images.pexels.com/photos/29380155/pexels-photo-29380155.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7405059/pexels-photo-7405059.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#jeans": [
+"https://images.pexels.com/photos/10133275/pexels-photo-10133275.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/17720474/pexels-photo-17720474.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a dress": [
+"https://images.pexels.com/photos/12932798/pexels-photo-12932798.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/3968185/pexels-photo-3968185.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#shorts": [
+"https://images.pexels.com/photos/5417759/pexels-photo-5417759.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#flip-flops": [
+"https://images.pexels.com/photos/8455822/pexels-photo-8455822.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/35185490/pexels-photo-35185490.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a jacket": [
+"https://images.pexels.com/photos/16948950/pexels-photo-16948950.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/15317512/pexels-photo-15317512.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#red carpet": [
+"https://images.pexels.com/photos/7594122/pexels-photo-7594122.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/17931340/pexels-photo-17931340.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#taking a selfie": [
+"https://images.pexels.com/photos/3771134/pexels-photo-3771134.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6415373/pexels-photo-6415373.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#waiting for the bus": [
+"https://images.pexels.com/photos/28377781/pexels-photo-28377781.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/20215267/pexels-photo-20215267.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#doing homework": [
+"https://images.pexels.com/photos/5303550/pexels-photo-5303550.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/36764623/pexels-photo-36764623.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#playing video games": [
+"https://images.pexels.com/photos/7862367/pexels-photo-7862367.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7862271/pexels-photo-7862271.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#sleeping": [
+"https://images.pexels.com/photos/8069673/pexels-photo-8069673.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7983204/pexels-photo-7983204.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#washing the dishes": [
+"https://images.pexels.com/photos/5591788/pexels-photo-5591788.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5591636/pexels-photo-5591636.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#eating": [
+"https://images.pexels.com/photos/9961871/pexels-photo-9961871.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/16774294/pexels-photo-16774294.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#sunny": [
+"https://images.pexels.com/photos/6910147/pexels-photo-6910147.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/9333137/pexels-photo-9333137.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#cloudy": [
+"https://images.pexels.com/photos/11932032/pexels-photo-11932032.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/3417676/pexels-photo-3417676.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#rainy": [
+"https://images.pexels.com/photos/15174909/pexels-photo-15174909.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/31551527/pexels-photo-31551527.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#windy": [
+"https://images.pexels.com/photos/5110642/pexels-photo-5110642.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/9162891/pexels-photo-9162891.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#stormy": [
+"https://images.pexels.com/photos/8964499/pexels-photo-8964499.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/36201989/pexels-photo-36201989.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#foggy": [
+"https://images.pexels.com/photos/97065/pexels-photo-97065.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/25078839/pexels-photo-25078839.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#snowy": [
+"https://images.pexels.com/photos/6390197/pexels-photo-6390197.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/19822360/pexels-photo-19822360.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#hot and humid": [
+"https://images.pexels.com/photos/38614623/pexels-photo-38614623.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/38362540/pexels-photo-38362540.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#Carnival": [
+"https://images.pexels.com/photos/31043120/pexels-photo-31043120.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/15851157/pexels-photo-15851157.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#Festa Junina": [
+"https://images.pexels.com/photos/9211779/pexels-photo-9211779.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/38331652/pexels-photo-38331652.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#Christmas": [
+"https://images.pexels.com/photos/6209494/pexels-photo-6209494.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5934307/pexels-photo-5934307.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#New Year's Eve": [
+"https://images.pexels.com/photos/12969578/pexels-photo-12969578.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/949592/pexels-photo-949592.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#Easter": [
+"https://images.pexels.com/photos/2072158/pexels-photo-2072158.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6607601/pexels-photo-6607601.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a birthday": [
+"https://images.pexels.com/photos/30218071/pexels-photo-30218071.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/137485/pexels-photo-137485.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a festa junina": [
+"https://images.pexels.com/photos/9211779/pexels-photo-9211779.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/38331652/pexels-photo-38331652.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a laptop": [
+"https://images.pexels.com/photos/5793947/pexels-photo-5793947.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7739824/pexels-photo-7739824.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a tablet": [
+"https://images.pexels.com/photos/25809272/pexels-photo-25809272.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7382360/pexels-photo-7382360.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a smartwatch": [
+"https://images.pexels.com/photos/36697935/pexels-photo-36697935.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/39853430/pexels-photo-39853430.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a game console": [
+"https://images.pexels.com/photos/7871558/pexels-photo-7871558.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/4523006/pexels-photo-4523006.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a smart speaker": [
+"https://images.pexels.com/photos/977296/pexels-photo-977296.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/19652337/pexels-photo-19652337.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a phone": [
+"https://images.pexels.com/photos/9970966/pexels-photo-9970966.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/3720/person-hand-smartphone-technology.jpg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#head": [
+"https://images.pexels.com/photos/8560282/pexels-photo-8560282.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/12474260/pexels-photo-12474260.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#shoulder": [
+"https://images.pexels.com/photos/7298390/pexels-photo-7298390.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7298904/pexels-photo-7298904.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#back": [
+"https://images.pexels.com/photos/7298429/pexels-photo-7298429.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7298610/pexels-photo-7298610.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#knee": [
+"https://images.pexels.com/photos/11452184/pexels-photo-11452184.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/11716938/pexels-photo-11716938.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#stomach": [
+"https://images.pexels.com/photos/6542682/pexels-photo-6542682.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5938362/pexels-photo-5938362.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#throat": [
+"https://images.pexels.com/photos/11352535/pexels-photo-11352535.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6129690/pexels-photo-6129690.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#ankle": [
+"https://images.pexels.com/photos/7298647/pexels-photo-7298647.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7298678/pexels-photo-7298678.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#wrist": [
+"https://images.pexels.com/photos/9003436/pexels-photo-9003436.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/7298399/pexels-photo-7298399.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a beach": [
+"https://images.pexels.com/photos/6822721/pexels-photo-6822721.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/28625890/pexels-photo-28625890.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a street in the rain": [
+"https://images.pexels.com/photos/13975775/pexels-photo-13975775.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/3266634/pexels-photo-3266634.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a party": [
+"https://images.pexels.com/photos/30682919/pexels-photo-30682919.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5970895/pexels-photo-5970895.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#an office": [
+"https://images.pexels.com/photos/3182748/pexels-photo-3182748.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6326260/pexels-photo-6326260.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#go to the movies": [
+"https://images.pexels.com/photos/8261584/pexels-photo-8261584.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/8263322/pexels-photo-8263322.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#go to a concert": [
+"https://images.pexels.com/photos/5193526/pexels-photo-5193526.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/4218027/pexels-photo-4218027.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#go bowling": [
+"https://images.pexels.com/photos/7429604/pexels-photo-7429604.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/19191084/pexels-photo-19191084.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#go to a food festival": [
+"https://images.pexels.com/photos/20147044/pexels-photo-20147044.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/15823511/pexels-photo-15823511.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#go to a bar": [
+"https://images.pexels.com/photos/5054671/pexels-photo-5054671.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5055240/pexels-photo-5055240.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#play paintball": [
+"https://images.pexels.com/photos/16236293/pexels-photo-16236293.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/16436580/pexels-photo-16436580.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#go to karaoke": [
+"https://images.pexels.com/photos/30489716/pexels-photo-30489716.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/19693296/pexels-photo-19693296.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a waterfall": [
+"https://images.pexels.com/photos/3672776/pexels-photo-3672776.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/38133410/pexels-photo-38133410.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#sand dunes": [
+"https://images.pexels.com/photos/27688583/pexels-photo-27688583.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/28388418/pexels-photo-28388418.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#an island": [
+"https://images.pexels.com/photos/16156054/pexels-photo-16156054.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/1450355/pexels-photo-1450355.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a mountain": [
+"https://images.pexels.com/photos/27413514/pexels-photo-27413514.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/671658/pexels-photo-671658.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a river": [
+"https://images.pexels.com/photos/12495215/pexels-photo-12495215.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/35550122/pexels-photo-35550122.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a canyon": [
+"https://images.pexels.com/photos/13641027/pexels-photo-13641027.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/11183944/pexels-photo-11183944.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a cave": [
+"https://images.pexels.com/photos/14776271/pexels-photo-14776271.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/35636764/pexels-photo-35636764.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#fly": [
+"https://images.pexels.com/photos/8404155/pexels-photo-8404155.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#breathe underwater": [
+"https://images.pexels.com/photos/36709216/pexels-photo-36709216.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/12919059/pexels-photo-12919059.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#run very fast": [
+"https://images.pexels.com/photos/12686195/pexels-photo-12686195.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/37927156/pexels-photo-37927156.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#talk to animals": [
+"https://images.pexels.com/photos/5810576/pexels-photo-5810576.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a free diver": [
+"https://images.pexels.com/photos/36709216/pexels-photo-36709216.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/11882810/pexels-photo-11882810.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a ball": [
+"https://images.pexels.com/photos/38275739/pexels-photo-38275739.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/38105639/pexels-photo-38105639.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a racket": [
+"https://images.pexels.com/photos/8224721/pexels-photo-8224721.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/34015711/pexels-photo-34015711.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a helmet": [
+"https://images.pexels.com/photos/12956080/pexels-photo-12956080.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/12405343/pexels-photo-12405343.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#goggles": [
+"https://images.pexels.com/photos/29266554/pexels-photo-29266554.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/9632569/pexels-photo-9632569.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a skateboard": [
+"https://images.pexels.com/photos/7634791/pexels-photo-7634791.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5037667/pexels-photo-5037667.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a surfboard": [
+"https://images.pexels.com/photos/13762665/pexels-photo-13762665.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/13763517/pexels-photo-13763517.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#boxing gloves": [
+"https://images.pexels.com/photos/18322889/pexels-photo-18322889.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/4790425/pexels-photo-4790425.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a net": [
+"https://images.pexels.com/photos/12445451/pexels-photo-12445451.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/12169032/pexels-photo-12169032.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#an ambulance": [
+"https://images.pexels.com/photos/6520105/pexels-photo-6520105.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/6519847/pexels-photo-6519847.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a police car": [
+"https://images.pexels.com/photos/9364799/pexels-photo-9364799.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/19965319/pexels-photo-19965319.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a hospital": [
+"https://images.pexels.com/photos/668300/pexels-photo-668300.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/36000439/pexels-photo-36000439.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a first aid kit": [
+"https://images.pexels.com/photos/5673523/pexels-photo-5673523.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/5149759/pexels-photo-5149759.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a fire extinguisher": [
+"https://images.pexels.com/photos/12939477/pexels-photo-12939477.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/21299748/pexels-photo-21299748.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#a smoke alarm": [
+"https://images.pexels.com/photos/39183052/pexels-photo-39183052.jpeg?auto=compress&cs=tinysrgb&w=1000"
+],
+"#an emergency exit": [
+"https://images.pexels.com/photos/11515316/pexels-photo-11515316.jpeg?auto=compress&cs=tinysrgb&w=1000",
+"https://images.pexels.com/photos/31827772/pexels-photo-31827772.jpeg?auto=compress&cs=tinysrgb&w=1000"
+]
+});
+
 /* Start it — custom interactive slides ("widgets") for lessons that need more than the standard slide kinds.
    In a lesson: { k: "x", w: "<widget>", t, ins, sec, ...options }. The widget gives html(s) and mount(root, s).
    Each lesson decides if it needs one: they are teaching tools, not decoration. */
@@ -21264,6 +22494,131 @@ XW.walk = {
         else { chime(false); say(`✗ No — ${TPL[st.goal][0]} isn't on this street. Keep going!`, false); } }
     });
     mission(); reset();
+  }
+};
+
+/* ===== Extra widgets: clock (telling the time) · body (body parts) ===== */
+const NW = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+const NT = ["", "", "twenty", "thirty", "forty", "fifty"];
+function numW(n) { return n < 20 ? NW[n] : NT[Math.floor(n / 10)] + (n % 10 ? "-" + NW[n % 10] : ""); }
+function timeEasy(h, m) { const H = numW(h % 12 || 12); return m === 0 ? H + " o'clock" : H + " " + (m < 10 ? "oh " + numW(m) : numW(m)); }
+function timeClassic(h, m) {
+  const H = h % 12 || 12, N = (h + 1) % 12 || 12;
+  if (m === 0) return numW(H) + " o'clock";
+  if (m === 15) return "quarter past " + numW(H);
+  if (m === 30) return "half past " + numW(H);
+  if (m === 45) return "quarter to " + numW(N);
+  const mins = x => numW(x) + (x % 5 ? (x === 1 ? " minute" : " minutes") : "");
+  return m < 30 ? mins(m) + " past " + numW(H) : mins(60 - m) + " to " + numW(N);
+}
+function dayPart(h) { return h < 12 ? "in the morning" : h < 18 ? "in the afternoon" : "in the evening"; }
+
+XW.clock = {
+  html(s) {
+    let ticks = "";
+    for (let i = 0; i < 60; i++) { const a = i * 6 * Math.PI / 180, big = i % 5 === 0, r1 = big ? 82 : 87; ticks += `<line x1="${100 + r1 * Math.sin(a)}" y1="${100 - r1 * Math.cos(a)}" x2="${100 + 92 * Math.sin(a)}" y2="${100 - 92 * Math.cos(a)}" stroke-width="${big ? 3 : 1.2}"/>`; }
+    let nums = ""; for (let i = 1; i <= 12; i++) { const a = i * 30 * Math.PI / 180; nums += `<text x="${100 + 70 * Math.sin(a)}" y="${100 - 70 * Math.cos(a) + 6}">${i}</text>`; }
+    return `<div class="ckwrap" data-xw="clock"><div class="ckface"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="96" class="ckrim"/><g class="cktk">${ticks}</g><g class="cknum">${nums}</g>
+      <line class="ckh" x1="100" y1="100" x2="100" y2="52"/><line class="ckm" x1="100" y1="100" x2="100" y2="22"/><circle cx="100" cy="100" r="6" class="ckc"/></svg></div>
+      <div class="ckside"><div class="ckq">What time is it?</div>
+      <div class="ckbtns"><button data-d="-15">−15</button><button data-d="-5">−5</button><button data-d="5">+5</button><button data-d="15">+15</button><button data-d="60">+1 h</button><button data-rnd>🎲 New time</button></div>
+      <div class="ckans"><div class="ckdig"></div><div class="ckrow"><span>Easy way</span><b class="cke"></b></div><div class="ckrow"><span>Classic way</span><b class="ckcl"></b></div><div class="ckpart"></div><button class="xsp" data-ckay title="Listen">🔊</button></div>
+      <button class="ckshow" data-ckshow>👀 Show answer</button></div></div>`;
+  },
+  mount(r) {
+    let t = 8 * 60 + 30;
+    const pool = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 15, 30, 45];
+    const draw = () => {
+      const h = Math.floor(t / 60) % 24, m = t % 60;
+      $(".ckm", r).setAttribute("transform", `rotate(${m * 6} 100 100)`);
+      $(".ckh", r).setAttribute("transform", `rotate(${(h % 12) * 30 + m / 2} 100 100)`);
+      $(".ckdig", r).textContent = (h % 12 || 12) + ":" + String(m).padStart(2, "0") + (h < 12 ? " a.m." : " p.m.");
+      $(".cke", r).textContent = timeEasy(h, m); $(".ckcl", r).textContent = timeClassic(h, m);
+      $(".ckpart", r).textContent = (h === 12 && m === 0) ? "= noon" : "(" + dayPart(h) + ")";
+      $("[data-ckay]", r).dataset.say = "It's " + timeClassic(h, m) + ".";
+    };
+    const hide = () => r.classList.remove("shown");
+    r.addEventListener("click", e => {
+      const b = e.target.closest("button"); if (!b || b.hasAttribute("data-ckay")) return; e.stopPropagation();
+      if (b.hasAttribute("data-ckshow")) { r.classList.toggle("shown"); return; }
+      if (b.hasAttribute("data-rnd")) { t = (6 + Math.floor(Math.random() * 16)) * 60 + pool[Math.floor(Math.random() * pool.length)]; hide(); }
+      else { t = (t + Number(b.dataset.d) + 1440) % 1440; hide(); }
+      draw();
+    });
+    draw();
+  }
+};
+
+/* Body figure: [id, label, x, y, hurt sentence] — front view */
+const BODY = [
+  ["hair", "hair", 150, 30, "My hair is wet. 😄"], ["head", "head", 118, 46, "I have a headache. / My head hurts."],
+  ["eye", "eye", 134, 70, "My eye hurts."], ["ear", "ear", 191, 74, "I have an earache. / My ear hurts."],
+  ["nose", "nose", 150, 84, "I have a runny nose."], ["mouth", "mouth", 150, 100, "I have a toothache."],
+  ["neck", "neck · throat", 150, 122, "I have a sore throat."], ["shoulder", "shoulder", 202, 144, "My shoulder hurts."],
+  ["chest", "chest", 150, 168, "My chest hurts."], ["arm", "arm", 76, 190, "My arm hurts."],
+  ["elbow", "elbow", 78, 222, "My elbow hurts."], ["stomach", "stomach · belly", 150, 232, "I have a stomachache."],
+  ["wrist", "wrist", 234, 282, "My wrist hurts."], ["hand", "hand", 62, 304, "My hand hurts."],
+  ["finger", "finger", 246, 320, "My finger hurts."], ["leg", "leg", 128, 336, "My leg hurts."],
+  ["knee", "knee", 172, 384, "My knee hurts."], ["ankle", "ankle", 130, 466, "My ankle hurts."],
+  ["foot", "foot (feet)", 182, 488, "My foot hurts."]
+];
+function bodySVG() {
+  const skin = "#e9b98f", sk2 = "#d79e72";
+  return `<svg viewBox="0 0 300 510" class="bfig">
+    <g stroke-linecap="round" fill="none">
+      <path d="M118 272 L128 380 L130 468" stroke="${skin}" stroke-width="28"/><path d="M182 272 L172 380 L170 468" stroke="${skin}" stroke-width="28"/>
+      <path d="M102 142 L78 218 L66 290" stroke="${skin}" stroke-width="22"/><path d="M198 142 L222 218 L234 290" stroke="${skin}" stroke-width="22"/>
+    </g>
+    <ellipse cx="62" cy="304" rx="13" ry="16" fill="${skin}"/><ellipse cx="238" cy="304" rx="13" ry="16" fill="${skin}"/>
+    <ellipse cx="120" cy="486" rx="22" ry="10" fill="#4a5568"/><ellipse cx="180" cy="486" rx="22" ry="10" fill="#4a5568"/>
+    <path d="M112 262 h76 l6 64 h-40 l-4 -26 l-4 26 h-40 z" fill="#2f4a7a"/>
+    <path d="M100 132 Q150 120 200 132 L214 178 L198 186 L190 160 L188 272 H112 L110 160 L102 186 L86 178 Z" fill="#e8743b"/>
+    <rect x="139" y="104" width="22" height="26" rx="6" fill="${sk2}"/>
+    <ellipse cx="109" cy="74" rx="7" ry="11" fill="${skin}"/><ellipse cx="191" cy="74" rx="7" ry="11" fill="${skin}"/>
+    <ellipse cx="150" cy="70" rx="41" ry="45" fill="${skin}"/>
+    <path d="M108 66 Q108 22 150 22 Q194 22 192 66 Q184 40 150 40 Q118 40 108 66 Z" fill="#4b2e1e"/>
+    <circle cx="134" cy="70" r="4.5" fill="#2b2b2b"/><circle cx="166" cy="70" r="4.5" fill="#2b2b2b"/>
+    <path d="M150 74 q-5 12 0 13" stroke="${sk2}" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M138 98 q12 9 24 0" stroke="#a5482f" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <g class="bmarks"></g>
+    <g class="bhits">${BODY.map(b => `<circle class="bhit" data-b="${b[0]}" cx="${b[2]}" cy="${b[3]}" r="${b[0] === "stomach" || b[0] === "chest" || b[0] === "head" || b[0] === "leg" ? 20 : 14}"/>`).join("")}</g>
+  </svg>`;
+}
+XW.body = {
+  html(s) {
+    const mode = s.mode || "name";
+    const side = mode === "touch"
+      ? `<div class="bxq"><div class="bcmd">Ready?</div><div class="btbtn"><button data-bnext>🎲 Next</button><button data-bshow>👀 Show</button></div><div class="bhint">Everybody touches it on camera! · Todo mundo toca na câmera!</div></div>`
+      : `<div class="bxq"><div class="bcmd">${mode === "hurt" ? "Click: what hurts? 🤕" : "Click a body part."}</div><div class="bsay"></div><button class="xsp" data-bsay title="Listen" hidden>🔊</button>${mode === "hurt" ? "" : '<button data-ball class="ball">👀 Show all</button>'}</div>`;
+    return `<div class="bwrap" data-xw="body" data-mode="${mode}"><div class="bstage">${bodySVG()}</div><div class="bside">${side}</div></div>`;
+  },
+  mount(r) {
+    const mode = r.dataset.mode, svg = $("svg", r), marks = $(".bmarks", svg);
+    const mark = (id, clear) => {
+      if (clear) marks.innerHTML = "";
+      const b = BODY.find(x => x[0] === id); if (!b) return;
+      const left = b[2] > 150 || (b[2] === 150 && b[3] > 150), lx = left ? b[2] + 26 : b[2] - 26, anchor = left ? "start" : "end";
+      marks.insertAdjacentHTML("beforeend", `<g class="bm"><circle cx="${b[2]}" cy="${b[3]}" r="7"/><line x1="${b[2]}" y1="${b[3]}" x2="${lx}" y2="${b[3]}"/><text x="${left ? lx + 3 : lx - 3}" y="${b[3] + 5}" text-anchor="${anchor}">${esc(b[1])}</text></g>`);
+    };
+    if (mode === "touch") {
+      let last = -1, cur = null;
+      r.addEventListener("click", e => {
+        const btn = e.target.closest("button"); if (!btn) return; e.stopPropagation();
+        if (btn.hasAttribute("data-bnext")) {
+          let i; do { i = Math.floor(Math.random() * BODY.length); } while (i === last || BODY[i][0] === "hair"); last = i; cur = BODY[i];
+          const w = cur[0] === "foot" ? "foot" : cur[0] === "neck" ? "neck" : cur[0] === "stomach" ? "stomach" : cur[0];
+          $(".bcmd", r).textContent = "Touch your " + w + "!"; marks.innerHTML = ""; say("Touch your " + w + "!");
+        } else if (btn.hasAttribute("data-bshow") && cur) { mark(cur[0], true); chime(true); }
+      });
+      return;
+    }
+    r.addEventListener("click", e => {
+      if (e.target.closest("[data-ball]")) { e.stopPropagation(); marks.innerHTML = ""; BODY.forEach(b => mark(b[0])); return; }
+      const h = e.target.closest(".bhit"); if (!h) return; e.stopPropagation();
+      const b = BODY.find(x => x[0] === h.dataset.b); mark(b[0], true);
+      const txt = mode === "hurt" ? b[4] : b[1];
+      $(".bsay", r).textContent = txt; const sp = $("[data-bsay]", r); sp.hidden = false; sp.dataset.say = txt.split(" / ")[0].replace(/ \(.*\)|[😄🤕]/g, "").replace(" · ", ", ");
+    });
   }
 };
 
@@ -22202,6 +23557,7 @@ L2x("A1-10", {
     { k: "table", t: "Telling the time", head: ["Time", "Easy way", "Classic way"],
       rows: [["7:00", "seven", "seven **o'clock**"], ["7:15", "seven fifteen", "**quarter past** seven"], ["7:30", "seven thirty", "**half past** seven"], ["7:45", "seven forty-five", "**quarter to** eight"], ["7:10", "seven ten", "ten **past** seven"], ["7:50", "seven fifty", "ten **to** eight"]],
       note: "a.m. = manhã (00h–12h) · p.m. = tarde/noite · 12:00 = noon · 00:00 = midnight" },
+    { k: "x", w: "clock", sec: "learn", t: "Turn the clock", ins: "Move the hands. Say the time two ways, then check! || Mude o horário, diga de duas formas e confira.", tip: "Comece com o'clock / half past; depois quarter past/to; depois 🎲." },
     { k: "qs", t: "What time is it?", ins: "Say it two ways! || Diga de duas formas.",
       items: [["8:30", "eight thirty / half past eight"], ["3:15", "three fifteen / quarter past three"], ["11:45", "eleven forty-five / quarter to twelve"], ["6:05", "six oh five / five past six"], ["9:20 p.m.", "nine twenty p.m. / twenty past nine at night"], ["12:00", "twelve o'clock / noon / midnight"]] },
     { k: "contrast", t: "at · on · in",
@@ -22586,8 +23942,11 @@ L2x("a1-body", {
   s: [
     { k: "pics", t: "Body parts", ins: "Point and say. || Aponte e diga.", show: true,
       items: [["head", "Human head", "🙂"], ["shoulder", "Shoulder", "💪"], ["back", "Human back", "🔙"], ["knee", "Knee", "🦵"], ["stomach", "Abdomen", "🫃"], ["throat", "Throat", "🗣️"], ["ankle", "Ankle", "🦶"], ["wrist", "Wrist", "✋"]] },
+    { k: "x", w: "body", mode: "name", t: "Point and say", ins: "Click a part of the body. Listen and repeat. || Clique numa parte do corpo, ouça e repita." },
+    { k: "x", w: "body", mode: "touch", t: "Touch your…!", ins: "Listen and touch it. Fast! || Ouça e toque. Rápido!", tip: "Ritmo rápido; depois deixe um aluno dar os comandos." },
     { k: "table", t: "How to say it hurts", head: ["Say", "Português"],
       rows: [["My **back hurts**.", "Minhas costas doem."], ["I have a **headache**.", "Estou com dor de cabeça."], ["I have a **stomachache**.", "Estou com dor de barriga."], ["I have a **sore throat**.", "Estou com dor de garganta."], ["I have a **cold** / the **flu** / a **fever**.", "resfriado / gripe / febre"], ["I **feel sick**.", "Estou enjoado / mal."]], note: "“Estou com dor de…” → **I have a …ache** or **My … hurts**" },
+    { k: "x", w: "body", mode: "hurt", t: "What hurts?", ins: "Click a part. Say the sentence. || Clique e diga a frase." },
     { k: "choose", items: ["My knee (*hurts/hurt).", "I (*have/am) a headache.", "She has a sore (*throat/neck).", "I (*feel/am feel) sick.", "My eyes (*hurt/hurts).", "He has (*a fever/fever high)."] },
     { k: "match", t: "Problem and advice", items: [["I have a headache.", "Take a painkiller."], ["I have a sore throat.", "Drink hot tea with honey."], ["My back hurts.", "Don't carry heavy things."], ["I have a fever.", "Stay in bed and drink water."], ["I feel sick.", "Don't eat heavy food."], ["My eyes hurt.", "Stop looking at your phone! 📱"]] },
     { k: "chat", t: "At the pharmacy", me: "You",
@@ -29364,8 +30723,8 @@ const wt = s => String(s).trim().replace(/ /g, "_");
 const isPhoto = title => typeof PHOTO !== "undefined" && PHOTO.has(String(title || "").trim());
 function pic(title, emoji, label, cls = "") {
   const t = wt(title || label || ""); const key = "w:" + t; const own = S.img[key];
-  const cur = /^@/.test(String(title || "")) && typeof XIMG !== "undefined" && XIMG[String(title).trim()];
-  if (cur) { const ph1 = own || cur[0]; return `<span class="imgph ${cls} hasph" data-w="${esc(t)}" data-l="${esc(label || title || "")}"><img class="photo" alt="" src="${esc(ph1)}"></span>`; }
+  const cur = typeof XIMG !== "undefined" && ((/^@/.test(String(title || "")) && XIMG[String(title).trim()]) || (label && XIMG["#" + String(label).trim()]));
+  if (cur) { const ph1 = own || cur[0]; return `<span class="imgph ${cls} hasph" data-w="${esc(t)}" data-x="${esc(/^@/.test(String(title || "")) ? String(title).trim() : "#" + String(label).trim())}" data-l="${esc(label || title || "")}"><img class="photo" alt="" src="${esc(ph1)}"></span>`; }
   const ph = own || (isPhoto(title) ? IMGC[key] : "");
   const ill = emoji ? (emoSrc(emoji) ? `<img class="ill" alt="" src="${emoSrc(emoji)}">` : `<span class="emo">${emoji}</span>`) : "";
   return `<span class="imgph ${cls}${ph ? " hasph" : ""}" data-w="${esc(t)}" data-l="${esc(label || title || "")}"${isPhoto(title) ? ' data-ph="1"' : ""}>${ill}${ph ? `<img class="photo" alt="" src="${esc(ph)}" onerror="this.parentNode.classList.remove('hasph');this.remove()">` : ""}</span>`;
@@ -29391,7 +30750,7 @@ async function loadPics(root = document) {
       saveImg();
     } catch (e) { break; }
   }
-  els.forEach(e => { const k = "w:" + e.dataset.w, cur = typeof XIMG !== "undefined" && XIMG[e.dataset.w]; setPhoto(e, S.img[k] || (cur ? cur[0] : e.dataset.ph ? IMGC[k] : "")); });
+  els.forEach(e => { const k = "w:" + e.dataset.w, cur = typeof XIMG !== "undefined" && XIMG[e.dataset.x || e.dataset.w]; setPhoto(e, S.img[k] || (cur ? cur[0] : e.dataset.ph ? IMGC[k] : "")); });
 }
 const COMMONS = {};
 async function commons(q, i) {
@@ -29405,7 +30764,7 @@ async function commons(q, i) {
 }
 async function swapPic(el) {
   const k = "w:" + el.dataset.w; const q = el.dataset.l || el.dataset.w.replace(/_/g, " ");
-  const cur = typeof XIMG !== "undefined" && XIMG[el.dataset.w]; /* curated photos: switch between the chosen options */
+  const cur = typeof XIMG !== "undefined" && XIMG[el.dataset.x || el.dataset.w]; /* curated photos: switch between the chosen options */
   if (cur) { const now = S.img[k] || cur[0], u = cur[(cur.indexOf(now) + 1) % cur.length]; S.img[k] = u; save(); setPhoto(el, u); return; }
   el.dataset.si = (+el.dataset.si || 0) + 1;
   const u = await commons(q, +el.dataset.si - 1);
