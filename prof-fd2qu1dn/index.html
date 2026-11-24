@@ -2005,6 +2005,34 @@ body.dkh .glvbar button.on { background: #FFC93C; color: #14213D; }
 .w2 .il.xqs.g2 .ans2 { max-height: none; }
 
 .w2 .vp .vbx { position: relative; width: 640px; height: 360px; border-radius: 16px; overflow: hidden; background: #000; }
+/* results page — dark hub */
+body.dkh .rempty, body.dkh .rlist, body.dkh .rdet { background: #1A2130; border-color: #2B3448; color: #EEF1F7; }
+body.dkh .rst, body.dkh .rtr, body.dkh .rsh { color: #EEF1F7; }
+body.dkh .rst:hover, body.dkh .rtr:hover, body.dkh button.rsh[data-ro]:hover { background: #232C40; }
+body.dkh .rst.on { background: #2A3A5E; }
+body.dkh .rpill { background: #232C40; color: #C3CBDA; }
+body.dkh .rkpis > div { background: #121825; }
+body.dkh .rweak { background: #2E2614; } body.dkh .rweak b { color: #FFC93C; } body.dkh .rweak span { background: #1A2130; }
+body.dkh .rses.plc .rsh { background: #2A2445; }
+body.dkh .rses.open { border-color: #3D5A99; }
+body.dkh .rbar { background: #232C40; } body.dkh .rbar i { background: #2E8A63; } body.dkh .rbar.mid i { background: #A8781A; } body.dkh .rbar.low i { background: #B03A42; } body.dkh .rbar em { color: #fff; }
+body.dkh .rbody { background: #121825; } body.dkh .rbody pre { background: #1A2130; }
+body.dkh .rtr .ok, body.dkh .rline.ok { color: #4FD1A1; } body.dkh .rtr .mid, body.dkh .rline.mid { color: #FFC93C; } body.dkh .rtr .low, body.dkh .rline.low { color: #FF8A8F; }
+body.dkh .rdone { color: #4FD1A1; } body.dkh .rfast { color: #FF8A8F; }
+body.dkh .rwarn { background: #3A2614; color: #FFC58A; }
+body.dkh .rbtn { background: #1F2D4D; color: #9CC0FF; }
+body.dkh .rweek { background: #121825; border-color: #2B3448; }
+body.dkh .rwcols b.ok { color: #4FD1A1; } body.dkh .rwcols b.low { color: #FF8A8F; } body.dkh .rwcols b.mid { color: #FFC93C; }
+body.dkh .rhw span.ok { background: #173B2E; color: #7FE3BD; } body.dkh .rhw span.low { background: #3E1D22; color: #FFADB1; }
+body.dkh .rhwchip { background: #1F2D4D; color: #9CC0FF; }
+body.dkh .rkpis .ok b { background: #173B2E; color: #7FE3BD; } body.dkh .rkpis .mid b { background: #3A2E10; color: #FFD66B; } body.dkh .rkpis .low b { background: #3E1D22; color: #FFADB1; }
+.rsh { grid-template-columns: 112px minmax(220px, 1fr) 96px 110px 132px 70px 14px; }
+.rdone { white-space: nowrap; }
+.dlg #sidq { margin-bottom: 6px; }
+.dlg .sidsel { padding: 6px; height: auto; } .dlg .sidsel option { padding: 5px 8px; border-radius: 6px; } .dlg .sidsel optgroup { font-weight: 800; }
+body.dkh .dlg .sidsel option:checked { background: #2A3A5E; color: #fff; }
+.rsh { grid-template-columns: 100px minmax(170px, 1fr) 78px 104px 120px 62px 12px; gap: 8px; }
+.rlist { top: 64px; }
 
 /* custom interactive slides (xw.js) */
 .w2.xw .xbd { overflow: visible; }
@@ -19753,7 +19781,7 @@ function rSession(r) {
   return `<div class="rses ${open ? "open" : ""}">
     <button class="rsh" ${has ? `data-ro="${esc(r.sid)}"` : ""}>
       <span class="rwhen">${rDate(r.start || r.updated)}</span>
-      <span class="rles" title="${esc(r.id)} · ${esc(r.title)}"><b>${esc(r.id)} · ${esc(r.title)}</b><small>${n ? esc(n.grammar) : ""}</small></span>
+      <span class="rles" title="${esc(NODE[r.id] ? lbl(r.id) : r.id + " · " + r.title)}"><b>${esc(NODE[r.id] ? lbl(r.id) : r.id + " · " + r.title)}</b><small>${n ? esc(n.grammar) : ""}</small></span>
       <span class="rmeta">${+r.mins ? r.mins + " min" : "&lt;1 min"}${rRushed(r) ? ` <i class="rfast" title="Less than 8 seconds per answer">⚡ fast</i>` : ""}</span>
       <span class="rmeta">${+r.total ? `${r.answered}/${r.total} answered` : "no exercises"}</span>
       <span class="rbar ${rTone(+r.answered ? Math.round(r.firstTry / r.answered * 100) : null)}" title="Right on the first try">${+r.answered ? `<i style="width:${Math.round(r.firstTry / r.answered * 100)}%"></i><em>${r.firstTry}/${r.answered} 1st try</em>` : ""}</span>
@@ -19811,7 +19839,7 @@ function rHomework() {
   return `<div class="rweek"><h3>Homework</h3>${list.slice().reverse().map(h => {
     const did = {}; RES.rows.forEach(r => { if (r.id === h.id && (String(r.extra || "").includes("HW:" + h.tag) || (r.start || r.updated) >= h.at)) { const k = rKeyName(r.name); did[k] = Math.max(did[k] || 0, +r.pct || 0); } });
     const n = NODE[h.id]; const missing = Object.entries(known).filter(([k]) => !(k in did)).map(([, v]) => v);
-    return `<div class="rhw"><b>${esc(h.id)} · ${esc(n ? n.title : "")}</b><small>sent ${rAgo(h.at)}</small>
+    return `<div class="rhw"><b>${esc(n ? lbl(h.id) : h.id)}</b><small>sent ${rAgo(h.at)}</small>
       <div>${Object.entries(did).map(([k, p]) => `<span class="ok">✓ ${esc(known[k] || k)} <i>${p}%</i></span>`).join("")}${missing.map(m => `<span class="low">✗ ${esc(m)}</span>`).join("")}</div></div>`;
   }).join("")}</div>`;
 }
@@ -19828,8 +19856,8 @@ function lessonStats(id) {
 function classNoteBtn(id) { const st = lessonStats(id); return st ? `<button class="tb cnote ${rTone(st.first)}" data-act="cnotes" title="How students did on this lesson">📊 ${st.n}</button>` : ""; }
 function classNotesDlg(id) {
   const st = lessonStats(id), n = NODE[id];
-  if (!st) { dialog(`<h3>How students did</h3><p class="rhelp">No results for ${esc(id)} yet${rConnected() ? "" : " — connect your results sheet in 📊 Results"}.</p>`, []); return; }
-  dialog(`<h3>📊 ${esc(id)} · ${esc(n ? n.title : "")}</h3>
+  if (!st) { dialog(`<h3>How students did</h3><p class="rhelp">No results for ${esc(n ? lbl(id) : id)} yet${rConnected() ? "" : " — connect your results sheet in 📊 Results"}.</p>`, []); return; }
+  dialog(`<h3>📊 ${esc(n ? lbl(id) : id)}</h3>
     <p class="rhelp"><b>${st.n}</b> student${st.n > 1 ? "s" : ""} did this lesson (${st.names.map(esc).join(", ")}) · <b class="${rTone(st.first)}">${st.first}%</b> right on the first try.</p>
     ${st.top.length ? `<h4>Most missed — worth revising in class</h4><ul class="cmiss">${st.top.map(m => `<li><b>${esc(m.q)}</b> <small>${m.n.size} student${m.n.size > 1 ? "s" : ""}${m.ex.length ? ` · wrote ${m.ex.map(x => esc(x)).join(", ")}` : ""}</small></li>`).join("")}</ul>` : `<p class="rhelp">No common mistakes. 🎉</p>`}`, []);
 }
@@ -19840,6 +19868,8 @@ function exCode(id) {
   return "";
 }
 function exShort(id) { const c = exCode(id); const m = c.match(/Lesson (\d+), exercise (\w)/); return m ? `${NODE[id].lv} · ${m[1]}${m[2]}` : id; }
+/* one label for a lesson everywhere the teacher sees it: "A1 · 4B · I love pizza" */
+function lbl(id, withTitle = true) { const n = NODE[id]; const c = exShort(id); return withTitle && n ? `${c} · ${n.title}` : c; }
 function hwDlg(id) {
   const n = NODE[id]; const d = new Date(); const tag = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`;
   const link = `${hubUrl()}#hw~${id}~${tag}`;
@@ -32335,7 +32365,7 @@ function syncPW() {
   const label = d => d && d.label ? d.label : d ? `${SEC[d.sec][0]} · ${({ cover: "Cover", agenda: "Plan", div: "Section", pics: "Pictures", talk: d.title || "Talk", words: "Key words", wquiz: "Word quiz", predict: "Predict", video: "Video", discover: "Discover the rule", gram: "Grammar", mc: "Multiple choice", fill: "Complete", order: "Word order", fix: "Find the mistake", lis: "Listening", tr: "Translation", read: "Reading", tf: "True or false", speak: "Speaking tasks", roles: "Role-play", write: "Writing", game: "Quiz game", exit: "Exit ticket", hw: "Homework", end: "Goodbye", cando: "Can-do check", rgram: "Grammar recap", proj: "Project" })[d.type] || d.type}` : "— end —";
   const ans = answersFor(s);
   PW.document.body.innerHTML = `<div style="font-family:Figtree,system-ui,sans-serif;padding:18px;color:#16213A">
-    <div style="font-size:13px;font-weight:800;color:#7A8499;text-transform:uppercase;letter-spacing:.08em">${esc(n.id)} · ${esc(n.title)} — slide ${CUR.i + 1} / ${CUR.deck.length}</div>
+    <div style="font-size:13px;font-weight:800;color:#7A8499;text-transform:uppercase;letter-spacing:.08em">${esc(lbl(n.id))} — slide ${CUR.i + 1} / ${CUR.deck.length}</div>
     <h2 style="margin:6px 0 4px;font-family:'Bricolage Grotesque',sans-serif">${esc(label(s))}</h2>
     <div style="background:#FFF3D1;border-radius:12px;padding:12px 14px;font-size:15.5px;line-height:1.45;margin:10px 0">💡 ${esc(noteFor(s))}</div>
     ${ans.length ? `<div style="background:#E1F6EC;border-radius:12px;padding:12px 14px;font-size:15px;line-height:1.5"><b>Answers</b><br>${ans.map(esc).join("<br>")}</div>` : ""}
@@ -32446,7 +32476,7 @@ function render() {
   const taughtN = Object.keys(S.taught).length;
   let main = "";
   if (q) {
-    const hits = ORDER.filter(id => { const n = NODE[id]; return (id + " " + n.title + " " + n.grammar + " " + n.vocab + " " + ((VIDEOS[n.key] || [])[1] || "")).toLowerCase().includes(q); }).slice(0, 40);
+    const hits = ORDER.filter(id => { const n = NODE[id]; const c = exShort(id).toLowerCase(); return (id + " " + c + " " + c.replace(/ · /, " ") + " " + c.replace(/ · /, "") + " " + n.title + " " + n.grammar + " " + n.vocab + " " + ((VIDEOS[n.key] || [])[1] || "")).toLowerCase().includes(q); }).slice(0, 40);
     main = `<div class="mod"><h2>Search <small>${hits.length} found</small></h2><div class="found">${hits.map(id => { const n = NODE[id]; return `<button class="frow" data-open="${id}"><span class="id">${typeof exShort === "function" ? exShort(id) : id}</span><span><b>${esc(n.title)}</b><br><small>${esc(n.grammar)} · ${esc(n.vocab)}</small></span></button>`; }).join("") || `<div class="empty">Nothing found.</div>`}</div></div>`;
   } else {
     main = `<div class="lvtabs">${Object.keys(LVINFO).map(k => { const ids = ORDER.filter(i => NODE[i].lv === k); const d = ids.filter(i => S.taught[i]).length; return `<button class="lvt ${k === lv ? "on" : ""}" data-lv="${k}"><span>${LVNAMES[k][1]}</span><b>${k}</b><small>${LVNAMES[k][0]}</small><span class="prog"><i style="width:${d / ids.length * 100}%"></i></span></button>`; }).join("")}</div>
@@ -32456,10 +32486,10 @@ function render() {
     <label class="search">🔎<input id="q" placeholder="Search ${ORDER.length} classes: title, grammar, topic…" value="${esc(render.q || "")}"></label>
     <button class="ibtn" data-act="theme" title="Dark / light">${S.theme === "light" ? "🌙" : "☀️"}</button><button class="ibtn" data-act="settings" title="Settings">⚙️</button><button class="ibtn" data-act="keys" title="Shortcuts">⌨️</button></div>
     ${q ? "" : `<div class="hero"><div class="hcard"><h1>${hi}, ${esc(S.name || "teacher")}!</h1><p>${taughtN ? `${taughtN} classes taught so far.` : `${ORDER.length} classes ready to share on Google Meet.`} Open a class, share the tab, and press → to begin.</p>
-      ${last ? `<div class="cont"><span style="font-size:30px">${tl(last.key).e || "📘"}</span><span style="flex:1;min-width:0"><small>Continue</small><b>${last.id} · ${esc(last.title)}</b></span><button class="play" data-open="${last.id}">▶ Open</button></div>` : `<div class="cont"><span style="font-size:30px">🌱</span><span style="flex:1"><small>Start here</small><b>A0-1 · Hello!</b></span><button class="play" data-open="A0-1">▶ Open</button></div>`}
+      ${last ? `<div class="cont"><span style="font-size:30px">${tl(last.key).e || "📘"}</span><span style="flex:1;min-width:0"><small>Continue</small><b>${esc(lbl(last.id))}</b></span><button class="play" data-open="${last.id}">▶ Open</button></div>` : `<div class="cont"><span style="font-size:30px">🌱</span><span style="flex:1"><small>Start here</small><b>${esc(lbl("A0-1"))}</b></span><button class="play" data-open="A0-1">▶ Open</button></div>`}
       ${AV ? `<img class="av" src="${AV}" alt="">` : ""}</div>
       <div class="stud"><h3>👥 My students<span class="sp"></span><button class="mini rbtn" data-act="results">📊 Results</button><button class="mini" data-act="addst">+ Add</button></h3>
-      ${S.students.length ? S.students.map((s, i) => { const n = NODE[s.id] || NODE[ORDER[0]]; return `<div class="srow"><span class="sav" style="background:${COLORS[i % COLORS.length]}">${esc((s.n || "?")[0].toUpperCase())}</span><span class="tx"><b>${esc(s.n)}</b><small>Next: ${n.id} · ${esc(n.title)}${typeof rStudentLine === "function" ? rStudentLine(s.n) : ""}</small></span><button class="mini" data-edst="${i}">Edit</button><button class="mini go" data-open="${n.id}">▶</button></div>`; }).join("") : `<div class="empty">Add your students to see each one's next class. When you mark a class as taught, they move on automatically.</div>`}</div></div>`}
+      ${S.students.length ? S.students.map((s, i) => { const n = NODE[s.id] || NODE[ORDER[0]]; return `<div class="srow"><span class="sav" style="background:${COLORS[i % COLORS.length]}">${esc((s.n || "?")[0].toUpperCase())}</span><span class="tx"><b>${esc(s.n)}</b><small>Next: ${esc(lbl(n.id))}${typeof rStudentLine === "function" ? rStudentLine(s.n) : ""}</small></span><button class="mini" data-edst="${i}">Edit</button><button class="mini go" data-open="${n.id}">▶</button></div>`; }).join("") : `<div class="empty">Add your students to see each one's next class. When you mark a class as taught, they move on automatically.</div>`}</div></div>`}
     ${q ? "" : specialsHTML()}${main}</div>`;
   const inp = $("#q"); inp.oninput = () => { render.q = inp.value; const pos = inp.selectionStart; render(); const i2 = $("#q"); i2.focus(); i2.setSelectionRange(pos, pos); };
   loadPics($("#app"));
@@ -32486,8 +32516,18 @@ function specialsHTML() {
 }
 function studentDlg(i) {
   const s = i == null ? { n: "", id: "A0-1" } : S.students[i];
-  dialog(`<h3>${i == null ? "Add a student" : "Edit student"}</h3><label>Name</label><input type="text" id="sn" value="${esc(s.n)}" placeholder="e.g. Ana"><label>Next class</label><select id="sid">${ORDER.map(id => `<option value="${id}" ${id === s.id ? "selected" : ""}>${id} · ${esc(NODE[id].title)}</option>`).join("")}</select>`,
+  dialog(`<h3>${i == null ? "Add a student" : "Edit student"}</h3><label>Name</label><input type="text" id="sn" value="${esc(s.n)}" placeholder="e.g. Ana"><label>Next class</label><input type="text" id="sidq" placeholder="Type a title or code (e.g. pizza, A1 4B)…" autocomplete="off"><select id="sid" size="8" class="sidsel">${Object.keys(LVINFO).map(lv => `<optgroup label="${lv}">${ORDER.filter(id => NODE[id].lv === lv).map(id => `<option value="${id}" ${id === s.id ? "selected" : ""}>${esc(lbl(id))}</option>`).join("")}</optgroup>`).join("")}</select>`,
     [["Save", "p", () => { const n = $("#sn").value.trim(); if (!n) return; const o = { n, id: $("#sid").value }; if (i == null) S.students.push(o); else S.students[i] = o; save(); render(); }]].concat(i == null ? [] : [["Remove", "d", () => { S.students.splice(i, 1); save(); render(); }]]));
+  const q = $("#sidq"), sel = $("#sid"); if (!q || !sel) return;
+  const norm = t => String(t).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[·\-]/g, " ").replace(/\s+/g, " ").trim();
+  const cur = sel.querySelector("option:checked"); if (cur) setTimeout(() => cur.scrollIntoView({ block: "center" }), 30);
+  q.addEventListener("input", () => {
+    const w = norm(q.value).split(" ").filter(Boolean); let first = null;
+    sel.querySelectorAll("option").forEach(o => { const hay = norm(o.textContent + " " + o.value) + " " + norm(o.textContent).replace(/ /g, ""); const ok = w.every(x => hay.includes(x)); o.hidden = !ok; if (ok && !first) first = o; });
+    sel.querySelectorAll("optgroup").forEach(g => { g.hidden = ![...g.children].some(o => !o.hidden); });
+    if (first) { first.selected = true; first.scrollIntoView({ block: "nearest" }); }
+  });
+  q.addEventListener("keydown", e => { if (e.key === "Enter") e.preventDefault(); });
 }
 function settingsDlg() {
   dialog(`<h3>Settings</h3><label>Your name (shown on the hub and the last slide)</label><input type="text" id="tn" value="${esc(S.name)}">
