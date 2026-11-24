@@ -29391,7 +29391,7 @@ async function loadPics(root = document) {
       saveImg();
     } catch (e) { break; }
   }
-  els.forEach(e => { const k = "w:" + e.dataset.w; setPhoto(e, S.img[k] || (e.dataset.ph ? IMGC[k] : "")); });
+  els.forEach(e => { const k = "w:" + e.dataset.w, cur = typeof XIMG !== "undefined" && XIMG[e.dataset.w]; setPhoto(e, S.img[k] || (cur ? cur[0] : e.dataset.ph ? IMGC[k] : "")); });
 }
 const COMMONS = {};
 async function commons(q, i) {
