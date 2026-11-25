@@ -79,9 +79,9 @@ p{margin:0 0 14px;max-width:62ch}
 .arch{position:relative;z-index:1;border-radius:999px 999px 28px 28px;overflow:hidden;aspect-ratio:4/5.4;background:var(--ter)}
 .sh{position:relative;isolation:isolate}
 .sh::before{content:"";position:absolute;z-index:0;pointer-events:none}
-.sh-a::before{inset:-8px -32px -32px -8px;border-radius:999px 999px 28px 28px;background:#c6865a}
-.sh-c::before{inset:-8px -32px -32px -8px;border-radius:28px;background:#c6865a}
-.sh-b::before{inset:-8px -32px -32px -8px;border-radius:999px 999px 28px 28px;background:#c6865a}
+.sh-a::before{inset:0;transform:translate(24px,20px) rotate(3deg);border-radius:999px 999px 28px 28px;background:#c6865a}
+.sh-c::before{inset:0;transform:translate(22px,22px) rotate(-2.5deg);border-radius:28px;background:#c6865a}
+.sh-b::before{inset:0;transform:translate(-24px,20px) rotate(-3deg);border-radius:999px 999px 28px 28px;background:#c6865a}
 .sh>*{position:relative;z-index:1}
 .stick{z-index:2}
 .arch img{width:100%;height:112%;object-fit:cover;object-position:50% 20%;will-change:transform}
@@ -204,7 +204,7 @@ footer .logo{color:#fff;margin:0}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 @media(max-width:900px){.fgrid,.pgrid,.steps,.sgrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.fact.big{grid-column:span 2}.plan:last-child{grid-column:span 2}.step:last-child{grid-column:span 2}.sgrid div:last-child{grid-column:span 2}}
-@media(max-width:760px){.sh::before{inset:-6px -20px -20px -6px!important}.sh{margin-right:20px;margin-left:6px}.hgrid,.agrid,.qgrid,.mgrid,.cta .wrap{grid-template-columns:minmax(0,1fr)}.hp{max-width:420px;margin:0 auto 32px;width:calc(100% - 26px);transform:translateX(-7px)}.stick{left:12px}.photo2{max-width:440px}.photo3{max-width:380px}}
+@media(max-width:760px){.sh-a::before{transform:translate(14px,14px) rotate(2.5deg)}.sh-c::before{transform:translate(14px,14px) rotate(-2deg)}.sh-b::before{transform:translate(-14px,14px) rotate(-2.5deg)}.sh{margin-right:16px;margin-left:16px}.hgrid,.agrid,.qgrid,.mgrid,.cta .wrap{grid-template-columns:minmax(0,1fr)}.hp{max-width:420px;margin:0 auto 32px;width:calc(100% - 32px)}.stick{left:12px}.photo2{max-width:440px}.photo3{max-width:380px}}
 @media(max-width:600px){.fgrid,.pgrid,.steps,.sgrid{grid-template-columns:minmax(0,1fr)}.fact.big,.plan:last-child,.step:last-child,.sgrid div:last-child{grid-column:auto}.hero{padding-top:96px}.lead{margin:16px 0 22px}.btn{width:100%;justify-content:center}.row .btn{width:100%}}
 </style>
 </head>
